@@ -32,7 +32,9 @@
             <a href=""> علاقات المستثمرين <span>+</span> </a>
           </li>
           <li>
-            <a href=""> تعرف علينا <span>+</span> </a>
+            <router-link to="/about-us">
+              تعرف علينا <span>+</span>
+            </router-link>
           </li>
           <li>
             <a href="">المتجر <span>+</span></a>

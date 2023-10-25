@@ -8,6 +8,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 import Landing from '../pages/landing/landing'
 import Home from '../components/Home/Home'
+import AboutUs from '../components/AboutUs/AboutUs'
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
@@ -23,6 +24,11 @@ const routes = [
         path: "/",
         name: "Home",
         component: Home,
+      },
+      {
+        path: "/about-us",
+        name: "AboutUs",
+        component: AboutUs,
       }
     ]
   },

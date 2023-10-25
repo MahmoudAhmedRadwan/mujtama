@@ -23,7 +23,7 @@
             <span>فروعنا</span>
             <div class="line"></div>
           </div>
-          <b-icon icon="envelope-fill" font-scale="5" class="icon"></b-icon>
+          <b-icon icon="arrow-left" font-scale="5" class="icon"></b-icon>
         </div>
       </div>
     </header>
@@ -60,7 +60,7 @@
     </section>
     <section class="home_page_description_sections container">
       <div class="img_container">
-        <img src="../../assets/images/aboutCompany.png" alt="" />
+        <img src="../../assets/images/ourServices.png" alt="" />
       </div>
       <div class="description">
         <span class="smallTitle">خدماتنا</span>
@@ -117,7 +117,7 @@
     </section>
     <section class="home_page_description_sections container">
       <div class="img_container">
-        <img src="../../assets/images/aboutCompany.png" alt="" />
+        <img src="../../assets/images/InvestorRelations.png" alt="" />
       </div>
       <div class="description">
         <span class="smallTitle">علاقات المستثمرين</span>
@@ -325,7 +325,7 @@ export default {
         }
       }
       .icon {
-        font-size: 16px !important;
+        font-size: 40px !important;
         color: #78a28f;
       }
     }
