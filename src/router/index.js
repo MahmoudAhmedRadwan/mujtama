@@ -10,6 +10,7 @@ import Landing from '../pages/landing/landing'
 import Home from '../components/Home/Home'
 import AboutUs from '../components/AboutUs/AboutUs'
 import InvestorRelations from '../components/InvestorRelations/InvestorRelations'
+import ContactUs from '../components/ContactUs/ContactUs'
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
@@ -35,6 +36,11 @@ const routes = [
         path: "/investor-relations",
         name: "InvestorRelations",
         component: InvestorRelations,
+      },
+      {
+        path: "/contact-us",
+        name: "ContactUs",
+        component: ContactUs,
       }
     ]
   },
