@@ -11,6 +11,9 @@ import Home from '../components/Home/Home'
 import AboutUs from '../components/AboutUs/AboutUs'
 import InvestorRelations from '../components/InvestorRelations/InvestorRelations'
 import ContactUs from '../components/ContactUs/ContactUs'
+import Branches from '../components/Branches/Branches'
+import Form from '../components/Form/Form'
+import MedicalJournal from '../components/MedicalJournal/MedicalJournal'
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
@@ -41,6 +44,21 @@ const routes = [
         path: "/contact-us",
         name: "ContactUs",
         component: ContactUs,
+      },
+      {
+        path: "/branches",
+        name: "Branches",
+        component: Branches,
+      },
+      {
+        path: "/form",
+        name: "Form",
+        component: Form,
+      },
+      {
+        path: "/medical-journal",
+        name: "MedicalJournal",
+        component: MedicalJournal,
       }
     ]
   },

@@ -2,12 +2,23 @@
   <div>
     <header class="landing_header">
       <div class="social">
-        <b-icon icon="facebook" font-scale="5" class="icon"></b-icon>
-        <b-icon icon="instagram" font-scale="5" class="icon"></b-icon>
+        <a
+          href="https://www.facebook.com/almujtamapharma/?locale=ar_AR"
+          target="_blank"
+          ><b-icon icon="facebook" font-scale="5" class="icon"></b-icon
+        ></a>
+
+        <a href="https://www.instagram.com/almujtamapharma/?hl=ar"
+          ><b-icon icon="instagram" font-scale="5" class="icon"></b-icon
+        ></a>
+        <a
+          href="https://twitter.com/almujtamapharma?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"
+          ><img src="../../assets/images/twitter.png" alt=""
+        /></a>
       </div>
       <div class="email">
         <div class="email">
-          info@Almuijtama.com
+          info@almujtama.com.sa
           <b-icon icon="envelope-fill" font-scale="5" class="icon"></b-icon>
         </div>
         <div class="phone">
@@ -23,16 +34,22 @@
         </select>
       </div>
 
-      <div class="links">
+      <div class="links" @click="linkUrlCheck">
         <ul>
           <li>
-            <a href="" class="activeLink"> الرئيسية <span>+</span> </a>
+            <router-link
+              to="/"
+              :class="hoverType == 'main' ? 'activeLink' : ''"
+            >
+              الرئيسية <span>+</span>
+            </router-link>
           </li>
+
           <li>
-            <a href=""> علاقات المستثمرين <span>+</span> </a>
-          </li>
-          <li>
-            <router-link to="/about-us">
+            <router-link
+              to="/about-us"
+              :class="hoverType == 'about-us' ? 'activeLink' : ''"
+            >
               تعرف علينا <span>+</span>
             </router-link>
           </li>
@@ -40,10 +57,26 @@
             <a href="">المتجر <span>+</span></a>
           </li>
           <li>
-            <a href="">المجلة الطبية <span>+</span></a>
+            <a
+              href=""
+              :class="hoverType == 'medical-journal' ? 'activeLink' : ''"
+              >المجلة الطبية <span>+</span></a
+            >
           </li>
           <li>
-            <a href="">الوظائف </a>
+            <router-link
+              to="/form"
+              :class="hoverType == 'form' ? 'activeLink' : ''"
+              >الوظائف <span>+</span>
+            </router-link>
+          </li>
+          <li>
+            <router-link
+              to="/investor-relations"
+              :class="hoverType == 'investor-relations' ? 'activeLink' : ''"
+            >
+              علاقات المستثمرين <span>+</span>
+            </router-link>
           </li>
         </ul>
       </div>
@@ -53,19 +86,24 @@
     <footer class="landing_footer">
       <div class="footer_body container">
         <div class="logo">
-          <img src="../../assets/images/footerLogo.png" alt="" />
+          <img src="../../assets/images/footerLogoNew.svg" alt="" />
         </div>
         <div class="shortCuts">
           <h3>إختصارات</h3>
           <ul>
-            <li><a href=""> الرئيسية </a></li>
-            <li><a href=""> تعرف علينا </a></li>
-            <li><a href=""> فروعنا </a></li>
-            <li><a href=""> المتجر </a></li>
-            <li><a href=""> المجلة الطبية </a></li>
-            <li><a href=""> اجمع مع المجتمع </a></li>
-            <li><a href=""> الوظائف </a></li>
-            <li><a href=""> التطعيمات </a></li>
+            <li>
+              <router-link to="/investor-relations">
+                علاقات المستثمرين
+              </router-link>
+            </li>
+            <li><router-link to="/about-us"> تعرف علينا </router-link></li>
+            <li><router-link to="/branches"> فروعنا </router-link></li>
+            <li><router-link to=""> المتجر </router-link></li>
+            <li>
+              <router-link to="/medical-journal"> المجلة الطبية </router-link>
+            </li>
+            <li><router-link to=""> اجمع مع المجتمع </router-link></li>
+            <li><router-link to="/form"> الوظائف </router-link></li>
           </ul>
         </div>
         <div class="contacts">
@@ -93,21 +131,8 @@
                 ></b-icon>
               </div>
               <div class="words">
-                <h4>البريد الالكترونس</h4>
-                <h5>info@harity.com</h5>
-              </div>
-            </li>
-            <li>
-              <div class="icon_container">
-                <b-icon
-                  icon="telephone-fill"
-                  font-scale="5"
-                  class="icon"
-                ></b-icon>
-              </div>
-              <div class="words">
-                <h4>فروعنا</h4>
-                <h5>California 62639</h5>
+                <h4>البريد الالكتروني</h4>
+                <h5>info@almujtama.com.sa</h5>
               </div>
             </li>
           </ul>
@@ -122,7 +147,7 @@
           </ul>
         </div>
         <div class="call_us">
-          <a href="">أتصل بنا</a>
+          <router-link to="/contact-us">أتصل بنا</router-link>
         </div>
       </div>
       <div class="copyRights">
@@ -134,6 +159,29 @@
 <script>
 export default {
   name: "landing",
+  data() {
+    return {
+      hoverType: "",
+    };
+  },
+  mounted() {
+    this.linkUrlCheck();
+  },
+  methods: {
+    linkUrlCheck() {
+      if (window.location.href.indexOf("medical-journal") > -1) {
+        this.hoverType = "medical-journal";
+      } else if (window.location.href.indexOf("about-us") > -1) {
+        this.hoverType = "about-us";
+      } else if (window.location.href.indexOf("form") > -1) {
+        this.hoverType = "form";
+      } else if (window.location.href.indexOf("investor-relations") > -1) {
+        this.hoverType = "investor-relations";
+      } else {
+        this.hoverType = "main";
+      }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -162,6 +210,9 @@ export default {
     .icon {
       font-size: 24px !important;
       color: #fff;
+      margin: 0 10px;
+    }
+    img {
       margin: 0 10px;
     }
   }
@@ -197,7 +248,8 @@ export default {
         a {
           font-size: 20px;
           text-decoration: none;
-          color: #fff;
+          color: #2b5933;
+          font-weight: 600;
           @media (max-width: 991px) {
             font-size: 14px;
           }
@@ -205,12 +257,12 @@ export default {
             color: #2b5933;
           }
         }
-        .activeLink {
-          color: #78a28f !important;
-        }
       }
     }
   }
+}
+.activeLink {
+  color: #d8d253 !important;
 }
 
 .landing_footer {
@@ -225,7 +277,7 @@ export default {
       @media (max-width: 1399px) {
         margin-left: 50px;
       }
-      @media (max-width: 11199px) {
+      @media (max-width: 1199px) {
         margin-left: 20px;
       }
       @media (max-width: 991px) {
@@ -237,7 +289,7 @@ export default {
       @media (max-width: 1399px) {
         margin-left: 70px;
       }
-      @media (max-width: 11199px) {
+      @media (max-width: 1199px) {
         margin-left: 20px;
       }
       @media (max-width: 991px) {
@@ -282,7 +334,7 @@ export default {
       @media (max-width: 1399px) {
         margin-left: 50px;
       }
-      @media (max-width: 11199px) {
+      @media (max-width: 1199px) {
         margin-left: 20px;
       }
       @media (max-width: 991px) {
@@ -333,7 +385,7 @@ export default {
       align-items: center;
       justify-content: center;
       border-radius: 4px;
-      margin-top: 150px;
+      margin: 73px 30px 0 0;
       @media (max-width: 991px) {
         margin: 0 0 20px 0;
       }

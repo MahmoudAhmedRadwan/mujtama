@@ -4,7 +4,7 @@
       <img src="../../assets/images/pharmacy.png" alt="" />
       <div class="charts">
         <div class="numbers">
-          <div class="number">145</div>
+          <div class="number">165</div>
           <div class="line"></div>
           <h3>فرعا منتشرة على نطاق واسع</h3>
         </div>
@@ -29,8 +29,13 @@
     </header>
 
     <section class="home_page_description_sections container">
+      <img
+        class="rightBg"
+        src="../../assets/images/aboutCompanyBg.svg"
+        alt=""
+      />
       <div class="img_container">
-        <img src="../../assets/images/aboutCompany.png" alt="" />
+        <img src="../../assets/images/group.png" alt="" />
       </div>
       <div class="description">
         <h3>نبذة عن الشركة</h3>
@@ -55,12 +60,12 @@
             <img src="../../assets/images/hands.png" alt="" />
           </div>
         </div>
-        <a href="" class="readMore">قراءة المزيد</a>
+        <router-link to="/about-us" class="readMore">قراءة المزيد</router-link>
       </div>
     </section>
     <section class="home_page_description_sections container">
       <div class="img_container">
-        <img src="../../assets/images/ourServices.png" alt="" />
+        <img src="../../assets/images/group2.png" alt="" />
       </div>
       <div class="description">
         <span class="smallTitle">خدماتنا</span>
@@ -112,7 +117,7 @@
             </li>
           </ul>
         </div>
-        <a href="" class="readMore">المزيد</a>
+        <router-link to="/about-us" class="readMore">المزيد</router-link>
       </div>
     </section>
     <section class="home_page_description_sections container">
@@ -126,7 +131,9 @@
           النتائج الخاصة بالشركة
         </h3>
         <div class="line"></div>
-        <a href="" class="readMore">مركز النتائج</a>
+        <router-link to="/investor-relations" class="readMore"
+          >مركز النتائج</router-link
+        >
       </div>
     </section>
 
@@ -134,25 +141,23 @@
       <div class="description">
         <span>اخر الأخبار</span>
         <h3>
-          تم بحمد لله افتتاح صيدلية المجتمع بالمدينة المنورة - طريق قباء
-          المغيسلة
+          {{ pages[pageNumber].description }}
         </h3>
         <div class="line"></div>
         <p>
-          تم بحمد الله #افتتاح صيدلية المجتمع بالمدينة المنورة الموقع / طريق
-          قباء – المغيسلة - المدينة المنورة...
+          {{ pages[pageNumber].seconde_description }}
         </p>
         <div class="arrows">
-          <div class="arrow">
+          <div class="arrow" @click="() => changePageNumber('right')">
             <b-icon icon="chevron-right" font-scale="5" class="icon"></b-icon>
           </div>
-          <div class="arrow">
+          <div class="arrow" @click="() => changePageNumber('left')">
             <b-icon icon="chevron-left" font-scale="5" class="icon"></b-icon>
           </div>
         </div>
       </div>
       <div class="img_container">
-        <img src="../../assets/images/newpharmacey.png" alt="newpharmacey" />
+        <img :src="pages[pageNumber].img" alt="newpharmacey" />
       </div>
     </section>
 
@@ -163,7 +168,8 @@
       <div class="numbers container">
         <div class="number_container">
           <div class="number_round">+160</div>
-          <span>عددالفروع</span>
+          <router-link to="/branches">عددالفروع</router-link>
+
           <p>160 فرع منتشرا على نطاق واسع</p>
           <p>25 فرع فى خدمتكم</p>
           <p>35 فرع تحت التأسيس</p>
@@ -243,6 +249,50 @@
 <script>
 export default {
   name: "Home",
+  data() {
+    return {
+      pageNumber: 0,
+      pages: [
+        {
+          description:
+            "يسرنا أن نعلن أنه تم بحمد الله افتتاح فرع جديد لصيدلية المجتمع في حي الصفا - طريق الأمير متعب بن عبدالعزيز - جدة",
+          seconde_description:
+            "انضموا إلينا في الفرع الجديد واستفيدوا من خدماتنا المتميزة صيدليات_المجتمع #الريادة_في_خدمة_المجتمع",
+          img: require("../../assets/images/opening.png"),
+        },
+        {
+          description:
+            "كلية الصيدلية بجامعة الملك عبدالعزيز بمدينة جدة كل الشكر للراعي الذهبي صيدلية المجتمع لمساهمتهم في نجاح فعاليتنا +",
+          seconde_description: "#صيدلية_المجتمع",
+          img: require("../../assets/images/openening2023.png"),
+        },
+        {
+          description:
+            "صدور موافقة هيئة السوق المالية على ادراج شركة المجتمع الرائدة الطبية في السوق الموازية ( نمو ) . يسر إدارة الشركة ان تشكر هيئة السوق المالية على الدعم المستمر وان تتقدم بالتهنئة لمساهمي الشركة وجميع موظفيها ومنسوبيها وعملائها الكرام على هذه النقلة المهمة في مسيرة الشركة.",
+          img: require("../../assets/images/congrats.png"),
+        },
+        {
+          description:
+            "قامت إدارة شركة المجتمع الرائدة الطبية بتكريم الصيدلي محمد أحمد محمد علي لحصوله على المركز الرابع حسب تقييم الأداء في شهر سبتمبر. صيدليات المجتمع تتمنى له ولجميع شركاء النجاح المزيد من التوفيق والسداد.",
+          img: require("../../assets/images/gift.png"),
+        },
+      ],
+    };
+  },
+  mounted() {},
+  methods: {
+    changePageNumber(type) {
+      if (type == "left") {
+        if (this.pageNumber <= 3 && this.pageNumber > -1) {
+          this.pageNumber = this.pageNumber + 1;
+        }
+      } else if (type == "right") {
+        if (this.pageNumber <= 3 && this.pageNumber > -1) {
+          this.pageNumber = this.pageNumber - 1;
+        }
+      }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -337,14 +387,29 @@ export default {
   justify-content: space-between;
   align-items: center;
   margin-top: 150px;
+  position: relative;
   @media (max-width: 991px) {
     flex-direction: column;
     margin-top: 50px;
+  }
+  .rightBg {
+    position: absolute;
+    top: -13px;
+    right: -181px;
+    @media (max-width: 1700px) {
+      right: -111px;
+      top: -42px;
+    }
+    @media (max-width: 1400px) {
+      right: -53px;
+      top: -21px;
+    }
   }
   > .img_container {
     width: 45%;
     display: flex;
     align-items: center;
+    position: relative;
     @media (max-width: 991px) {
       width: 100%;
       margin-bottom: 20px;
@@ -354,6 +419,38 @@ export default {
       @media (max-width: 991px) {
         margin: auto;
       }
+    }
+    .img_position {
+      position: absolute;
+      top: -50px;
+      left: 100px;
+    }
+    .positionTitle {
+      position: absolute;
+      bottom: -65px;
+      right: 25px;
+      span {
+        font-size: 51px;
+        font-weight: 600;
+        color: #d1d13c;
+      }
+      h3 {
+        font-size: 51px;
+        color: #2b5933;
+        font-weight: 600;
+      }
+    }
+    .position_img_bg {
+      background-color: #d1d13c;
+      width: 100px;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 6px;
+      right: -38px;
+      border-radius: 50%;
     }
   }
   .description {
@@ -367,7 +464,7 @@ export default {
       color: #2b5933;
     }
     h3 {
-      font-size: 40px;
+      font-size: 30px;
       font-weight: 800;
       color: #78a28f;
       @media (max-width: 991px) {
@@ -384,7 +481,7 @@ export default {
       }
     }
     p {
-      font-size: 16px;
+      font-size: 18px;
       color: #6f7775;
       margin-bottom: 30px;
     }
@@ -591,6 +688,12 @@ export default {
         color: #78a28f;
         border: 6px solid #707070;
         margin: auto;
+      }
+      > a {
+        font-size: 20px;
+        color: #78a28f;
+        display: block;
+        margin: 20px 0;
       }
       > span {
         font-size: 20px;

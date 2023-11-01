@@ -5,35 +5,34 @@
 </template>
 
 <script>
-
 export default {
-  data(){
-    return{
-    }
+  data() {
+    return {};
   },
-  components : {
-  },
-  mounted(){ 
-
-  },
-  updated() {
-  },
-  methods: {
-    
-  }
-}
+  components: {},
+  mounted() {},
+  updated() {},
+  methods: {},
+};
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap');
-*{
+@font-face {
+  font-family: icomoon;
+  src: url(./assets/fonts/Flat.otf);
+}
+* {
   direction: rtl;
 }
 #app {
-  font-family: 'Almarai', sans-serif;
+  font-family: icomoon;
 }
-.btn-primary{
-  background: transparent linear-gradient(90deg, #63ADC8 0%, #6BDFAF 100%) 0% 0% no-repeat padding-box !important;
-  border:none!important;
+// #app {
+//   font-family: "Almarai", sans-serif;
+// }
+.btn-primary {
+  background: transparent linear-gradient(90deg, #63adc8 0%, #6bdfaf 100%) 0% 0%
+    no-repeat padding-box !important;
+  border: none !important;
 }
 </style>

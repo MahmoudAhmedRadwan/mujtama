@@ -58,11 +58,11 @@
                 <h3>افصاحات سوق المال</h3>
               </div>
               <div class="side">
-                <select>
+                <select @change="downloadPDF">
                   <option value="" selected disabled>تنزيل الملفات</option>
-                  <option value="">20/06/2021</option>
-                  <option value="">20/06/2020</option>
-                  <option value="">20/06/2019</option>
+                  <option value="20/06/2021">20/06/2021</option>
+                  <option value="20/06/2020">20/06/2020</option>
+                  <option value="20/06/2019">20/06/2019</option>
                 </select>
               </div>
             </div>
@@ -221,8 +221,27 @@
   </div>
 </template>
 <script>
+import { saveAs } from "file-saver";
+
 export default {
   name: "InvestorRelations",
+  methods: {
+    downloadPDF() {
+      // Replace 'path/to/your/pdf/file.pdf' with the actual path to your PDF file
+      const fileUrl = "../../assets/files.test.pdf";
+
+      // Fetch the PDF file
+      fetch(fileUrl)
+        .then((response) => response.blob())
+        .then((blob) => {
+          // Save the PDF file using FileSaver.js
+          saveAs(blob, "downloaded_file.pdf");
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -230,7 +249,7 @@ export default {
   background-image: url(../../assets/images/map.png);
   padding: 100px;
   position: relative;
-  border-bottom: 300px solid #78a28f;
+  border-bottom: 90px solid #78a28f;
   @media (max-width: 991px) {
     border-bottom: 50px solid #78a28f;
   }
@@ -458,6 +477,10 @@ export default {
             color: #fff;
             border: 0;
             border-radius: 4px;
+            option {
+              background-color: #fff;
+              color: #000;
+            }
           }
         }
       }
