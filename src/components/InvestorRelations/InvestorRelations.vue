@@ -4,6 +4,8 @@
     <header class="investor_elations_header">
       <div class="leftRound"></div>
       <div class="rightRound"></div>
+      <div class="rightSmallRound"></div>
+      <div class="leftSmallRound"></div>
       <div class="container">
         <div class="header_logo">
           <img src="../../assets/images/footerLogo.png" alt="" />
@@ -58,7 +60,7 @@
                 <h3>افصاحات سوق المال</h3>
               </div>
               <div class="side">
-                <select @change="downloadPDF">
+                <select>
                   <option value="" selected disabled>تنزيل الملفات</option>
                   <option value="20/06/2021">20/06/2021</option>
                   <option value="20/06/2020">20/06/2020</option>
@@ -75,11 +77,10 @@
                 <h3>القوائم المالية</h3>
               </div>
               <div class="side">
-                <select>
+                <select @change="(e) => downloadFinancial(e)">
                   <option value="" selected disabled>تنزيل الملفات</option>
-                  <option value="">20/06/2021</option>
-                  <option value="">20/06/2020</option>
-                  <option value="">20/06/2019</option>
+                  <option value="30/06/2023">30/06/2023</option>
+                  <option value="31/12/2021">31/12/2021</option>
                 </select>
               </div>
             </div>
@@ -126,12 +127,7 @@
                 <h3>نشرة الاصدار</h3>
               </div>
               <div class="side">
-                <select>
-                  <option value="" selected disabled>تنزيل الملفات</option>
-                  <option value="">20/06/2021</option>
-                  <option value="">20/06/2020</option>
-                  <option value="">20/06/2019</option>
-                </select>
+                <button @click="downloadMV">تنزيل الملفات</button>
               </div>
             </div>
           </div>
@@ -221,24 +217,68 @@
   </div>
 </template>
 <script>
-import { saveAs } from "file-saver";
+import axios from "axios";
+// import store from "../../../store";
 
 export default {
   name: "InvestorRelations",
   methods: {
-    downloadPDF() {
-      // Replace 'path/to/your/pdf/file.pdf' with the actual path to your PDF file
-      const fileUrl = "../../assets/files.test.pdf";
-
-      // Fetch the PDF file
-      fetch(fileUrl)
-        .then((response) => response.blob())
-        .then((blob) => {
-          // Save the PDF file using FileSaver.js
-          saveAs(blob, "downloaded_file.pdf");
+    downloadFinancial(e) {
+      if (e.target.value == "30/06/2023") {
+        console.log("30/6/2023");
+        axios
+          .create({
+            baseURL: "http://m.bare3.business/api/",
+            headers: {
+              "Content-Type": "application/json",
+              // Authorization: "Bearer " + localStorage.getItem("token"),
+              // localization: store.state.localization
+            },
+          })
+          .get("/financial_6")
+          .then((res) => {
+            console.log(res, "success");
+          })
+          .catch((err) => {
+            console.log(err.response.data);
+          });
+      } else if (e.target.value == "31/12/2021") {
+        console.log("1/12/2022");
+        axios
+          .create({
+            baseURL: "http://m.bare3.business/api/",
+            headers: {
+              "Content-Type": "application/json",
+              // Authorization: "Bearer " + localStorage.getItem("token"),
+              // localization: store.state.localization
+            },
+          })
+          .get("financial_12")
+          .then((res) => {
+            console.log(res, "success");
+          })
+          .catch((err) => {
+            console.log(err.response.data);
+          });
+      }
+    },
+    downloadMV() {
+      console.log("button");
+      axios
+        .create({
+          baseURL: "http://m.bare3.business/api/",
+          headers: {
+            "Content-Type": "application/json",
+            // Authorization: "Bearer " + localStorage.getItem("token"),
+            // localization: store.state.localization
+          },
         })
-        .catch((error) => {
-          console.error("Error:", error);
+        .get("/mv")
+        .then((res) => {
+          console.log(res, "success");
+        })
+        .catch((err) => {
+          console.log(err.response.data);
         });
     },
   },
@@ -276,6 +316,21 @@ export default {
     @media (max-width: 991px) {
       display: none;
     }
+  }
+  .rightSmallRound,
+  .leftSmallRound {
+    width: 30px;
+    height: 30px;
+    border: 4px solid #2b5933;
+    position: absolute;
+    border-radius: 50%;
+    top: 45%;
+    right: 10%;
+  }
+  .leftSmallRound {
+    top: 40%;
+    right: unset;
+    left: 10%;
   }
   .header_logo {
     display: flex;
@@ -469,7 +524,8 @@ export default {
               margin-left: 10px;
             }
           }
-          select {
+          select,
+          button {
             background-color: #d8d253;
             font-size: 14px;
             text-align: center;
@@ -477,6 +533,8 @@ export default {
             color: #fff;
             border: 0;
             border-radius: 4px;
+            display: block;
+            width: 160px;
             option {
               background-color: #fff;
               color: #000;

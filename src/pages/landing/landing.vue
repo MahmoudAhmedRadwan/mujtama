@@ -86,7 +86,7 @@
     <footer class="landing_footer">
       <div class="footer_body container">
         <div class="logo">
-          <img src="../../assets/images/footerLogoNew.svg" alt="" />
+          <img src="../../assets/images/footerLogoNew.png" alt="" />
         </div>
         <div class="shortCuts">
           <h3>إختصارات</h3>
@@ -229,6 +229,10 @@ export default {
       padding: 3px 4px;
       color: #fff;
       margin-right: 10px;
+      option {
+        color: #2b5933;
+        font-weight: 600;
+      }
     }
   }
   .links {

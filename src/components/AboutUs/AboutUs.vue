@@ -82,6 +82,16 @@
     </section>
 
     <section class="know_us">
+      <img
+        class="knowUsRightBg"
+        src="../../assets/images/knowUsRightBg.png"
+        alt=""
+      />
+      <img
+        class="knowUsLeftBg"
+        src="../../assets/images/knowUsLeftBg.png"
+        alt=""
+      />
       <div class="container">
         <div class="know_us_container">
           <h3>تعرف علينا</h3>
@@ -92,7 +102,7 @@
             </div>
             <div class="des">
               <h4>رؤيتنا</h4>
-              <p>مجتمع صحي واع (الريادة في خدمة المجتمع).</p>
+              <p>من أجل مجتمع صحيّ واعٍ</p>
             </div>
           </div>
           <div class="description">
@@ -112,6 +122,11 @@
     </section>
 
     <section class="organizational_chart">
+      <img
+        class="rightBg"
+        src="../../assets/images/aboutCompanyBg.svg"
+        alt=""
+      />
       <div class="container">
         <h3>الهيكل التنظيمي</h3>
         <div class="line"></div>
@@ -183,6 +198,12 @@
     </section>
 
     <section class="Community_contributions">
+      <img
+        class="sharingRightBg"
+        src="../../assets/images/sharing.png"
+        alt=""
+      />
+      <img class="sharingLeftBg" src="../../assets/images/sharing.png" alt="" />
       <div class="container">
         <h3>المشاركات المجتمعية</h3>
         <p>
@@ -439,11 +460,40 @@ export default {
 
   .know_us {
     background-color: #f5f5f5;
-    padding: 200px 0;
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
     @media (max-width: 991px) {
       padding: 50px 0;
     }
+    .knowUsRightBg {
+      position: absolute;
+      right: -223px;
+      bottom: -331px;
+      @media (max-width: 991px) {
+        right: -290px;
+        bottom: -356px;
+      }
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+    .knowUsLeftBg {
+      position: absolute;
+      left: -184px;
+      top: -131px;
+      @media (max-width: 991px) {
+        left: -191px;
+        top: -316px;
+      }
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+
     .know_us_container {
+      position: relative;
+      z-index: 2;
       > h3 {
         font-size: 40px;
         font-weight: 800;
@@ -498,22 +548,35 @@ export default {
 
   .organizational_chart {
     padding: 100px 0 0 0;
+    position: relative;
     @media (max-width: 991px) {
       padding: 50px 0;
+    }
+    .rightBg {
+      position: absolute;
+      top: 7px;
+      right: 104px;
+      width: 265px;
     }
     h3 {
       font-size: 40px;
       font-weight: 800;
       color: #78a28f;
       text-align: center;
+      position: relative;
+      z-index: 2;
     }
     .line {
       margin: 30px auto;
+      position: relative;
+      z-index: 2;
     }
     p {
       font-size: 19px;
       color: #6f7775;
       margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
     }
     .bg_p {
       font-size: 16px;
@@ -586,24 +649,56 @@ export default {
   .Community_contributions {
     padding: 100px 0;
     background-color: #78a28f;
+    position: relative;
+    overflow: hidden;
     @media (max-width: 991px) {
       padding: 50px 0;
+    }
+    .sharingRightBg {
+      position: absolute;
+      right: -223px;
+      bottom: -331px;
+      @media (max-width: 991px) {
+        right: -290px;
+        bottom: -356px;
+      }
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+    .sharingLeftBg {
+      position: absolute;
+      left: -218px;
+      top: -186px;
+      @media (max-width: 991px) {
+        left: -191px;
+        top: -316px;
+      }
+      @media (max-width: 768px) {
+        display: none;
+      }
     }
     h3 {
       font-size: 20px;
       font-weight: 500;
       color: #2b5933;
+      position: relative;
+      z-index: 2;
     }
     p {
       font-size: 23px;
       font-weight: 600;
       color: #fff;
+      position: relative;
+      z-index: 2;
       @media (max-width: 991px) {
         font-size: 18px;
       }
     }
     .line {
       margin: 0 0 30px 0;
+      position: relative;
+      z-index: 2;
     }
   }
 
