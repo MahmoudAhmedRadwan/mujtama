@@ -15,11 +15,24 @@ import Branches from '../components/Branches/Branches'
 import Form from '../components/Form/Form'
 import MedicalJournal from '../components/MedicalJournal/MedicalJournal'
 
+import Error from '../components/Error/Error'
+import NotFound from '../components/NotFound/NotFound'
+
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
 Vue.use(VueRouter);
 const routes = [
+  {
+    path: "/Error",
+    name: "Error",
+    component: Error,
+  },
+  {
+    path: "/Not-found",
+    name: "NotFound",
+    component: NotFound,
+  },
   {
     path: "/",
     name: "Landing",

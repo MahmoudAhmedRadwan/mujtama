@@ -8,7 +8,7 @@
       <div class="leftSmallRound"></div>
       <div class="container">
         <div class="header_logo">
-          <img src="../../assets/images/footerLogo.png" alt="" />
+          <img src="../../assets/images/footerLogoNew.png" alt="" />
         </div>
         <div class="title">
           <h2>علاقات المستثمرين</h2>
@@ -217,69 +217,91 @@
   </div>
 </template>
 <script>
-import axios from "axios";
+// import axios from "axios";
 // import store from "../../../store";
 
 export default {
   name: "InvestorRelations",
   methods: {
     downloadFinancial(e) {
+      // if (e.target.value == "30/06/2023") {
+      //   axios
+      //     .create({
+      //       baseURL: "http://m.bare3.business/api/",
+      //       headers: {
+      //         "Content-Type": "application/json",
+      //         // Authorization: "Bearer " + localStorage.getItem("token"),
+      //         // localization: store.state.localization
+      //       },
+      //       responseType: "blob",
+      //     })
+      //     .get("/financial_6")
+      //     .then((response) => {
+      //       const url = window.URL.createObjectURL(new Blob([response.data]));
+      //       const link = document.createElement("a");
+      //       link.href = url;
+      //       link.setAttribute("download", "file.pdf");
+      //       document.body.appendChild(link);
+      //       link.click();
+      //     })
+      //     .catch((err) => {
+      //       console.log(err.response.data);
+      //     });
+      // } else if (e.target.value == "31/12/2021") {
+      //   axios
+      //     .create({
+      //       baseURL: "http://m.bare3.business/api/",
+      //       headers: {
+      //         "Content-Type": "application/json",
+      //         // Authorization: "Bearer " + localStorage.getItem("token"),
+      //         // localization: store.state.localization
+      //       },
+      //       responseType: "blob",
+      //     })
+      //     .get("financial_12")
+      //     .then((response) => {
+      //       const url = window.URL.createObjectURL(new Blob([response.data]));
+      //       const link = document.createElement("a");
+      //       link.href = url;
+      //       link.setAttribute("download", "file.pdf");
+      //       document.body.appendChild(link);
+      //       link.click();
+      //     })
+      //     .catch((err) => {
+      //       console.log(err.response.data);
+      //     });
+      // }
+
       if (e.target.value == "30/06/2023") {
-        console.log("30/6/2023");
-        axios
-          .create({
-            baseURL: "http://m.bare3.business/api/",
-            headers: {
-              "Content-Type": "application/json",
-              // Authorization: "Bearer " + localStorage.getItem("token"),
-              // localization: store.state.localization
-            },
-          })
-          .get("/financial_6")
-          .then((res) => {
-            console.log(res, "success");
-          })
-          .catch((err) => {
-            console.log(err.response.data);
-          });
-      } else if (e.target.value == "31/12/2021") {
-        console.log("1/12/2022");
-        axios
-          .create({
-            baseURL: "http://m.bare3.business/api/",
-            headers: {
-              "Content-Type": "application/json",
-              // Authorization: "Bearer " + localStorage.getItem("token"),
-              // localization: store.state.localization
-            },
-          })
-          .get("financial_12")
-          .then((res) => {
-            console.log(res, "success");
-          })
-          .catch((err) => {
-            console.log(err.response.data);
-          });
+        window.open('https://acrobat.adobe.com/id/urn:aaid:sc:ap:724e3e1b-47a6-4cb4-b4cf-50cb2627075b', '_blank');
+      } else if(e.target.value == "31/12/2021"){
+        window.open('https://acrobat.adobe.com/id/urn:aaid:sc:ap:c816694b-2c8d-4c17-89da-ebf87f031d78');
       }
     },
     downloadMV() {
-      console.log("button");
-      axios
-        .create({
-          baseURL: "http://m.bare3.business/api/",
-          headers: {
-            "Content-Type": "application/json",
-            // Authorization: "Bearer " + localStorage.getItem("token"),
-            // localization: store.state.localization
-          },
-        })
-        .get("/mv")
-        .then((res) => {
-          console.log(res, "success");
-        })
-        .catch((err) => {
-          console.log(err.response.data);
-        });
+      // axios
+      //   .create({
+      //     baseURL: "http://m.bare3.business/api/",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       // Authorization: "Bearer " + localStorage.getItem("token"),
+      //       // localization: store.state.localization
+      //     },
+      //     responseType: "blob",
+      //   })
+      //   .get("/mv")
+      //   .then((response) => {
+      //     const url = window.URL.createObjectURL(new Blob([response.data]));
+      //     const link = document.createElement("a");
+      //     link.href = url;
+      //     link.setAttribute("download", "file.pdf");
+      //     document.body.appendChild(link);
+      //     link.click();
+      //   })
+      //   .catch((err) => {
+      //     console.log(err.response.data);
+      //   });
+      window.open('https://acrobat.adobe.com/id/urn:aaid:sc:ap:8889e243-a2bb-4446-b012-a6c5182aed3d');
     },
   },
 };

@@ -1,6 +1,82 @@
 <template>
   <div>
     <header class="landing_header">
+      <div class="menu_toggle" @click="menuToggleClick">
+        <b-icon icon="justify" font-scale="5" class="icon"></b-icon>
+      </div>
+
+      <div :class=" menuToggle == true ? 'mobile_menu active_mobile_menu' : 'mobile_menu'">
+          <div class="social_mobile">
+            <a href="https://www.facebook.com/almujtamapharma/?locale=ar_AR"  target="_blank" >
+              <b-icon icon="facebook" font-scale="5" class="icon"></b-icon>
+            </a>
+            <a href="https://www.instagram.com/almujtamapharma/?hl=ar">
+              <b-icon icon="instagram" font-scale="5" class="icon"></b-icon>
+            </a>
+            <a href="https://twitter.com/almujtamapharma?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" >
+              <img src="../../assets/images/twitter.png" alt="twitter" />
+            </a>
+          </div>
+          <div class="email">
+            <b-icon icon="envelope-fill" font-scale="5" class="icon"></b-icon>
+            info@almujtama.com.sa
+          </div>
+          <div class="phone">
+            <b-icon icon="telephone-fill" font-scale="5" class="icon"></b-icon>
+            920008144
+          </div>
+          <div class="mobile_links">
+            <ul>
+            <li>
+              <router-link to="/" :class="hoverType == 'main' ? 'activeLink' : ''">
+                الرئيسية
+              </router-link>
+            </li>
+
+            <li>
+              <router-link
+                to="/about-us"
+                :class="hoverType == 'about-us' ? 'activeLink' : ''"
+              >
+                <span>+</span>تعرف علينا
+              </router-link>
+            </li>
+            <li>
+              <router-link to="Error"><span>+</span>المتجر </router-link>
+            </li>
+            <li>
+              <router-link
+                to="/Not-found"
+                :class="hoverType == 'medical-journal' ? 'activeLink' : ''"
+                ><span>+</span>المجلة الإلكترونية
+              </router-link>
+            </li>
+            <li>
+              <router-link
+                to="/form"
+                :class="hoverType == 'form' ? 'activeLink' : ''"
+                ><span>+</span>الوظائف
+              </router-link>
+            </li>
+            <li>
+              <router-link
+                to="/investor-relations"
+                :class="hoverType == 'investor-relations' ? 'activeLink' : ''"
+              >
+                <span>+</span>علاقات المستثمرين
+              </router-link>
+            </li>
+          </ul>
+          </div>
+          <div class="lang">
+            <h3>عربي</h3>
+            <select>
+              <option value="">Ar</option>
+              <option value="">En</option>
+            </select>
+          </div>
+        </div>
+
       <div class="social">
         <a
           href="https://www.facebook.com/almujtamapharma/?locale=ar_AR"
@@ -41,7 +117,7 @@
               to="/"
               :class="hoverType == 'main' ? 'activeLink' : ''"
             >
-              الرئيسية <span>+</span>
+              الرئيسية
             </router-link>
           </li>
 
@@ -50,24 +126,24 @@
               to="/about-us"
               :class="hoverType == 'about-us' ? 'activeLink' : ''"
             >
-              تعرف علينا <span>+</span>
+              <span>+</span>تعرف علينا
             </router-link>
           </li>
           <li>
-            <a href="">المتجر <span>+</span></a>
+            <router-link to="Error"><span>+</span>المتجر </router-link>
           </li>
           <li>
-            <a
-              href=""
+            <router-link
+              to="/Not-found"
               :class="hoverType == 'medical-journal' ? 'activeLink' : ''"
-              >المجلة الطبية <span>+</span></a
-            >
+              ><span>+</span>المجلة الإلكترونية
+            </router-link>
           </li>
           <li>
             <router-link
               to="/form"
               :class="hoverType == 'form' ? 'activeLink' : ''"
-              >الوظائف <span>+</span>
+              ><span>+</span>الوظائف
             </router-link>
           </li>
           <li>
@@ -75,7 +151,7 @@
               to="/investor-relations"
               :class="hoverType == 'investor-relations' ? 'activeLink' : ''"
             >
-              علاقات المستثمرين <span>+</span>
+              <span>+</span>علاقات المستثمرين
             </router-link>
           </li>
         </ul>
@@ -89,19 +165,13 @@
           <img src="../../assets/images/footerLogoNew.png" alt="" />
         </div>
         <div class="shortCuts">
-          <h3>إختصارات</h3>
+          <h3>صفحات</h3>
           <ul>
-            <li>
-              <router-link to="/investor-relations">
-                علاقات المستثمرين
-              </router-link>
-            </li>
             <li><router-link to="/about-us"> تعرف علينا </router-link></li>
+            <li><router-link to="/Error"> المتجر </router-link></li>
+            <li><router-link to="/Not-found"> المجلة الإلكترونية </router-link></li>
             <li><router-link to="/branches"> فروعنا </router-link></li>
-            <li><router-link to=""> المتجر </router-link></li>
-            <li>
-              <router-link to="/medical-journal"> المجلة الطبية </router-link>
-            </li>
+            <li><router-link to="/investor-relations">علاقات المستثمرين</router-link></li>
             <li><router-link to=""> اجمع مع المجتمع </router-link></li>
             <li><router-link to="/form"> الوظائف </router-link></li>
           </ul>
@@ -111,11 +181,7 @@
           <ul>
             <li>
               <div class="icon_container">
-                <b-icon
-                  icon="telephone-fill"
-                  font-scale="5"
-                  class="icon"
-                ></b-icon>
+                <b-icon icon="telephone-fill" font-scale="5" class="icon"></b-icon>
               </div>
               <div class="words">
                 <h4>الرقم الموحد</h4>
@@ -124,11 +190,7 @@
             </li>
             <li>
               <div class="icon_container">
-                <b-icon
-                  icon="telephone-fill"
-                  font-scale="5"
-                  class="icon"
-                ></b-icon>
+                <b-icon icon="envelope-fill" font-scale="5" class="icon"></b-icon>
               </div>
               <div class="words">
                 <h4>البريد الالكتروني</h4>
@@ -162,12 +224,16 @@ export default {
   data() {
     return {
       hoverType: "",
+      menuToggle: false,
     };
   },
   mounted() {
     this.linkUrlCheck();
   },
   methods: {
+    menuToggleClick(){
+      this.menuToggle = !this.menuToggle
+    },
     linkUrlCheck() {
       if (window.location.href.indexOf("medical-journal") > -1) {
         this.hoverType = "medical-journal";
@@ -190,7 +256,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20%;
+  padding: 3px 20%;
   position: relative;
   @media (max-width: 1450px) {
     padding: 10px 100px;
@@ -198,6 +264,82 @@ export default {
   @media (max-width: 991px) {
     padding: 10px 30px;
   }
+
+  .menu_toggle{
+    display: none;
+    > .icon{
+      color: #FFF;
+      font-size: 40px !important;
+    }
+    @media (max-width: 991px) {
+      display: block;
+    }
+  }
+  .mobile_menu{
+    position: absolute;
+    width: 100%;
+    background-color: #2b5933;
+    top: 51px;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    z-index: 99;
+    height: 0;
+    overflow: hidden;
+    padding: 0;
+    transition: .3s ease-in-out;
+    .social_mobile{
+      display: flex;
+      align-items: center;
+      .icon{
+        color: #fff;
+        font-size: 30px !important;
+        margin-left: 20px;
+      }
+      img{
+        width: 25px;
+      }
+    }
+    .email,
+    .phone{
+      font-size: 20px;
+      color: #FFF;
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+      .icon{
+        font-size: 30px !important;
+        margin: 0 0 0 10px;
+      }
+    }
+    .mobile_links{
+      margin-top: 30px;
+      ul{
+        li{
+          margin-bottom: 10px;
+          a{
+            font-size: 20px;
+            color: #FFF;
+          }
+        }
+      }
+    }
+    .lang{
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-top: 30px;
+      h3{
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .active_mobile_menu{
+    height: auto;
+    padding: 20px;
+  }
+
   .social,
   .email,
   .lang {
@@ -208,12 +350,12 @@ export default {
       display: none;
     }
     .icon {
-      font-size: 24px !important;
+      font-size: 21px !important;
       color: #fff;
       margin: 0 10px;
     }
     img {
-      margin: 0 10px;
+      margin: 0 10px 6px 0;
     }
   }
   .lang {
@@ -241,6 +383,9 @@ export default {
     left: 0;
     bottom: -70px;
     z-index: 4;
+    @media (max-width: 991px) {
+      display: none;
+    }
     ul {
       display: flex;
       align-items: center;
@@ -312,6 +457,7 @@ export default {
             font-size: 16px;
             font-weight: 600;
             color: #78a28f;
+            white-space: nowrap;
           }
         }
       }

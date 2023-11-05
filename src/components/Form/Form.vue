@@ -4,7 +4,7 @@
       <div class="container">
         <div class="headerContainer">
           <div class="side">
-            <h2>تعرف علينا</h2>
+            <h2>الوظائف</h2>
             <div class="line"></div>
             <div class="breadCrobs">
               <router-link to="/">الرئيسية</router-link>
@@ -19,12 +19,12 @@
       </div>
     </header>
 
-    <div class="toggle">
+    <!-- <div class="toggle">
       <div>وظائف السعوديين</div>
       <div>وظائق غير السعوديين</div>
-    </div>
+    </div> -->
 
-    <div class="choose">
+    <!-- <div class="choose">
       <h3>أختار الوظيفة</h3>
       <div class="radio">
         صيدلي
@@ -34,7 +34,7 @@
         غير صيدلي
         <input type="radio" />
       </div>
-    </div>
+    </div> -->
 
     <div class="form_container">
       <div class="container">
@@ -462,7 +462,7 @@ export default {
       margin-bottom: 20px;
       label {
         font-size: 16px;
-        font-weight: 600;
+        font-weight: 900;
         color: #78a28f;
       }
       input {

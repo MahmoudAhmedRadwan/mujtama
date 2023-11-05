@@ -1,13 +1,23 @@
 <template>
   <!-- contactUs -->
   <div class="contactUs">
+
     <header class="contact_us_header">
-      <h2>توصل معنا</h2>
-      <div class="line"></div>
-      <div class="breadCrobs">
-        <router-link to="/">الرئيسية</router-link>
-        <span>>></span>
-        <h3>علاقات المستثمرين</h3>
+      <div class="container">
+        <div class="headerContainer">
+          <div class="side">
+            <h2> تواصل معنا</h2>
+            <div class="line"></div>
+            <div class="breadCrobs">
+              <router-link to="/">الرئيسية</router-link>
+              <span>>></span>
+              <h3>تواصل معنا</h3>
+            </div>
+          </div>
+          <div class="side">
+            <img src="../../assets/images/aboutUslogo.png" alt="about us" />
+          </div>
+        </div>
       </div>
     </header>
 
@@ -54,7 +64,7 @@
           <div class="side">
             <div class="contact_invstor">
               <form action="">
-                <h4>عنوان</h4>
+                <h4> عنوان ؟</h4>
                 <div class="form_input">
                   <label>الاسم</label>
                   <input type="text" placeholder="الاسم" />
@@ -94,37 +104,46 @@ export default {
 .contactUs {
   .contact_us_header {
     background-color: #78a28f;
-    padding: 200px;
+    padding: 100px 0;
     @media (max-width: 991px) {
-      padding: 80px 50px 50px 30px;
+      padding: 50px 0;
+    }
+    .headerContainer {
+      display: flex;
+      justify-content: space-between;
+      @media (max-width: 576px) {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .side {
+        h2 {
+          font-size: 34px;
+          font-weight: 800;
+          color: #ffffff;
+          margin-bottom: 30px;
+        }
+        .breadCrobs {
+          display: flex;
+          align-items: center;
+          margin-top: 100px;
+          @media (max-width: 576px) {
+            margin: 30px 0;
+          }
+          a,
+          span {
+            font-size: 18px;
+            font-weight: 600;
+    color: #d8d253;
+    margin-left: 10px;
     }
     h3 {
-      font-size: 34px;
-      font-weight: 800;
+      font-size: 18px;
+      font-weight: 600;
       color: #fff;
+      margin-bottom: 0;
     }
-    .line {
-      margin: 30px 0;
-    }
-    .breadCrobs {
-      display: flex;
-      align-items: center;
-      margin-top: 200px;
-      @media (max-width: 991px) {
-        margin: 30px 0;
       }
-      a,
-      span {
-        font-size: 18px;
-        font-weight: 600;
-        color: #d8d253;
-        margin-left: 10px;
-      }
-      h3 {
-        font-size: 18px;
-        font-weight: 600;
-        color: #78a28f;
-        margin-bottom: 0;
       }
     }
   }

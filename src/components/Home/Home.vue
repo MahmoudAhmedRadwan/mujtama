@@ -4,7 +4,7 @@
       <img src="../../assets/images/pharmacy.png" alt="" />
       <div class="charts">
         <div class="numbers">
-          <div class="number">165</div>
+          <div class="number">160</div>
           <div class="line"></div>
           <h3>فرعا منتشرة على نطاق واسع</h3>
         </div>
@@ -18,13 +18,13 @@
           <div class="line"></div>
           <h3>صنفاً بين يديكم</h3>
         </div>
-        <div class="our_branches">
+        <router-link to="/branches" class="our_branches">
           <div>
             <span>فروعنا</span>
             <div class="line"></div>
           </div>
           <b-icon icon="arrow-left" font-scale="5" class="icon"></b-icon>
-        </div>
+        </router-link>
       </div>
     </header>
 
@@ -38,7 +38,9 @@
         <img src="../../assets/images/group.png" alt="" />
       </div>
       <div class="description">
-        <h3>نبذة عن الشركة</h3>
+        <router-link to="/about-us">
+          <h3>نبذة عن الشركة</h3>
+        </router-link>
         <div class="line"></div>
         <p>
           صيدليات المجتمع مجموعة رائدة ومتكاملة في تقديم الخدمات الصيدلانية.
@@ -60,7 +62,7 @@
             <img src="../../assets/images/hands.png" alt="" />
           </div>
         </div>
-        <router-link to="/about-us" class="readMore">قراءة المزيد</router-link>
+        <!-- <router-link to="/about-us" class="readMore">قراءة المزيد</router-link> -->
       </div>
     </section>
     <section class="home_page_description_sections container">
@@ -69,55 +71,41 @@
       </div>
       <div class="description">
         <span class="smallTitle">خدماتنا</span>
-        <h3>
-          صيدليات المجتمع مجموعة رائدة ومتكاملة في تقديم الخدمات الصيدلانية.
-        </h3>
+        <router-link to="/investor-relations">
+          <h3>
+            صيدليات المجتمع مجموعة رائدة ومتكاملة في تقديم الخدمات الصيدلانية
+          </h3>
+        </router-link>
         <div class="line"></div>
         <div class="list">
           <ul>
             <li>
               <div class="icon_container">
-                <b-icon
-                  icon="envelope-fill"
-                  font-scale="5"
-                  class="icon"
-                ></b-icon>
+                <b-icon icon="check2" font-scale="5" class="icon"></b-icon>
               </div>
               <h4>المجتمع اون لاين</h4>
             </li>
             <li>
               <div class="icon_container">
-                <b-icon
-                  icon="envelope-fill"
-                  font-scale="5"
-                  class="icon"
-                ></b-icon>
+                <b-icon icon="check2" font-scale="5" class="icon"></b-icon>
               </div>
               <h4>المجلة الالكترونية</h4>
             </li>
             <li>
               <div class="icon_container">
-                <b-icon
-                  icon="envelope-fill"
-                  font-scale="5"
-                  class="icon"
-                ></b-icon>
+                <b-icon icon="check2" font-scale="5" class="icon"></b-icon>
               </div>
               <h4>المتجر الالكتروني</h4>
             </li>
             <li>
               <div class="icon_container">
-                <b-icon
-                  icon="envelope-fill"
-                  font-scale="5"
-                  class="icon"
-                ></b-icon>
+                <b-icon icon="check2" font-scale="5" class="icon"></b-icon>
               </div>
               <h4>خدمة العملاء والتواصل مع الجمهور</h4>
             </li>
           </ul>
         </div>
-        <router-link to="/about-us" class="readMore">المزيد</router-link>
+        <!-- <router-link to="/about-us" class="readMore">المزيد</router-link> -->
       </div>
     </section>
     <section class="home_page_description_sections container">
@@ -126,14 +114,14 @@
       </div>
       <div class="description">
         <span class="smallTitle">علاقات المستثمرين</span>
+        <router-link to="/about-us">
         <h3>
           من خلال صفحة علاقات المستثمرين يستطيع المستثمر الاطلاع على التقارير و
           النتائج الخاصة بالشركة
         </h3>
+        </router-link>
         <div class="line"></div>
-        <router-link to="/investor-relations" class="readMore"
-          >مركز النتائج</router-link
-        >
+        <!-- <router-link to="/investor-relations" class="readMore" >مركز النتائج</router-link> -->
       </div>
     </section>
 
@@ -142,6 +130,9 @@
         <span>اخر الأخبار</span>
         <h3>
           {{ pages[pageNumber].description }}
+        </h3>
+        <h3>
+          {{ pages[pageNumber].descriptionTwo }}
         </h3>
         <div class="line"></div>
         <p>
@@ -163,19 +154,19 @@
 
     <section class="numbers_of_year">
       <span>علاقات المستثمرين</span>
-      <h3>لأرقام الرئيسية السنوية</h3>
+      <h3>الأرقام الرئيسية السنوية</h3>
       <div class="line"></div>
       <div class="numbers container">
         <div class="number_container">
           <div class="number_round">+160</div>
-          <router-link to="/branches">عددالفروع</router-link>
+          <router-link to="/branches">عدد الفروع</router-link>
 
           <p>160 فرع منتشرا على نطاق واسع</p>
           <p>25 فرع فى خدمتكم</p>
           <p>35 فرع تحت التأسيس</p>
         </div>
         <div class="number_container">
-          <div class="number_round">ر.س 40</div>
+          <div class="number_round"> 40 ر.س</div>
           <span>سعر السهم</span>
           <p>يتم تحديث سعر السهم بشكل دوري حسب سعر السهم في تداول</p>
         </div>
@@ -208,10 +199,7 @@
             </p>
             <div class="line"></div>
           </div>
-          <a href=""
-            ><b-icon icon="heart-fill" font-scale="5" class="icon"></b-icon>سجل
-            الان
-          </a>
+          <router-link to="/about-us" ><b-icon icon="heart-fill" font-scale="5" class="icon"></b-icon>سجل الان </router-link>
         </div>
       </div>
     </section>
@@ -228,12 +216,13 @@
           المضافة) من أي من فروعها أو الموقع الإلكتروني والتطبيق.
         </h4>
         <p>
-          يعد برنامج عميل التميز من أفضل برامج جمع النقاط في المملكة. *عدا
+          يعد برنامج عميل التميز من أفضل برامج جمع النقاط في المملكة. 
+        </p>
+        <p>*عدا
           الورقيات والحفائظ وبعض الأدوية حيث تحسب البضاعة المجانية بما يعادل 1%
           من قيمة المشتريات ولا يتم احتساب أي نقاط لمشتريات الحليبات ومنتجات
           الرضاعة الصناعية حسب تعميم وزارة الصحة بمنع الترويج للمنتجات المساعدة
-          على الرضاعة الصناعية تشجيعاً للرضاعة الطبيعية
-        </p>
+          على الرضاعة الصناعية تشجيعاً للرضاعة الطبيعية</p>
       </div>
       <div class="imgs">
         <div class="img_container">
@@ -262,18 +251,19 @@ export default {
         },
         {
           description:
-            "كلية الصيدلية بجامعة الملك عبدالعزيز بمدينة جدة كل الشكر للراعي الذهبي صيدلية المجتمع لمساهمتهم في نجاح فعاليتنا +",
+            "كلية الصيدلية بجامعة الملك عبدالعزيز بمدينة جدة كل الشكر للراعي الذهبي صيدلية المجتمع لمساهمتهم في نجاح فعاليتنا ",
           seconde_description: "#صيدلية_المجتمع",
           img: require("../../assets/images/openening2023.png"),
         },
         {
-          description:
-            "صدور موافقة هيئة السوق المالية على ادراج شركة المجتمع الرائدة الطبية في السوق الموازية ( نمو ) . يسر إدارة الشركة ان تشكر هيئة السوق المالية على الدعم المستمر وان تتقدم بالتهنئة لمساهمي الشركة وجميع موظفيها ومنسوبيها وعملائها الكرام على هذه النقلة المهمة في مسيرة الشركة.",
+          description: "صدور موافقة هيئة السوق المالية على ادراج شركة المجتمع الرائدة الطبية في السوق الموازية ( نمو ) . ",
+          descriptionTwo: 'يسر إدارة الشركة ان تشكر هيئة السوق المالية على الدعم المستمر وان تتقدم بالتهنئة لمساهمي الشركة وجميع موظفيها ومنسوبيها وعملائها الكرام على هذه النقلة المهمة في مسيرة الشركة',
           img: require("../../assets/images/congrats.png"),
         },
         {
           description:
-            "قامت إدارة شركة المجتمع الرائدة الطبية بتكريم الصيدلي محمد أحمد محمد علي لحصوله على المركز الرابع حسب تقييم الأداء في شهر سبتمبر. صيدليات المجتمع تتمنى له ولجميع شركاء النجاح المزيد من التوفيق والسداد.",
+            "قامت إدارة شركة المجتمع الرائدة الطبية بتكريم الصيدلي محمد أحمد محمد علي لحصوله على المركز الرابع حسب تقييم الأداء في شهر سبتمبر.",
+            descriptionTwo: 'صيدليات المجتمع تتمنى له ولجميع شركاء النجاح المزيد من التوفيق والسداد',
           img: require("../../assets/images/gift.png"),
         },
       ],
@@ -323,7 +313,8 @@ export default {
     @media (max-width: 991px) {
       bottom: -180px;
     }
-    > div {
+    > div,
+    a {
       width: 25%;
       display: flex;
       justify-content: center;
@@ -434,6 +425,9 @@ export default {
         font-weight: 600;
         color: #d1d13c;
       }
+      a{
+        
+      }
       h3 {
         font-size: 51px;
         color: #2b5933;
@@ -467,6 +461,10 @@ export default {
       font-size: 30px;
       font-weight: 800;
       color: #78a28f;
+      transition: .3s ease-in-out;
+      &:hover{
+        color: #d1d13c;
+      }
       @media (max-width: 991px) {
         font-size: 26px;
       }
@@ -574,12 +572,12 @@ export default {
       width: 80%;
     }
     span {
-      font-size: 20px;
+      font-size: 36px;
       color: #2b5933;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
     h3 {
-      font-size: 36px;
+      font-size: 22px;
       color: #78a28f;
       font-weight: 800;
       margin-bottom: 30px;
@@ -733,8 +731,8 @@ export default {
       width: 60%;
       h3 {
         font-size: 20px;
-        color: #2b5933;
-        font-weight: 600;
+        color: #184c1f;
+        font-weight: 900;
       }
       p {
         font-size: 23px;
@@ -756,7 +754,7 @@ export default {
       height: 58px;
       text-align: center;
       border-radius: 4px;
-      margin: auto 0;
+      margin: auto 40px auto 0;
       display: flex;
       justify-content: center;
       align-items: center;
