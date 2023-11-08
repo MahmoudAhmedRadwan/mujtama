@@ -63,7 +63,7 @@
           </div>
           <div class="side">
             <div class="contact_invstor">
-              <form action="">
+              <form @submit.prevent="contactUs">
                 <h4> عنوان ؟</h4>
                 <div class="form_input">
                   <label>الاسم</label>
@@ -98,6 +98,16 @@
 <script>
 export default {
   name: "ContactUs",
+  data(){
+    return{
+
+    }
+  },
+  methods:{
+    contactUs(){
+      console.log('test contact')
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>

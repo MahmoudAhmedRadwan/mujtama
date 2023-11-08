@@ -84,12 +84,12 @@
     <section class="know_us">
       <img
         class="knowUsRightBg"
-        src="../../assets/images/knowUsRightBg.png"
+        src="../../assets/images/knowUsLeftBg.png"
         alt=""
       />
       <img
         class="knowUsLeftBg"
-        src="../../assets/images/knowUsLeftBg.png"
+        src="../../assets/images/knowUsRightBg.png"
         alt=""
       />
       <div class="container">
@@ -159,7 +159,7 @@
         <div class="services">
           <div class="service">
             <div class="icon_container">
-              <img src="../../assets/images/handHeart.png" alt="" />
+              <img src="../../assets/images/new3.png" alt="" />
             </div>
             <h3>المجتمع اون لاين</h3>
             <p>
@@ -169,7 +169,7 @@
           </div>
           <div class="service">
             <div class="icon_container">
-              <img src="../../assets/images/paper.png" alt="" />
+              <img src="../../assets/images/new1.png" alt="" />
             </div>
             <h3>المجلة الالكترونية</h3>
             <p>
@@ -179,7 +179,7 @@
           </div>
           <div class="service">
             <div class="icon_container">
-              <img src="../../assets/images/store.png" alt="" />
+              <img src="../../assets/images/new2.png" alt="" />
             </div>
             <h3>المتجر الالكتروني</h3>
             <p>
@@ -189,7 +189,7 @@
           </div>
           <div class="service">
             <div class="icon_container">
-              <img src="../../assets/images/groupHeart.png" alt="" />
+              <img src="../../assets/images/handHeart.png" alt="" />
             </div>
             <h3>خدمة العملاء</h3>
             <p>
@@ -452,6 +452,7 @@ export default {
           font-weight: 800;
           color: #78a28f;
           margin-bottom: 10px;
+          font-family: flatMedium;
         }
         p {
           font-size: 18px;
@@ -505,6 +506,7 @@ export default {
         font-weight: 800;
         color: #78a28f;
         text-align: center;
+        font-family: flatMedium;
       }
       .line {
         margin: 30px auto;
@@ -545,6 +547,7 @@ export default {
             font-weight: 600;
             color: #2b5933;
             margin-bottom: 30px;
+            font-family: flatMedium;
           }
           > p {
             font-size: 23px;
@@ -575,6 +578,7 @@ export default {
       text-align: center;
       position: relative;
       z-index: 2;
+      font-family: flatMedium;
     }
     .line {
       margin: 30px auto;
@@ -611,6 +615,7 @@ export default {
       font-weight: 800;
       color: #78a28f;
       text-align: center;
+      font-family: flatMedium;
     }
     .line {
       margin: 30px auto;
@@ -643,11 +648,16 @@ export default {
           width: 90px;
           height: 90px;
           margin: 0 auto 20px auto;
+          padding: 16px;
+          img{
+            max-width: 80%;
+          }
         }
         h3 {
           font-size: 22px;
           color: #78a28f;
           font-weight: 600;
+          font-family: flatMedium;
         }
         p {
           font-size: 16px;
@@ -694,6 +704,7 @@ export default {
       color: #184c1f;
       position: relative;
       z-index: 2;
+      font-family: flatMedium;
     }
     p {
       font-size: 23px;
@@ -722,6 +733,7 @@ export default {
       font-weight: 800;
       color: #78a28f;
       margin: 30px 0;
+      font-family: flatMedium;
       @media (max-width: 991px) {
         font-size: 30px;
       }

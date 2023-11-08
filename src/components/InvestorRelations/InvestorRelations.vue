@@ -8,7 +8,7 @@
       <div class="leftSmallRound"></div>
       <div class="container">
         <div class="header_logo">
-          <img src="../../assets/images/footerLogoNew.png" alt="" />
+          <img src="../../assets/images/newLogo.png" alt="" />
         </div>
         <div class="title">
           <h2>علاقات المستثمرين</h2>
@@ -17,7 +17,7 @@
             من خلال صفحة علاقات المستثمرين يستطيع المستثمر الاطلاع على التقارير
             و النتائج الخاصة بالشركة
           </p>
-          <a href="">النتائج و التقارير </a>
+          <a href="#results_reports">النتائج و التقارير </a>
         </div>
         <div class="breadCrobs">
           <router-link to="/">الرئيسية</router-link>
@@ -38,11 +38,11 @@
           النتائج الخاصة بالشركة
         </h3>
         <div class="line"></div>
-        <a href="" class="readMore">مركز النتائج</a>
+        <a href="#results_reports" class="readMore">مركز النتائج</a>
       </div>
     </section>
 
-    <section class="results_reports">
+    <section class="results_reports" id="results_reports">
       <div class="container">
         <h3>النتائج و التقارير</h3>
         <div class="line"></div>
@@ -95,9 +95,24 @@
               <div class="side">
                 <select>
                   <option value="" selected disabled>تنزيل الملفات</option>
-                  <option value="">20/06/2021</option>
-                  <option value="">20/06/2020</option>
-                  <option value="">20/06/2019</option>
+                  <option value="">2021</option>
+                  <option value="">2020</option>
+                  <option value="">2019</option>
+                </select>
+              </div>
+            </div>
+            <div class="content_row">
+              <div class="side">
+                <p>
+                  <img src="../../assets/images/calendar-days.png" alt="" />
+                  20/06/2022 11AM to 15PM
+                </p>
+                <h3>احصائيات و تقارير ماليه</h3>
+              </div>
+              <div class="side">
+                <select>
+                  <option value="" selected disabled>تنزيل الملفات</option>
+                  <option value="">نتائج النصف الأول</option>
                 </select>
               </div>
             </div>
@@ -112,9 +127,9 @@
               <div class="side">
                 <select>
                   <option value="" selected disabled>تنزيل الملفات</option>
-                  <option value="">20/06/2021</option>
-                  <option value="">20/06/2020</option>
-                  <option value="">20/06/2019</option>
+                  <option value="">2021</option>
+                  <option value="">2020</option>
+                  <option value="">2019</option>
                 </select>
               </div>
             </div>
@@ -124,10 +139,22 @@
                   <img src="../../assets/images/calendar-days.png" alt="" />
                   20/06/2022 11AM to 15PM
                 </p>
-                <h3>نشرة الاصدار</h3>
+                <h3> نشرة الاصدار الرئيسية </h3>
               </div>
               <div class="side">
                 <button @click="downloadMV">تنزيل الملفات</button>
+              </div>
+            </div>
+            <div class="content_row">
+              <div class="side">
+                <p>
+                  <img src="../../assets/images/calendar-days.png" alt="" />
+                  20/06/2022 11AM to 15PM
+                </p>
+                <h3> نشرة الاصدار المختصرة</h3>
+              </div>
+              <div class="side">
+                <button>تنزيل الملفات</button>
               </div>
             </div>
           </div>
@@ -136,13 +163,17 @@
     </section>
 
     <section class="yearly_reort">
-      <h3>التقارير السنوية</h3>
+      <h3>التقارير </h3>
       <div class="line"></div>
       <select>
         <option value="" disabled selected>تنزيل التقرير السنوي</option>
         <option value="">20/06/2021</option>
         <option value="">20/06/2020</option>
         <option value="">20/06/2019</option>
+      </select>
+      <select>
+        <option value="" disabled selected>تنزيل تقرير مجلس الأدارة</option>
+        <option value="">20/06/2022</option>
       </select>
     </section>
 
@@ -185,7 +216,7 @@
           </div>
           <div class="side">
             <div class="contact_invstor">
-              <form action="">
+              <form action="" @submit.prevent="contactUs">
                 <h4>عنوان</h4>
                 <div class="form_input">
                   <label>الاسم</label>
@@ -303,6 +334,9 @@ export default {
       //   });
       window.open('https://acrobat.adobe.com/id/urn:aaid:sc:ap:8889e243-a2bb-4446-b012-a6c5182aed3d');
     },
+    contactUs(){
+      console.log('contact us test')
+    }
   },
 };
 </script>
@@ -314,6 +348,7 @@ export default {
   border-bottom: 90px solid #78a28f;
   @media (max-width: 991px) {
     border-bottom: 50px solid #78a28f;
+    padding: 20px;
   }
   .leftRound {
     width: 120px;
@@ -348,6 +383,9 @@ export default {
     border-radius: 50%;
     top: 45%;
     right: 10%;
+    @media (max-width: 991px) {
+      display: none;
+    }
   }
   .leftSmallRound {
     top: 40%;
@@ -357,6 +395,9 @@ export default {
   .header_logo {
     display: flex;
     justify-content: flex-end;
+    img{
+      max-width: 100%
+    }
   }
   .title {
     padding: 100px 0;
@@ -454,8 +495,9 @@ export default {
     }
     h3 {
       font-size: 26px;
-      font-weight: 500;
+      font-weight: 900;
       color: #78a28f;
+      font-family: flatMedium;
       @media (max-width: 991px) {
         font-size: 26px;
       }
@@ -496,11 +538,18 @@ export default {
   .container {
     > h3 {
       font-size: 40px;
-      font-weight: 800;
+      font-weight: 900;
       color: #78a28f;
+      font-family: flatMedium;
+      @media (max-width: 991px) {
+        text-align: center;
+      }
     }
     .line {
       margin: 30px 0;
+      @media (max-width: 991px) {
+        margin: 30px auto 0 auto;
+      }
     }
     .content_container {
       display: flex;
@@ -531,10 +580,14 @@ export default {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 20px;
+          padding: 10px;
           box-shadow: 0 0 10px #ddd;
           border-radius: 10px;
-          margin-bottom: 30px;
+          margin-bottom: 15px;
+          @media (max-width: 576px) {
+            flex-direction: column;
+            justify-content: center;
+          }
         }
         .side {
           p {
@@ -542,8 +595,14 @@ export default {
             color: #6f7775;
             display: flex;
             align-items: center;
+            margin-bottom: 5px;
             img {
               margin-left: 10px;
+            }
+          }
+          h3{
+            @media (max-width: 576px) {
+              text-align: center;
             }
           }
           select,
@@ -572,10 +631,14 @@ export default {
   text-align: center;
   background-color: #78a28f;
   padding: 200px 0;
+  @media (max-width: 991px) {
+    padding: 50px 0;
+  }
   h3 {
     font-size: 40px;
-    font-weight: 800;
+    font-weight: 900;
     color: #ffffff;
+    font-family: flatMedium;
   }
   .line {
     margin: 30px auto;
@@ -587,6 +650,7 @@ export default {
     color: #fff;
     font-size: 16px;
     background-color: #d1d13c;
+    margin: 10px;
   }
 }
 
@@ -602,8 +666,9 @@ export default {
   }
   > h3 {
     font-size: 40px;
-    font-weight: 800;
+    font-weight: 900;
     color: #78a28f;
+    font-family: flatMedium;
   }
   .line {
     height: 3px;
@@ -638,6 +703,7 @@ export default {
         color: #78a28f;
         border: 6px solid #707070;
         margin: auto;
+        font-family: flatMedium;
       }
       > span {
         font-size: 20px;
@@ -671,9 +737,10 @@ export default {
       }
       > h3 {
         font-size: 40px;
-        font-weight: 800;
+        font-weight: 900;
         color: #fff;
         margin-top: 100px;
+        font-family: flatMedium;
         @media (max-width: 1200px) {
           text-align: center;
           font-size: 36px;

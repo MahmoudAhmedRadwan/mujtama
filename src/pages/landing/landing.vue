@@ -6,7 +6,7 @@
       </div>
 
       <div :class=" menuToggle == true ? 'mobile_menu active_mobile_menu' : 'mobile_menu'">
-          <div class="social_mobile">
+          <div class="social_mobile" @click="menuToggleClick">
             <a href="https://www.facebook.com/almujtamapharma/?locale=ar_AR"  target="_blank" >
               <b-icon icon="facebook" font-scale="5" class="icon"></b-icon>
             </a>
@@ -17,7 +17,7 @@
               <img src="../../assets/images/twitter.png" alt="twitter" />
             </a>
           </div>
-          <div class="email">
+          <div class="email" @click="menuToggleClick">
             <b-icon icon="envelope-fill" font-scale="5" class="icon"></b-icon>
             info@almujtama.com.sa
           </div>
@@ -25,7 +25,7 @@
             <b-icon icon="telephone-fill" font-scale="5" class="icon"></b-icon>
             920008144
           </div>
-          <div class="mobile_links">
+          <div class="mobile_links" @click="menuToggleClick">
             <ul>
             <li>
               <router-link to="/" :class="hoverType == 'main' ? 'activeLink' : ''">
@@ -209,7 +209,7 @@
           </ul>
         </div>
         <div class="call_us">
-          <router-link to="/contact-us">أتصل بنا</router-link>
+          <router-link to="/contact-us">اتصل بنا</router-link>
         </div>
       </div>
       <div class="copyRights">
@@ -399,6 +399,10 @@ export default {
           text-decoration: none;
           color: #2b5933;
           font-weight: 600;
+          transition: .2s ease-in-out;
+          &:hover{
+            color: #d8d253;
+          }
           @media (max-width: 991px) {
             font-size: 14px;
           }
@@ -449,6 +453,7 @@ export default {
         font-weight: 600;
         color: #78a28f;
         margin-bottom: 20px;
+        font-family: flatMedium;
       }
       ul {
         li {
@@ -468,6 +473,7 @@ export default {
         font-weight: 600;
         color: #78a28f;
         margin-bottom: 50px;
+        font-family: flatMedium;
         @media (max-width: 991px) {
           margin: 0 0 20px 0;
         }
@@ -495,6 +501,7 @@ export default {
         font-weight: 600;
         color: #78a28f;
         margin-bottom: 20px;
+        font-family: flatMedium;
       }
       ul {
         li {

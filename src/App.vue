@@ -18,14 +18,18 @@ export default {
 
 <style lang="scss">
 @font-face {
-  font-family: icomoon;
-  src: url(./assets/fonts/Flat.otf);
+  font-family: flatLight;
+  src: url(./assets/fonts/FlaLght.otf);
+}
+@font-face {
+  font-family: flatMedium;
+  src: url(./assets/fonts/FlatMedium.otf);
 }
 * {
   direction: rtl;
 }
 #app {
-  font-family: icomoon;
+  font-family: flatLight;
 }
 // #app {
 //   font-family: "Almarai", sans-serif;

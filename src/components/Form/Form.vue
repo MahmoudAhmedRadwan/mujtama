@@ -42,7 +42,7 @@
           <h3>نموذج طلب التوظيف</h3>
           <div class="line"></div>
 
-          <form>
+          <form @submit.prevent="personData">
             <div class="input_container">
               <label>الوظيفة المطلوبة</label>
               <input type="text" placeholder="اكتب هنا" />
@@ -347,6 +347,16 @@
 <script>
 export default {
   name: "Form",
+  data(){
+    return{
+
+    }
+  },
+  methods:{
+    personData(){
+      console.log('test')
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -448,6 +458,8 @@ export default {
     font-size: 27px;
     color: #78a28f;
     text-align: center;
+    font-weight: 900;
+    font-family: flatMedium;
   }
   .line {
     margin: 30px auto;
@@ -460,6 +472,9 @@ export default {
     .input_container {
       width: 45%;
       margin-bottom: 20px;
+      @media (max-width: 991px) {
+        width: 100%;
+      }
       label {
         font-size: 16px;
         font-weight: 900;

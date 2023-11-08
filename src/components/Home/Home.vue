@@ -192,10 +192,7 @@
           <div>
             <h3>اجمع مع المجتمع</h3>
             <p>
-              إيمانا من مجموعة صيدليات المجتمع بأن عملائها الكرام هم شركاء
-              النجاح و محور الرعاية و تقديراً لعملائها الكرام ، فقد طورت صيدليات
-              المجتمع نظام الولاء حيث يتيح لعملائها الكرام الحصول بضائع مجانية
-              تعادل 3% من مشترياتها .
+           إيمانا من مجموعة صيدليات المجتمع بأن عملائها الكرام هم شركاء النجاح و محور الرعاية و تقديراً لعملائها الكرام ، فقد طورت صيدليات المجتمع نظام الولاء حيث يتيح لعملائها الكرام الحصول بضائع مجانية تعادل 3% من مشترياتها.
             </p>
             <div class="line"></div>
           </div>
@@ -329,7 +326,8 @@ export default {
       .number {
         font-size: 54px;
         font-weight: 900;
-        color: #78a28f;
+        color: #79a18f;
+        font-family: flatMedium;
         @media (max-width: 991px) {
           font-size: 30px;
         }
@@ -462,6 +460,7 @@ export default {
       font-weight: 800;
       color: #78a28f;
       transition: .3s ease-in-out;
+      font-family: flatMedium;
       &:hover{
         color: #d1d13c;
       }
@@ -504,6 +503,9 @@ export default {
           display: flex;
           align-items: center;
           margin-bottom: 10px;
+          cursor: pointer;
+          transition: .3s ease-in-out;
+          
           @media (max-width: 991px) {
             justify-content: center;
           }
@@ -525,6 +527,15 @@ export default {
             font-size: 18px;
             color: #78a28f;
             font-weight: 600;
+          }
+          &:hover{
+            h4 {
+              color: #d1d13c;
+            }
+            .icon_container {
+              background-color: #d1d13c;
+            }
+            
           }
         }
       }
@@ -570,6 +581,10 @@ export default {
     }
     @media (max-width: 1450px) {
       width: 80%;
+    }
+    @media (max-width: 991px) {
+      width: 90%;
+      padding: 20px;
     }
     span {
       font-size: 36px;
@@ -686,6 +701,7 @@ export default {
         color: #78a28f;
         border: 6px solid #707070;
         margin: auto;
+        font-family: flatMedium;
       }
       > a {
         font-size: 20px;
@@ -726,13 +742,21 @@ export default {
   }
   .groupingFlex {
     display: flex;
+    flex-wrap: wrap;
 
     > div {
-      width: 60%;
+      width: 65%;
+      @media (max-width: 991px) {
+        width: 100%;
+      }
       h3 {
         font-size: 20px;
         color: #184c1f;
         font-weight: 900;
+        font-family: flatMedium;
+        @media (max-width: 991px) {
+          text-align: center;
+        }
       }
       p {
         font-size: 23px;
@@ -740,12 +764,21 @@ export default {
         font-weight: 800;
         font-weight: 500;
         margin-top: 30px;
+        @media (max-width: 1200px) {
+          font-size: 20px;
+        }
+        @media (max-width: 991px) {
+          text-align: center;
+        }
       }
       .line {
         height: 3px;
         width: 70px;
         background-color: #d1d13c;
         margin-top: 30px;
+        @media (max-width: 991px) {
+        margin: 20px auto;
+      }
       }
     }
     a {
@@ -760,6 +793,9 @@ export default {
       align-items: center;
       font-size: 20px;
       color: #fff;
+      @media (max-width: 991px) {
+        margin: 20px auto 0 auto;
+      }
       .icon {
         font-size: 16px !important;
         color: #fff;
@@ -792,6 +828,7 @@ export default {
     @media (max-width: 991px) {
       width: 100%;
       margin-bottom: 30px;
+      padding: 70px 10px 10px 70px;
     }
     .img_container_position {
       position: absolute;
