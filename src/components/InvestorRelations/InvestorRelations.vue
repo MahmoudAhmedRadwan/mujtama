@@ -14,8 +14,7 @@
           <h2>علاقات المستثمرين</h2>
           <div class="line"></div>
           <p>
-            من خلال صفحة علاقات المستثمرين يستطيع المستثمر الاطلاع على التقارير
-            و النتائج الخاصة بالشركة
+            من خلال صفحة علاقات المستثمرين يستطيع المستثمر الاطلاع على التقارير والنتائج الخاصة بالشركة
           </p>
           <a href="#results_reports">النتائج و التقارير </a>
         </div>
@@ -26,6 +25,9 @@
         </div>
       </div>
     </header>
+    <section class="widgetBg">
+      <img src="../../assets/images/widgetBg.jpg" alt="">
+    </section>
 
     <section class="invetors_relations container">
       <div class="img_container">
@@ -34,8 +36,7 @@
       <div class="description">
         <span class="smallTitle">علاقات المستثمرين</span>
         <h3>
-          من خلال صفحة علاقات المستثمرين يستطيع المستثمر الاطلاع على التقارير و
-          النتائج الخاصة بالشركة
+          من خلال صفحة علاقات المستثمرين يستطيع المستثمر الاطلاع على التقارير والنتائج الخاصة بالشركة
         </h3>
         <div class="line"></div>
         <a href="#results_reports" class="readMore">مركز النتائج</a>
@@ -53,108 +54,72 @@
           <div class="content">
             <div class="content_row">
               <div class="side">
-                <p>
-                  <img src="../../assets/images/calendar-days.png" alt="" />
-                  20/06/2022 11AM to 15PM
-                </p>
                 <h3>افصاحات سوق المال</h3>
               </div>
               <div class="side">
-                <select>
+                <button class="dis">تنزيل الملفات</button>
+                <!-- <select>
                   <option value="" selected disabled>تنزيل الملفات</option>
                   <option value="20/06/2021">20/06/2021</option>
                   <option value="20/06/2020">20/06/2020</option>
                   <option value="20/06/2019">20/06/2019</option>
-                </select>
+                </select> -->
               </div>
             </div>
             <div class="content_row">
               <div class="side">
-                <p>
-                  <img src="../../assets/images/calendar-days.png" alt="" />
-                  20/06/2022 11AM to 15PM
-                </p>
                 <h3>القوائم المالية</h3>
               </div>
               <div class="side">
                 <select @change="(e) => downloadFinancial(e)">
                   <option value="" selected disabled>تنزيل الملفات</option>
                   <option value="30/06/2023">30/06/2023</option>
-                  <option value="31/12/2021">31/12/2021</option>
+                  <option value="31/12/2021">31/12/2022</option>
                 </select>
               </div>
             </div>
             <div class="content_row">
               <div class="side">
-                <p>
-                  <img src="../../assets/images/calendar-days.png" alt="" />
-                  20/06/2022 11AM to 15PM
-                </p>
                 <h3>التقارير</h3>
               </div>
               <div class="side">
-                <select>
+                <select @change="(e) => downloadBoardOfDirectorsReport(e.target.value)">
                   <option value="" selected disabled>تنزيل الملفات</option>
-                  <option value="">2021</option>
-                  <option value="">2020</option>
-                  <option value="">2019</option>
+                  <option value="تقرير مجلس الإدارة">تقرير مجلس الإدارة</option>
+                  <option value="الإستراتيجية الشركة">الإستراتيجية الشركة</option>
                 </select>
               </div>
             </div>
             <div class="content_row">
               <div class="side">
-                <p>
-                  <img src="../../assets/images/calendar-days.png" alt="" />
-                  20/06/2022 11AM to 15PM
-                </p>
-                <h3>احصائيات و تقارير ماليه</h3>
+                <h3>الشهادات</h3>
               </div>
               <div class="side">
-                <select>
+                <select @change="downloadcertification">
+                  <option value="" selected disabled>تنزيل الملفات</option>
+                  <option value="">شهادة توافق مع الشريعة</option>
+                  <option value="">البند الاساس</option>
+                </select>
+              </div>
+            </div>
+            <div class="content_row">
+              <div class="side">
+                <h3>احصائيات و تقارير مالية</h3>
+              </div>
+              <div class="side">
+                <button class="dis">تنزيل الملفات</button>
+                <!-- <select>
                   <option value="" selected disabled>تنزيل الملفات</option>
                   <option value="">نتائج النصف الأول</option>
-                </select>
+                </select> -->
               </div>
             </div>
             <div class="content_row">
               <div class="side">
-                <p>
-                  <img src="../../assets/images/calendar-days.png" alt="" />
-                  20/06/2022 11AM to 15PM
-                </p>
-                <h3>2023 نتائج النصف الأول لعام</h3>
-              </div>
-              <div class="side">
-                <select>
-                  <option value="" selected disabled>تنزيل الملفات</option>
-                  <option value="">2021</option>
-                  <option value="">2020</option>
-                  <option value="">2019</option>
-                </select>
-              </div>
-            </div>
-            <div class="content_row">
-              <div class="side">
-                <p>
-                  <img src="../../assets/images/calendar-days.png" alt="" />
-                  20/06/2022 11AM to 15PM
-                </p>
-                <h3> نشرة الاصدار الرئيسية </h3>
+                <h3> مستند التسجيل </h3>
               </div>
               <div class="side">
                 <button @click="downloadMV">تنزيل الملفات</button>
-              </div>
-            </div>
-            <div class="content_row">
-              <div class="side">
-                <p>
-                  <img src="../../assets/images/calendar-days.png" alt="" />
-                  20/06/2022 11AM to 15PM
-                </p>
-                <h3> نشرة الاصدار المختصرة</h3>
-              </div>
-              <div class="side">
-                <button>تنزيل الملفات</button>
               </div>
             </div>
           </div>
@@ -165,34 +130,29 @@
     <section class="yearly_reort">
       <h3>التقارير </h3>
       <div class="line"></div>
-      <select>
-        <option value="" disabled selected>تنزيل التقرير السنوي</option>
-        <option value="">20/06/2021</option>
-        <option value="">20/06/2020</option>
-        <option value="">20/06/2019</option>
-      </select>
-      <select>
-        <option value="" disabled selected>تنزيل تقرير مجلس الأدارة</option>
-        <option value="">20/06/2022</option>
+      <select @change="(e) => downloadBoardOfDirectorsReport(e.target.value)">
+        <option value="" selected disabled>تنزيل الملفات</option>
+        <option value="تقرير مجلس الإدارة">تقرير مجلس الإدارة</option>
+        <option value="الإستراتيجية الشركة">الإستراتيجية الشركة</option>
       </select>
     </section>
 
     <section class="numbers_of_year">
       <span>علاقات المستثمرين</span>
-      <h3>لأرقام الرئيسية السنوية</h3>
+      <h3>المؤشرات الرئيسية</h3>
       <div class="line"></div>
       <div class="numbers container">
         <div class="number_container">
           <div class="number_round">+160</div>
-          <span>عددالفروع</span>
-          <p>160 فرع منتشرا على نطاق واسع</p>
-          <p>25 فرع فى خدمتكم</p>
-          <p>35 فرع تحت التأسيس</p>
+          <span>عدد الفروع</span>
+          <p>160 فرعا منتشرا على نطاق واسع</p>
+          <p>125 فرعا فى خدمتكم</p>
+          <p>35 فرعا تحت التأسيس</p>
         </div>
         <div class="number_container">
-          <div class="number_round">ر.س 40</div>
-          <span>سعر السهم</span>
-          <p>يتم تحديث سعر السهم بشكل دوري حسب سعر السهم في تداول</p>
+          <div class="number_round"> 40 ر.س</div>
+          <span>سعر السهم الاسترشادي</span>
+          <p>سعر السهم الاسترشادي عند الادراج</p>
         </div>
         <div class="number_container">
           <div class="number_round">2023مـ</div>
@@ -206,6 +166,103 @@
         </div>
       </div>
     </section>
+    <section class="numbers_of_year secondeNumbers">
+      <h3>مؤشرات الأداء الرئيسية</h3>
+      <div class="line"></div>
+      <div class="numbers container">
+        <div class="number_container">
+          <div class="number_round">204,133,493</div>
+          <span>الإيرادات</span>
+        </div>
+        <div class="number_container">
+          <div class="number_round"> 11,332,480 </div>
+          <span> صافى الربح </span>
+        </div>
+        <div class="number_container">
+          <div class="number_round">32.6%</div>
+          <span>هامش مجمل الربح</span>
+        </div>
+        <div class="number_container">
+          <div class="number_round">8.74%</div>
+          <span>العائد على حقوق المساهمين</span>
+        </div>
+        <div class="number_container">
+          <div class="number_round">5.5%</div>
+          <span>هامش صافى الربح</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- <section class="questions">
+      <div class="container">
+        <h3>الأسئلة المقترحة لمقابلة العضو المنتدب لشركة المجتمع الرائدة الطبية</h3>
+        <div class="question_container">
+          <div class="toggle_flex">
+            <h4>1-ما تقييمكم للمنافسة في سوق الصيدليات في المملكة؟ وكم تبلغ حصتكم السوقية؟</h4>
+
+            <div class="toggleClick" @click="() => toggleClick(1)">
+                +
+            </div>
+          </div>
+
+          <p :class="toggleQuestion == 1 ? 'active_p' : ''">ج1: يبلغ عدد الصيدليات المجتمعية في المملكة (8) الاف صيدلية تقريبا، وتمتلك مجموعتنا حوالي (130) صيدلية حتى هذا التاريخ، وسيتم إضافة (40) صيدلية على الأقل مع نهاية عام 2024م بإذن الله، ومن ناحية الحصة السوقية فلا توجد إحصائية رسمية يمكن الادلاء بها في الوقت الحالي، ولكن يمكنني القول بأن شركة المجتمع الرائدة الطبية تستحوذ حاليا على ما نسبته من 8 – 11 % من عدد الوصفات التي تصدر من مختلف المستشفيات ومراكز الرعاية الصحية الأولية بالمملكة عن طريق نظام وصفتي.</p>
+        </div>
+        <div class="question_container">
+          <div class="toggle_flex">
+            <h4>2- ما هي استراتيجية الشركة فيما يتعلق بالتوسع في فتح المزيد من الصيدليات؟ وما هي المناطق المستهدفة للتوسع في المستقبل؟</h4>
+            <div class="toggleClick" @click="() => toggleClick(2)">
+                +
+            </div>
+          </div>
+          <p :class="toggleQuestion == 2 ? 'active_p' : ''">ج2: افتتاح المزيد نم الفروع كان وما زال يجري على قدم وساق ويشهد نموا في الوقت الحالي، حيث يتم افتتاح عدد بين 25 – 30 صيدلية سنويا في الوقت الحالي، ومن المتوقع خلال شهر من الآن وبعد الانتهاء من أعمال إنشاء المستودع الرئيسي على مساحة (21,000 متر مربع) أن يرتفع هذا العدد ليصبح ما تتم إضافته من فروع جديدة إلى 50 فرعا سنويا -بإذن الله-. كما ذكرت أعلاه، يوجد في المملكة عدد 8 آلاف صيدلية مجتمعية وكما تضمنت الإحصائية العالمية بعدد الصيدليات نسبة إلى عدد السكان حيث إن المعدل العالمي هو وجود صيدلية واحدة لكل 8 آلاف نسمة، بينما لدينا في المملكة العربية السعودية توجد صيدلية واحدة لكل 4 آلاف نسمة وهو ضعف النسبة العالمية، وذل بسبب خلل التوزيع الجغرافي، حيث يسعى المستثمرون في القطاع إلى التركيز على المدن الرئيسية بل وفي الشوارع الرئيسية في المدينة الواحدة، وهذا خلل تسعى شركة المجتمع الرائدة الطبية ألا تقع فيه حرصا منها على أموال المستثمرين كما أن توقيع الشركة الاتفاقية الاستراتيجية مع الشركة الوطنية للشراء الموحد (نوبوكو) بصرف الوصفات الإلكترونية (وصفتي) والتي تستحوذ على حوالي 70 % من استهلاك فاتورة الدواء على مستوى المملكة، وتعتبر قفزة مهمة في سجل تطوير أداء الشركة وتطورها.</p>
+        </div>
+        <div class="question_container">
+          <div class="toggle_flex">
+            <h4>3- ما التوزيع الجغرافي للصيدليات؟</h4>
+            <div class="toggleClick" @click="() => toggleClick(3)">
+                +
+            </div>
+          </div>
+          <p :class="toggleQuestion == 3 ? 'active_p' : ''">ج3: تنتشر صيدليات المجتمع حتى الآن في كل من: الرياض/ الخرج/ المدينة المنورة/ ينبع/ جدة/ مكة المكرمة الطائف/ رابغ/ مدينة الملك عبد الله الاقتصادية/ جازان/ صبيا/ بحرة. ويقع مقر الشركة في مدينة جدة وكذلك المستودع الرئيسي في المنطقة الصناعية بالمرحلة الثالثة التابعة لهيئة مدن.</p>
+        </div>
+        <div class="question_container">
+          <div class="toggle_flex">
+            <h4>4- تمتلك الشركة سلسلة كبيرة من الصيدليات في مختلف مناطق المملكة، هل يمكنكم تزويدنا بتفاصيل حول أداء هذه الصيدليات من ناحية الإيرادات وصافي الأرباح ونسب النمو؟</h4>
+            <div class="toggleClick" @click="() => toggleClick(4)">
+                +
+            </div>
+          </div>
+          <p :class="toggleQuestion == 4 ? 'active_p' : ''">جـ4: بلغت مبيعات الشركة في عام 2021م (305) مليون ريال</p>
+        </div>
+        <div class="question_container">
+          <div class="toggle_flex">
+            <h4>5-حققت الشركة أرباحاً بـ 11.3 مليون ريال بنهاية النصف الأول من عام 2023م، ما تعليقكم على هذه النتائج؟ وما توقعاتكم لأداء النصف الثاني؟</h4>
+            <div class="toggleClick" @click="() => toggleClick(5)">
+                +
+            </div>
+          </div>
+          <p :class="toggleQuestion == 5 ? 'active_p' : ''">ج5: يلاحظ في الجدول أعلاه نمو الأرباح في العام 2022م بنسبة 180 % وذلك جراء ضخ السيولة بعد دخول مستثمرين جدد في الشركة، كما يلاحظ ازدياد عدد الفروع الجديدة... معدلها الذي كانت عليه في الأعوام قبل ضخ السيولة وتحقيقها لمبلغ (11,04) مليون ريال ازدياد في النصف الأولى من العام 2023م، مؤشر قوي لأن تحقق الشركة أعلى من هذا الرقم بنسبة 35 % ليرتفع إجمالي الربح المتوقع للعام 2023م لأكثر من (27) مليون ريال وزيادة عن أرباح عام 2022م بنسبة 25 % -بإذن الله-</p>
+        </div>
+        <div class="question_container">
+          <div class="toggle_flex">
+            <h4>6- ما هو تصور الشركة لمستقبل صناعة الرعاية الصحية في المملكة والتحديات والفرص المتوقعة في هذا القطاع؟</h4>
+            <div class="toggleClick" @click="() => toggleClick(6)">
+                +
+            </div>
+          </div>
+          <p :class="toggleQuestion == 6 ? 'active_p' : ''">اتخذ القطاع الصحي الخاص ومنذ الإعلان عن توجه الدولة رعاها الله قرارات تخصيص الخدمة، اتخذ القطاع خطوات في جميع المجالات حيث تم العمل على قدم وساق في دخول مستثمرين للاستثمار في هذا القطاع الهام والحيوي ويتم إنشاء العديد من المستشفيات بالشراكة مع شركات عالمية ومحلية ذات خبرة في قطاع الدواء، قامت شركة المجتمع الرائدة الطبية بإنشاء مستودع على مساحة 21 ألف متر مربع لمقابلة الطلب المتزايد على خدمة فروعها التي يتم افتتاح والتوسع في مناطق جغرافية جديدة، كما أنها قيامها بتشغيل الصيدليات الخارجية لعدد خمسة مستشفى حكومية وجامعية في كل من: جدة والطائف وجازان وصبيا ألقى عليها ضرورة أن تزيد من طاقتها الاستيعابية والتشغيلية وتوظيف الكوادر الصحية الوطنية <br> <br>ووضع الخطط المستقبلية كرائدة في تنفيذ خطط الوزارة في سبيل... في مجال تخزين ونقل وصرف وتوفير الدواء (كأول صيدليات خاصة لمستشفيات حكومية يتم تشغيلها عن طريق القطاع الخاص). وإذا علمنا أن لدى وزارة الصحة فقط 270 مستشفى وعددا يزيد عن 0200 مركز رعاية صحية أولية فإنه بالإمكان القول بأن الشركة وضعت خططها على أرض صلبة تسير في طرق مدروسة بعيدة عن التعثر محققة بذلك تطلع المستثمرين في تحقيق الاستثمار الأفضل متماشية مع الخطط الواعدة الموضوعة لتطوير قطاع الخدمات الصحية.</p>
+        </div>
+        <div class="question_container">
+          <div class="toggle_flex">
+            <h4>8-هل هناك خطط للانتقال إلى السوق الرئيسية؟</h4>
+            <div class="toggleClick" @click="() => toggleClick(7)">
+                +
+            </div>
+          </div>
+          <p :class="toggleQuestion == 7 ? 'active_p' : ''">ج9: نعم، بإذن الله، وتتطلع الشركة لأن تكون احد رواد القطاع الصحي في المملكة. وشكراً لإتاحة الفرضة للإجابة على اسئلتكم .....</p>
+        </div>
+      </div>
+    </section> -->
 
     <section class="contact">
       <div class="container">
@@ -253,7 +310,15 @@
 
 export default {
   name: "InvestorRelations",
+  data(){
+    return{
+      toggleQuestion: '0'
+    }
+  },
   methods: {
+    toggleClick(index){
+      this.toggleQuestion = index
+    },
     downloadFinancial(e) {
       // if (e.target.value == "30/06/2023") {
       //   axios
@@ -309,6 +374,17 @@ export default {
         window.open('https://acrobat.adobe.com/id/urn:aaid:sc:ap:c816694b-2c8d-4c17-89da-ebf87f031d78');
       }
     },
+    downloadcertification() {
+      window.open('https://acrobat.adobe.com/id/urn:aaid:sc:ap:1f83f8f6-e1a7-4f9f-8d3e-85133a63d917', '_blank');
+    },
+    downloadBoardOfDirectorsReport(type) {
+      if(type == 'تقرير مجلس الإدارة'){
+        window.open('https://acrobat.adobe.com/id/urn:aaid:sc:ap:8d491e94-a164-4660-ad78-bceac1a74a0d', '_blank');
+      } else if(type == 'الإستراتيجية الشركة'){
+      window.open('https://acrobat.adobe.com/id/urn:aaid:sc:ap:8d491e94-a164-4660-ad78-bceac1a74a0d', '_blank');
+            }
+      
+    },
     downloadMV() {
       // axios
       //   .create({
@@ -345,7 +421,6 @@ export default {
   background-image: url(../../assets/images/map.png);
   padding: 100px;
   position: relative;
-  border-bottom: 90px solid #78a28f;
   @media (max-width: 991px) {
     border-bottom: 50px solid #78a28f;
     padding: 20px;
@@ -459,6 +534,13 @@ export default {
     }
   }
 }
+.widgetBg{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: #78a28f;
+  height: 160px;
+}
 .invetors_relations {
   display: flex;
   justify-content: space-between;
@@ -531,9 +613,9 @@ export default {
 }
 
 .results_reports {
-  margin-top: 100px;
+  margin: 100px 0 50px 0;
   @media (max-width: 991px) {
-    margin-top: 50px;
+    margin: 50px 0;
   }
   .container {
     > h3 {
@@ -720,6 +802,73 @@ export default {
   }
 }
 
+.questions{
+  h3{
+    font-size: 40px;
+    color: #78A28F;
+    font-weight: 900;
+    margin: 50px 0 70px 0;
+    text-align: center;
+  }
+
+  .question_container{
+    margin-bottom: 30px;
+    .toggle_flex{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .toggleClick{
+        border: 3px solid #2B5933;
+        font-size: 30px;
+        font-weight: 600;
+        color: #2B5933;
+        width: 38px;
+        height: 38px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+    }
+    h4{
+      font-size: 22px;
+      color: #78A28F;
+      font-weight: 600;
+      margin-bottom: 27px;
+    }
+    p{
+      font-size: 22px;
+      color: #2B5933;
+      font-weight: 600;
+      display: none;
+    }
+    .active_p{
+      display: block;
+    }
+  }
+}
+
+.secondeNumbers{
+  .number_container{
+    width: calc(100% / 5 - 25px) !important;
+    @media (max-width: 1200px) {
+        width:25% !important;
+      }
+    @media (max-width: 991px) {
+      width:45% !important;
+    }
+    @media (max-width: 991px) {
+      width:100% !important;
+    }
+    .number_round{
+      font-size: 28px !important;
+      @media (max-width: 1200px) {
+        font-size: 19px !important;
+      }
+    }
+  }
+}
+
 .contact {
   background-color: #78a28f;
   padding: 100px 0;
@@ -818,5 +967,8 @@ export default {
       }
     }
   }
+}
+.dis{
+  background-color: gray !important;
 }
 </style>
