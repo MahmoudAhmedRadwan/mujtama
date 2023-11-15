@@ -64,7 +64,6 @@
           <div class="side">
             <div class="contact_invstor">
               <form @submit.prevent="contactUs">
-                <h4> عنوان ؟</h4>
                 <div class="form_input">
                   <label>الاسم</label>
                   <input type="text" placeholder="الاسم" />
