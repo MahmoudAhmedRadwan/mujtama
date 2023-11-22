@@ -46,21 +46,21 @@
     <section class="branches_information">
       <div class="container">
         <div class="branches_container">
-          <div class="branch">
+          <div class="branch" v-for="branch in branches" :key="branch.id">
             <div class="img_container">
               <img src="../../assets/images/branch.png" alt="" />
             </div>
             <div class="address">
-              <h3>صيدلية المجتمع الرائدة 1</h3>
-              <h3>جدة-المحمدية شارع امنة بنت وهب</h3>
+              <h3>{{branch.name_3}}</h3>
+              <h3>{{branch.address}}</h3>
             </div>
             <div class="phone">
               <h3>رقم الهاتف</h3>
-              <h3>0599132523</h3>
+              <h3>{{branch.mobile}}</h3>
             </div>
             <div class="times">
               <h4>اوقات الدوام</h4>
-              <h3>من الساعة 6:30 صباحا حتى الساعة 3:30 فجرا</h3>
+              <h3>{{branch.time}}</h3>
             </div>
             <div class="services">
               <h4>خدمات فرع إضافية</h4>
@@ -68,271 +68,13 @@
                 <div class="true">
                   <img src="../../assets/images/greenTrue.png" alt="" />
                 </div>
-                الاستشارات الطبية ورصد المؤشرات الحيوية
-              </h3>
-              <h3>
-                <div class="true">
-                  <img src="../../assets/images/greenTrue.png" alt="" />
-                </div>
-                صرف وصفات التأمين الطبي للشركات المتعاقدة
-              </h3>
-              <h3>
-                <div class="true">
-                  <img src="../../assets/images/greenTrue.png" alt="" />
-                </div>
-                صرف وصفات خدمة ٩٣٧ تطبيق صحة
-              </h3>
-              <h3>
-                <div class="true">
-                  <img src="../../assets/images/greenTrue.png" alt="" />
-                </div>
-                صرف وصفات برنامج وصفتي
+                {{branch.services}}
               </h3>
             </div>
-            <button>
+            <a target="_blank" :href="branch.location">
               عرض على الخريطة
               <img src="../../assets/images/mapLocation.png" alt="" />
-            </button>
-          </div>
-          <div class="branch">
-            <div class="img_container">
-              <img src="../../assets/images/branch.png" alt="" />
-            </div>
-            <div class="address">
-              <h3>صيدلية المجتمع الرائدة 1</h3>
-              <h3>جدة-المحمدية شارع امنة بنت وهب</h3>
-            </div>
-            <div class="phone">
-              <h3>رقم الهاتف</h3>
-              <h3>0599132523</h3>
-            </div>
-            <div class="times">
-              <h4>اوقات الدوام</h4>
-              <h3>من الساعة 6:30 صباحا حتى الساعة 3:30 فجرا</h3>
-            </div>
-            <div class="services">
-              <h4>خدمات فرع إضافية</h4>
-              <h3>
-                <div class="true">
-                  <img src="../../assets/images/greenTrue.png" alt="" />
-                </div>
-                الاستشارات الطبية ورصد المؤشرات الحيوية
-              </h3>
-              <h3>
-                <div class="true">
-                  <img src="../../assets/images/greenTrue.png" alt="" />
-                </div>
-                صرف وصفات التأمين الطبي للشركات المتعاقدة
-              </h3>
-              <h3>
-                <div class="true">
-                  <img src="../../assets/images/greenTrue.png" alt="" />
-                </div>
-                صرف وصفات خدمة ٩٣٧ تطبيق صحة
-              </h3>
-              <h3>
-                <div class="true">
-                  <img src="../../assets/images/greenTrue.png" alt="" />
-                </div>
-                صرف وصفات برنامج وصفتي
-              </h3>
-            </div>
-            <button>
-              عرض على الخريطة
-              <img src="../../assets/images/mapLocation.png" alt="" />
-            </button>
-          </div>
-          <div class="branch">
-            <div class="img_container">
-              <img src="../../assets/images/branch.png" alt="" />
-            </div>
-            <div class="address">
-              <h3>صيدلية المجتمع الرائدة 1</h3>
-              <h3>جدة-المحمدية شارع امنة بنت وهب</h3>
-            </div>
-            <div class="phone">
-              <h3>رقم الهاتف</h3>
-              <h3>0599132523</h3>
-            </div>
-            <div class="times">
-              <h4>اوقات الدوام</h4>
-              <h3>من الساعة 6:30 صباحا حتى الساعة 3:30 فجرا</h3>
-            </div>
-            <div class="services">
-              <h4>خدمات فرع إضافية</h4>
-              <h3>
-                <div class="true">
-                  <img src="../../assets/images/greenTrue.png" alt="" />
-                </div>
-                الاستشارات الطبية ورصد المؤشرات الحيوية
-              </h3>
-              <h3>
-                <div class="true">
-                  <img src="../../assets/images/greenTrue.png" alt="" />
-                </div>
-                صرف وصفات التأمين الطبي للشركات المتعاقدة
-              </h3>
-              <h3>
-                <div class="true">
-                  <img src="../../assets/images/greenTrue.png" alt="" />
-                </div>
-                صرف وصفات خدمة ٩٣٧ تطبيق صحة
-              </h3>
-              <h3>
-                <div class="true">
-                  <img src="../../assets/images/greenTrue.png" alt="" />
-                </div>
-                صرف وصفات برنامج وصفتي
-              </h3>
-            </div>
-            <button>
-              عرض على الخريطة
-              <img src="../../assets/images/mapLocation.png" alt="" />
-            </button>
-          </div>
-          <div class="branch">
-            <div class="img_container">
-              <img src="../../assets/images/branch.png" alt="" />
-            </div>
-            <div class="address">
-              <h3>صيدلية المجتمع الرائدة 1</h3>
-              <h3>جدة-المحمدية شارع امنة بنت وهب</h3>
-            </div>
-            <div class="phone">
-              <h3>رقم الهاتف</h3>
-              <h3>0599132523</h3>
-            </div>
-            <div class="times">
-              <h4>اوقات الدوام</h4>
-              <h3>من الساعة 6:30 صباحا حتى الساعة 3:30 فجرا</h3>
-            </div>
-            <div class="services">
-              <h4>خدمات فرع إضافية</h4>
-              <h3>
-                <div class="true">
-                  <img src="../../assets/images/greenTrue.png" alt="" />
-                </div>
-                الاستشارات الطبية ورصد المؤشرات الحيوية
-              </h3>
-              <h3>
-                <div class="true">
-                  <img src="../../assets/images/greenTrue.png" alt="" />
-                </div>
-                صرف وصفات التأمين الطبي للشركات المتعاقدة
-              </h3>
-              <h3>
-                <div class="true">
-                  <img src="../../assets/images/greenTrue.png" alt="" />
-                </div>
-                صرف وصفات خدمة ٩٣٧ تطبيق صحة
-              </h3>
-              <h3>
-                <div class="true">
-                  <img src="../../assets/images/greenTrue.png" alt="" />
-                </div>
-                صرف وصفات برنامج وصفتي
-              </h3>
-            </div>
-            <button>
-              عرض على الخريطة
-              <img src="../../assets/images/mapLocation.png" alt="" />
-            </button>
-          </div>
-          <div class="branch">
-            <div class="img_container">
-              <img src="../../assets/images/branch.png" alt="" />
-            </div>
-            <div class="address">
-              <h3>صيدلية المجتمع الرائدة 1</h3>
-              <h3>جدة-المحمدية شارع امنة بنت وهب</h3>
-            </div>
-            <div class="phone">
-              <h3>رقم الهاتف</h3>
-              <h3>0599132523</h3>
-            </div>
-            <div class="times">
-              <h4>اوقات الدوام</h4>
-              <h3>من الساعة 6:30 صباحا حتى الساعة 3:30 فجرا</h3>
-            </div>
-            <div class="services">
-              <h4>خدمات فرع إضافية</h4>
-              <h3>
-                <div class="true">
-                  <img src="../../assets/images/greenTrue.png" alt="" />
-                </div>
-                الاستشارات الطبية ورصد المؤشرات الحيوية
-              </h3>
-              <h3>
-                <div class="true">
-                  <img src="../../assets/images/greenTrue.png" alt="" />
-                </div>
-                صرف وصفات التأمين الطبي للشركات المتعاقدة
-              </h3>
-              <h3>
-                <div class="true">
-                  <img src="../../assets/images/greenTrue.png" alt="" />
-                </div>
-                صرف وصفات خدمة ٩٣٧ تطبيق صحة
-              </h3>
-              <h3>
-                <div class="true">
-                  <img src="../../assets/images/greenTrue.png" alt="" />
-                </div>
-                صرف وصفات برنامج وصفتي
-              </h3>
-            </div>
-            <button>
-              عرض على الخريطة
-              <img src="../../assets/images/mapLocation.png" alt="" />
-            </button>
-          </div>
-          <div class="branch">
-            <div class="img_container">
-              <img src="../../assets/images/branch.png" alt="" />
-            </div>
-            <div class="address">
-              <h3>صيدلية المجتمع الرائدة 1</h3>
-              <h3>جدة-المحمدية شارع امنة بنت وهب</h3>
-            </div>
-            <div class="phone">
-              <h3>رقم الهاتف</h3>
-              <h3>0599132523</h3>
-            </div>
-            <div class="times">
-              <h4>اوقات الدوام</h4>
-              <h3>من الساعة 6:30 صباحا حتى الساعة 3:30 فجرا</h3>
-            </div>
-            <div class="services">
-              <h4>خدمات فرع إضافية</h4>
-              <h3>
-                <div class="true">
-                  <img src="../../assets/images/greenTrue.png" alt="" />
-                </div>
-                الاستشارات الطبية ورصد المؤشرات الحيوية
-              </h3>
-              <h3>
-                <div class="true">
-                  <img src="../../assets/images/greenTrue.png" alt="" />
-                </div>
-                صرف وصفات التأمين الطبي للشركات المتعاقدة
-              </h3>
-              <h3>
-                <div class="true">
-                  <img src="../../assets/images/greenTrue.png" alt="" />
-                </div>
-                صرف وصفات خدمة ٩٣٧ تطبيق صحة
-              </h3>
-              <h3>
-                <div class="true">
-                  <img src="../../assets/images/greenTrue.png" alt="" />
-                </div>
-                صرف وصفات برنامج وصفتي
-              </h3>
-            </div>
-            <button>
-              عرض على الخريطة
-              <img src="../../assets/images/mapLocation.png" alt="" />
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -340,8 +82,35 @@
   </div>
 </template>
 <script>
+import axios from 'axios';
 export default {
   name: "Branches",
+  data(){
+    return{
+      branches: []
+    }
+  },
+  mounted(){
+    this.getBranches();
+  },
+  methods:{
+    getBranches(){
+      axios.create({
+          baseURL: 'http://m.bare3.business/api',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer '+ localStorage.getItem('token'),
+              // localization: store.state.localization
+          }
+      })
+      .get('/import')
+      .then(res => {
+        console.log(res.data)
+        this.branches = res.data
+          
+      });
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -445,14 +214,23 @@ export default {
     justify-content: space-between;
     box-shadow: 0px 10px 50px #21343014;
     padding: 100px;
-
+    @media (max-width: 1200px) {
+      padding: 50px 20px;
+    }
     .branch {
       box-shadow: 0px 10px 50px #21343014;
       padding: 10px;
       margin-bottom: 30px;
+      width: 31%;
+      @media (max-width: 991px) {
+        width: 45%;
+      }
+      @media (max-width: 678px) {
+        width: 100%;
+      }
       .img_container {
         img {
-          margin: 0 auto 10px 0;
+          margin: 0 auto 10px auto;
           display: block;
           max-width: 100%;
         }
@@ -499,7 +277,7 @@ export default {
           align-items: center;
         }
       }
-      button {
+      a {
         width: 80%;
         border: 0;
         background-color: #d8d253;

@@ -18,6 +18,11 @@ import MedicalJournal from '../components/MedicalJournal/MedicalJournal'
 import Error from '../components/Error/Error'
 import NotFound from '../components/NotFound/NotFound'
 
+// admin
+import Admin from '../pages/Admin/Admin'
+import adminBranches from '../components/Admin/Branches/Branches'
+import AddBranch from '../components/Admin/AddBranch/AddBranch'
+
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
@@ -75,6 +80,25 @@ const routes = [
       }
     ]
   },
+
+  // admin
+  {
+    path: "/admin/",
+    name: "Admin",
+    component: Admin,
+    children: [
+      {
+        path: "/admin/branches",
+        name: "adminBranches",
+        component: adminBranches
+      },
+      {
+        path: "/admin/add-branch",
+        name: "AddBranch",
+        component: AddBranch
+      }
+    ]
+  }
 ];
 
 const router = new VueRouter({

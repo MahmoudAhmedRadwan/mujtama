@@ -25,23 +25,95 @@
         </div>
       </div>
     </header>
-    <section class="widgetBg">
-      <img src="../../assets/images/widgetBg.jpg" alt="">
+
+    <section class="Company_overview">
+      <div class="container">
+        <div class="Company_overview_container">
+          <img
+            class="rightBg"
+            src="../../assets/images/aboutCompanyBg.svg"
+            alt=""
+          />
+          <div class="img_container">
+            <img src="../../assets/images/group.png" alt="" />
+          </div>
+
+          <div class="description">
+            <h3>نبذة عن الشركة</h3>
+            <div class="line"></div>
+
+            <p>
+              • صيدليات المجتمع مجموعة رائدة ومتكاملة في تقديم الخدمات
+              الصيدلانية.
+            </p>
+            <p>
+              • شركاء وزارة الصحة في تنفيذ برامج الرعاية الصحية ومبادرات منظومة
+              الوزارة لبرامج التحول الوطني 2020 ضمن رؤية المملكة 2030.
+            </p>
+            <p>
+              • شركاء وزارة الصحة بالتنسيق مع الشركة الوطنية للشراء الموحد
+              (نوبكو) لصرف الوصفات الطبية (وصفتي) الصادرة من مراكز الرعاية
+              الأولية والمستشفيات التابعة لوزارة الصحة <br>إضافة الى المستشفيات
+              التابعة للخدمات الطبية بالقطاعات الحكومية الأخرى مثل: وزارة الدفاع
+              و وزارة الداخلية و وزارة التعليم العالي لكل من: (جدة – مكة المكرمة
+              – الطائف - الرياض - المدينة المنورة - الخرج - مدينة الملك عبد الله
+              الاقتصادية- ينبع - رابغ –جازان- صبيا)
+            </p>
+            <p>
+              • بالتعاون مع وزارة الصحة،تقدم مجموعة صيدليات المجتمع خدمة صرف
+              الوصفات الإلكترونية الصادرة من تطبيق (صحتي) والهاتف الموحد (937)
+              من خلال فروعها.
+            </p>
+            <p>
+              • شركاء وزارة الصحة وعدد من المؤسسات التعليمية (جامعة الملك عبد
+              العزيز- جامعة الطائف) لتقديم الخدمات المجتمعية وتدريب طلبة
+              الامتياز بكلية الصيدلة والمساهمة في البحوث العلمية التي تهدف الى
+              تطوير مهنة الصيدلة وقطاع الدواء.
+            </p>
+            <p>
+              • شركاء وزارة الصحة في تقديم خدمة التطعيمات الموسمية، إضافة الى
+              رصد المؤشرات الحيوية ضمن الحملة الوطنية # اعرف ارقامك # تمهيداً
+              لتطبيق نظام الملف الموحد لجميع المواطنين وذلك بالتنسيق مع الجهات
+              الحكومية ذات العلاقة.
+            </p>
+            <p>
+              • بإشراف من وزارة الصحة تقدم صيدليات المجتمع خدمة الرعاية الصحية
+              غير العاجلة داخل عيادات مجهزة ومخصصة لتقديم الخدمة والاستفادة من
+              خدمة الطب الاتصالي لتقديم أفضل الخدمات الصحية.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section class="invetors_relations container">
-      <div class="img_container">
-        <img src="../../assets/images/InvestorRelations.png" alt="" />
-      </div>
+    <section class="new_pharmacy">
       <div class="description">
-        <span class="smallTitle">علاقات المستثمرين</span>
+        <span>اخر الأخبار</span>
         <h3>
-          من خلال صفحة علاقات المستثمرين يستطيع المستثمر الاطلاع على التقارير والنتائج الخاصة بالشركة
+          {{ pages[pageNumber].description }}
+        </h3>
+        <h3>
+          {{ pages[pageNumber].descriptionTwo }}
         </h3>
         <div class="line"></div>
-        <a href="#results_reports" class="readMore">مركز النتائج</a>
+        <p>
+          {{ pages[pageNumber].seconde_description }}
+        </p>
+        <div class="arrows">
+          <div class="arrow" @click="() => changePageNumber('right')">
+            <b-icon icon="chevron-right" font-scale="5" class="icon"></b-icon>
+          </div>
+          <div class="arrow" @click="() => changePageNumber('left')">
+            <b-icon icon="chevron-left" font-scale="5" class="icon"></b-icon>
+          </div>
+        </div>
+      </div>
+      <div class="img_container">
+        <img :src="pages[pageNumber].img" alt="newpharmacey" />
       </div>
     </section>
+
+    
 
     <section class="results_reports" id="results_reports">
       <div class="container">
@@ -119,7 +191,11 @@
                 <h3> مستند التسجيل </h3>
               </div>
               <div class="side">
-                <button @click="downloadMV">تنزيل الملفات</button>
+                <select @change="(e) => downloadMV(e)">
+                  <option value="" selected disabled> تنزيل الملفات </option>
+                  <option value="ar">تنزيل الملفات باللغة العربية</option>
+                  <option value="en">تنزيل الملفات باللغه الانجليزية</option>
+                </select>
               </div>
             </div>
           </div>
@@ -128,13 +204,8 @@
     </section>
 
     <section class="yearly_reort">
-      <h3>التقارير </h3>
+      <h3>افصاحات سوق المال </h3>
       <div class="line"></div>
-      <select @change="(e) => downloadBoardOfDirectorsReport(e.target.value)">
-        <option value="" selected disabled>تنزيل الملفات</option>
-        <option value="تقرير مجلس الإدارة">تقرير مجلس الإدارة</option>
-        <option value="الإستراتيجية الشركة">استراتيجية الشركة</option>
-      </select>
     </section>
 
     <section class="numbers_of_year">
@@ -155,16 +226,26 @@
           <p>سعر السهم الاسترشادي عند الادراج</p>
         </div>
         <div class="number_container">
+          <div class="number_round">21k+</div>
+          <span>متر مربع</span>
+          <p>لتقديم افضل جودة في الامداد و التموين</p>
+        </div>
+        <div class="number_container">
           <div class="number_round">800K+</div>
           <span>عدد عملاء التميز</span>
           <p>يعد برنامج عميل التميز من أفضل برامج جمع النقاط في المملكة</p>
+        </div>
+        <div class="number_container">
+          <div class="number_round">25K+</div>
+          <span>صنفاً بين يديكم</span>
         </div>
       </div>
     </section>
     <section class="numbers_of_year secondeNumbers">
       <h3>مؤشرات الأداء الرئيسية</h3>
-      <h6>(النصف الأول من العام 2023)</h6>
       <div class="line"></div>
+      <h6>(النصف الأول من العام 2023)</h6>
+
       <div class="numbers container">
         <div class="number_container">
           <div class="number_round">204,133,493</div>
@@ -191,7 +272,8 @@
 
     <section class="questions">
       <div class="container">
-        <h3>الأسئلة المقترحة لمقابلة العضو المنتدب لشركة المجتمع الرائدة الطبية</h3>
+        <h3>مقابلة مع الرئيس التنفيذي و العضو المنتدب لشركة المجتمع الرائدة الطبية :</h3>
+        <p>تعرّف على استراتيجية شركة المجتمع الرائدة الطبية ومزاياها التنافسية</p>
         <div class="question_container">
           <div class="toggle_flex">
             <h4>1-ما تقييمكم للمنافسة في سوق الصيدليات في المملكة؟ وكم تبلغ حصتكم السوقية؟</h4>
@@ -220,16 +302,7 @@
             </div>
           </div>
           <p :class="toggleQuestion == 3 ? 'active_p' : ''">فيما يلي جدول يوضح التوزيع الجغرافي الحالي لصيدليات المجتمع:</p>
-        </div>
-        <div class="question_container">
-          <div class="toggle_flex">
-            <h4>4- تمتلك الشركة سلسلة كبيرة من الصيدليات في مختلف مناطق المملكة، هل يمكنكم تزويدنا بتفاصيل حول أداء هذه الصيدليات من ناحية الإيرادات وصافي الأرباح ونسب النمو؟</h4>
-            <div class="toggleClick" @click="() => toggleClick(4)">
-                +
-            </div>
-          </div>
-          <p :class="toggleQuestion == 4 ? 'active_p' : ''">ويقع مقر الشركة في مدينة جدة وكذلك المستودع الرئيسي في المنطقة الصناعية بالمرحلة الثالثة التابعة لهيئة مدن في مدينة جدة.</p>
-          <div class="tableAnsewer" :class="toggleQuestion == 4 ? 'active_p' : ''">
+          <div class="tableAnsewer" :class="toggleQuestion == 3 ? 'active_p' : ''">
             <table>
               <tr>
                 <th>المدينة</th>
@@ -267,11 +340,6 @@
                 <td> 4% </td>
               </tr>
               <tr>
-                <td> المدينة </td>
-                <td> 5 </td>
-                <td> 4% </td>
-              </tr>
-              <tr>
                 <td> رابغ </td>
                 <td> 2 </td>
                 <td> 2% </td>
@@ -287,11 +355,6 @@
                 <td> 2% </td>
               </tr>
               <tr>
-                <td> ينبع </td>
-                <td> 1 </td>
-                <td> 1% </td>
-              </tr>
-              <tr>
                 <td> المتجر الالكتروني </td>
                 <td> 1 </td>
                 <td> 1% </td>
@@ -303,7 +366,7 @@
               </tr>
             </table>
           </div>
-        </div>
+        </div>  
         <div class="question_container">
           <div class="toggle_flex">
             <h4>4-تمتلك الشركة سلسلة كبيرة من الصيدليات في مختلف مناطق المملكة، هل يمكنكم تزويدنا بتفاصيل حول أداء هذه الصيدليات من ناحية الإيرادات وصافي الأرباح ونسب النمو؟</h4>
@@ -399,7 +462,36 @@ export default {
   name: "InvestorRelations",
   data(){
     return{
-      toggleQuestion: '0'
+      toggleQuestion: '0',
+      pageNumber: 0,
+      pages: [
+        {
+          description:
+            "تعلن شركة المجتمع الرائدة الطبية (“الشركة”) عن عزم الشركة تسجيل وإدراج أسهم الشركة البالغة (9,500,000) سهم عادي ادراجاً مباشراً في السوق الموازية “نمو” ، و سيتم الإعلان عن تاريخ الإدراج قريباً",
+          seconde_description:
+            "انضموا إلينا في الفرع الجديد واستفيدوا من خدماتنا المتميزة صيدليات_المجتمع #الريادة_في_خدمة_المجتمع",
+          img: require("../../assets/images/new7.jpg"),
+        },
+        {
+          description:
+            "يسرنا أن نعلن أنه تم -بحمد الله- افتتاح فرع جديد لصيدلية المجتمع في حي الصفا- طريق الأمير متعب بن عبد العزيز- جدة",
+          seconde_description:
+            "انضموا إلينا في الفرع الجديد واستفيدوا من خدماتنا المتميزة صيدليات_المجتمع #الريادة_في_خدمة_المجتمع",
+          img: require("../../assets/images/opening.png"),
+        },
+        {
+          description:
+            "كلية الصيدلية بجامعة الملك عبد العزيز بمدينة جدة كل الشكر للراعي الذهبي صيدلية المجتمع لمساهمتهم في نجاح فاعليتنا",
+          seconde_description: "#صيدلية_المجتمع",
+          img: require("../../assets/images/openening2023.png"),
+        },
+        {
+          description:
+            "قامت إدارة شركة المجتمع الرائدة الطبية بتكريم الصيدلي محمد أحمد محمد علي لحصوله على المركز الرابع حسب تقييم الأداء في شهر سبتمبر.",
+            descriptionTwo: 'صيدليات المجتمع تتمنى له ولجميع شركاء النجاح المزيد من التوفيق والسداد',
+          img: require("../../assets/images/gift.png"),
+        },
+      ],
     }
   },
   methods: {
@@ -477,7 +569,7 @@ export default {
             }
       
     },
-    downloadMV() {
+    downloadMV(e) {
       // axios
       //   .create({
       //     baseURL: "http://m.bare3.business/api/",
@@ -500,11 +592,31 @@ export default {
       //   .catch((err) => {
       //     console.log(err.response.data);
       //   });
-      window.open('https://acrobat.adobe.com/id/urn:aaid:sc:ap:8889e243-a2bb-4446-b012-a6c5182aed3d');
+      if(e.target.value == 'ar'){
+        window.open('https://acrobat.adobe.com/id/urn:aaid:sc:ap:8889e243-a2bb-4446-b012-a6c5182aed3d');  
+      } else if (e.target.value == 'en'){
+        window.open('https://acrobat.adobe.com/id/urn:aaid:sc:ap:976aae6f-4f5f-49c9-b4ea-aa2929039e40');  
+      }
+      
     },
     contactUs(){
       console.log('contact us test')
-    }
+    },
+    changePageNumber(type) {
+      if (type == "left") {
+        if (this.pageNumber <= 2 && this.pageNumber > -1) {
+          this.pageNumber = this.pageNumber + 1;
+        } else {
+          this.pageNumber = 0;
+        }
+      } else if (type == "right") {
+        if (this.pageNumber <= 3 && this.pageNumber > 0) {
+          this.pageNumber = this.pageNumber - 1;
+        } else {
+          this.pageNumber = 3;
+        }
+      }
+    },
   },
 };
 </script>
@@ -794,6 +906,8 @@ export default {
             option {
               background-color: #fff;
               color: #000;
+              direction: ltr;
+              text-align: right;
             }
           }
         }
@@ -870,7 +984,7 @@ export default {
     justify-content: space-between;
     flex-wrap: wrap;
     .number_container {
-      width: 25%;
+      width: 20%;
       @media (max-width: 991px) {
         width: 50%;
         margin-bottom: 20px;
@@ -913,8 +1027,21 @@ export default {
     font-size: 40px;
     color: #78A28F;
     font-weight: 900;
-    margin: 50px 0 70px 0;
+    margin: 50px 0 20px 0;
     text-align: center;
+    @media (max-width: 991px) {
+      font-size: 30px;
+    }
+  }
+  p{
+    font-size: 31px;
+    color: #D8D253;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 70px;
+    @media (max-width: 991px) {
+      font-size: 22px;
+    }
   }
 
   .question_container{
@@ -947,9 +1074,6 @@ export default {
       color: #2B5933;
       font-weight: 600;
       display: none;
-    }
-    .active_p{
-      display: block;
     }
   }
 }
@@ -1101,5 +1225,195 @@ export default {
     border-bottom: 0;
   }
 }
+.new_pharmacy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 0;
+  @media (max-width: 991px) {
+    flex-direction: column;
+    margin: 50px 0;
+  }
+  .description {
+    background-color: #fff;
+    padding: 50px;
+    width: 750px;
+    border-radius: 10px;
+    position: relative;
+    z-index: 3;
+    box-shadow: 0px 10px 50px #21343014;
+    @media (max-width: 1450px) {
+      width: 600px;
+    }
+    @media (max-width: 1450px) {
+      width: 80%;
+    }
+    @media (max-width: 991px) {
+      width: 90%;
+      padding: 20px;
+      order: 2;
+    }
+    span {
+      font-size: 36px;
+      color: #2b5933;
+      margin-bottom: 20px;
+    }
+    h3 {
+      font-size: 22px;
+      color: #78a28f;
+      font-weight: 800;
+      margin-bottom: 30px;
+      line-height: 40px;
+      @media (max-width: 1450px) {
+        font-size: 30px;
+      }
+      @media (max-width: 768px) {
+        font-size: 20px;
+      }
+    }
+    .line {
+      height: 3px;
+      width: 70px;
+      background-color: #d1d13c;
+      margin-bottom: 30px;
+    }
+    p {
+      font-size: 16px;
+      color: #6f7775;
+    }
+    .arrows {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      width: 100%;
+      .arrow {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #d8d253;
+        cursor: pointer;
+        margin-top: 30px;
+        .icon {
+          font-size: 16px !important;
+        }
+      }
+      .arrow:last-child {
+        border: 0;
+        margin-right: 10px;
+      }
+    }
+  }
+  .img_container {
+    margin-right: -50px;
+    width: 600px;
+    @media (max-width: 1200px) {
+      width: 38%;
+      width: 100%;
+    }
+    @media (max-width: 1450px) {
+      margin: 30px 0 0 0;
+    }
+    @media (max-width: 991px) {
+      order: 1;
+      width: 90%;
+      margin-bottom: 10px;
+    }
+    img {
+      width: 100%;
+    }
+  }
+}
+.Company_overview {
+    margin: 100px 0;
+    position: relative;
+    @media (max-width: 991px) {
+      padding: 50px 0;
+    }
+    .rightBg {
+      position: absolute;
+      right: 50px;
+      top: -27px;
+    }
+    .Company_overview_container {
+      display: flex;
+      justify-content: space-between;
+      @media (max-width: 1200px) {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .img_container {
+        width: 45%;
+        position: relative;
+        @media (max-width: 1200px) {
+          width: 100%;
+          margin: auto;
+          display: flex;
+          justify-content: center;
+          margin-bottom: 20px;
+        }
+        img {
+          max-width: 100%;
+        }
+        .img_position {
+          position: absolute;
+          top: -50px;
+          left: 100px;
+        }
+        .positionTitle {
+          position: absolute;
+          bottom: -65px;
+          right: 25px;
+          span {
+            font-size: 51px;
+            font-weight: 600;
+            color: #d1d13c;
+          }
+          h3 {
+            font-size: 51px;
+            color: #2b5933;
+            font-weight: 600;
+          }
+        }
+      }
 
+      .line {
+        @media (max-width: 1200px) {
+          margin: 20px auto;
+        }
+      }
+      .description {
+        width: 50%;
+        @media (max-width: 1200px) {
+          width: 100%;
+          text-align: center;
+        }
+        h4 {
+          font-size: 20px;
+          color: #2b5933;
+          margin-bottom: 10px;
+        }
+        h3 {
+          font-size: 40px;
+          font-weight: 800;
+          color: #78a28f;
+          margin-bottom: 10px;
+          font-family: flatMedium;
+        }
+        p {
+          font-size: 18px;
+          color: #6f7775;
+          @media (max-width: 1200px) {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+.active_p{
+  display: block !important;
+}
 </style>

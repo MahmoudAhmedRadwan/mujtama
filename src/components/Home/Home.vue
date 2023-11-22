@@ -6,7 +6,7 @@
         <div class="numbers">
           <div class="number">160</div>
           <div class="line"></div>
-          <h3>فرعا منتشرة على نطاق واسع</h3>
+          <h3>فرعاّ منتشراّ على نطاق واسع</h3>
         </div>
         <div class="numbers">
           <div class="number">21K+</div>
@@ -18,13 +18,13 @@
           <div class="line"></div>
           <h3>صنفاً بين ايديكم</h3>
         </div>
-        <router-link to="/branches" class="our_branches">
+        <a href="https://ahmedshawki.com/branches2" class="our_branches">
           <div>
             <span>فروعنا</span>
             <div class="line"></div>
           </div>
           <b-icon icon="arrow-left" font-scale="5" class="icon"></b-icon>
-        </router-link>
+        </a>
       </div>
     </header>
 
@@ -164,9 +164,18 @@
           <p>يتم تحديث سعر السهم بشكل دوري حسب سعر السهم في تداول</p>
         </div>
         <div class="number_container">
+          <div class="number_round">21k+</div>
+          <span>متر مربع</span>
+          <p>لتقديم افضل جودة في الامداد و التموين</p>
+        </div>
+        <div class="number_container">
           <div class="number_round">800K+</div>
           <span>عدد عملاء التميز</span>
           <p>يعد برنامج عميل التميز من أفضل برامج جمع النقاط في المملكة</p>
+        </div>
+        <div class="number_container">
+          <div class="number_round">25K+</div>
+          <span>صنفاً بين يديكم</span>
         </div>
       </div>
     </section>
@@ -223,6 +232,13 @@ export default {
       pages: [
         {
           description:
+            "تعلن شركة المجتمع الرائدة الطبية (“الشركة”) عن عزم الشركة تسجيل وإدراج أسهم الشركة البالغة (9,500,000) سهم عادي ادراجاً مباشراً في السوق الموازية “نمو” ، و سيتم الإعلان عن تاريخ الإدراج قريباً",
+          seconde_description:
+            "انضموا إلينا في الفرع الجديد واستفيدوا من خدماتنا المتميزة صيدليات_المجتمع #الريادة_في_خدمة_المجتمع",
+          img: require("../../assets/images/new7.jpg"),
+        },
+        {
+          description:
             "يسرنا أن نعلن أنه تم -بحمد الله- افتتاح فرع جديد لصيدلية المجتمع في حي الصفا- طريق الأمير متعب بن عبد العزيز- جدة",
           seconde_description:
             "انضموا إلينا في الفرع الجديد واستفيدوا من خدماتنا المتميزة صيدليات_المجتمع #الريادة_في_خدمة_المجتمع",
@@ -233,11 +249,6 @@ export default {
             "كلية الصيدلية بجامعة الملك عبد العزيز بمدينة جدة كل الشكر للراعي الذهبي صيدلية المجتمع لمساهمتهم في نجاح فاعليتنا",
           seconde_description: "#صيدلية_المجتمع",
           img: require("../../assets/images/openening2023.png"),
-        },
-        {
-          description: "صدور موافقة هيئة السوق المالية على إدراج شركة المجتمع الرائدة الطبية في السوق الموازية (نمو).",
-          descriptionTwo: 'يسر إدارة الشركة أن تشكر هيئة السوق المالية على الدعم المستمر وأن تتقدم بالتهنئة لمساهمي الشركة وجميع موظفيها ومنسوبيها وعملائها الكرام على هذه النقلة المهمة في مسيرة الشركة',
-          img: require("../../assets/images/congrats.png"),
         },
         {
           description:
@@ -258,7 +269,7 @@ export default {
           this.pageNumber = 0;
         }
       } else if (type == "right") {
-        if (this.pageNumber <= 3 && this.pageNumber >= 0) {
+        if (this.pageNumber <= 3 && this.pageNumber > 0) {
           this.pageNumber = this.pageNumber - 1;
         } else {
           this.pageNumber = 3;
@@ -571,6 +582,7 @@ export default {
     @media (max-width: 991px) {
       width: 90%;
       padding: 20px;
+      order: 2;
     }
     span {
       font-size: 36px;
@@ -611,7 +623,7 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
-        border: 1px solid #dddddd;
+        background-color: #d8d253;
         cursor: pointer;
         margin-top: 30px;
         .icon {
@@ -620,7 +632,6 @@ export default {
       }
       .arrow:last-child {
         border: 0;
-        background-color: #d8d253;
         margin-right: 10px;
       }
     }
@@ -632,6 +643,11 @@ export default {
     }
     @media (max-width: 1450px) {
       margin: 30px 0 0 0;
+    }
+    @media (max-width: 991px) {
+      order: 1;
+      width: 90%;
+      margin-bottom: 10px;
     }
     img {
       max-width: 100%;
@@ -666,7 +682,7 @@ export default {
     justify-content: space-between;
     flex-wrap: wrap;
     .number_container {
-      width: 25%;
+      width: 20%;
       @media (max-width: 991px) {
         width: 50%;
         margin-bottom: 20px;

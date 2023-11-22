@@ -170,7 +170,7 @@
             <li><router-link to="/about-us"> تعرف علينا </router-link></li>
             <li><router-link to="/Error"> المتجر </router-link></li>
             <li><router-link to="/Not-found"> المجلة الإلكترونية </router-link></li>
-            <li><router-link to="/branches"> فروعنا </router-link></li>
+            <li><a href="https://ahmedshawki.com/branches2"> فروعنا </a></li>
             <li><router-link to="/investor-relations">علاقات المستثمرين</router-link></li>
             <li><router-link to=""> اجمع مع المجتمع </router-link></li>
             <li><router-link to="/form"> الوظائف </router-link></li>
@@ -212,9 +212,9 @@
           <router-link to="/contact-us">اتصل بنا</router-link>
         </div>
       </div>
-      <div class="copyRights">
+      <!-- <div class="copyRights">
         <p>Merkulove @ 2022 Hairty Template. All Rights Reserved</p>
-      </div>
+      </div> -->
     </footer>
   </div>
 </template>
@@ -463,6 +463,10 @@ export default {
             font-weight: 600;
             color: #78a28f;
             white-space: nowrap;
+            transition: .3s ease-in-out;
+            &:hover{
+              color: #d8d253;
+            }
           }
         }
       }

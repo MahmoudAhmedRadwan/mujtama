@@ -33,7 +33,6 @@
           </div>
 
           <div class="description">
-            <h4>مرحباَ بك بالمجتمع</h4>
             <h3>نبذة عن الشركة</h3>
             <div class="line"></div>
 
@@ -98,7 +97,7 @@
           <div class="line"></div>
           <div class="description">
             <div class="img_container">
-              <img src="../../assets/images/eye.png" alt="" />
+              <img src="../../assets/images/new12.png" alt="" />
             </div>
             <div class="des">
               <h4>رؤيتنا</h4>
@@ -185,7 +184,7 @@
           </div>
           <div class="service">
             <div class="icon_container">
-              <img src="../../assets/images/handHeart.png" alt="" />
+              <img src="../../assets/images/new11.png" alt="" />
             </div>
             <h3>خدمة العملاء</h3>
             <p>
