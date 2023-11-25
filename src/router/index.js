@@ -22,6 +22,10 @@ import NotFound from '../components/NotFound/NotFound'
 import Admin from '../pages/Admin/Admin'
 import adminBranches from '../components/Admin/Branches/Branches'
 import AddBranch from '../components/Admin/AddBranch/AddBranch'
+import Articles from '../components/Admin/Articles/Articles'
+import AddArticles from '../components/Admin/Articles/AddArticles'
+import JobsForSaudis from '../components/Admin/JobsForSaudis/JobsForSaudis'
+import KeyPerformanceIndicators from '../components/Admin/KeyPerformanceIndicators/KeyPerformanceIndicators'
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
@@ -96,6 +100,26 @@ const routes = [
         path: "/admin/add-branch",
         name: "AddBranch",
         component: AddBranch
+      },
+      {
+        path: "/admin/articles",
+        name: "Articles",
+        component: Articles
+      },
+      {
+        path: "/admin/articles/add-articles",
+        name: "AddArticles",
+        component: AddArticles
+      },
+      {
+        path: "/admin/jobs-for-saudis",
+        name: "JobsForSaudis",
+        component: JobsForSaudis
+      },
+      {
+        path: "/admin/key-performance-indicators",
+        name: "KeyPerformanceIndicators",
+        component: KeyPerformanceIndicators
       }
     ]
   }

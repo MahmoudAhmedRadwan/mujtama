@@ -3,11 +3,11 @@
     <!-- Branches.vue -->
     <div>
         <header class="admin_content_header">
-            <h2>إدارة الفروع</h2>
+            <h2>مؤشرات الأداء الرئيسية</h2>
             <div class="search">
                 <input type="text" placeholder="البحث برقم الفرع">
             </div>
-            <router-link to="/admin/add-branch"> + أضف فرع جديد </router-link>
+            <router-link to=""> + أضف </router-link>
             
         </header>
         <div class="filter">
@@ -66,7 +66,7 @@
 </template>
 <script>
 export default {
-    name:'Branches'
+    name:'KeyPerformanceIndicators'
 }
 </script>
 <style lang="scss" scoped>

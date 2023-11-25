@@ -3,11 +3,11 @@
     <!-- Branches.vue -->
     <div>
         <header class="admin_content_header">
-            <h2>إدارة الفروع</h2>
+            <h2>وظائف للسعودين</h2>
             <div class="search">
                 <input type="text" placeholder="البحث برقم الفرع">
             </div>
-            <router-link to="/admin/add-branch"> + أضف فرع جديد </router-link>
+            <router-link to=""> + أضف وظيفة جديدة </router-link>
             
         </header>
         <div class="filter">
@@ -66,7 +66,7 @@
 </template>
 <script>
 export default {
-    name:'Branches'
+    name:'JobsForSaudis'
 }
 </script>
 <style lang="scss" scoped>

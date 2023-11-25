@@ -16,7 +16,7 @@
                         </router-link>
                     </li>
                     <li>
-                        <router-link to="">
+                        <router-link to="/admin/branches">
                             <div class="img_container"><img src="../../assets/images/pharmacyLink.png" alt=""></div> 
                              الصيدليات 
                         </router-link>
@@ -33,7 +33,7 @@
                                 </router-link>
                             </li>
                             <li>
-                                <router-link to="">
+                                <router-link to="/admin/articles">
                                     المقالات
                                 </router-link>
                             </li>
@@ -46,7 +46,7 @@
                         </router-link>
                         <ul>
                             <li>
-                                <router-link to="">
+                                <router-link to="/admin/jobs-for-saudis">
                                     وظائف للسعودين
                                 </router-link>
                             </li>
@@ -70,7 +70,7 @@
                         </router-link>
                     </li>
                     <li>
-                        <router-link to="">
+                        <router-link to="/admin/key-performance-indicators">
                             <div class="img_container"></div> 
                             المؤشرات الرئيسية
                         </router-link>
