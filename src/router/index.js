@@ -26,6 +26,10 @@ import Articles from '../components/Admin/Articles/Articles'
 import AddArticles from '../components/Admin/Articles/AddArticles'
 import JobsForSaudis from '../components/Admin/JobsForSaudis/JobsForSaudis'
 import KeyPerformanceIndicators from '../components/Admin/KeyPerformanceIndicators/KeyPerformanceIndicators'
+import ResultsAndReports from '../components/Admin/ResultsAndReports/ResultsAndReports'
+import AddResultsAndReports from '../components/Admin/ResultsAndReports/AddResultsAndReports'
+import EmploymentApplications from '../components/Admin/EmploymentApplications/EmploymentApplications'
+import Main from '../components/Admin/Main/Main'
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
@@ -120,7 +124,27 @@ const routes = [
         path: "/admin/key-performance-indicators",
         name: "KeyPerformanceIndicators",
         component: KeyPerformanceIndicators
-      }
+      },
+      {
+        path: "/admin/results-and-reports",
+        name: "ResultsAndReports",
+        component: ResultsAndReports
+      },
+      {
+        path: "/admin/results-and-reports/add-results-and-reports",
+        name: "AddResultsAndReports",
+        component: AddResultsAndReports
+      },
+      {
+        path: "/admin/employment-applications",
+        name: "EmploymentApplications",
+        component: EmploymentApplications
+      },
+      {
+        path: "/admin/main",
+        name: "Main",
+        component: Main
+      },
     ]
   }
 ];
