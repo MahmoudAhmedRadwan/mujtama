@@ -2,8 +2,9 @@
 <template>
     <!-- Branches.vue -->
     <div>
+        <HeaderBg title="مؤشرات الأداء الرئيسية" />
         <header class="admin_content_header">
-            <h2>مؤشرات الأداء الرئيسية</h2>
+            <h2></h2>
             <div class="search">
                 <input type="text" placeholder="البحث برقم الفرع">
             </div>
@@ -65,8 +66,10 @@
     </div>
 </template>
 <script>
+import HeaderBg from '../../global/HeaderBg/HeaderBg'
 export default {
-    name:'KeyPerformanceIndicators'
+    name:'KeyPerformanceIndicators',
+    components: {HeaderBg},
 }
 </script>
 <style lang="scss" scoped>

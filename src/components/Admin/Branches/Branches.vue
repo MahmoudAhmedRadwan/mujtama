@@ -2,19 +2,20 @@
 <template>
     <!-- Branches.vue -->
     <div>
+        <HeaderBg :img="img" title="إدارة الفروع" />
         <header class="admin_content_header">
-            <h2>إدارة الفروع</h2>
+            <div class="filter">
+                <select>
+                    <option value="" selected disabled>المدينة</option>
+                </select>
+            </div>
             <div class="search">
                 <input type="text" placeholder="البحث برقم الفرع">
             </div>
             <router-link to="/admin/add-branch"> + أضف فرع جديد </router-link>
             
         </header>
-        <div class="filter">
-            <select>
-                <option value="" selected disabled>المدينة</option>
-            </select>
-        </div>
+        
 
         <div class="main_table">
             <table width="100%">
@@ -65,8 +66,15 @@
     </div>
 </template>
 <script>
+import HeaderBg from '../../global/HeaderBg/HeaderBg'
 export default {
-    name:'Branches'
+    name:'Branches',
+    components: {HeaderBg},
+    data(){
+        return{
+            img: require('../../../assets/images/branches-main-logo.png')
+        }
+    }
 }
 </script>
 <style lang="scss" scoped>
@@ -78,7 +86,6 @@ export default {
         text-align: center;
         font-size: 20px;
         border-radius: 10px;
-        margin-bottom: 20px;
     }
 }
 

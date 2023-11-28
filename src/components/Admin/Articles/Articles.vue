@@ -1,8 +1,9 @@
 <template>
     <!-- Branches.vue -->
     <div>
+        <HeaderBg title="المقالات" />
         <header class="admin_content_header">
-            <h2>المقالات</h2>
+            <h2></h2>
             <div class="search">
                 <input type="text" placeholder="البحث برقم الفرع">
             </div>
@@ -47,8 +48,10 @@
     </div>
 </template>
 <script>
+import HeaderBg from '../../global/HeaderBg/HeaderBg'
 export default {
-    name:'Articles'
+    name:'Articles',
+    components: {HeaderBg},
 }
 </script>
 <style lang="scss" scoped>

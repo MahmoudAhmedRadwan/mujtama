@@ -2,8 +2,9 @@
 <template>
     <!-- EmploymentApplications.vue -->
     <div>
+        <HeaderBg title="طلبات التوظيف" />
         <header class="admin_content_header">
-            <h2>طلبات التوظيف</h2>
+            <h2></h2>
             <div class="search">
                 <input type="text" placeholder="البحث برقم الفرع">
             </div>
@@ -65,8 +66,10 @@
     </div>
 </template>
 <script>
+import HeaderBg from '../../global/HeaderBg/HeaderBg'
 export default {
-    name:'EmploymentApplications'
+    name:'EmploymentApplications',
+    components: {HeaderBg},
 }
 </script>
 <style lang="scss" scoped>

@@ -1,8 +1,6 @@
 <template>
     <div>
-        <header>
-            <h2>النتائج و التقارير</h2>
-        </header>
+        <HeaderBg title="النتائج و التقارير" />
         <div class="content_container">
             <div class="form_container">
                 <form action="">
@@ -89,8 +87,10 @@
     </div>
 </template>
 <script>
+import HeaderBg from '../../global/HeaderBg/HeaderBg'
 export default {
-    name: 'AddResultsAndReports'
+    name: 'AddResultsAndReports',
+    components: {HeaderBg},
 }
 </script>
 <style lang="scss" scoped>

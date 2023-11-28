@@ -1,8 +1,6 @@
 <template>
     <div>
-        <header>
-            <h2>إدارة الفروع</h2>
-        </header>
+        <HeaderBg :img="img" title="إدارة الفروع" />
         <div class="content_container">
             <div class="form_container">
                 <form action="">
@@ -78,8 +76,15 @@
     </div>
 </template>
 <script>
+import HeaderBg from '../../global/HeaderBg/HeaderBg'
 export default {
-    name: 'AddBranch'
+    name: 'AddBranch',
+    components: {HeaderBg},
+    data(){
+        return{
+            img: require('../../../assets/images/branches-main-logo.png')
+        }
+    }
 }
 </script>
 <style lang="scss" scoped>

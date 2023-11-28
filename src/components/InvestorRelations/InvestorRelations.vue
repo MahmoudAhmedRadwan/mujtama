@@ -455,7 +455,7 @@
   </div>
 </template>
 <script>
-// import axios from "axios";
+import axios from "axios";
 // import store from "../../../store";
 
 export default {
@@ -570,33 +570,35 @@ export default {
       
     },
     downloadMV(e) {
-      // axios
-      //   .create({
-      //     baseURL: "http://m.bare3.business/api/",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //       // Authorization: "Bearer " + localStorage.getItem("token"),
-      //       // localization: store.state.localization
-      //     },
-      //     responseType: "blob",
-      //   })
-      //   .get("/mv")
-      //   .then((response) => {
-      //     const url = window.URL.createObjectURL(new Blob([response.data]));
-      //     const link = document.createElement("a");
-      //     link.href = url;
-      //     link.setAttribute("download", "file.pdf");
-      //     document.body.appendChild(link);
-      //     link.click();
-      //   })
-      //   .catch((err) => {
-      //     console.log(err.response.data);
-      //   });
-      if(e.target.value == 'ar'){
-        window.open('https://acrobat.adobe.com/id/urn:aaid:sc:ap:8889e243-a2bb-4446-b012-a6c5182aed3d');  
-      } else if (e.target.value == 'en'){
-        window.open('https://acrobat.adobe.com/id/urn:aaid:sc:ap:976aae6f-4f5f-49c9-b4ea-aa2929039e40');  
+    if(e.target.value == 'ar'){
+        axios
+          .create({
+            baseURL: "http://m.bare3.business/api/",
+            headers: {
+              "Content-Type": "application/json",
+              // Authorization: "Bearer " + localStorage.getItem("token"),
+              // localization: store.state.localization
+            },
+            responseType: "blob",
+          })
+          .get("/mv")
+          .then((response) => {
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement("a");
+            link.href = url;
+            link.setAttribute("download", "file.pdf");
+            document.body.appendChild(link);
+            link.click();
+          })
+          .catch((err) => {
+            console.log(err.response.data);
+          });
       }
+      // if(e.target.value == 'ar'){
+      //   window.open('https://acrobat.adobe.com/id/urn:aaid:sc:ap:8889e243-a2bb-4446-b012-a6c5182aed3d');  
+      // } else if (e.target.value == 'en'){
+      //   window.open('https://acrobat.adobe.com/id/urn:aaid:sc:ap:976aae6f-4f5f-49c9-b4ea-aa2929039e40');  
+      // }
       
     },
     contactUs(){

@@ -20,8 +20,12 @@ import NotFound from '../components/NotFound/NotFound'
 
 // admin
 import Admin from '../pages/Admin/Admin'
+import LogIn from '../components/Admin/LogIn/LogIn'
 import adminBranches from '../components/Admin/Branches/Branches'
 import AddBranch from '../components/Admin/AddBranch/AddBranch'
+import ArticlesSections from '../components/Admin/ArticlesSections/ArticlesSections'
+import AddArticlesSections from '../components/Admin/ArticlesSections/AddArticlesSections'
+import ArticlesSubSections from '../components/Admin/ArticlesSections/ArticlesSubSections'
 import Articles from '../components/Admin/Articles/Articles'
 import AddArticles from '../components/Admin/Articles/AddArticles'
 import JobsForSaudis from '../components/Admin/JobsForSaudis/JobsForSaudis'
@@ -88,6 +92,11 @@ const routes = [
       }
     ]
   },
+  {
+    path: "/login",
+    name: "LogIn",
+    component: LogIn
+  },
 
   // admin
   {
@@ -104,6 +113,21 @@ const routes = [
         path: "/admin/add-branch",
         name: "AddBranch",
         component: AddBranch
+      },
+      {
+        path: "/admin/articles-sections",
+        name: "ArticlesSections",
+        component: ArticlesSections
+      },
+      {
+        path: "/admin/articles-sections/add-articles-sections",
+        name: "AddArticlesSections",
+        component: AddArticlesSections
+      },
+      {
+        path: "/admin/articles-sub-sections",
+        name: "ArticlesSubSections",
+        component: ArticlesSubSections
       },
       {
         path: "/admin/articles",

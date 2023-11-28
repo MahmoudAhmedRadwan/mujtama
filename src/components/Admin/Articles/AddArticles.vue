@@ -1,8 +1,6 @@
 <template>
     <div>
-        <header>
-            <h2>المقالات</h2>
-        </header>
+        <HeaderBg title="المقالات" />
         <div class="content_container">
             <div class="form_container">
                 <form action="">
@@ -63,8 +61,10 @@
     </div>
 </template>
 <script>
+import HeaderBg from '../../global/HeaderBg/HeaderBg'
 export default {
-    name: 'AddArticles'
+    name: 'AddArticles',
+    components: {HeaderBg},
 }
 </script>
 <style lang="scss" scoped>

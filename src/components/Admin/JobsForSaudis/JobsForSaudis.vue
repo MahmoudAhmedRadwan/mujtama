@@ -2,8 +2,9 @@
 <template>
     <!-- Branches.vue -->
     <div>
+        <HeaderBg title="وظائف للسعودين" />
         <header class="admin_content_header">
-            <h2>وظائف للسعودين</h2>
+            <h2></h2>
             <div class="search">
                 <input type="text" placeholder="البحث برقم الفرع">
             </div>
@@ -65,8 +66,10 @@
     </div>
 </template>
 <script>
+import HeaderBg from '../../global/HeaderBg/HeaderBg'
 export default {
-    name:'JobsForSaudis'
+    name:'JobsForSaudis',
+    components: {HeaderBg},
 }
 </script>
 <style lang="scss" scoped>

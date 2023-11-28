@@ -28,7 +28,7 @@
                         </router-link>
                         <ul>
                             <li>
-                                <router-link to="" :class="hoverType == 'SupportTickets' ? 'aciveLink' : ''">
+                                <router-link to="/admin/articles-sections" :class="hoverType == 'articles-sections' ? 'aciveLink' : ''">
                                     أقسام المقالات 
                                 </router-link>
                             </li>
@@ -134,6 +134,8 @@ export default {
                 this.hoverType = 'main'
             } else if(window.location.href.indexOf("branches") > -1){
                 this.hoverType = 'branches'
+            } else if(window.location.href.indexOf("articles-sections") > -1){
+                this.hoverType = 'articles-sections'
             } else if(window.location.href.indexOf("articles") > -1){
                 this.hoverType = 'articles'
             } else if(window.location.href.indexOf("employment-applications") > -1){
@@ -200,6 +202,9 @@ export default {
                         display: flex;
                         align-items: center;
                         padding: 15px 20px;
+                        -webkit-box-shadow: -1px 6px 4px 0px #EFEFEF;
+                        -moz-box-shadow: -1px 6px 4px 0px #EFEFEF;
+                        box-shadow: -1px 6px 4px 0px #EFEFEF;
                         .img_container{
                             width: 30px;
                             margin-left: 10px;
@@ -211,7 +216,11 @@ export default {
                         color: #FFF;  
                     }
                     >ul{
-                        margin-right: 50px;
+                        li{
+                            a{
+                                padding: 15px 57px 15px 20px;
+                            }
+                        }
                     }
                 }
             }
