@@ -3,16 +3,17 @@
         <HeaderBg :img="img" title="إدارة الفروع" />
         <div class="content_container">
             <div class="form_container">
-                <form action="">
+                <form action="" @submit.prevent="addBranch">
                     <div class="upload_img">
                         <span>إرفاق صورة الفرع</span>
                         <div class="img_container">
-                            <img src="../../../assets/images/replaceImg.svg" alt="">
+                            <!-- <img src="../../../assets/images/replaceImg.svg" alt=""> -->
+                            <img :src="imgUrl" alt="">
                             <div class="input_file">
                                 <img src="../../../assets/images/inputFile.svg" alt="">
                             </div>
                         </div>
-                        <input type="file">
+                        <input type="file" v-on="{ change: [uploadBranchImg] }">
                     </div>
                     <div class="input_container">
                         <label>كود الفرع:</label>
@@ -20,11 +21,11 @@
                     </div>
                     <div class="input_container">
                         <label>اسم الفرع :</label>
-                        <input type="text" placeholder="User Role" v-model="branch.translation[0].name">
+                        <input type="text" placeholder="User Role" @change="(e) => typeArName(e, 'ar')">
                     </div>
                     <div class="input_container">
                         <label>الاسم بالانجليزية :</label>
-                        <input type="text" placeholder="Full Name" v-model="branch.translation[0].name">
+                        <input type="text" placeholder="Full Name" @change="(e) => typeArName(e, 'en')">
                     </div>
                     <div class="input_container">
                         <label>المدينة:</label>
@@ -39,16 +40,21 @@
                         <input type="text" placeholder="Company" v-model="branch.mobile">
                     </div>
                     <div class="input_container">
-                        <label>أوقات الدوام :</label>
-                         <b-time v-model="branch.mobile" locale="en"></b-time>
+                        <label> اوقات الدوام من : </label>
+                         <b-time v-model="branch.time_from" locale="en"></b-time>
+                    </div>
+                    <div class="input_container">
+                        <label>أوقات الدوام إلي</label>
+                         <b-time v-model="branch.time_to" locale="en"></b-time>
                     </div>
                     <div class="checkBox_container">
                         <h3>خدمات الفرع</h3>
-                        <div class="checkLine">
-                            <input type="checkbox">
-                            <label>خدمة التطعيمات</label>
+                        <div class="checkLine" v-for="(singleServicesData) in servicesData" :key="singleServicesData.id">
+                            <input type="checkbox" :value="singleServicesData.translation[0].name" @change="() => handleCheckboxChange(singleServicesData.id)">
+                            <label>{{ singleServicesData.translation[0].name }}</label>
                         </div>
                     </div>
+                    <button>حفظ</button>
                 </form>
             </div>
             
@@ -66,18 +72,11 @@ export default {
         return{
             img: require('../../../assets/images/branches-main-logo.png'),
             branch: {
-                services: '',
+                services: [],
                 image: '',
                 active: '',
                 translation: [
-                    {
-                        name: '',
-                        local: 'ar'
-                    },
-                    {
-                        name: '',
-                        local: 'en'
-                    }
+                    
                 ],
                 mobile: '',
                 time_from: '',
@@ -87,13 +86,73 @@ export default {
                 code: '',
                 latitude: '',
                 longitude: ''
-            }
+            },
+            imgUrl: '',
+            servicesData: []
         }
     },
     mounted(){
         this.fetchData();
     },
     methods:{
+        addBranch(){
+            // this.postLoaded = true
+            // this.error = {}
+            const formData = new FormData();
+                formData.append('services', this.branch.services);
+                formData.append('image', this.branch.image);
+                formData.append('active', 1);
+                formData.append('translation[0].name', this.branch.translation[0].name);
+                formData.append('translation[0].local', this.branch.translation[0].local);
+                formData.append('translation[1].name', this.branch.translation[1].name);
+                formData.append('translation[1].local', this.branch.translation[1].local);
+                formData.append('mobile', this.branch.mobile);
+                formData.append('time_from', this.branch.time_from);
+                formData.append('time_to', this.branch.time_to);
+                formData.append('city', this.branch.city);
+                formData.append('region', this.branch.region);
+                formData.append('code', this.branch.code);
+                formData.append('latitude', '21.11');
+                formData.append('longitude', '33.22');
+
+            axios.post('https://app.almujtama.com.sa/admin/branch', formData, {
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            })
+            .then( res => {
+                console.log(res)
+                // this.error = {}
+                // this.postLoaded = false
+            })  
+            .catch(err =>  {
+                console.log(err.response.data)
+                // this.error = err.response.data
+                // this.firstError = true
+                // this.postLoaded = false;
+                
+            })
+        },
+        typeArName(e, lang){
+            if(e.target.value !== ''){
+            this.branch.translation.push({
+                name: e.target.value,
+                local: lang
+            })
+            console.log(this.branch.translation)
+        }
+            
+        },
+        uploadBranchImg(e) {
+            this.branch.image = e.target.files[0];
+            this.imgUrl = URL.createObjectURL(e.target.files[0]);
+        },
+        handleCheckboxChange(id) {
+            console.log(id)
+            this.branch.services.push(id)
+            console.log(this.branch.services)
+        },
+        choseServices(e){
+            console.log(e)
+        },
         fetchData() {
         axios.get('https://app.almujtama.com.sa/admin/services', {
             headers: {
@@ -105,6 +164,7 @@ export default {
         })
             .then((response) => {
             console.log(response)
+            this.servicesData = response.data.data
             })
             .catch((error) => {
             console.error('Error fetching data from API:', error);
@@ -150,6 +210,9 @@ header{
                 justify-content: center;
                 align-items: center;
                 position: relative;
+                img{
+                    width: 100%;
+                }
                 .input_file{
                     border-radius: 50%;
                     background-color: #28C66F;
