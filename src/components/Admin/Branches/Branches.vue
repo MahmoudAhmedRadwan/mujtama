@@ -3,6 +3,11 @@
     <!-- Branches.vue -->
     <div>
         <HeaderBg :img="img" title="إدارة الفروع" />
+        <Alert 
+            v-if="alertToggle == true"
+            :acceptedDelete="acceptedDeleteCourse" 
+            messege="هل أنت متأكد من مسح الفرع   ؟"
+        />
         <header class="admin_content_header">
             <div class="filter">
                 <select>
@@ -29,51 +34,79 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>#5036</td>
-                        <td>صيدلية المجتمع الرائدة 1</td>
-                        <td>0599132523</td>
-                        <td>جدة</td>
+                    <tr v-for="branche in branches" :key="branche.id">
+                        <td>{{branche.code}}</td>
+                        <td>{{branche.translation[0].name}}</td>
+                        <td>{{branche.mobile}}</td>
+                        <td>{{branche.city}}</td>
                         <td>
                             <div class="options_container">
                                 <img src="../../../assets/images/selectIcon.png" alt="">
                                 <div class="hidden_options">
-                                    <button> <img src="../../../assets/images/edit-text.png" alt=""> تعديل  </button>
-                                    <button> <img src="../../../assets/images/delete-text.png" alt=""> حذف </button>
+                                    <button @click="() => editBranch(branche.id)"> <img src="../../../assets/images/edit-text.png" alt=""> تعديل  </button>
+                                    <button @click="() => deleteData(branche.id)"> <img src="../../../assets/images/delete-text.png" alt="" > حذف </button>
                                 </div>
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td>#5036</td>
-                        <td>صيدلية المجتمع الرائدة 1</td>
-                        <td>0599132523</td>
-                        <td>جدة</td>
-                        <td>
-                            <div class="options_container">
-                                <img src="../../../assets/images/selectIcon.png" alt="">
-                                <div class="hidden_options">
-                                    <button> <img src="../../../assets/images/edit-text.png" alt=""> تعديل  </button>
-                                    <button> <img src="../../../assets/images/delete-text.png" alt=""> حذف </button>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-               
                 </tbody>
             </table>
         </div>
     </div>
 </template>
 <script>
-import HeaderBg from '../../global/HeaderBg/HeaderBg'
+import axios from 'axios';
+import HeaderBg from '../../global/HeaderBg/HeaderBg';
+import Alert from '../../global/Alert/Alert';
+import Request from '../../../services/Request';
 export default {
     name:'Branches',
-    components: {HeaderBg},
+    components: {HeaderBg, Alert},
     data(){
         return{
-            img: require('../../../assets/images/branches-main-logo.png')
+            img: require('../../../assets/images/branches-main-logo.png'),
+            branches: [],
+            deleteID: '',
+            alertToggle: false,
         }
+    },
+    mounted(){
+        localStorage.removeItem('editBranch')
+        this.getBranches();
+        
+    },
+    methods:{
+        getBranches() {
+        axios.get('https://app.almujtama.com.sa/admin/branch', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': '*',
+                'Authorization': 'Bearer '+ localStorage.getItem('token'),
+            },
+        })
+            .then((response) => {
+            console.log(response)
+            this.branches = response.data.data
+            })
+            .catch((error) => {
+            console.error('Error fetching data from API:', error);
+            });
+        },
+        editBranch(id){
+            this.$router.push(`/admin/add-branch/${id}`)
+        },
+         // delete data
+        deleteData(id){
+            this.deleteID = id;
+            this.alertToggle = true;
+        },
+        acceptedDeleteCourse(){
+            Request.delete('admin/branch',this.deleteID)
+            .then( () => {
+                this.getBranches();
+            })
+        },
     }
 }
 </script>

@@ -7,13 +7,19 @@
                     <div class="upload_img">
                         <span>إرفاق صورة الفرع</span>
                         <div class="img_container">
-                            <!-- <img src="../../../assets/images/replaceImg.svg" alt=""> -->
-                            <img :src="imgUrl" alt="">
-                            <div class="input_file">
-                                <img src="../../../assets/images/inputFile.svg" alt="">
+                            <img src="../../../assets/images/replaceImg.svg" alt="" v-if="imgUrl == ''">
+                            <img :src="imgUrl" alt="" v-if="imgUrl !== ''">
+                            <div class="photo_upload">
+                                <div class="upladImg">
+                                    <div class="upload">
+                                        <label for="">
+                                            <img src="../../../assets/images/inputFile.svg" alt="">
+                                            <input type="file" v-on="{ change: [uploadBranchImg] }">
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <input type="file" v-on="{ change: [uploadBranchImg] }">
                     </div>
                     <div class="input_container">
                         <label>كود الفرع:</label>
@@ -21,11 +27,11 @@
                     </div>
                     <div class="input_container">
                         <label>اسم الفرع :</label>
-                        <input type="text" placeholder="User Role" @change="(e) => typeArName(e, 'ar')">
+                        <input type="text" placeholder="User Role" v-model="branch.translation[0].name">
                     </div>
                     <div class="input_container">
                         <label>الاسم بالانجليزية :</label>
-                        <input type="text" placeholder="Full Name" @change="(e) => typeArName(e, 'en')">
+                        <input type="text" placeholder="Full Name" v-model="branch.translation[1].name">
                     </div>
                     <div class="input_container">
                         <label>المدينة:</label>
@@ -54,7 +60,12 @@
                             <label>{{ singleServicesData.translation[0].name }}</label>
                         </div>
                     </div>
-                    <button>حفظ</button>
+                    <div class="alert alert-danger" role="alert" v-if="ErrorCheck == true">
+                        <p v-for="(error, index) in errors" :key="index"> {{error}} </p>
+                    </div>
+                    <button class="saveBtn" v-if="postLoaded == false && pageType == 'add'">حفظ</button>
+                    <button class="saveBtn" v-if="postLoaded == false && pageType == 'edit'">تعديل</button>
+                    <button class="saveBtn" v-if="postLoaded == true"><b-spinner></b-spinner></button>
                 </form>
             </div>
             
@@ -70,13 +81,22 @@ export default {
     components: {HeaderBg},
     data(){
         return{
+            pageType: 'add',
+            postLoaded: false,
             img: require('../../../assets/images/branches-main-logo.png'),
             branch: {
                 services: [],
                 image: '',
                 active: '',
                 translation: [
-                    
+                    {
+                        name: '',
+                        local: 'ar'
+                    },
+                    {
+                        name: '',
+                        local: 'en'
+                    }
                 ],
                 mobile: '',
                 time_from: '',
@@ -88,27 +108,72 @@ export default {
                 longitude: ''
             },
             imgUrl: '',
-            servicesData: []
+            servicesData: [],
+            errors: [],
+            ErrorCheck: false,
         }
     },
     mounted(){
+        console.log(this.$route.params.id ,'test')
+        if(this.$route.params.id == undefined ){
+            this.pageType = 'add'
+        } else{
+            this.pageType = 'edit'
+        }
+        
         this.fetchData();
+        this.getBranchData();
     },
     methods:{
+        getBranchData(){
+            if(this.$route.params.id !== undefined){
+                axios.get(`https://app.almujtama.com.sa/admin/branch/${this.$route.params.id}`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Headers': '*',
+                        'Authorization': 'Bearer '+ localStorage.getItem('token'),
+                    },
+                })
+                    .then((response) => {
+                    console.log(response, 'mmmmmm')
+                    this.branch.imgUrl = response.data.data.image
+                    this.branch.translation[0].name = response.data.data.translation
+                    this.branch.mobile = response.data.data.mobile
+                    this.branch.time_from = response.data.data.time_from
+                    this.branch.time_to = response.data.data.time_to
+                    this.branch.city = response.data.data.city
+                    this.branch.region = response.data.data.region
+                    this.branch.code = response.data.data.code
+                    this.branch.latitude = response.data.data.latitude
+                    this.branch.longitude = response.data.data.longitude
+                    
+                    })
+                    .catch((error) => {
+                    console.error('Error fetching data from API:', error);
+                    });
+            }
+        },
         addBranch(){
-            // this.postLoaded = true
+            this.postLoaded = true
             // this.error = {}
+            console.log(this.branch.services[0])
             const formData = new FormData();
-                formData.append('services', this.branch.services);
+                if(this.$route.params.id !== undefined){
+                    formData.append('_method', 'PUT');
+                }
+                for (let i = 0; i<this.branch.services.length; i++) {
+                    formData.append(`services[${i}]`, this.branch.services[i]);
+                }
                 formData.append('image', this.branch.image);
                 formData.append('active', 1);
-                formData.append('translation[0].name', this.branch.translation[0].name);
-                formData.append('translation[0].local', this.branch.translation[0].local);
-                formData.append('translation[1].name', this.branch.translation[1].name);
-                formData.append('translation[1].local', this.branch.translation[1].local);
+                formData.append('translation[0][name]', this.branch.translation[0].name);
+                formData.append('translation[0][local]', this.branch.translation[0].local);
+                formData.append('translation[0][name]', this.branch.translation[1].name);
+                formData.append('translation[0][local]', this.branch.translation[1].local);
                 formData.append('mobile', this.branch.mobile);
-                formData.append('time_from', this.branch.time_from);
-                formData.append('time_to', this.branch.time_to);
+                formData.append('time_from', this.branch.time_from.substring(0, 5));
+                formData.append('time_to', this.branch.time_to.substring(0, 5));
                 formData.append('city', this.branch.city);
                 formData.append('region', this.branch.region);
                 formData.append('code', this.branch.code);
@@ -119,15 +184,16 @@ export default {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             })
             .then( res => {
+                this.$router.push('/admin/branches')
                 console.log(res)
                 // this.error = {}
-                // this.postLoaded = false
+                this.postLoaded = false
             })  
             .catch(err =>  {
-                console.log(err.response.data)
-                // this.error = err.response.data
-                // this.firstError = true
-                // this.postLoaded = false;
+                console.log(err.response.data.errors)
+                this.errors = err.response.data.errors;
+                this.ErrorCheck = true;
+                this.postLoaded = false;
                 
             })
         },
@@ -213,11 +279,8 @@ header{
                 img{
                     width: 100%;
                 }
-                .input_file{
-                    border-radius: 50%;
-                    background-color: #28C66F;
-                    width: 22px;
-                    height: 22px;
+                .photo_upload{
+                    
                     display: flex;
                     justify-content: center;
                     align-items: center;

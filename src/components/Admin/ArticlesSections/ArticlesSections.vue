@@ -40,14 +40,41 @@
 </template>
 <script>
 import HeaderBg from '../../global/HeaderBg/HeaderBg'
+import axios from 'axios';
 export default {
     name: 'ArticlesSections',
     components: {HeaderBg},
+    data(){
+        return{
+            articlesSections: []
+        }
+    },
+    mounted(){
+        this.getArticlesSections();
+    },
     methods:{
         subSections(){
             this.$router.push('/admin/articles-sub-sections')
-        }
-    }
+        },
+        getArticlesSections(){
+                axios.get(`https://app.almujtama.com.sa/admin/magazineCategory`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Headers': '*',
+                        'Authorization': 'Bearer '+ localStorage.getItem('token'),
+                    },
+                })
+                .then((response) => {
+                    console.log(response, 'mmmmmm')
+                    this.articlesSections = response.data.data
+                
+                })
+                .catch((error) => {
+                console.error('Error fetching data from API:', error);
+                });
+            }
+        },
 }
 </script>
 <style lang="scss" scoped>

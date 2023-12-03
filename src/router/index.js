@@ -110,6 +110,11 @@ const routes = [
         component: adminBranches
       },
       {
+        path: "/admin/add-branch/:id",
+        name: "AddBranch",
+        component: AddBranch
+      },
+      {
         path: "/admin/add-branch",
         name: "AddBranch",
         component: AddBranch
