@@ -4,10 +4,16 @@
         <div class="form_container">
             <div class="logIn_container">
                 <h2>تسجيل الدخول</h2>
-                <form>
-                    <input type="text" placeholder="البريد الإلكتروني">
-                    <input type="password" placeholder="Password">
-                    <button>Login</button>
+                <form @submit.prevent="logIn">
+                    <input type="text" placeholder="البريد الإلكتروني" v-model="login.email">
+                    <input type="password" placeholder="Password" v-model="login.password">
+                    <button v-if="postLoaded == false">Login</button>
+                    <button class="logInBtn" v-if="postLoaded == true"><b-spinner></b-spinner></button>
+                    <div class="alert alert-danger mt-2" role="alert" v-if="ErrorCheck == true">
+                    <div class="alert alert-danger" role="alert" v-if="ErrorCheck == true">
+                            <p> {{errors}} </p>
+                        </div>  
+                    </div>
                 </form>
                 <router-link to="">Forget Your Password ?</router-link>
             </div>
@@ -18,8 +24,40 @@
     </div>
 </template>
 <script>
+import axios from 'axios';
 export default {
-    name: 'LogIn'
+    name: 'LogIn',
+    data(){
+        return{
+            postLoaded: false,
+            login: {
+                email : '',
+                password : ''
+            },
+            errors: '',
+            ErrorCheck: false,
+        }
+    },
+    methods: {
+
+        logIn(){
+            this.postLoaded = true;
+            axios.post('https://app.almujtama.com.sa/api/login', this.login)
+            .then(res => {
+                this.postLoaded = false;
+                this.login.email = '',
+                this.login.password = ''
+                localStorage.setItem('token', res.data.data.token)
+                this.$router.push('/admin/main')
+            })
+            .catch(err => {
+                console.log(err.response.data)
+                this.errors = err.response.data.message;
+                this.ErrorCheck = true;
+                this.postLoaded = false;
+            })
+        }
+    }
 }
 </script>
 <style lang="scss" scoped>

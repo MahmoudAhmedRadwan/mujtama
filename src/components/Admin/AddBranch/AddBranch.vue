@@ -12,60 +12,41 @@
                                 <img src="../../../assets/images/inputFile.svg" alt="">
                             </div>
                         </div>
+                        <input type="file">
                     </div>
                     <div class="input_container">
                         <label>كود الفرع:</label>
-                        <input type="text" placeholder="Username">
+                        <input type="text" placeholder="Username" v-model="branch.code">
                     </div>
                     <div class="input_container">
                         <label>اسم الفرع :</label>
-                        <input type="text" placeholder="User Role">
+                        <input type="text" placeholder="User Role" v-model="branch.translation[0].name">
                     </div>
                     <div class="input_container">
                         <label>الاسم بالانجليزية :</label>
-                        <input type="text" placeholder="Full Name">
+                        <input type="text" placeholder="Full Name" v-model="branch.translation[0].name">
                     </div>
                     <div class="input_container">
                         <label>المدينة:</label>
-                        <input type="text" placeholder="Language">
+                        <input type="text" placeholder="Language" v-model="branch.city">
                     </div>
                     <div class="input_container">
                         <label>الحي :</label>
-                        <input type="text" placeholder="Company">
+                        <input type="text" placeholder="Company" v-model="branch.region">
                     </div>
                     <div class="input_container">
                         <label>رقم الجوال :</label>
-                        <input type="text" placeholder="Company">
+                        <input type="text" placeholder="Company" v-model="branch.mobile">
                     </div>
                     <div class="input_container">
                         <label>أوقات الدوام :</label>
-                        <input type="text" placeholder="Company">
+                         <b-time v-model="branch.mobile" locale="en"></b-time>
                     </div>
                     <div class="checkBox_container">
                         <h3>خدمات الفرع</h3>
                         <div class="checkLine">
                             <input type="checkbox">
                             <label>خدمة التطعيمات</label>
-                        </div>
-                        <div class="checkLine">
-                            <input type="checkbox">
-                            <label>صرف وصفات برنامج وصفتي</label>
-                        </div>
-                        <div class="checkLine">
-                            <input type="checkbox">
-                            <label>صرف وصفات خدمة ٩٣٧ تطبيق صحة</label>
-                        </div>
-                        <div class="checkLine">
-                            <input type="checkbox">
-                            <label>صرف وصفات التأمين الطبي للشركات المتعاقدة</label>
-                        </div>
-                        <div class="checkLine">
-                            <input type="checkbox">
-                            <label>الاستشارات الطبية ورصد المؤشرات الحيوية</label>
-                        </div>
-                        <div class="checkLine">
-                            <input type="checkbox">
-                            <label>اعرف ارقامك</label>
                         </div>
                     </div>
                 </form>
@@ -76,14 +57,59 @@
     </div>
 </template>
 <script>
-import HeaderBg from '../../global/HeaderBg/HeaderBg'
+import HeaderBg from '../../global/HeaderBg/HeaderBg';
+import axios from 'axios';
 export default {
     name: 'AddBranch',
     components: {HeaderBg},
     data(){
         return{
-            img: require('../../../assets/images/branches-main-logo.png')
+            img: require('../../../assets/images/branches-main-logo.png'),
+            branch: {
+                services: '',
+                image: '',
+                active: '',
+                translation: [
+                    {
+                        name: '',
+                        local: 'ar'
+                    },
+                    {
+                        name: '',
+                        local: 'en'
+                    }
+                ],
+                mobile: '',
+                time_from: '',
+                time_to: '',
+                city: '',
+                region: '',
+                code: '',
+                latitude: '',
+                longitude: ''
+            }
         }
+    },
+    mounted(){
+        this.fetchData();
+    },
+    methods:{
+        fetchData() {
+        axios.get('https://app.almujtama.com.sa/admin/services', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': '*',
+                'Authorization': 'Bearer '+ localStorage.getItem('token'),
+            },
+        })
+            .then((response) => {
+            console.log(response)
+            })
+            .catch((error) => {
+            console.error('Error fetching data from API:', error);
+            });
+        },
     }
 }
 </script>
