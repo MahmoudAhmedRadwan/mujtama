@@ -2,6 +2,11 @@
     <div>
         <!-- ArticlesSections.vue -->
         <HeaderBg title="أقسام المقالات" description="أقسام رئيسية" />
+        <Alert 
+            v-if="alertToggle == true"
+            :acceptedDelete="acceptedDeleteCourse" 
+            messege="هل أنت متأكد من مسح القسم   ؟"
+        />
         <header class="admin_content_header">
             <h2></h2>
             <div class="search">
@@ -18,16 +23,16 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>المجلة الإلكترونية</td>
+                    <tr v-for="articlesSection in articlesSections" :key="articlesSection.id">
+                        <td> {{articlesSection.translation[0].name}} </td>
                         <td>
                             <div class="actionsContainer">
-                                <button @click="subSections">أقسام فرعية</button>
+                                <button @click="() => subSections(articlesSection.id)">أقسام فرعية</button>
                                 <div class="options_container">
                                     <img src="../../../assets/images/selectIcon.png" alt="">
                                     <div class="hidden_options">
-                                        <button> <img src="../../../assets/images/edit-text.png" alt=""> تعديل  </button>
-                                        <button> <img src="../../../assets/images/delete-text.png" alt=""> حذف </button>
+                                        <button @click="() => editBranch(articlesSection.id)"> <img src="../../../assets/images/edit-text.png" alt=""> تعديل  </button>
+                                        <button @click="() => deleteData(articlesSection.id)"> <img src="../../../assets/images/delete-text.png" alt=""> حذف </button>
                                     </div>
                                 </div>
                             </div>
@@ -39,42 +44,61 @@
     </div>
 </template>
 <script>
-import HeaderBg from '../../global/HeaderBg/HeaderBg'
+import HeaderBg from '../../global/HeaderBg/HeaderBg';
+import Alert from '../../global/Alert/Alert';
+import Request from '../../../services/Request';
 import axios from 'axios';
 export default {
     name: 'ArticlesSections',
-    components: {HeaderBg},
+    components: {HeaderBg, Alert},
     data(){
         return{
-            articlesSections: []
+            articlesSections: [],
+            deleteID: '',
+            alertToggle: false,
         }
     },
     mounted(){
         this.getArticlesSections();
     },
     methods:{
-        subSections(){
-            this.$router.push('/admin/articles-sub-sections')
+        subSections(id){
+            this.$router.push(`/admin/articles-sub-sections/${id}`)
         },
         getArticlesSections(){
-                axios.get(`https://app.almujtama.com.sa/admin/magazineCategory`, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Access-Control-Allow-Origin': '*',
-                        'Access-Control-Allow-Headers': '*',
-                        'Authorization': 'Bearer '+ localStorage.getItem('token'),
-                    },
-                })
-                .then((response) => {
-                    console.log(response, 'mmmmmm')
-                    this.articlesSections = response.data.data
-                
-                })
-                .catch((error) => {
-                console.error('Error fetching data from API:', error);
-                });
-            }
+            axios.get(`https://app.almujtama.com.sa/admin/magazineCategory`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': '*',
+                    'Authorization': 'Bearer '+ localStorage.getItem('token'),
+                },
+            })
+            .then((response) => {
+                console.log(response, 'mmmmmm')
+                this.articlesSections = response.data.data
+            
+            })
+            .catch((error) => {
+            console.error('Error fetching data from API:', error);
+            });
         },
+        editBranch(id){
+            this.$router.push(`/admin/articles-sections/add-articles-sections/${id}`)
+        },
+            // delete data
+        deleteData(id){
+            this.deleteID = id;
+            this.alertToggle = true;
+        },
+        acceptedDeleteCourse(){
+            Request.delete('admin/magazineCategory',this.deleteID)
+            .then( () => {
+                this.getArticlesSections();
+            })
+        },
+    },
+        
 }
 </script>
 <style lang="scss" scoped>

@@ -138,7 +138,8 @@ export default {
                     .then((response) => {
                     console.log(response, 'mmmmmm')
                     this.branch.imgUrl = response.data.data.image
-                    this.branch.translation[0].name = response.data.data.translation
+                    this.branch.translation[0].name = response.data.data.translation[0].name
+                    this.branch.translation[1].name = response.data.data.translation[1].name
                     this.branch.mobile = response.data.data.mobile
                     this.branch.time_from = response.data.data.time_from
                     this.branch.time_to = response.data.data.time_to
@@ -169,8 +170,8 @@ export default {
                 formData.append('active', 1);
                 formData.append('translation[0][name]', this.branch.translation[0].name);
                 formData.append('translation[0][local]', this.branch.translation[0].local);
-                formData.append('translation[0][name]', this.branch.translation[1].name);
-                formData.append('translation[0][local]', this.branch.translation[1].local);
+                formData.append('translation[1][name]', this.branch.translation[1].name);
+                formData.append('translation[1][local]', this.branch.translation[1].local);
                 formData.append('mobile', this.branch.mobile);
                 formData.append('time_from', this.branch.time_from.substring(0, 5));
                 formData.append('time_to', this.branch.time_to.substring(0, 5));
@@ -180,22 +181,43 @@ export default {
                 formData.append('latitude', '21.11');
                 formData.append('longitude', '33.22');
 
-            axios.post('https://app.almujtama.com.sa/admin/branch', formData, {
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-            })
-            .then( res => {
+            if(this.$route.params.id !== undefined){
+                axios.post(`https://app.almujtama.com.sa/admin/branch/${this.$route.params.id}`, formData, {
+                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+                })
+                .then( res => {
                 this.$router.push('/admin/branches')
                 console.log(res)
-                // this.error = {}
-                this.postLoaded = false
-            })  
-            .catch(err =>  {
-                console.log(err.response.data.errors)
-                this.errors = err.response.data.errors;
-                this.ErrorCheck = true;
-                this.postLoaded = false;
-                
-            })
+                    // this.error = {}
+                    this.postLoaded = false
+                })  
+                .catch(err =>  {
+                    console.log(err.response.data.errors)
+                    this.errors = err.response.data.errors;
+                    this.ErrorCheck = true;
+                    this.postLoaded = false;
+                    
+                })
+            } else{
+                axios.post('https://app.almujtama.com.sa/admin/branch', formData, {
+                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+                })
+                .then( res => {
+                this.$router.push('/admin/branches')
+                    console.log(res)
+                    // this.error = {}
+                    this.postLoaded = false
+                })  
+                .catch(err =>  {
+                    console.log(err.response.data.errors)
+                    this.errors = err.response.data.errors;
+                    this.ErrorCheck = true;
+                    this.postLoaded = false;
+                    
+                })
+            }
+            
+            
         },
         typeArName(e, lang){
             if(e.target.value !== ''){

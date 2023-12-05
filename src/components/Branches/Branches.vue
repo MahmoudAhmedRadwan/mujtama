@@ -51,8 +51,8 @@
               <img src="../../assets/images/branch.png" alt="" />
             </div>
             <div class="address">
-              <h3>{{branch.name_3}}</h3>
-              <h3>{{branch.address}}</h3>
+              <h3>{{branch.translations[0].name}}</h3>
+              <h3>{{branch.city}}</h3>
             </div>
             <div class="phone">
               <h3>رقم الهاتف</h3>
@@ -68,7 +68,7 @@
                 <div class="true">
                   <img src="../../assets/images/greenTrue.png" alt="" />
                 </div>
-                {{branch.services}}
+                {{branch.services[0] ? branch.services[0].translations[0].name: ''}}
               </h3>
             </div>
             <a target="_blank" :href="branch.location">
@@ -96,7 +96,7 @@ export default {
   methods:{
     getBranches(){
       axios.create({
-          baseURL: 'http://m.bare3.business/api',
+          baseURL: 'https://app.almujtama.com.sa/api',
           headers: {
               'Content-Type': 'application/json',
               'Authorization': 'Bearer '+ localStorage.getItem('token'),

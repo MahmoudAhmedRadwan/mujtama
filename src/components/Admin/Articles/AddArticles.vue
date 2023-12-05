@@ -3,27 +3,39 @@
         <HeaderBg title="المقالات" />
         <div class="content_container">
             <div class="form_container">
-                <form action="">
+                <form action="" @submit.prevent="addArticle">
                     <div class="upload_img">
-                        <span>الصورة الرئيسية :</span>
+                        <span>إرفاق صورة الفرع</span>
                         <div class="img_container">
-                            <img src="../../../assets/images/replaceImg.svg" alt="">
-                            <div class="input_file">
-                                <img src="../../../assets/images/inputFile.svg" alt="">
+                            <img src="../../../assets/images/replaceImg.svg" alt="" v-if="imgUrl == ''">
+                            <img :src="imgUrl" alt="" v-if="imgUrl !== ''">
+                            <div class="photo_upload">
+                                <div class="upladImg">
+                                    <div class="upload">
+                                        <label for="">
+                                            <img src="../../../assets/images/inputFile.svg" alt="">
+                                            <input type="file" v-on="{ change: [uploadBranchImg] }">
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="input_container">
                         <label>العنوان بالعربية</label>
-                        <input type="text" placeholder="Username">
+                        <input type="text" placeholder="Username" v-model="article.translation[0].name">
                     </div>
                     <div class="input_container">
                         <label>العنوان بالانجليزية</label>
-                        <input type="text" placeholder="User Role">
+                        <input type="text" placeholder="User Role" v-model="article.translation[1].name">
                     </div>
                     <div class="input_container">
                         <label>القسم الرئيسى</label>
-                        <input type="text" placeholder="Full Name">
+                        <select v-model="article.subcategory_id">
+                            <option :value="articlesSection.id" v-for="articlesSection in articlesSubSections" :key="articlesSection.id">
+                                {{articlesSection.translation[0].name}}
+                            </option>
+                        </select>
                     </div>
                     <div class="input_container">
                         <label>القسم الفرعى</label>
@@ -31,11 +43,11 @@
                     </div>
                     <div class="input_container">
                         <label>كلمات دلالية بالعربية<br> (اضغط Enter بعد كل كلمة)</label>
-                        <textarea></textarea>
+                        <textarea v-model="article.translation[0].tags"></textarea>
                     </div>
                     <div class="input_container">
                         <label>كلمات دلالية بالانجليزية<br> (اضغط Enter بعد كل كلمة)</label>
-                        <textarea></textarea>
+                        <textarea v-model="article.translation[1].tags"></textarea>
                     </div>
                     <div class="option_show">
                         <label class="switch">
@@ -46,13 +58,14 @@
                     </div>
                     <div class="style_textarea_container">
                         <label> المحتوى بالعربية </label>
-                        <textarea></textarea>
+                        <textarea v-model="article.translation[0].description"></textarea>
                     </div>
                     <div class="style_textarea_container">
                         <label> المحتوى بالانجليزية </label>
-                        <textarea></textarea>
+                        <textarea v-model="article.translation[1].description"></textarea>
                     </div>
-                  
+                    <button class="saveBtn" v-if="postLoaded == false">حفظ</button>
+                    <button class="saveBtn" v-if="postLoaded == true"><b-spinner></b-spinner></button>
                 </form>
             </div>
             
@@ -61,10 +74,105 @@
     </div>
 </template>
 <script>
+import axios from 'axios';
 import HeaderBg from '../../global/HeaderBg/HeaderBg'
 export default {
     name: 'AddArticles',
     components: {HeaderBg},
+    data(){
+        return{
+            postLoaded: false,
+            article: {
+                subcategory_id: '',
+                image: '',
+                active: '',
+                translation: [
+                    {
+                        name: '',
+                        description: '',
+                        tags: '',
+                        local: 'ar'
+                    },
+                    {
+                        name: '',
+                        description: '',
+                        tags: '',
+                        local: 'en'
+                    }
+                ],
+            },
+            imgUrl: '',
+            errors: [],
+            ErrorCheck: false,
+            articlesSubSections: []
+        }
+    },
+    mounted(){
+        this.getArticlesSubSections();
+    },
+    methods:{
+
+        addArticle(){
+            this.postLoaded = true
+            // this.error = {}
+            const formData = new FormData();
+                formData.append('image', this.article.image);
+                formData.append('active', 1);
+                formData.append('translation[0][name]', this.article.translation[0].name);
+                formData.append('translation[0][local]', this.article.translation[0].local);
+                formData.append('translation[1][name]', this.article.translation[1].name);
+                formData.append('translation[1][local]', this.article.translation[1].local);
+                formData.append('translation[0][description]', this.article.translation[0].description);
+                formData.append('translation[1][description]', this.article.translation[0].description);
+                formData.append('translation[0][tags]', this.article.translation[0].tags);
+                formData.append('translation[1][tags]', this.article.translation[1].tags);
+                formData.append('subcategory_id', this.article.subcategory_id);
+                formData.append('subcategory_id', this.article.subcategory_id);
+                
+
+                axios.post(`https://app.almujtama.com.sa/admin/article`, formData, {
+                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+                })
+                .then( res => {
+                this.$router.push('/admin/articles')
+                console.log(res)
+                    // this.error = {}
+                    this.postLoaded = false
+                })  
+                .catch(err =>  {
+                    console.log(err.response.data.errors)
+                    this.errors = err.response.data.errors;
+                    this.ErrorCheck = true;
+                    this.postLoaded = false;
+                    
+                })
+            
+            
+        },
+
+        uploadBranchImg(e) {
+            this.article.image = e.target.files[0];
+            this.imgUrl = URL.createObjectURL(e.target.files[0]);
+        },
+        getArticlesSubSections(){
+            axios.get(`https://app.almujtama.com.sa/admin/magazineSubcategory`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': '*',
+                    'Authorization': 'Bearer '+ localStorage.getItem('token'),
+                }
+            })
+            .then((response) => {
+                console.log(response, 'mmmmmm')
+                this.articlesSubSections = response.data.data
+            
+            })
+            .catch((error) => {
+            console.error('Error fetching data from API:', error);
+            });
+        },
+    }
 }
 </script>
 <style lang="scss" scoped>
@@ -104,11 +212,11 @@ header{
                 justify-content: center;
                 align-items: center;
                 position: relative;
-                .input_file{
-                    border-radius: 50%;
-                    background-color: #28C66F;
-                    width: 22px;
-                    height: 22px;
+                img{
+                    width: 100%;
+                }
+                .photo_upload{
+                    
                     display: flex;
                     justify-content: center;
                     align-items: center;

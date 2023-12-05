@@ -26,6 +26,7 @@ import AddBranch from '../components/Admin/AddBranch/AddBranch'
 import ArticlesSections from '../components/Admin/ArticlesSections/ArticlesSections'
 import AddArticlesSections from '../components/Admin/ArticlesSections/AddArticlesSections'
 import ArticlesSubSections from '../components/Admin/ArticlesSections/ArticlesSubSections'
+import AddArticlesSubSections from '../components/Admin/ArticlesSections/AddArticlesSubSections'
 import Articles from '../components/Admin/Articles/Articles'
 import AddArticles from '../components/Admin/Articles/AddArticles'
 import JobsForSaudis from '../components/Admin/JobsForSaudis/JobsForSaudis'
@@ -125,14 +126,29 @@ const routes = [
         component: ArticlesSections
       },
       {
+        path: "/admin/articles-sections/add-articles-sections/:id",
+        name: "AddArticlesSections",
+        component: AddArticlesSections
+      },
+      {
         path: "/admin/articles-sections/add-articles-sections",
         name: "AddArticlesSections",
         component: AddArticlesSections
       },
       {
-        path: "/admin/articles-sub-sections",
+        path: "/admin/articles-sub-sections/:id",
         name: "ArticlesSubSections",
         component: ArticlesSubSections
+      },
+      {
+        path: "/admin/articles-sub-sections/:id/add-articles-sub-sections",
+        name: "AddArticlesSubSections",
+        component: AddArticlesSubSections
+      },
+      {
+        path: "/admin/articles-sub-sections/:id/add-articles-sub-sections/:subID",
+        name: "AddArticlesSubSections",
+        component: AddArticlesSubSections
       },
       {
         path: "/admin/articles",

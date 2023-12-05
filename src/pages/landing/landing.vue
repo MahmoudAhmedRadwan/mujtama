@@ -46,7 +46,7 @@
             </li>
             <li>
               <router-link
-                to="/Not-found"
+                to="/medical-journal"
                 :class="hoverType == 'medical-journal' ? 'activeLink' : ''"
                 ><span>+</span>المجلة الإلكترونية
               </router-link>
@@ -134,7 +134,7 @@
           </li>
           <li>
             <router-link
-              to="/Not-found"
+              to="/medical-journal"
               :class="hoverType == 'medical-journal' ? 'activeLink' : ''"
               ><span>+</span>المجلة الإلكترونية
             </router-link>
