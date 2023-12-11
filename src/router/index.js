@@ -5,18 +5,18 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 
-
+// main widget
 import Landing from '../pages/landing/landing'
-import Home from '../components/Home/Home'
-import AboutUs from '../components/AboutUs/AboutUs'
-import InvestorRelations from '../components/InvestorRelations/InvestorRelations'
-import ContactUs from '../components/ContactUs/ContactUs'
-import Branches from '../components/Branches/Branches'
-import Form from '../components/Form/Form'
-import MedicalJournal from '../components/MedicalJournal/MedicalJournal'
+import Home from '../components/MainWidget/Home/Home'
+import AboutUs from '../components/MainWidget/AboutUs/AboutUs'
+import InvestorRelations from '../components/MainWidget/InvestorRelations/InvestorRelations'
+import ContactUs from '../components/MainWidget/ContactUs/ContactUs'
+import Branches from '../components/MainWidget/Branches/Branches'
+import Form from '../components/MainWidget/Form/Form'
+import MedicalJournal from '../components/MainWidget/MedicalJournal/MedicalJournal'
 
-import Error from '../components/Error/Error'
-import NotFound from '../components/NotFound/NotFound'
+import Error from '../components/MainWidget/Error/Error'
+import NotFound from '../components/MainWidget/NotFound/NotFound'
 
 // admin
 import Admin from '../pages/Admin/Admin'
@@ -35,6 +35,14 @@ import ResultsAndReports from '../components/Admin/ResultsAndReports/ResultsAndR
 import AddResultsAndReports from '../components/Admin/ResultsAndReports/AddResultsAndReports'
 import EmploymentApplications from '../components/Admin/EmploymentApplications/EmploymentApplications'
 import Main from '../components/Admin/Main/Main'
+
+// Store Admin
+import StoreAdmin from '../pages/StoreAdmin/StoreAdmin';
+import Statistics from '../components/StoreAdmin/Statistics/Statistics';
+import Products from '../components/StoreAdmin/Products/Products'
+import AddProduct from '../components/StoreAdmin/Products/AddProduct'
+import Users from '../components/StoreAdmin/Users/Users'
+import AddUsers from '../components/StoreAdmin/Users/AddUsers'
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
@@ -189,6 +197,39 @@ const routes = [
         path: "/admin/main",
         name: "Main",
         component: Main
+      },
+    ]
+  },
+
+  {
+    path: "/store-admin/",
+    name: "StoreAdmin",
+    component: StoreAdmin,
+    children: [
+      {
+        path: "/store-admin/statistics",
+        name: "Statistics",
+        component: Statistics
+      },
+      {
+        path: "/store-admin/products",
+        name: "Products",
+        component: Products
+      },
+      {
+        path: "/store-admin/products/add-product",
+        name: "AddProduct",
+        component: AddProduct
+      },
+      {
+        path: "/store-admin/users",
+        name: "Users",
+        component: Users
+      },
+      {
+        path: "/store-admin/users/add-user",
+        name: "AddUsers",
+        component: AddUsers
       },
     ]
   }

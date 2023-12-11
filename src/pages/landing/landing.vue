@@ -7,7 +7,7 @@
 
       <div :class=" menuToggle == true ? 'mobile_menu active_mobile_menu' : 'mobile_menu'">
           <div class="social_mobile" @click="menuToggleClick">
-            <a href="https://www.facebook.com/almujtamapharma/?locale=ar_AR"  target="_blank" >
+            <a href="https://www.facebook.com/almujtamapharmacy"  target="_blank" >
               <b-icon icon="facebook" font-scale="5" class="icon"></b-icon>
             </a>
             <a href="https://www.instagram.com/almujtamapharma/?hl=ar">
@@ -170,7 +170,7 @@
             <li><router-link to="/about-us"> تعرف علينا </router-link></li>
             <li><router-link to="/Error"> المتجر </router-link></li>
             <li><router-link to="/Not-found"> المجلة الإلكترونية </router-link></li>
-            <li><a href="https://ahmedshawki.com/branches2"> فروعنا </a></li>
+            <li><router-link to="/branches"> فروعنا </router-link></li>
             <li><router-link to="/investor-relations">علاقات المستثمرين</router-link></li>
             <li><router-link to=""> اجمع مع المجتمع </router-link></li>
             <li><router-link to="/form"> الوظائف </router-link></li>

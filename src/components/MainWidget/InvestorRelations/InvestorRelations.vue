@@ -8,7 +8,7 @@
       <div class="leftSmallRound"></div>
       <div class="container">
         <div class="header_logo">
-          <img src="../../assets/images/newLogo.png" alt="" />
+          <img src="../../../assets/images/newLogo.png" alt="" />
         </div>
         <div class="title">
           <h2>علاقات المستثمرين</h2>
@@ -31,11 +31,11 @@
         <div class="Company_overview_container">
           <img
             class="rightBg"
-            src="../../assets/images/aboutCompanyBg.svg"
+            src="../../../assets/images/aboutCompanyBg.svg"
             alt=""
           />
           <div class="img_container">
-            <img src="../../assets/images/group.png" alt="" />
+            <img src="../../../assets/images/group.png" alt="" />
           </div>
 
           <div class="description">
@@ -121,23 +121,23 @@
         <div class="line"></div>
         <div class="content_container">
           <div class="img_container">
-            <img src="../../assets/images/reportsResults.png" alt="" />
+            <img src="../../../assets/images/reportsResults.png" alt="" />
           </div>
           <div class="content">
-            <div class="content_row">
+            <!-- <div class="content_row">
               <div class="side">
                 <h3>افصاحات سوق المال</h3>
               </div>
               <div class="side">
                 <button class="dis">تنزيل الملفات</button>
-                <!-- <select>
+                <select>
                   <option value="" selected disabled>تنزيل الملفات</option>
                   <option value="20/06/2021">20/06/2021</option>
                   <option value="20/06/2020">20/06/2020</option>
                   <option value="20/06/2019">20/06/2019</option>
-                </select> -->
+                </select>
               </div>
-            </div>
+            </div> -->
             <div class="content_row">
               <div class="side">
                 <h3>القوائم المالية</h3>
@@ -176,6 +176,17 @@
             </div>
             <div class="content_row">
               <div class="side">
+                <h3>النظام الاساس</h3>
+              </div>
+              <div class="side">
+                <select @change="(e) => downloadcertification(e.target.value)">
+                  <option value="" selected disabled>تنزيل الملفات</option>
+                  <option value="النظام الاساس">النظام الاساس</option>
+                </select>
+              </div>
+            </div>
+            <div class="content_row">
+              <div class="side">
                 <h3>احصائيات و تقارير مالية</h3>
               </div>
               <div class="side">
@@ -206,6 +217,16 @@
     <section class="yearly_reort">
       <h3>افصاحات سوق المال </h3>
       <div class="line"></div>
+      <div class="aannouncement">
+        <p>تعلن شركة المجتمع الرائدة الطبية عن موافقة مجلس الإدارة في اجتماعه المنعقد بتاريخ 04/12/2023م على قبول استقالة عضو مجلس الإدارة الأستاذ/ هشام عمر باروم ( غير تنفيذي ) من منصبه وذلك بتاريخ 04/12/2023م على أن تسري الاستقالة من تاريخ تقديم الاستقالة في 04/12/2023م ويعود سبب الاستقالة إلى انتهاء ترخيص الجمعية العامة المنعقدة بتاريخ 06/10/2022م بشأن السماح له بالاشتراك في عضوية مجلس إدارة شركة انوفا السعودية للرعاية الصحية.<br> <br> وقد عبر العضو عن شكره وامتنانه لمساهمي الشركة وأعضاء المجلس على الفترة التي قضاها كعضو في مجلس الإدارة، ويتوجه مجلس إدارة الشركة بجزيل الشكر والتقدير للأستاذ/ هشام عمر باروم متمنيين له دوام التوفيق والنجاح.</p>
+        <div class="date_container">
+          <div class="date">
+            07/12/2023
+            <img src="../../../assets/images/calendar-days.png" alt="">
+          </div>
+        </div>
+      </div>
+      <a target="_blank" href="https://www.saudiexchange.sa/wps/portal/saudiexchange/newsandreports/issuer-news/issuer-announcements/issuer-announcements-details/!ut/p/z1/jZJdb4IwFIZ_ixdcLudQ-dxdRawyGDLGlN4sxRnHApQYpvHfr27JMnS69a7p85xz3rbAYQm8EbtyI7pSNqJS-5xbzya1kEwdjGPq2phMghGbhXToJwYs-oATMQuTe5rExDYRUwK8dzwee8q_c6YBxgR1PPUxnZsKmEfDEB-QodX3L_XHC4vi_">تفاصيل الاعلان</a>
     </section>
 
     <section class="numbers_of_year">
@@ -279,7 +300,7 @@
             <h4>1-ما تقييمكم للمنافسة في سوق الصيدليات في المملكة؟ وكم تبلغ حصتكم السوقية؟</h4>
 
             <div class="toggleClick" @click="() => toggleClick(1)">
-                +
+                {{toggleQuestion == 1 ? '-' : '+'}}
             </div>
           </div>
 
@@ -289,7 +310,7 @@
           <div class="toggle_flex">
             <h4>2-ما هي استراتيجية الشركة فيما يتعلق بالتوسع في فتح المزيد من الصيدليات؟ وما هي المناطق المستهدفة للتوسع في المستقبل؟</h4>
             <div class="toggleClick" @click="() => toggleClick(2)">
-                +
+                {{toggleQuestion == 2 ? '-' : '+'}}
             </div>
           </div>
           <p :class="toggleQuestion == 2 ? 'active_p' : ''">افتتاح المزيد من الفروع كان وما زال من أهداف الشركة مع ازدياد في وتيرته في الفترة الأخيرة، حيث يتم افتتاح بين 25 – 30 صيدلية سنويا في الوقت الحالي، ومن المتوقع خلال شهر من الآن وبعد الانتهاء من تشغيل المستودع الرئيسي على مساحة (21,000 متر مربع) أن يرتفع هذا العدد ليصبح ما تتم إضافته من فروع إلى 40 فرعا سنويا -بإذن الله-. أما بالنسبة للمناطق المستهدفة فسوف تتم مراعاة التوزيع الجغرافي والتوجه إلى مناطق غير مخدومة، فعلى الرغم من أن عدد الصيدليات المجتمعية بالمملكة (صيدلية لكل 4000 نسمة) وهو أعلى من المعدل العالمي (صيدلية لكل 8000 نسمة) إلا أن هناك مناطق شاسعة لم تصلها الخدمة. كما أن صيدليات المجتمع لها الأسبقية في تشغيل وإدارة صيدليات العيادات الخارجية لمستشفيات ومراكز الرعاية الأولية التابعة لوزارة الصحة داخل أروقتها (3 مستشفيات + مستشفى جامعي) ضمن فروعها ال (125) حتى تاريخ هذه المقابلة حيث تقوم بصرف الوصفات الطبية بنظام "وصفتي". كما أن الخدمات المتميزة التي تقدمها صيدليات المجتمع – العديد منها مرجعية- مثل تقديم الاستشارات الدوائية والطب الاتصالي والمتجر الإلكتروني والتوصيل المنزلي زاد من الحاجة إلى توسيع التوزيع الجغرافي.</p>
@@ -298,7 +319,7 @@
           <div class="toggle_flex">
             <h4>3-ما التوزيع الجغرافي للصيدليات؟</h4>
             <div class="toggleClick" @click="() => toggleClick(3)">
-                +
+                {{toggleQuestion == 3 ? '-' : '+'}}
             </div>
           </div>
           <p :class="toggleQuestion == 3 ? 'active_p' : ''">فيما يلي جدول يوضح التوزيع الجغرافي الحالي لصيدليات المجتمع:</p>
@@ -371,7 +392,7 @@
           <div class="toggle_flex">
             <h4>4-تمتلك الشركة سلسلة كبيرة من الصيدليات في مختلف مناطق المملكة، هل يمكنكم تزويدنا بتفاصيل حول أداء هذه الصيدليات من ناحية الإيرادات وصافي الأرباح ونسب النمو؟</h4>
             <div class="toggleClick" @click="() => toggleClick(5)">
-                +
+                {{toggleQuestion == 5 ? '-' : '+'}}
             </div>
           </div>
           <p :class="toggleQuestion == 5 ? 'active_p' : ''">حققت الشركة إيرادات بلغت حوالي 367 مليون ريال سعودي وصافي أرباح بلغ حوالي 19مليون ريال سعودي كما في نهاية عام 2022م حيث حققت الشركة نمو في الإيرادات بنسبة 21% ونمو في صافي الأرباح بنسبة 144% عن العام المالي السابق. كما بلغت إيرادات الشركة حوالي 204 مليون ريال سعودي وبلغ صافي الأرباح حوالي 11 مليون ريال سعودي كما في 30 يونيو 2023م، أي بما يتمثل في نمو في الإيرادات بنسبة 19% ونمو في صافي الأرباح بنسبة 66% عن الفترة المالية المماثلة السابقة.</p>
@@ -380,7 +401,7 @@
           <div class="toggle_flex">
             <h4>5-حققت الشركة أرباحاً بـ 11.3 مليون ريال بنهاية النصف الأول من عام 2023م، ما تعليقكم على هذه النتائج؟ وما توقعاتكم لأداء النصف الثاني؟</h4>
             <div class="toggleClick" @click="() => toggleClick(6)">
-                +
+                {{toggleQuestion == 6 ? '-' : '+'}}
             </div>
           </div>
           <p :class="toggleQuestion == 6 ? 'active_p' : ''">حققت الشركة نمو في صافي الأرباح في عام 2022م بنسبة 144% عن العام المالي السابق، وذلك جراء ضخ سيولة إضافية في الشركة مع دخول مستثمرين جدد، وأيضاً ازدياد معدل عدد الفروع الجديدة عن الذي كانت عليه في الأعوام السابقة قبل ضخ السيولة الإضافية. وبناءً على ذلك تم تحقيق نمو إضافي في الإيرادات وصافي الأرباح خلال النصف الأول من عام 2023م، حيث بلغت أرباح الشركة 11,33 مليون ريال سعودي كما في 30 يونيو 2023م. ومن المتوقع أن تحقق الشـركة إجمالي مبيعات تبلغ 430 مليون ريال سعودي بنهاية عام 2023م وصافي أرباح تبلغ 24 مليون ريال سعودي أي بزيادة بمعدل 25% عن عام 2022م بإذن الله.</p>
@@ -389,7 +410,7 @@
           <div class="toggle_flex">
             <h4>6-ما هو تصور الشركة لمستقبل صناعة الرعاية الصحية في المملكة والتحديات والفرص المتوقعة في هذا القطاع؟</h4>
             <div class="toggleClick" @click="() => toggleClick(7)">
-                +
+                {{toggleQuestion == 7 ? '-' : '+'}}
             </div>
           </div>
           <p :class="toggleQuestion == 7 ? 'active_p' : ''">منذ الإعلان عن توجه الدولة رعاها الله لتخصيص خدمة الرعاية الصحية، اتخذ القطاع الصحي الخاص خطوات مهمة تتمثل بدخول مستثمرين لإنشاء العديد من المستشفيات والمراكز المتخصصة بالشراكة مع خبرات عالمية ومحلية ذات تجربة واسعة. وفي هذا الصدد، قامت شركة المجتمع الرائدة الطبية بإنشاء مستودع على مساحة 21 ألف متر مربع مجهز بأحدث وسائل التخزين والصـرف لمقابلة الطلب المتزايد على خدمات فروعها التي يجري افتتاحها والتوسع في مناطق جغرافية جديدة. كما أن قيام شركة المجتمع الرائدة الطبية بتشغيل الصيدليات الخارجية لعدد من المستشفيات التابعة لوزارة الصحة ووزارة التعليم العالي في كل من: جدة والطائف وجازان وصبيا ألقى عليها مسؤولية زيادة طاقتها الاستيعابية والتشغيلية وتدريب وتوظيف الكوادر الصحية الوطنية ووضع الخطط المستقبلية كشركة رائدة في تنفيذ برامج التحول الوطني ورؤية 2030 وكأول سلسلة صيدليات مجتمعية حققت مبدأ التكامل مع مستشفيات ومراكز صحية حكومية. وإذا علمنا أن عدد مستشفيات وزارة الصحة تبلغ 284 مستشفى وحوالي 2300 مركز رعاية أولية فيتضح لنا جلياً أن توجه الشركة بعقد شراكات طويلة الأمد مع وزارة الصحة وغيرها من القطاعات الصحية الحكومية هو استثمار ممتاز ذو نظرة مستقبلية واعدة.</p>
@@ -398,7 +419,7 @@
           <div class="toggle_flex">
             <h4>7-ما توقعاتكم لحجم الإيرادات الإضافية والربحية الناتجة من التوسعات الجديدة؟</h4>
             <div class="toggleClick" @click="() => toggleClick(8)">
-                +
+                {{toggleQuestion == 8 ? '-' : '+'}}
             </div>
           </div>
           <p :class="toggleQuestion == 8 ? 'active_p' : ''">كما تمت الإشارة في الإجابة على الأسئلة رقم(4) ورقم (5) ورقم (6) فإن مجال قطاع الدواء هو مجال واعد، ومن خلال النظرة المتمعنة من إدارة الشـركة التي ترى في الأفق مجالاً رحباً للتوسع الأفقي بافتتاح فروع في مناطق جغرافية جديدة، والتوسع الرأسي بتطوير وادخال أحدث انظمة الادارة والمحاسبة وادارة المخزون حسب المعايير الدولية والتدريب على مهارات البيع، كما وضعت ضمن اولوياتها تطوير وتدريب الكادر الصحي الوطني وتحقيق نسبة التوطين المطلوبة لمهنة "صيدلي" وتوقيع الاتفاقيات في هذا الشأن مع عدد من كليات الصيدلة ووضع برامج التدريب المناسبة لتأهيل الكادر الوطني للعمل في مجال الصيدليات المجتمعية، مما ساهم في رفع مستوى الاداء وانعكس على هيئة قفزات مهمة في رقم المبيعات وزيادة في الربحية. وإجابة على سؤالكم، يُتوقع في نهاية عام 2024م أن تزيد المبيعات عن نصف مليار ريال سعودي وصافي أرباح تتجاوز (27) مليون ريال سعودي.</p>
@@ -407,7 +428,7 @@
           <div class="toggle_flex">
             <h4>8-هل هناك خطط للانتقال إلى السوق الرئيسية؟</h4>
             <div class="toggleClick" @click="() => toggleClick(9)">
-                +
+                {{toggleQuestion == 9 ? '-' : '+'}}
             </div>
           </div>
           <p :class="toggleQuestion == 9 ? 'active_p' : ''">نعم بالتأكيد، خاصة وأن الشركة تسعى لأن تعزز مكانتها وريادتها في مجال الخدمات الصيدلانية، خاصةً في مجال إدارة المخزون وسلاسل الإمداد والصرف الآمن والرشيد لتوفير الدواء والمستحضرات الصيدلانية للمستفيد.</p>
@@ -467,36 +488,47 @@ export default {
       pages: [
         {
           description:
+            "تعلن شركة المجتمع الرائدة الطبية عن موافقة مجلس الإدارة في اجتماعه المنعقد بتاريخ 04/12/2023م على قبول استقالة عضو مجلس الإدارة الأستاذ/ هشام عمر باروم ( غير تنفيذي ) من منصبه وذلك بتاريخ 04/12/2023م على أن تسري الاستقالة من تاريخ تقديم الاستقالة في 04/12/2023م ويعود سبب الاستقالة إلى انتهاء ترخيص الجمعية العامة المنعقدة بتاريخ 06/10/2022م بشأن السماح له بالاشتراك في عضوية مجلس إدارة شركة انوفا السعودية للرعاية الصحية.",
+          seconde_description:
+            "وقد عبر العضو عن شكره وامتنانه لمساهمي الشركة وأعضاء المجلس على الفترة التي قضاها كعضو في مجلس الإدارة، ويتوجه مجلس إدارة الشركة بجزيل الشكر والتقدير للأستاذ/ هشام عمر باروم متمنيين له دوام التوفيق والنجاح.",
+          img: require("../../../assets/images/newsTrueSign.jpg"),
+        },
+        {
+          description:
             "تعلن شركة المجتمع الرائدة الطبية (“الشركة”) عن عزم الشركة تسجيل وإدراج أسهم الشركة البالغة (9,500,000) سهم عادي ادراجاً مباشراً في السوق الموازية “نمو” ، و سيتم الإعلان عن تاريخ الإدراج قريباً",
           seconde_description:
             "انضموا إلينا في الفرع الجديد واستفيدوا من خدماتنا المتميزة صيدليات_المجتمع #الريادة_في_خدمة_المجتمع",
-          img: require("../../assets/images/new7.jpg"),
+          img: require("../../../assets/images/new7.jpg"),
         },
         {
           description:
             "يسرنا أن نعلن أنه تم -بحمد الله- افتتاح فرع جديد لصيدلية المجتمع في حي الصفا- طريق الأمير متعب بن عبد العزيز- جدة",
           seconde_description:
             "انضموا إلينا في الفرع الجديد واستفيدوا من خدماتنا المتميزة صيدليات_المجتمع #الريادة_في_خدمة_المجتمع",
-          img: require("../../assets/images/opening.png"),
+          img: require("../../../assets/images/opening.png"),
         },
         {
           description:
             "كلية الصيدلية بجامعة الملك عبد العزيز بمدينة جدة كل الشكر للراعي الذهبي صيدلية المجتمع لمساهمتهم في نجاح فاعليتنا",
           seconde_description: "#صيدلية_المجتمع",
-          img: require("../../assets/images/openening2023.png"),
+          img: require("../../../assets/images/openening2023.png"),
         },
         {
           description:
             "قامت إدارة شركة المجتمع الرائدة الطبية بتكريم الصيدلي محمد أحمد محمد علي لحصوله على المركز الرابع حسب تقييم الأداء في شهر سبتمبر.",
             descriptionTwo: 'صيدليات المجتمع تتمنى له ولجميع شركاء النجاح المزيد من التوفيق والسداد',
-          img: require("../../assets/images/gift.png"),
+          img: require("../../../assets/images/gift.png"),
         },
       ],
     }
   },
   methods: {
     toggleClick(index){
-      this.toggleQuestion = index
+      if(this.toggleQuestion == index){
+        this.toggleQuestion = 0
+      } else {
+        this.toggleQuestion = index
+      }
     },
     downloadFinancial(e) {
       // if (e.target.value == "30/06/2023") {
@@ -606,16 +638,16 @@ export default {
     },
     changePageNumber(type) {
       if (type == "left") {
-        if (this.pageNumber <= 2 && this.pageNumber > -1) {
+        if (this.pageNumber <= 3 && this.pageNumber > -1) {
           this.pageNumber = this.pageNumber + 1;
         } else {
           this.pageNumber = 0;
         }
       } else if (type == "right") {
-        if (this.pageNumber <= 3 && this.pageNumber > 0) {
+        if (this.pageNumber <= 4 && this.pageNumber > 0) {
           this.pageNumber = this.pageNumber - 1;
         } else {
-          this.pageNumber = 3;
+          this.pageNumber = 4;
         }
       }
     },
@@ -624,7 +656,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .investor_elations_header {
-  background-image: url(../../assets/images/map.png);
+  background-image: url(../../../assets/images/map.png);
   padding: 100px 100px 30px 100px;
   position: relative;
   @media (max-width: 991px) {
@@ -925,6 +957,48 @@ export default {
   @media (max-width: 991px) {
     padding: 50px 0;
   }
+  .aannouncement{
+    background-color: #FFF;
+    border-radius: 10px;
+    padding: 30px 20px;
+    width: 740px;
+    margin: auto;
+    @media (max-width: 991px) {
+      width: 90%;
+    }
+    .date_container{
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+      .date{
+        font-size: 14px;
+        font-weight: 800;
+        img{
+          margin-right: 10px;
+        }
+      }
+    }
+    
+    p{
+      font-size: 18px;
+      font-weight: 800;
+      color: #78A28F;
+      line-height: 30px;
+      text-align: right;
+    }
+  }
+  a{
+    font-size: 16px;
+    color: #FFF;
+    background-color: #D8D253;
+    padding: 9px 0;
+    margin-top: 40px;
+    display: block;
+    width: 153px;
+    margin: 40px auto 0 auto;
+    border-radius: 4px;
+  }
+  
   h3 {
     font-size: 40px;
     font-weight: 900;

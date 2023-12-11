@@ -2,7 +2,7 @@
   <div class="error">
     <div class="error_container">
       <span>Error Page</span>
-      <img src="../../assets/images/404.png" alt="" />
+      <img src="../../../assets/images/404.png" alt="" />
       <h4>المتجر تحت الصيانة مؤقتاَ</h4>
       <div class="line"></div>
       <p>عملائنا الكرام نأسف لعدم توفر الخدمة في الوقت الحالي</p>

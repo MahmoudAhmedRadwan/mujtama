@@ -15,7 +15,7 @@
             </div>
           </div>
           <div class="side">
-            <img src="../../assets/images/aboutUslogo.png" alt="about us" />
+            <img src="../../../assets/images/aboutUslogo.png" alt="about us" />
           </div>
         </div>
       </div>
@@ -34,7 +34,7 @@
             <div class="icons">
               <div class="info_container">
                 <div class="icon_container">
-                  <img src="../../assets/images/phone.png" alt="" />
+                  <img src="../../../assets/images/phone.png" alt="" />
                 </div>
                 <div class="content">
                   <h4>الرقم الموحد</h4>
@@ -43,7 +43,7 @@
               </div>
               <div class="info_container">
                 <div class="icon_container">
-                  <img src="../../assets/images/envelope.png" alt="" />
+                  <img src="../../../assets/images/envelope.png" alt="" />
                 </div>
                 <div class="content">
                   <h4>البريد الإلكتروني</h4>
@@ -52,7 +52,7 @@
               </div>
               <div class="info_container">
                 <div class="icon_container">
-                  <img src="../../assets/images/location.png" alt="" />
+                  <img src="../../../assets/images/location.png" alt="" />
                 </div>
                 <div class="content">
                   <h4>موقعنا</h4>

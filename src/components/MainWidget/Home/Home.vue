@@ -1,7 +1,7 @@
 <template>
   <div>
     <header class="home_page_header">
-      <img src="../../assets/images/pharmacy.png" alt="" />
+      <img src="../../../assets/images/pharmacy.png" alt="" />
       <div class="charts">
         <div class="numbers">
           <div class="number">160</div>
@@ -18,24 +18,24 @@
           <div class="line"></div>
           <h3>صنفاً بين ايديكم</h3>
         </div>
-        <a href="https://ahmedshawki.com/branches2" class="our_branches">
+        <router-link to="/branches" class="our_branches">
           <div>
             <span>فروعنا</span>
             <div class="line"></div>
           </div>
           <b-icon icon="arrow-left" font-scale="5" class="icon"></b-icon>
-        </a>
+        </router-link>
       </div>
     </header>
 
     <section class="home_page_description_sections container">
       <img
         class="rightBg"
-        src="../../assets/images/aboutCompanyBg.svg"
+        src="../../../assets/images/aboutCompanyBg.svg"
         alt=""
       />
       <div class="img_container">
-        <img src="../../assets/images/group.png" alt="" />
+        <img src="../../../assets/images/group.png" alt="" />
       </div>
       <div class="description">
         <router-link to="/about-us">
@@ -53,7 +53,7 @@
         <div class="society">
           <span>الريادة في خدمة المجتمع</span>
           <div class="img_container">
-            <img src="../../assets/images/hands.png" alt="" />
+            <img src="../../../assets/images/hands.png" alt="" />
           </div>
         </div>
         <!-- <router-link to="/about-us" class="readMore">قراءة المزيد</router-link> -->
@@ -61,7 +61,7 @@
     </section>
     <section class="home_page_description_sections container">
       <div class="img_container">
-        <img src="../../assets/images/group2.png" alt="" />
+        <img src="../../../assets/images/group2.png" alt="" />
       </div>
       <div class="description">
         <span class="smallTitle">خدماتنا</span>
@@ -104,7 +104,7 @@
     </section>
     <section class="home_page_description_sections container">
       <div class="img_container">
-        <img src="../../assets/images/InvestorRelations.png" alt="" />
+        <img src="../../../assets/images/InvestorRelations.png" alt="" />
       </div>
       <div class="description">
         <span class="smallTitle">علاقات المستثمرين</span>
@@ -182,7 +182,7 @@
 
     <section class="grouping">
       <div class="heart_position">
-        <img src="../../assets/images/heart.png" alt="" />
+        <img src="../../../assets/images/heart.png" alt="" />
       </div>
       <div class="container">
         <div class="groupingFlex">
@@ -201,7 +201,7 @@
     <section class="distinguished_clients">
       <div class="description">
         <div class="img_container_position">
-          <img src="../../assets/images/offersHeart.png" alt="" />
+          <img src="../../../assets/images/offersHeart.png" alt="" />
         </div>
         <h3>برنامج عملاء التميز</h3>
         <h4> هو برنامج يتيح لعملاء صيدليات المجتمع الحصول على بضاعة مجانية تعادل 3 % من مشترياتهم عند الوصول الى مبلغ 300 ريال (غير شامل ضريبة القيمة المضافة) من أي من فروعها أو الموقع الإلكتروني والتطبيق.
@@ -214,10 +214,10 @@
       </div>
       <div class="imgs">
         <div class="img_container">
-          <img src="../../assets/images/offer1.png" alt="" />
+          <img src="../../../assets/images/offer1.png" alt="" />
         </div>
         <div class="img_container">
-          <img src="../../assets/images/offer2.png" alt="" />
+          <img src="../../../assets/images/offer2.png" alt="" />
         </div>
       </div>
     </section>
@@ -232,29 +232,36 @@ export default {
       pages: [
         {
           description:
+            "تعلن شركة المجتمع الرائدة الطبية عن موافقة مجلس الإدارة في اجتماعه المنعقد بتاريخ 04/12/2023م على قبول استقالة عضو مجلس الإدارة الأستاذ/ هشام عمر باروم ( غير تنفيذي ) من منصبه وذلك بتاريخ 04/12/2023م على أن تسري الاستقالة من تاريخ تقديم الاستقالة في 04/12/2023م ويعود سبب الاستقالة إلى انتهاء ترخيص الجمعية العامة المنعقدة بتاريخ 06/10/2022م بشأن السماح له بالاشتراك في عضوية مجلس إدارة شركة انوفا السعودية للرعاية الصحية.",
+          seconde_description:
+            "وقد عبر العضو عن شكره وامتنانه لمساهمي الشركة وأعضاء المجلس على الفترة التي قضاها كعضو في مجلس الإدارة، ويتوجه مجلس إدارة الشركة بجزيل الشكر والتقدير للأستاذ/ هشام عمر باروم متمنيين له دوام التوفيق والنجاح.",
+          img: require("../../../assets/images/newsTrueSign.jpg"),
+        },
+        {
+          description:
             "تعلن شركة المجتمع الرائدة الطبية (“الشركة”) عن عزم الشركة تسجيل وإدراج أسهم الشركة البالغة (9,500,000) سهم عادي ادراجاً مباشراً في السوق الموازية “نمو” ، و سيتم الإعلان عن تاريخ الإدراج قريباً",
           seconde_description:
             "انضموا إلينا في الفرع الجديد واستفيدوا من خدماتنا المتميزة صيدليات_المجتمع #الريادة_في_خدمة_المجتمع",
-          img: require("../../assets/images/new7.jpg"),
+          img: require("../../../assets/images/new7.jpg"),
         },
         {
           description:
             "يسرنا أن نعلن أنه تم -بحمد الله- افتتاح فرع جديد لصيدلية المجتمع في حي الصفا- طريق الأمير متعب بن عبد العزيز- جدة",
           seconde_description:
             "انضموا إلينا في الفرع الجديد واستفيدوا من خدماتنا المتميزة صيدليات_المجتمع #الريادة_في_خدمة_المجتمع",
-          img: require("../../assets/images/opening.png"),
+          img: require("../../../assets/images/opening.png"),
         },
         {
           description:
             "كلية الصيدلية بجامعة الملك عبد العزيز بمدينة جدة كل الشكر للراعي الذهبي صيدلية المجتمع لمساهمتهم في نجاح فاعليتنا",
           seconde_description: "#صيدلية_المجتمع",
-          img: require("../../assets/images/openening2023.png"),
+          img: require("../../../assets/images/openening2023.png"),
         },
         {
           description:
             "قامت إدارة شركة المجتمع الرائدة الطبية بتكريم الصيدلي محمد أحمد محمد علي لحصوله على المركز الرابع حسب تقييم الأداء في شهر سبتمبر.",
             descriptionTwo: 'صيدليات المجتمع تتمنى له ولجميع شركاء النجاح المزيد من التوفيق والسداد',
-          img: require("../../assets/images/gift.png"),
+          img: require("../../../assets/images/gift.png"),
         },
       ],
     };
@@ -263,16 +270,16 @@ export default {
   methods: {
     changePageNumber(type) {
       if (type == "left") {
-        if (this.pageNumber <= 2 && this.pageNumber > -1) {
+        if (this.pageNumber <= 3 && this.pageNumber > -1) {
           this.pageNumber = this.pageNumber + 1;
         } else {
           this.pageNumber = 0;
         }
       } else if (type == "right") {
-        if (this.pageNumber <= 3 && this.pageNumber > 0) {
+        if (this.pageNumber <= 4 && this.pageNumber > 0) {
           this.pageNumber = this.pageNumber - 1;
         } else {
-          this.pageNumber = 3;
+          this.pageNumber = 4;
         }
       }
     },
@@ -638,6 +645,7 @@ export default {
   }
   .img_container {
     margin-right: -50px;
+    width: 530px;
     @media (max-width: 1200px) {
       width: 38%;
     }

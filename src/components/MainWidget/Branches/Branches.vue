@@ -4,7 +4,7 @@
       <div class="container">
         <div class="headerContainer">
           <div class="side">
-            <h2>تعرف علينا</h2>
+            <h2>فروعنا</h2>
             <div class="line"></div>
             <div class="breadCrobs">
               <router-link to="/">الرئيسية</router-link>
@@ -13,7 +13,7 @@
             </div>
           </div>
           <div class="side">
-            <img src="../../assets/images/aboutUslogo.png" alt="about us" />
+            <img src="../../../assets/images/aboutUslogo.png" alt="about us" />
           </div>
         </div>
       </div>
@@ -27,17 +27,14 @@
       <div class="container">
         <div class="inputs">
           <div class="input_container">
-            <input type="text" placeholder="بحث" />
-          </div>
-          <div class="input_container">
-            <input type="text" placeholder="البحث" />
+            <input type="text" placeholder="بحث" v-model="branchName" @change="NameFilter"/>
           </div>
           <select>
             <option value="" disabled selected>بحق فى المدينة</option>
           </select>
           <button>
             فروعنا على الخريطة
-            <img src="../../assets/images/mapLocation.png" alt="" />
+            <img src="../../../assets/images/mapLocation.png" alt="" />
           </button>
         </div>
       </div>
@@ -48,11 +45,11 @@
         <div class="branches_container">
           <div class="branch" v-for="branch in branches" :key="branch.id">
             <div class="img_container">
-              <img src="../../assets/images/branch.png" alt="" />
+              <img src="../../../assets/images/branch.png" alt="" />
             </div>
             <div class="address">
               <h3>{{branch.translations[0].name}}</h3>
-              <h3>{{branch.city}}</h3>
+              <h3>{{branch.address}}</h3>
             </div>
             <div class="phone">
               <h3>رقم الهاتف</h3>
@@ -66,14 +63,14 @@
               <h4>خدمات فرع إضافية</h4>
               <h3>
                 <div class="true">
-                  <img src="../../assets/images/greenTrue.png" alt="" />
+                  <img src="../../../assets/images/greenTrue.png" alt="" />
                 </div>
                 {{branch.services[0] ? branch.services[0].translations[0].name: ''}}
               </h3>
             </div>
-            <a target="_blank" :href="branch.location">
+            <a target="_blank" :href="branch.google_map_url">
               عرض على الخريطة
-              <img src="../../assets/images/mapLocation.png" alt="" />
+              <img src="../../../assets/images/mapLocation.png" alt="" />
             </a>
           </div>
         </div>
@@ -83,11 +80,13 @@
 </template>
 <script>
 import axios from 'axios';
+import Request from '../../../services/Request';
 export default {
   name: "Branches",
   data(){
     return{
-      branches: []
+      branches: [],
+      branchName: ''
     }
   },
   mounted(){
@@ -103,13 +102,21 @@ export default {
               // localization: store.state.localization
           }
       })
-      .get('/import')
+      .get('/branches')
       .then(res => {
         console.log(res.data)
         this.branches = res.data
           
       });
-    }
+    },
+    NameFilter(){
+        Request.getNameFilter('api/branches', this.branchName)
+        .then(res => {
+          console.log(res)
+          this.branches = res.data
+        })
+        // .catch(err => this.setErrorResponse(err))     
+    },
   }
 };
 </script>

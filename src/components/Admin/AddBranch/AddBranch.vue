@@ -34,6 +34,10 @@
                         <input type="text" placeholder="Full Name" v-model="branch.translation[1].name">
                     </div>
                     <div class="input_container">
+                        <label>العنوان:</label>
+                        <input type="text" placeholder="Language" v-model="branch.address">
+                    </div>
+                    <div class="input_container">
                         <label>المدينة:</label>
                         <input type="text" placeholder="Language" v-model="branch.city">
                     </div>
@@ -44,6 +48,10 @@
                     <div class="input_container">
                         <label>رقم الجوال :</label>
                         <input type="text" placeholder="Company" v-model="branch.mobile">
+                    </div>
+                    <div class="input_container">
+                        <label>رابط خرائط جوجل</label>
+                         <input type="text" placeholder="google map" v-model="branch.google_map_url">
                     </div>
                     <div class="input_container">
                         <label> اوقات الدوام من : </label>
@@ -99,6 +107,8 @@ export default {
                     }
                 ],
                 mobile: '',
+                address: '',
+                google_map_url: '',
                 time_from: '',
                 time_to: '',
                 city: '',
@@ -146,8 +156,8 @@ export default {
                     this.branch.city = response.data.data.city
                     this.branch.region = response.data.data.region
                     this.branch.code = response.data.data.code
-                    this.branch.latitude = response.data.data.latitude
-                    this.branch.longitude = response.data.data.longitude
+                    this.branch.address = response.data.data.address
+                    this.branch.google_map_url = response.data.data.google_map_url
                     
                     })
                     .catch((error) => {
@@ -178,8 +188,8 @@ export default {
                 formData.append('city', this.branch.city);
                 formData.append('region', this.branch.region);
                 formData.append('code', this.branch.code);
-                formData.append('latitude', '21.11');
-                formData.append('longitude', '33.22');
+                formData.append('address', this.branch.address);
+                formData.append('google_map_url', this.branch.google_map_url);
 
             if(this.$route.params.id !== undefined){
                 axios.post(`https://app.almujtama.com.sa/admin/branch/${this.$route.params.id}`, formData, {
@@ -325,7 +335,8 @@ header{
                 white-space: nowrap;
                 width: 10%;
             }
-            input{
+            input,
+            select{
                 background-color: #FFF;
                 border-radius: 10px;
                 padding: 10px;

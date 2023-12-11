@@ -13,28 +13,11 @@
             </div>
           </div>
           <div class="side">
-            <img src="../../assets/images/aboutUslogo.png" alt="about us" />
+            <img src="../../../assets/images/aboutUslogo.png" alt="about us" />
           </div>
         </div>
       </div>
     </header>
-
-    <!-- <div class="toggle">
-      <div>وظائف السعوديين</div>
-      <div>وظائق غير السعوديين</div>
-    </div> -->
-
-    <!-- <div class="choose">
-      <h3>أختار الوظيفة</h3>
-      <div class="radio">
-        صيدلي
-        <input type="radio" />
-      </div>
-      <div class="radio">
-        غير صيدلي
-        <input type="radio" />
-      </div>
-    </div> -->
 
     <div class="form_container">
       <div class="container">
@@ -44,35 +27,52 @@
 
           <form @submit.prevent="personData">
             <div class="input_container">
-              <label>الوظيفة المطلوبة</label>
+              <label>
+                الوظيفة المطلوبة
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <input type="text" placeholder="اكتب هنا" />
             </div>
             <div class="input_container">
-              <label>الاسم (حسب جواز السفر)</label>
+              <label>الاسم (حسب جواز السفر)
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <input type="text" placeholder="اكتب هنا" />
             </div>
             <div class="input_container">
-              <label>تاريخ الميلاد</label>
+              <label>تاريخ الميلاد
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <input type="text" placeholder="اكتب هنا" />
             </div>
             <div class="input_container">
-              <label>محل الاقامة</label>
+              <label>محل الاقامة
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <input type="text" placeholder="اكتب هنا" />
             </div>
             <div class="input_container">
-              <label>رقم الهوية</label>
+              <label>رقم الهوية
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <input type="text" placeholder="اكتب هنا" />
             </div>
             <div class="input_container">
-              <label>الجنسية</label>
+              <label>الجنسية
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <input type="text" placeholder="اكتب هنا" />
             </div>
             <div class="input_container">
-              <label>تاريخ الانتهاء</label>
+              <label>تاريخ الانتهاء
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <input type="text" placeholder="اكتب هنا" />
             </div>
             <div class="input_container">
-              <label>الديانة</label>
+              <label>الديانة
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <div class="radio_container">
                 <span>مسلم</span>
                 <input type="radio" />
@@ -83,7 +83,9 @@
               </div>
             </div>
             <div class="input_container">
-              <label>الحالة الاجتماعية</label>
+              <label>الحالة الاجتماعية
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <div class="radio_container">
                 <span>اعزب</span>
                 <input type="radio" />
@@ -94,27 +96,39 @@
               </div>
             </div>
             <div class="input_container">
-              <label>عدد الابناء</label>
+              <label>عدد الابناء
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <input type="text" placeholder="اكتب هنا" />
             </div>
             <div class="input_container">
-              <label>عنوان السكن</label>
+              <label>عنوان السكن
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <input type="text" placeholder="اكتب هنا" />
             </div>
             <div class="input_container">
-              <label>رقم الهاتف</label>
+              <label>رقم الهاتف
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <input type="text" placeholder="اكتب هنا" />
             </div>
             <div class="input_container">
-              <label>التخصص</label>
+              <label>التخصص
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <input type="text" placeholder="اكتب هنا" />
             </div>
             <div class="input_container">
-              <label>البريد الالكتروني</label>
+              <label>البريد الالكتروني
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <input type="text" placeholder="اكتب هنا" />
             </div>
             <div class="input_container">
-              <label>المؤهلات العلمية</label>
+              <label>المؤهلات العلمية
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <div class="radio_container">
                 <span>بكالوريوس</span>
                 <input type="checkbox" />
@@ -134,24 +148,34 @@
             </div>
 
             <div class="input_container">
-              <label>التخصص</label>
+              <label>التخصص
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <input type="text" placeholder="اكتب هنا" />
             </div>
             <div class="input_container">
-              <label>المدرسة/المعهد/الجامعة</label>
+              <label>المدرسة/المعهد/الجامعة
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <input type="text" placeholder="اكتب هنا" />
             </div>
             <div class="input_container">
-              <label>سنة الحصول عليها</label>
+              <label>سنة الحصول عليها
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <input type="text" placeholder="اكتب هنا" />
             </div>
             <div class="input_container">
-              <label>المعدل/التقدير</label>
+              <label>المعدل/التقدير
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <input type="text" placeholder="اكتب هنا" />
             </div>
 
             <div class="input_container w100">
-              <label>عدد الخبرات العملية: ( عدد الوظائف التي عملت بها):*</label>
+              <label>عدد الخبرات العملية: ( عدد الوظائف التي عملت بها):
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <div class="radio_container">
                 <span>وظيفة</span>
                 <input type="checkbox" />
@@ -188,8 +212,6 @@
             <div class="input_container">
               <input type="text" placeholder="أسباب ترك العمل" />
             </div>
-
-            <hr />
             <div class="right_title">
               <h4>الدورات التدريبية</h4>
             </div>
@@ -211,7 +233,8 @@
                 >هل قدمت أوراقك (شهادة التخرج وشهادة الخبرة) للحصول على شهادة
                 الداتافلو Did you upload your documents (University Certificate
                 and Experience Certificate) for Dataflow verification ؟ (For
-                Pharmacist job ONLY)*</label
+                Pharmacist job ONLY)
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon></label
               >
               <div class="radio_container">
                 <span>نعم</span>
@@ -225,7 +248,8 @@
             <div class="input_container">
               <label
                 >هل تقدمت لإختبار البرومترك (بيرسون فيو) Did you admit to
-                Prometric (Pearson VUE) exam؟ (For Pharmacist job ONLY)*</label
+                Prometric (Pearson VUE) exam؟ (For Pharmacist job ONLY)
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon></label
               >
               <div class="radio_container">
                 <span>نعم</span>
@@ -240,7 +264,9 @@
               <label
                 >هل تحمل شهادة التصنيف المهني من الهيئة السعودية للتخصصات الصحية
                 Do you have the SCFHS Accreditation Certificate ؟ (For
-                Pharmacist job ONLY)*</label
+                Pharmacist job ONLY)
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label
               >
               <div class="radio_container">
                 <span>نعم</span>
@@ -253,7 +279,9 @@
             </div>
 
             <div class="input_container">
-              <label>هل تحمل رخصة قيادة ؟</label>
+              <label>هل تحمل رخصة قيادة ؟
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <div class="radio_container">
                 <span>نعم</span>
                 <input type="checkbox" />
@@ -265,7 +293,9 @@
             </div>
 
             <div class="input_container">
-              <label>هل تجيد قيادة السيارات ؟</label>
+              <label>هل تجيد قيادة السيارات ؟
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <div class="radio_container">
                 <span>نعم</span>
                 <input type="checkbox" />
@@ -276,7 +306,9 @@
               </div>
             </div>
             <div class="input_container">
-              <label>درجة اجادة اللغة الانجليزية</label>
+              <label>درجة اجادة اللغة الانجليزية
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <div class="radio_container">
                 <span>ممتاز</span>
                 <input type="checkbox" />
@@ -292,46 +324,65 @@
             </div>
 
             <div class="input_container">
-              <label>رفاق صورة الهوية او جواز السفر</label>
+              <label>رفاق صورة الهوية او جواز السفر
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <input type="file" />
             </div>
             <div class="input_container">
-              <label>ارفاق السيرة الذاتية</label>
+              <label>ارفاق السيرة الذاتية
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <input type="file" />
             </div>
             <div class="input_container">
-              <label>ارفاق شهادة البكالوريوس</label>
+              <label>ارفاق شهادة البكالوريوس
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <input type="file" />
             </div>
             <div class="input_container">
-              <label>ارفق كارنية نقابة الصيادلة</label>
+              <label>ارفق كارنية نقابة الصيادلة
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <input type="file" />
             </div>
             <div class="input_container">
-              <label>ارفاق ترخيص مزاولة المهنة بوزارة الصحة بدولتك</label>
+              <label>ارفاق ترخيص مزاولة المهنة بوزارة الصحة بدولتك
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <input type="file" />
             </div>
             <div class="input_container">
-              <label>شهادات الخبرة 1</label>
+              <label>شهادات الخبرة 1
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <input type="file" />
             </div>
             <div class="input_container">
-              <label>شهادات الخبرة 2</label>
+              <label>شهادات الخبرة 2
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <input type="file" />
             </div>
             <div class="input_container">
-              <label>شهادات الخبرة 3</label>
+              <label>شهادات الخبرة 3
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <input type="file" />
             </div>
             <div class="input_container">
-              <label>ارفاق صورة بيان الدرجات</label>
+              <label>ارفاق صورة بيان الدرجات
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <input type="file" />
             </div>
             <div class="input_container">
               <label
                 >ارفق صورة من ترخيص مزاولة المهنة في المملكة العربية
-                السعودية</label
-              >
+                السعودية
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <input type="file" />
             </div>
 
@@ -360,6 +411,10 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.requiredIcon{
+  color: #c03e3e;
+  font-size: 9px;
+}
 .aboutUs_header {
   background-color: #78a28f;
   padding: 100px 0;
@@ -479,6 +534,11 @@ export default {
         font-size: 16px;
         font-weight: 900;
         color: #78a28f;
+        display: flex;
+        align-items: center;
+        .requiredIcon{
+          margin-right: 5px;
+        }
       }
       input {
         width: 100%;
@@ -511,6 +571,7 @@ export default {
       width: 100%;
     }
     .right_title {
+      width: 100%;
       h4 {
         font-size: 16px;
         font-weight: 600;

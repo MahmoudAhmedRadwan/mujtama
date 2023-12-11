@@ -4,7 +4,7 @@
       <div class="container">
         <div class="headerContainer">
           <div class="side">
-            <h2>تعرف علينا</h2>
+            <h2>المجلة الإلكترونية </h2>
             <div class="line"></div>
             <div class="breadCrobs">
               <router-link to="/">الرئيسية</router-link>
@@ -13,7 +13,7 @@
             </div>
           </div>
           <div class="side">
-            <img src="../../assets/images/aboutUslogo.png" alt="about us" />
+            <img src="../../../assets/images/aboutUslogo.png" alt="about us" />
           </div>
         </div>
       </div>
@@ -32,93 +32,46 @@
           <div class="sections">
             <h3>الاقسام</h3>
             <div class="line"></div>
-            <div class="linRow">
-              <h4>اخر الاخبار</h4>
-              <span>16</span>
+            <div class="linRow" v-for="articlesSection in articlesSections" :key="articlesSection.id">
+              <h4>{{articlesSection.translation[0].name}}</h4>
+              <span>{{articlesSection.code}}</span>
             </div>
-            <div class="linRow">
-              <h4>المجلة الالكترونية</h4>
-              <span>5</span>
-            </div>
-            <div class="linRow">
-              <h4>إنفوجرافيكس</h4>
-              <span>5</span>
-            </div>
+            
 
             <div class="title_line">
               <div class="small_line"></div>
               <h3>الأقسام الفرعية</h3>
             </div>
-            <div class="linRow">
-              <h4>فعاليات</h4>
-              <span>10</span>
+            <div class="linRow" v-for="articlesSubSection in articlesSubSections" :key="articlesSubSection.id">
+              <h4> {{articlesSubSection.translation[0].name}} </h4>
+              <!-- <span>10</span> -->
             </div>
-            <div class="linRow">
-              <h4>المجتمع</h4>
-              <span>12</span>
-            </div>
-            <div class="linRow">
-              <h4>مقالات</h4>
-              <span>12</span>
-            </div>
-            <div class="linRow">
-              <h4>تقارير</h4>
-              <span>12</span>
-            </div>
-            <div class="linRow">
-              <h4>صحة الاسرة</h4>
-              <span>12</span>
-            </div>
-            <div class="linRow">
-              <h4>معلومات طبية</h4>
-              <span>12</span>
-            </div>
-            <div class="linRow">
-              <h4>طب وقائي</h4>
-              <span>12</span>
-            </div>
-            <div class="linRow">
-              <h4>اخبار</h4>
-              <span>12</span>
-            </div>
-            <div class="linRow">
-              <h4>انفوجرافيكس</h4>
-              <span>12</span>
-            </div>
+     
+          
 
             <div class="line left"></div>
 
             <div class="hash_tag">
               <h3>هاشتاق</h3>
-              <div class="single_hash">#الدعم</div>
-              <div class="single_hash">#المجتمع</div>
-              <div class="single_hash">#صيدلية</div>
-              <div class="single_hash">#العناية</div>
-              <div class="single_hash">#Organization</div>
-              <div class="single_hash">#فروع</div>
-              <div class="single_hash">#المستثمرين</div>
-              <div class="single_hash">#مساعدة</div>
-              <div class="single_hash">#تعليم</div>
+              <div class="single_hash" v-for="article in articles" :key="article.id">#{{article.translation[0].tags}}</div>
             </div>
           </div>
 
           <div class="journals">
-            <div class="single_journal">
-              <div class="img_container">
-                <img src="../../assets/images/mask.png" alt="" />
+            <div v-for="article in articles" :key="article.id">
+              <div class="single_journal">
+                <div class="img_container">
+                  <img :src="article.image" alt="" />
+                </div>
+                <div class="date">
+                  <img src="../../../assets/images/calender.png" alt="" />
+                  15/5//2022
+                </div>
               </div>
-              <div class="date">
-                <img src="../../assets/images/calender.png" alt="" />
-                15/5//2022
-              </div>
+              <h3>{{article.translation[0].name}}</h3>
+              <div class="line"></div>
+              <p> {{article.translation[0].description}} </p>
             </div>
-            <h3>عنوان</h3>
-            <div class="line"></div>
-            <p>
-              هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد
-              هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو
-              العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها
-            </p>
           </div>
         </div>
       </div>
@@ -126,8 +79,79 @@
   </div>
 </template>
 <script>
+import axios from 'axios';
 export default {
   name: "MedicalJournal",
+  data(){
+    return{
+      articles: [],
+      articlesSections: [],
+      articlesSubSections: []
+    }
+  },
+  mounted(){
+    this.getArticles();
+    this.getArticlesSections();
+    this.getArticlesSubSections();
+  },
+  methods:{
+    getArticles() {
+      axios.get('https://app.almujtama.com.sa/api/article', {
+          headers: {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Headers': '*',
+              'Authorization': 'Bearer '+ localStorage.getItem('token'),
+          },
+      })
+          .then((response) => {
+          console.log(response)
+          this.articles = response.data.data
+          })
+          .catch((error) => {
+          console.error('Error fetching data from API:', error);
+          });
+    },
+    getArticlesSections(){
+        axios.get(`https://app.almujtama.com.sa/admin/magazineCategory`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': '*',
+                'Authorization': 'Bearer '+ localStorage.getItem('token'),
+            },
+        })
+        .then((response) => {
+            console.log(response, 'mmmmmm')
+            this.articlesSections = response.data.data
+        
+        })
+        .catch((error) => {
+        console.error('Error fetching data from API:', error);
+        });
+    },
+    getArticlesSubSections(){
+        axios.get(`https://app.almujtama.com.sa/admin/magazineSubcategory`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': '*',
+                'Authorization': 'Bearer '+ localStorage.getItem('token'),
+            },
+            params:{
+                magazine_category_id : this.$route.params.id
+            }
+        })
+        .then((response) => {
+            console.log(response, 'mmmmmm')
+            this.articlesSubSections = response.data.data
+        
+        })
+        .catch((error) => {
+        console.error('Error fetching data from API:', error);
+        });
+    },
+  }
 };
 </script>
 <style lang="scss" scoped>

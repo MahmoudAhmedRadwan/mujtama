@@ -5,7 +5,7 @@
             <div class="form_container">
                 <form action="" @submit.prevent="addArticle">
                     <div class="upload_img">
-                        <span>إرفاق صورة الفرع</span>
+                        <span>إرفاق صورة المقال</span>
                         <div class="img_container">
                             <img src="../../../assets/images/replaceImg.svg" alt="" v-if="imgUrl == ''">
                             <img :src="imgUrl" alt="" v-if="imgUrl !== ''">
@@ -36,10 +36,6 @@
                                 {{articlesSection.translation[0].name}}
                             </option>
                         </select>
-                    </div>
-                    <div class="input_container">
-                        <label>القسم الفرعى</label>
-                        <input type="text" placeholder="Language">
                     </div>
                     <div class="input_container">
                         <label>كلمات دلالية بالعربية<br> (اضغط Enter بعد كل كلمة)</label>
@@ -194,6 +190,9 @@ header{
         background-color: #FFF;
         border-radius: 10px;
         padding: 30px 20px;
+        @media (max-width:1200px) {
+            width: 100%;
+        }
         .upload_img{
             display: flex;
             align-items: center;
@@ -234,12 +233,21 @@ header{
             justify-content: space-between;
             align-items: center;
             margin-bottom: 16px;
+            @media (max-width: 991px) {
+                flex-direction: column;
+            }
             label{
                 font-size: 14px;
                 white-space: nowrap;
-                width: 10%;
+                margin-left: 20px;
+                @media (max-width: 991px) {
+                    width: 100%;
+                    text-align: center;
+                    margin: 0 0 20px 0;
+                }
             }
             input,
+            select,
             textarea{
                 background-color: #FFF;
                 border-radius: 10px;
@@ -247,6 +255,9 @@ header{
                 font-size: 14px;
                 border: 1px solid #C5C5C5;
                 width: 90%;
+                @media (max-width: 991px) {
+                    width: 100%;
+                }
                 &::placeholder{
                     font-size: 14px;
                     color: #C5C5C5;
@@ -254,6 +265,9 @@ header{
             }
             textarea{
                 width: 80%;
+                @media (max-width: 991px) {
+                    width: 100%;
+                }
             }
         }
         .option_show{
@@ -277,6 +291,9 @@ header{
                 font-size: 14px;
                 border: 1px solid #C5C5C5;
                 width: 90%;
+                @media (max-width: 991px) {
+                    width: 100%;
+                }
             }
         }
     }

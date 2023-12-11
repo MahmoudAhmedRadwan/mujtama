@@ -84,6 +84,33 @@ ul {
     @media (max-width: 991px) {
         flex-direction: column;
     }
+    .filter{
+        display: flex;
+        select{
+            background-color: #FFF;
+            border-radius: 10px;
+            font-size: 14px;
+            padding: 5px 10px;
+            border: 0;
+        }
+        .tabs_filter{
+            display: flex;
+            border-radius: 10px;
+            background-color: #FFF;
+            margin: 0 20px;
+            > div{
+                padding: 5px 10px;
+                font-size: 16px;
+                color: #000;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+            .active_tap{
+                background-color: #D8D253;
+                color: #FFF;
+            }
+        }
+    }
     h2{
         font-size: 26px;
         font-weight: 800;

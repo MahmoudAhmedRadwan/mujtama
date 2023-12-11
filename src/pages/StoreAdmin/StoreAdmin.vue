@@ -5,80 +5,61 @@
             <div class="logo">
                 <img src="../../assets/images/newLogo.png" alt="">
             </div>
-            <router-link to="/store-admin/" class="store_manage">إدارة المتجر</router-link>
+            <router-link to="/admin/" class="store_manage">إدارة الصفحة الرئيسية</router-link>
 
             <div class="links" @click="linkUrlCheck">
                 <ul>
                     <li>
-                        <router-link to="/admin/main" :class="hoverType == 'main' ? 'aciveLink' : ''"> 
+                        <router-link to="/store-admin/statistics" :class="hoverType == 'statistics' ? 'aciveLink' : ''"> 
                             <div class="img_container"><img src="../../assets/images/minpage.png" alt=""></div> 
                             الرئيسية 
                         </router-link>
                     </li>
                     <li>
-                        <router-link to="/admin/branches" :class="hoverType == 'branches' ? 'aciveLink' : ''">
-                            <div class="img_container"><img src="../../assets/images/pharmacyLink.png" alt=""></div> 
-                             الصيدليات 
+                        <router-link to="" :class="hoverType == 'branches' ? 'aciveLink' : ''">
+                            <div class="img_container"><img src="../../assets/images/storeAdminDescription.png" alt=""></div> 
+                             الطلبات 
                         </router-link>
                     </li>
                     <li>
-                        <router-link to="" :class="hoverType == 'SupportTickets' ? 'aciveLink' : ''">
-                            <div class="img_container"><img src="../../assets/images/magazin.png" alt=""></div> 
-                            المجلة الإلكترونية 
+                        <router-link to="" :class="hoverType == 'branches' ? 'aciveLink' : ''">
+                            <div class="img_container"><img src="../../assets/images/prescription.png" alt=""></div> 
+                             الوصفات 
+                        </router-link>
+                    </li>
+                    <li>
+                        <router-link to="" :class="hoverType == 'branches' ? 'aciveLink' : ''">
+                             <img src="../../assets/images/logo-rgb-2048x1427.png" alt="">
+                        </router-link>
+                    </li>
+                    <li>
+                        <router-link to="/store-admin/products" :class="hoverType == 'products' ? 'aciveLink' : ''">
+                            <div class="img_container"><img src="../../assets/images/products.png" alt=""></div> 
+                            المنتجات
                         </router-link>
                         <ul>
                             <li>
-                                <router-link to="/admin/articles-sections" :class="hoverType == 'articles-sections' ? 'aciveLink' : ''">
-                                    أقسام المقالات 
+                                <router-link to="" :class="hoverType == 'articles-sections' ? 'aciveLink' : ''">
+                                    إدارة المنتجات
                                 </router-link>
                             </li>
                             <li>
-                                <router-link to="/admin/articles" :class="hoverType == 'articles' ? 'aciveLink' : ''">
-                                    المقالات
+                                <router-link to="" :class="hoverType == 'articles' ? 'aciveLink' : ''">
+                                    أقسام المنتجات
                                 </router-link>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <router-link to="/admin/employment-applications" :class="hoverType == 'employment-applications' ? 'aciveLink' : ''">
-                            <div class="img_container"><img src="../../assets/images/jops.png" alt=""></div> 
-                            طلبات التوظيف
+                        <router-link to="/store-admin/users" :class="hoverType == 'users' ? 'aciveLink' : ''">
+                            <div class="img_container"><img src="../../assets/images/users.png" alt=""></div> 
+                            المستخدمين
                         </router-link>
-                        <ul>
-                            <li>
-                                <router-link to="/admin/jobs-for-saudis" :class="hoverType == 'jobs-for-saudis' ? 'aciveLink' : ''">
-                                    وظائف للسعودين
-                                </router-link>
-                            </li>
-                            <li>
-                                <router-link to="" :class="hoverType == 'employment-applicationss' ? 'aciveLink' : ''">
-                                    وظائف لغير السعودين
-                                </router-link>
-                            </li>
-                        </ul>
                     </li>
                     <li>
                         <router-link to="" :class="hoverType == 'SupportTickets' ? 'aciveLink' : ''">
-                            <div class="img_container"><img src="../../assets/images/invistmentLogo.png" alt=""></div> 
-                            علاقات المستثمرين
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link to="" >
-                            <div class="img_container"></div> 
-                            مؤشرات الأداء الرئيسية
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link to="/admin/key-performance-indicators" :class="hoverType == 'key-performance-indicators' ? 'aciveLink' : ''">
-                            <div class="img_container"></div> 
-                            المؤشرات الرئيسية
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link to="/admin/results-and-reports" :class="hoverType == 'results-and-reports' ? 'aciveLink' : ''">
-                            <div class="img_container"></div> 
-                            النتائج و التقارير
+                            <div class="img_container"><img src="../../assets/images/locationBlack.png" alt=""></div> 
+                            مدن التوصيل
                         </router-link>
                     </li>
                  
@@ -118,7 +99,7 @@
 </template>
 <script>
 export default {
-    name: 'Admin',
+    name: 'StoreAdmin',
     data(){
         return{
             showSideMenu: true,
@@ -130,12 +111,12 @@ export default {
     },
     methods: {
         linkUrlCheck(){
-            if (window.location.href.indexOf("main") > -1) {
-                this.hoverType = 'main'
-            } else if(window.location.href.indexOf("branches") > -1){
-                this.hoverType = 'branches'
-            } else if(window.location.href.indexOf("articles-sections") > -1){
-                this.hoverType = 'articles-sections'
+            if (window.location.href.indexOf("statistics") > -1) {
+                this.hoverType = 'statistics'
+            } else if(window.location.href.indexOf("products") > -1){
+                this.hoverType = 'products'
+            } else if(window.location.href.indexOf("users") > -1){
+                this.hoverType = 'users'
             } else if(window.location.href.indexOf("articles") > -1){
                 this.hoverType = 'articles'
             } else if(window.location.href.indexOf("employment-applications") > -1){
@@ -252,6 +233,7 @@ export default {
             justify-content: space-between;
             align-items: center;
             align-items: center;
+            margin-bottom: 40px;
             .side{
                 display: flex;
                 align-items: center;
