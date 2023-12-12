@@ -16,7 +16,7 @@
                         </router-link>
                     </li>
                     <li>
-                        <router-link to="" :class="hoverType == 'branches' ? 'aciveLink' : ''">
+                        <router-link to="/store-admin/requests" :class="hoverType == 'requests' ? 'aciveLink' : ''">
                             <div class="img_container"><img src="../../assets/images/storeAdminDescription.png" alt=""></div> 
                              الطلبات 
                         </router-link>
@@ -44,7 +44,7 @@
                                 </router-link>
                             </li>
                             <li>
-                                <router-link to="" :class="hoverType == 'articles' ? 'aciveLink' : ''">
+                                <router-link to="/store-admin/categories" :class="hoverType == 'categories' ? 'aciveLink' : ''">
                                     أقسام المنتجات
                                 </router-link>
                             </li>
@@ -57,7 +57,7 @@
                         </router-link>
                     </li>
                     <li>
-                        <router-link to="" :class="hoverType == 'SupportTickets' ? 'aciveLink' : ''">
+                        <router-link to="/store-admin/cities" :class="hoverType == 'cities' ? 'aciveLink' : ''">
                             <div class="img_container"><img src="../../assets/images/locationBlack.png" alt=""></div> 
                             مدن التوصيل
                         </router-link>
@@ -117,17 +117,13 @@ export default {
                 this.hoverType = 'products'
             } else if(window.location.href.indexOf("users") > -1){
                 this.hoverType = 'users'
-            } else if(window.location.href.indexOf("articles") > -1){
-                this.hoverType = 'articles'
-            } else if(window.location.href.indexOf("employment-applications") > -1){
-                this.hoverType = 'employment-applications'
-            } else if(window.location.href.indexOf("jobs-for-saudis") > -1){
-                this.hoverType = 'jobs-for-saudis'
-            } else if(window.location.href.indexOf("key-performance-indicators") > -1){
-                this.hoverType = 'key-performance-indicators'
-            } else if(window.location.href.indexOf("results-and-reports") > -1){
-                this.hoverType = 'results-and-reports'
-            }
+            } else if(window.location.href.indexOf("categories") > -1){
+                this.hoverType = 'categories'
+            } else if(window.location.href.indexOf("cities") > -1){
+                this.hoverType = 'cities'
+            }  else if(window.location.href.indexOf("requests") > -1){
+                this.hoverType = 'requests'
+            } 
         },
         toggleMenu(){
             this.showSideMenu = !this.showSideMenu

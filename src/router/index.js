@@ -40,9 +40,15 @@ import Main from '../components/Admin/Main/Main'
 import StoreAdmin from '../pages/StoreAdmin/StoreAdmin';
 import Statistics from '../components/StoreAdmin/Statistics/Statistics';
 import Products from '../components/StoreAdmin/Products/Products'
+import ProductsCategories from '../components/StoreAdmin/ProductsCategories/ProductsCategories'
+import AddCategory from '../components/StoreAdmin/ProductsCategories/AddCategory'
+import SubCategory from '../components/StoreAdmin/SubCategory/SubCategory'
 import AddProduct from '../components/StoreAdmin/Products/AddProduct'
 import Users from '../components/StoreAdmin/Users/Users'
 import AddUsers from '../components/StoreAdmin/Users/AddUsers'
+import Cities from '../components/StoreAdmin/Cities/Cities'
+import AddCity from '../components/StoreAdmin/Cities/AddCity'
+import Requests from '../components/StoreAdmin/Requests/Requests'
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
@@ -212,6 +218,26 @@ const routes = [
         component: Statistics
       },
       {
+        path: "/store-admin/categories",
+        name: "ProductsCategories",
+        component: ProductsCategories
+      },
+      {
+        path: "/store-admin/categories/add-category",
+        name: "AddCategory",
+        component: AddCategory
+      },
+      {
+        path: "/store-admin/categories/add-category/:id",
+        name: "AddCategory",
+        component: AddCategory
+      },
+      {
+        path: "/store-admin/sub-category/:id",
+        name: "SubCategory",
+        component: SubCategory
+      },
+      {
         path: "/store-admin/products",
         name: "Products",
         component: Products
@@ -230,6 +256,21 @@ const routes = [
         path: "/store-admin/users/add-user",
         name: "AddUsers",
         component: AddUsers
+      },
+      {
+        path: "/store-admin/cities",
+        name: "Cities",
+        component: Cities
+      },
+      {
+        path: "/store-admin/cities/add-city",
+        name: "AddCity",
+        component: AddCity
+      },
+      {
+        path: "/store-admin/requests",
+        name: "Requests",
+        component: Requests
       },
     ]
   }
