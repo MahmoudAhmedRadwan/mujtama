@@ -43,12 +43,15 @@ import Products from '../components/StoreAdmin/Products/Products'
 import ProductsCategories from '../components/StoreAdmin/ProductsCategories/ProductsCategories'
 import AddCategory from '../components/StoreAdmin/ProductsCategories/AddCategory'
 import SubCategory from '../components/StoreAdmin/SubCategory/SubCategory'
+import AddSubCategory from '../components/StoreAdmin/SubCategory/AddSubCategory'
 import AddProduct from '../components/StoreAdmin/Products/AddProduct'
 import Users from '../components/StoreAdmin/Users/Users'
 import AddUsers from '../components/StoreAdmin/Users/AddUsers'
 import Cities from '../components/StoreAdmin/Cities/Cities'
 import AddCity from '../components/StoreAdmin/Cities/AddCity'
 import Requests from '../components/StoreAdmin/Requests/Requests'
+import Prescriptions from '../components/StoreAdmin/Prescriptions/Prescriptions'
+import PrescriptionsInsurance from '../components/StoreAdmin/Prescriptions/Prescriptions-insurance'
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
@@ -238,12 +241,22 @@ const routes = [
         component: SubCategory
       },
       {
+        path: "/store-admin/sub-category/:id/add-sub-category",
+        name: "AddSubCategory",
+        component: AddSubCategory
+      },
+      {
         path: "/store-admin/products",
         name: "Products",
         component: Products
       },
       {
         path: "/store-admin/products/add-product",
+        name: "AddProduct",
+        component: AddProduct
+      },
+      {
+        path: "/store-admin/products/add-product/:id",
         name: "AddProduct",
         component: AddProduct
       },
@@ -271,6 +284,16 @@ const routes = [
         path: "/store-admin/requests",
         name: "Requests",
         component: Requests
+      },
+      {
+        path: "/store-admin/prescriptions",
+        name: "Prescriptions",
+        component: Prescriptions
+      },
+      {
+        path: "/store-admin/prescriptions-insurance",
+        name: "Prescriptions-insurance",
+        component: PrescriptionsInsurance
       },
     ]
   }

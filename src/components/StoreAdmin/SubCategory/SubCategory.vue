@@ -12,7 +12,7 @@
             <div class="search">
                 
             </div>
-            <router-link :to="'/admin/articles-sub-sections/'+this.$route.params.id+'/add-articles-sub-sections'"> أضف قسم جديد </router-link>
+            <router-link :to="'/store-admin/sub-category/'+this.$route.params.id+'/add-sub-category'"> أضف قسم فرعي جديد </router-link>
         </header>
         <div class="main_table">
             <table width="100%">
@@ -23,15 +23,15 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="articlesSubSection in articlesSubSections" :key="articlesSubSection.id">
-                        <td>{{articlesSubSection.translation[0].name}}</td>
+                    <tr v-for="sub in subCategory" :key="sub.id">
+                        <td>{{sub.translation[0].name}}</td>
                         <td>
                             <div class="actionsContainer">
                                 <div class="options_container">
                                     <img src="../../../assets/images/selectIcon.png" alt="">
                                     <div class="hidden_options">
-                                        <button @click="() => editArticleSubCategory(articlesSubSection.id)"> <img src="../../../assets/images/edit-text.png" alt=""> تعديل  </button>
-                                        <button @click="() => deleteData(articlesSubSection.id)"> <img src="../../../assets/images/delete-text.png" alt=""> حذف </button>
+                                        <button @click="() => editArticleSubCategory(sub.id)"> <img src="../../../assets/images/edit-text.png" alt=""> تعديل  </button>
+                                        <button @click="() => deleteData(sub.id)"> <img src="../../../assets/images/delete-text.png" alt=""> حذف </button>
                                     </div>
                                 </div>
                             </div>
@@ -52,18 +52,18 @@ export default {
     components: {HeaderBg, Alert},
     data(){
         return{
-            articlesSubSections: [],
+            subCategory: [],
             deleteID: '',
             alertToggle: false,
         }
     },
     mounted(){
-        this.getArticlesSubSections();
-        localStorage.removeItem('editArticleSubCategory')
+        this.getSubCategory();
+        localStorage.removeItem('editSubCategory')
     },
     methods:{
-        getArticlesSubSections(){
-            axios.get(`https://app.almujtama.com.sa/admin/magazineSubcategory`, {
+        getSubCategory(){
+            axios.get(`https://app.almujtama.com.sa/admin/subcategory`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*',
@@ -71,12 +71,12 @@ export default {
                     'Authorization': 'Bearer '+ localStorage.getItem('token'),
                 },
                 params:{
-                    magazine_category_id : this.$route.params.id
+                    category_id : this.$route.params.id
                 }
             })
             .then((response) => {
                 console.log(response, 'mmmmmm')
-                this.articlesSubSections = response.data.data
+                this.subCategory = response.data.data
             
             })
             .catch((error) => {
@@ -85,16 +85,16 @@ export default {
         },
         editArticleSubCategory(id){
             this.$router.push(`/admin/articles-sub-sections/${this.$route.params.id}/add-articles-sub-sections/${id}`)
-            localStorage.setItem('editArticleSubCategory', 'edit')
+            localStorage.setItem('editSubCategory', 'edit')
         },
         deleteData(id){
             this.deleteID = id;
             this.alertToggle = true;
         },
         acceptedDeleteCourse(){
-            Request.delete('admin/magazineSubcategory',this.deleteID)
+            Request.delete('admin/subcategory',this.deleteID)
             .then( () => {
-                this.getArticlesSubSections();
+                this.getSubCategory();
             })
         },
     }

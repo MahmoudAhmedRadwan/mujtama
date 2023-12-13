@@ -66,7 +66,7 @@ export default {
             this.$router.push(`/store-admin/sub-category/${id}`)
         },
         getCategories(){
-            axios.get(`https://app.almujtama.com.sa/admin/headCategory`, {
+            axios.get(`https://app.almujtama.com.sa/admin/category`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*',
@@ -92,7 +92,7 @@ export default {
             this.alertToggle = true;
         },
         acceptedDeleteCourse(){
-            Request.delete('admin/headCategory',this.deleteID)
+            Request.delete('admin/category',this.deleteID)
             .then( () => {
                 this.getCategories();
             })

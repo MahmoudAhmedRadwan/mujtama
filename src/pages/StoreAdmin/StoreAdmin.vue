@@ -22,7 +22,7 @@
                         </router-link>
                     </li>
                     <li>
-                        <router-link to="" :class="hoverType == 'branches' ? 'aciveLink' : ''">
+                        <router-link to="/store-admin/prescriptions" :class="hoverType == 'prescriptions' ? 'aciveLink' : ''">
                             <div class="img_container"><img src="../../assets/images/prescription.png" alt=""></div> 
                              الوصفات 
                         </router-link>
@@ -33,13 +33,13 @@
                         </router-link>
                     </li>
                     <li>
-                        <router-link to="/store-admin/products" :class="hoverType == 'products' ? 'aciveLink' : ''">
+                        <router-link to="" :class="hoverType == 'test' ? 'aciveLink' : ''">
                             <div class="img_container"><img src="../../assets/images/products.png" alt=""></div> 
                             المنتجات
                         </router-link>
                         <ul>
                             <li>
-                                <router-link to="" :class="hoverType == 'articles-sections' ? 'aciveLink' : ''">
+                                <router-link to="/store-admin/products" :class="hoverType == 'products' ? 'aciveLink' : ''">
                                     إدارة المنتجات
                                 </router-link>
                             </li>
@@ -123,6 +123,8 @@ export default {
                 this.hoverType = 'cities'
             }  else if(window.location.href.indexOf("requests") > -1){
                 this.hoverType = 'requests'
+            }  else if(window.location.href.indexOf("prescriptions") > -1){
+                this.hoverType = 'prescriptions'
             } 
         },
         toggleMenu(){

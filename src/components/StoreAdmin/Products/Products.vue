@@ -1,8 +1,14 @@
 <template>
     <div>
         <HeaderBg :img="img" title="المنتجات" />
+        <Alert 
+            v-if="alertToggle == true"
+            :acceptedDelete="acceptedDeleteProduct" 
+            messege="هل أنت متأكد من مسح المنتج ؟"
+        />
         <header class="admin_content_header">
-            <div class="filter">
+            <div></div>
+            <!-- <div class="filter">
                 <select>
                     <option value="" selected disabled>المدينة</option>
                 </select>
@@ -14,7 +20,7 @@
             </div>
             <div class="search">
                 <input type="text" placeholder="البحث برقم الفرع">
-            </div>
+            </div> -->
             <router-link to="/store-admin/products/add-product"> + إضافة منتج </router-link>
             
         </header>
@@ -24,7 +30,7 @@
                 <thead>
                     <tr>
                         <th> الاسم</th>
-                        <th> الرقم المرجعي</th>
+                        <th> النوع</th>
                         <th> التصنيف</th>
                         <th> السعر</th>
                         <th> التوفر </th>
@@ -32,19 +38,19 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>حليب نيدو</td>
-                        <td>#23121321</td>
+                    <tr v-for="product in products" :key="product.id">
+                        <td> {{product.translation[0].name}} </td>
+                        <td> {{product.wasfy == 1 ? 'وصفي' : 'غير وصفي'}} </td>
                         <td>العناية بالطفل</td>
-                        <td>24 ر.س</td>
-                        <td class="blueColor">متوفر</td>
+                        <td>{{product.price + " " +'ر.س'}}</td>
+                        <td class="blueColor">{{product.active == 1 ? 'متوفر' : 'غير متوفر'}}</td>
                         
                         <td>
                             <div class="options_container">
                                 <img src="../../../assets/images/selectIcon.png" alt="">
                                 <div class="hidden_options">
-                                    <button> <img src="../../../assets/images/edit-text.png" alt=""> تعديل  </button>
-                                    <button> <img src="../../../assets/images/delete-text.png" alt="" > حذف </button>
+                                    <button @click="() => editProduct(product.id)"> <img src="../../../assets/images/edit-text.png" alt=""> تعديل  </button>
+                                    <button @click="() => deleteData(product.id)"> <img src="../../../assets/images/delete-text.png" alt="" > حذف </button>
                                 </div>
                             </div>
                         </td>
@@ -55,15 +61,56 @@
     </div>
 </template>
 <script>
-// import axios from 'axios';
+import axios from 'axios';
 import HeaderBg from '../../global/HeaderBg/HeaderBg';
+import Alert from '../../global/Alert/Alert';
+import Request from '../../../services/Request';
 export default {
     name: 'Products',
-    components: {HeaderBg},
+    components: {HeaderBg, Alert},
     data(){
         return{
             img: require('../../../assets/images/products_headTitle.png'),
+            products: [],
+            deleteID: '',
+            alertToggle: false,
         }
+    },
+    mounted(){
+        this.getProducts();
+    },
+    methods:{
+        getProducts(){
+            axios.get(`https://app.almujtama.com.sa/admin/product`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': '*',
+                    'Authorization': 'Bearer '+ localStorage.getItem('token'),
+                },
+            })
+            .then((response) => {
+                console.log(response, 'mmmmmm')
+                this.products = response.data.data
+            
+            })
+            .catch((error) => {
+            console.error('Error fetching data from API:', error);
+            });
+        },
+        editProduct(id){
+            this.$router.push(`/store-admin/products/add-product/${id}`)
+        },
+        deleteData(id){
+            this.deleteID = id;
+            this.alertToggle = true;
+        },
+        acceptedDeleteProduct(){
+            Request.delete('admin/product',this.deleteID)
+            .then( () => {
+                this.getProducts();
+            })
+        },
     }
 }
 </script>

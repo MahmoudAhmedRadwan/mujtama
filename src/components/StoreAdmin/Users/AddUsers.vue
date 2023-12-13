@@ -3,7 +3,7 @@
         <HeaderBg :img="img" title="المستخدمين" />
         <div class="content_container">
             <div class="form_container">
-                <form action="" @submit.prevent="addBranch">
+                <form action="" @submit.prevent="addUser">
                     <div class="upload_img">
                         <span> الصورة الرئيسية</span>
                         <div class="img_container">
@@ -14,7 +14,7 @@
                                     <div class="upload">
                                         <label for="">
                                             <img src="../../../assets/images/inputFile.svg" alt="">
-                                            <input type="file" v-on="{ change: [uploadBranchImg] }">
+                                            <input type="file" v-on="{ change: [uploadUserImg] }">
                                         </label>
                                     </div>
                                 </div>
@@ -23,46 +23,58 @@
                     </div>
                     <div class="input_container">
                         <label>الاسم :</label>
-                        <input type="text">
+                        <input type="text" v-model="user.name">
+                    </div>
+                    <div class="input_container">
+                        <label>الرقم السري :</label>
+                        <input type="password" v-model="user.password">
                     </div>
                     <div class="input_container">
                         <label>نوع الحساب :</label>
-                        <select>
-                            <option value="">متوفر</option>
-                            <option value="">غير متوفر</option>
+                        <select v-model="user.role">
+                            <option value="admin">مسئول</option>
+                            <option value="customer">عميل</option>
                         </select>
                     </div>
                     <div class="input_container">
                         <label>رقم الجوال :</label>
-                        <input type="text">
+                        <input type="text" v-model="user.phone">
                     </div>
                     <div class="input_container">
                         <label>البريد الالكتروني :</label>
-                        <input type="email">
+                        <input type="email" v-model="user.email">
                     </div>
                     <div class="input_container">
                         <label>تاريخ الميلاد :</label>
-                        <input type="text">
+                        <b-form-datepicker id="example-datepicker" v-model="user.birth" class="mb-2"></b-form-datepicker>
+                    </div>
+                    <div class="input_container radio">
+                        <label> الحالة : </label>
+                        <b-form-group class="radiroFlex" v-slot="{ ariaDescribedby }">
+                            <b-form-radio v-model="user.active" :aria-describedby="ariaDescribedby" value="1">مفعل</b-form-radio>
+                            <b-form-radio v-model="user.active" :aria-describedby="ariaDescribedby" value="0">غير مفعل</b-form-radio>
+                        </b-form-group>
                     </div>
                     <div class="input_container radio">
                         <label> الجنس : </label>
                         <b-form-group class="radiroFlex" v-slot="{ ariaDescribedby }">
-                            <b-form-radio :aria-describedby="ariaDescribedby" name="activate_promo_code" :value="1">ذكر</b-form-radio>
-                            <b-form-radio :aria-describedby="ariaDescribedby" name="activate_promo_code" :value="0">انثي</b-form-radio>
+                            <b-form-radio v-model="user.gender" :aria-describedby="ariaDescribedby" value="male">ذكر</b-form-radio>
+                            <b-form-radio v-model="user.gender" :aria-describedby="ariaDescribedby" value="female">انثي</b-form-radio>
                         </b-form-group>
                     </div>
                     <div class="input_container">
                         <label>المدينة :</label>
-                        <input type="text">
+                        <input type="text" v-model="user.city">
                     </div>
               
                  
-                    <!-- <div class="alert alert-danger" role="alert" v-if="ErrorCheck == true">
+                    <div class="alert alert-danger" role="alert" v-if="ErrorCheck == true">
                         <p v-for="(error, index) in errors" :key="index"> {{error}} </p>
-                    </div> -->
-                    <button class="saveBtn">حفظ</button>
-                    <!-- <button class="saveBtn" v-if="postLoaded == false && pageType == 'edit'">تعديل</button> -->
-                    <!-- <button class="saveBtn" v-if="postLoaded == true"><b-spinner></b-spinner></button> -->
+                    </div>
+                    <button class="saveBtn" v-if="postLoaded == false">
+                        {{this.$route.params.id !== undefined ? ' تعديل' : 'حفظ +' }}
+                    </button>
+                    <button class="saveBtn" v-if="postLoaded == true"><b-spinner></b-spinner></button>
                 </form>
             </div>
             
@@ -72,6 +84,7 @@
 </template>
 <script>
 import HeaderBg from '../../global/HeaderBg/HeaderBg';
+import axios from 'axios';
 export default {
     name : 'AddUsers',
     components: {HeaderBg},
@@ -80,11 +93,74 @@ export default {
             postLoaded: false,
             img: require('../../../assets/images/GroupWhite.png'),
             imgUrl: '',
+            user:{
+                name: '',
+                password: '',
+                phone: '',
+                image: '',
+                email: '',
+                birth: '',
+                role: '',
+                gender: '',
+                city: '',
+                active: '',
+            },
+            errors: [],
+            ErrorCheck: false,
         }
     },
     methods:{
-        uploadBranchImg(e) {
-            this.branch.image = e.target.files[0];
+        addUser(){
+            this.postLoaded = true
+            // this.error = {}
+            const formData = new FormData();
+            formData.append('image', this.user.image);
+            formData.append('password', this.user.password);
+            formData.append('email', this.user.email);
+            formData.append('birth', this.user.birth);
+            formData.append('gender', this.user.gender);
+            formData.append('role', this.user.role);
+            formData.append('city', this.user.city);
+            formData.append('active', this.user.active);
+            if(this.$route.params.id !== undefined){
+                formData.append('_method', 'PUT');
+                axios.post(`https://app.almujtama.com.sa/admin/user/${this.$route.params.id}`, formData, {
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+                })
+                .then( res => {
+                    this.$router.push('/store-admin/users')
+                    console.log(res)
+                    // this.error = {}
+                    this.postLoaded = false
+                })  
+                .catch(err =>  {
+                    console.log(err.response.data.errors)
+                    this.errors = err.response.data.errors;
+                    this.ErrorCheck = true;
+                    this.postLoaded = false;
+                    
+                })
+            } else {
+                axios.post('https://app.almujtama.com.sa/admin/user', formData, {
+                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+                })
+                .then( res => {
+                    this.$router.push('/store-admin/users')
+                    console.log(res)
+                    // this.error = {}
+                    this.postLoaded = false
+                })  
+                .catch(err =>  {
+                    console.log(err.response.data.errors)
+                    this.errors = err.response.data.errors;
+                    this.ErrorCheck = true;
+                    this.postLoaded = false;
+                    
+                })
+            }
+        },
+        uploadUserImg(e) {
+            this.user.image = e.target.files[0];
             this.imgUrl = URL.createObjectURL(e.target.files[0]);
         }, 
     }
