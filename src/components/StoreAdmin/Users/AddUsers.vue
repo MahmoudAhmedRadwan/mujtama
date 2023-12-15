@@ -25,7 +25,7 @@
                         <label>الاسم :</label>
                         <input type="text" v-model="user.name">
                     </div>
-                    <div class="input_container">
+                    <div class="input_container" v-if="this.$route.params.id == undefined">
                         <label>الرقم السري :</label>
                         <input type="password" v-model="user.password">
                     </div>
@@ -38,7 +38,7 @@
                     </div>
                     <div class="input_container">
                         <label>رقم الجوال :</label>
-                        <input type="text" v-model="user.phone">
+                        <input type="text" v-model="user.mobile">
                     </div>
                     <div class="input_container">
                         <label>البريد الالكتروني :</label>
@@ -96,7 +96,7 @@ export default {
             user:{
                 name: '',
                 password: '',
-                phone: '',
+                mobile: '',
                 image: '',
                 email: '',
                 birth: '',
@@ -109,13 +109,20 @@ export default {
             ErrorCheck: false,
         }
     },
+    mounted(){
+        this.getUser();
+    },
     methods:{
         addUser(){
             this.postLoaded = true
             // this.error = {}
             const formData = new FormData();
             formData.append('image', this.user.image);
-            formData.append('password', this.user.password);
+            formData.append('name', this.user.name);
+            if(this.$route.params.id == undefined){
+                formData.append('password', this.user.password);
+            }
+            formData.append('mobile', this.user.mobile);
             formData.append('email', this.user.email);
             formData.append('birth', this.user.birth);
             formData.append('gender', this.user.gender);
@@ -157,6 +164,34 @@ export default {
                     this.postLoaded = false;
                     
                 })
+            }
+        },
+        getUser(){
+            if(this.$route.params.id !== undefined){
+                axios.get(`https://app.almujtama.com.sa/admin/user/${this.$route.params.id}`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Headers': '*',
+                        'Authorization': 'Bearer '+ localStorage.getItem('token'),
+                    },
+                })
+                    .then((response) => {
+                    console.log(response, 'mmmmmm')
+                    this.imgUrl = response.data.data.image   
+                    this.user.name = response.data.data.name          
+                    this.user.password = response.data.data.password          
+                    this.user.mobile = response.data.data.mobile          
+                    this.user.email = response.data.data.email          
+                    this.user.birth = response.data.data.birth          
+                    this.user.role = response.data.data.role          
+                    this.user.gender = response.data.data.gender          
+                    this.user.city = response.data.data.city          
+                    this.user.active = response.data.data.active          
+                    })
+                    .catch((error) => {
+                    console.error('Error fetching data from API:', error);
+                    });
             }
         },
         uploadUserImg(e) {

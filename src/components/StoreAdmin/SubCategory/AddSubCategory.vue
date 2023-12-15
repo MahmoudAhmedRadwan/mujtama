@@ -75,7 +75,7 @@ export default {
         this.getSubCategory();
     },
     methods:{
-    addSubCategory(){
+        addSubCategory(){
             this.postLoaded = true
             this.error = {}
             const formData = new FormData();
@@ -87,6 +87,7 @@ export default {
             formData.append('translation[1][name]', this.subCategory.translation[1].name);
             formData.append('translation[1][local]', this.subCategory.translation[1].local);
             if(this.type == 'edit'){
+                formData.append('_method', 'PUT');
                 axios.post(`https://app.almujtama.com.sa/admin/subcategory/${this.$route.params.subID}`, formData, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
                 })
@@ -136,6 +137,7 @@ export default {
                 .then((response) => {
                     console.log(response, 'mmmmmm')
                     this.subCategory._method = 'PUT'
+                    this.imgUrl = response.data.data.image
                     this.subCategory.translation[0].name = response.data.data.translation[0].name          
                     this.subCategory.translation[1].name = response.data.data.translation[1].name          
                 })

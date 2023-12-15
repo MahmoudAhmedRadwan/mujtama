@@ -63,8 +63,9 @@
                     </div>
                     <div class="checkBox_container">
                         <h3>خدمات الفرع</h3>
-                        <div class="checkLine" v-for="(singleServicesData) in servicesData" :key="singleServicesData.id">
-                            <input type="checkbox" :value="singleServicesData.translation[0].name" @change="() => handleCheckboxChange(singleServicesData.id)">
+                        <div class="checkLine" v-for="singleServicesData in servicesData" :key="singleServicesData.id">
+                            <!-- :checked="branch.services.find(singleServicesData.id)" -->
+                            <input type="checkbox" :checked="branch.services.includes(singleServicesData.id)" :value="singleServicesData.id" :id="singleServicesData.id"  @change="() => handleCheckboxChange(singleServicesData.id)">
                             <label>{{ singleServicesData.translation[0].name }}</label>
                         </div>
                     </div>
@@ -158,6 +159,10 @@ export default {
                     this.branch.code = response.data.data.code
                     this.branch.address = response.data.data.address
                     this.branch.google_map_url = response.data.data.google_map_url
+                    response.data.data.services.map(data => {
+                        this.branch.services.push(data.id)
+                    })
+                    
                     
                     })
                     .catch((error) => {

@@ -46,10 +46,6 @@
               <h4> {{articlesSubSection.translation[0].name}} </h4>
               <!-- <span>10</span> -->
             </div>
-     
-          
-
-            <div class="line left"></div>
 
             <div class="hash_tag">
               <h3>هاشتاق</h3>
@@ -302,8 +298,13 @@ export default {
     .single_journal {
       .img_container {
         width: 100%;
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         img {
           max-width: 100%;
+          max-height: 100%;
         }
       }
       .date {

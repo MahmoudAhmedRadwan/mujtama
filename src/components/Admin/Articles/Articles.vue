@@ -41,7 +41,7 @@
                             <div class="options_container">
                                 <img src="../../../assets/images/selectIcon.png" alt="">
                                 <div class="hidden_options">
-                                    <button> <img src="../../../assets/images/edit-text.png" alt=""> تعديل  </button>
+                                    <button @click="() => editArticle(article.id)"> <img src="../../../assets/images/edit-text.png" alt=""> تعديل  </button>
                                     <button @click="() => deleteData(article.id)"> <img src="../../../assets/images/delete-text.png" alt=""> حذف </button>
                                 </div>
                             </div>
@@ -71,6 +71,9 @@ export default {
         this.getArticles();
     },
     methods:{
+        editArticle(id){
+            this.$router.push(`/admin/articles/add-articles/${id}`)
+        },
         getArticles() {
         axios.get('https://app.almujtama.com.sa/admin/article', {
             headers: {

@@ -178,6 +178,11 @@ const routes = [
         component: AddArticles
       },
       {
+        path: "/admin/articles/add-articles/:id",
+        name: "AddArticles",
+        component: AddArticles
+      },
+      {
         path: "/admin/jobs-for-saudis",
         name: "JobsForSaudis",
         component: JobsForSaudis
@@ -246,6 +251,11 @@ const routes = [
         component: AddSubCategory
       },
       {
+        path: "/store-admin/sub-category/:id/add-sub-category/:subID",
+        name: "AddSubCategory",
+        component: AddSubCategory
+      },
+      {
         path: "/store-admin/products",
         name: "Products",
         component: Products
@@ -267,6 +277,11 @@ const routes = [
       },
       {
         path: "/store-admin/users/add-user",
+        name: "AddUsers",
+        component: AddUsers
+      },
+      {
+        path: "/store-admin/users/add-user/:id",
         name: "AddUsers",
         component: AddUsers
       },

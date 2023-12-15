@@ -51,7 +51,13 @@ ul {
     }
 }
 
-
+.noData{
+    p{
+        color: #FFF;
+        font-size: 20px;
+        font-weight: 600;
+    }
+}
 .saveBtn,
 .cancelBtn{
     border-radius: 10px;

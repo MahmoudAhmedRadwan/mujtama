@@ -84,7 +84,7 @@ export default {
             });
         },
         editArticleSubCategory(id){
-            this.$router.push(`/admin/articles-sub-sections/${this.$route.params.id}/add-articles-sub-sections/${id}`)
+            this.$router.push(`/store-admin/sub-category/${this.$route.params.id}/add-sub-category/${id}`)
             localStorage.setItem('editSubCategory', 'edit')
         },
         deleteData(id){

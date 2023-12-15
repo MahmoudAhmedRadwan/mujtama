@@ -124,7 +124,7 @@ export default {
             formData.append('active', this.product.active);
             formData.append('price', this.product.price);
             formData.append('wasfy', this.product.wasfy);
-            formData.append('subcategory_id[]', this.product.subcategory_id);
+            formData.append('subcategory_id', this.product.subcategory_id);
             formData.append('translation[0][name]', this.product.translation[0].name);
             formData.append('translation[0][local]', this.product.translation[0].local);
             formData.append('translation[1][name]', this.product.translation[1].name);

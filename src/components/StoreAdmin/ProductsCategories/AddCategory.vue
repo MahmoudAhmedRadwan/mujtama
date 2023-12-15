@@ -134,6 +134,7 @@ export default {
                     .then((response) => {
                     console.log(response, 'mmmmmm')
                     this.category._method = 'PUT'
+                    this.imgUrl = response.data.data.image
                     this.category.translation[0].name = response.data.data.translation[0].name          
                     this.category.translation[1].name = response.data.data.translation[1].name          
                     })

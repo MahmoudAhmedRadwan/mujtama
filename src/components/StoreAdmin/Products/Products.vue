@@ -36,12 +36,12 @@
                         <th> التوفر </th>
                         <th></th>
                     </tr>
-                    </thead>
-                    <tbody>
+                </thead>
+                <tbody>
                     <tr v-for="product in products" :key="product.id">
                         <td> {{product.translation[0].name}} </td>
                         <td> {{product.wasfy == 1 ? 'وصفي' : 'غير وصفي'}} </td>
-                        <td>العناية بالطفل</td>
+                        <td>{{product.subcategory}}</td>
                         <td>{{product.price + " " +'ر.س'}}</td>
                         <td class="blueColor">{{product.active == 1 ? 'متوفر' : 'غير متوفر'}}</td>
                         
@@ -57,6 +57,9 @@
                     </tr>
                 </tbody>
             </table>
+            <div class="noData" v-if="products.length < 1">
+                <p> لا يوجد منتجات </p>
+            </div>
         </div>
     </div>
 </template>

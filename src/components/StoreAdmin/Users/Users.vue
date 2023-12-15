@@ -7,7 +7,8 @@
             messege="هل أنت متأكد من مسح المستخدم ؟"
         />
         <header class="admin_content_header">
-            <div class="filter">
+            <div></div>
+            <!-- <div class="filter">
                 <select>
                     <option value="" selected disabled>المدينة</option>
                 </select>
@@ -19,7 +20,7 @@
             </div>
             <div class="search">
                 <input type="text" placeholder="البحث  ">
-            </div>
+            </div> -->
             <router-link to="/store-admin/users/add-user"> + إضافة مستخدم </router-link>
             
         </header>
@@ -39,9 +40,9 @@
                     </thead>
                     <tbody>
                     <tr v-for="user in users" :key="user.id">
-                        <td>محمد حسن</td>
-                        <td>0504448732</td>
-                        <td>Mohammed@Gmeil.Com</td>
+                        <td> {{user.name}} </td>
+                        <td> {{user.mobile}} </td>
+                        <td> {{user.email}} </td>
                         <td>24 ر.س</td>
                         <td class="blueColor">مشاهدة ......</td>
                         <td>2023-06-24</td>
@@ -49,7 +50,7 @@
                             <div class="options_container">
                                 <img src="../../../assets/images/selectIcon.png" alt="">
                                 <div class="hidden_options">
-                                    <button> <img src="../../../assets/images/edit-text.png" alt=""> تعديل  </button>
+                                    <button @click="() => editUser(user.id)"> <img src="../../../assets/images/edit-text.png" alt=""> تعديل  </button>
                                     <button @click="() => deleteData(user.id)"> <img src="../../../assets/images/delete-text.png" alt="" > حذف </button>
                                 </div>
                             </div>
@@ -97,6 +98,9 @@ export default {
             .catch((error) => {
             console.error('Error fetching data from API:', error);
             });
+        },
+        editUser(id){
+            this.$router.push(`/store-admin/users/add-user/${id}`)
         },
         deleteData(id){
             this.deleteID = id;

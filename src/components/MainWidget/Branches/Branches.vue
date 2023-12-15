@@ -27,11 +27,12 @@
       <div class="container">
         <div class="inputs">
           <div class="input_container">
-            <input type="text" placeholder="بحث" v-model="branchName" @change="NameFilter"/>
+            <input type="text" placeholder=" بحث بالإسم" v-model="branchName" @change="NameFilter"/>
           </div>
-          <select>
-            <option value="" disabled selected>بحق فى المدينة</option>
-          </select>
+          <div class="input_container">
+            <input type="text" placeholder="بحث بالمدينة" v-model="city" @change="CityFilter"/>
+          </div>
+          
           <button>
             فروعنا على الخريطة
             <img src="../../../assets/images/mapLocation.png" alt="" />
@@ -86,7 +87,8 @@ export default {
   data(){
     return{
       branches: [],
-      branchName: ''
+      branchName: '',
+      city: ''
     }
   },
   mounted(){
@@ -110,12 +112,24 @@ export default {
       });
     },
     NameFilter(){
-        Request.getNameFilter('api/branches', this.branchName)
-        .then(res => {
-          console.log(res)
-          this.branches = res.data
-        })
-        // .catch(err => this.setErrorResponse(err))     
+      Request.getFilteredData('api/branches', {
+        name: this.branchName
+      })
+      .then(res => {
+        console.log(res)
+        this.branches = res.data
+      })
+      // .catch(err => this.setErrorResponse(err))     
+    },
+    CityFilter(){
+      Request.getFilteredData('api/branches', {
+        city: this.city
+      })
+      .then(res => {
+        console.log(res)
+        this.branches = res.data
+      })
+      // .catch(err => this.setErrorResponse(err))     
     },
   }
 };

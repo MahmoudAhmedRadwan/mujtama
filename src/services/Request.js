@@ -40,10 +40,8 @@ export default class Request
         });
     }
 
-    static getNameFilter(url, name) {
-        return this.fetch(url, '', {
-            name: name
-        });
+    static getFilteredData(url, filter) {
+        return this.fetch(url, '', filter);
     }
     static getEmailFilter(url, limit, apiParams, name) {
         return this.fetch(url, apiParams, {

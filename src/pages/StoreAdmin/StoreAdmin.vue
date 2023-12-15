@@ -5,7 +5,7 @@
             <div class="logo">
                 <img src="../../assets/images/newLogo.png" alt="">
             </div>
-            <router-link to="/admin/" class="store_manage">إدارة الصفحة الرئيسية</router-link>
+            <router-link to="/admin/main" class="store_manage">إدارة الصفحة الرئيسية</router-link>
 
             <div class="links" @click="linkUrlCheck">
                 <ul>
@@ -80,10 +80,11 @@
                         <img src="../../assets/images/notificationIcon.png" alt="">
                     </div>
                     <div class="name_container">
-                        <h3>John Doe</h3>
-                        <h4>Admin</h4>
+                        <h3>{{profile.name}}</h3>
+                        <h4>{{profile.role}}</h4>
                     </div>
                     <div class="img_container">
+                        <img :src="profile.image" alt="">
                         <div class="active_status"></div>
                     </div>
                     
@@ -98,16 +99,19 @@
     </div>
 </template>
 <script>
+import axios from 'axios';
 export default {
     name: 'StoreAdmin',
     data(){
         return{
             showSideMenu: true,
-            hoverType: ''
+            hoverType: '',
+            profile: {}
         }
     },
     mounted(){
         this.linkUrlCheck();
+        this.getProfile();
     },
     methods: {
         linkUrlCheck(){
@@ -129,7 +133,25 @@ export default {
         },
         toggleMenu(){
             this.showSideMenu = !this.showSideMenu
-        }
+        },
+        getProfile(){
+            axios.get(`https://app.almujtama.com.sa/api/profile`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': '*',
+                    'Authorization': 'Bearer '+ localStorage.getItem('token'),
+                },
+            })
+            .then((response) => {
+                console.log(response.data, 'profiledede')
+                this.profile = response.data.data
+            
+            })
+            .catch((error) => {
+            console.error('Error fetching data from API:', error);
+            });
+        },
     }
 }
 </script>
@@ -246,6 +268,8 @@ export default {
                     position: relative;
                     img{
                         width: 100%;
+                        height: 100%;
+                        border-radius: 50%;
                     }
                     .active_status{
                         width: 16px;

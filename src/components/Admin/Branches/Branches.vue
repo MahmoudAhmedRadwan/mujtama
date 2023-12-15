@@ -15,7 +15,7 @@
                 </select>
             </div>
             <div class="search">
-                <input type="text" placeholder="البحث برقم الفرع">
+                <input type="text" placeholder="البحث بالإسم" v-model="branchName" @change="NameFilter">
             </div>
             <router-link to="/admin/add-branch"> + أضف فرع جديد </router-link>
             
@@ -68,6 +68,7 @@ export default {
             branches: [],
             deleteID: '',
             alertToggle: false,
+            branchName: ''
         }
     },
     mounted(){
@@ -106,6 +107,26 @@ export default {
             .then( () => {
                 this.getBranches();
             })
+        },
+        NameFilter(){
+            Request.getFilteredData('admin/branch', {
+                name: this.branchName
+            })
+            .then(res => {
+                console.log(res)
+                this.branches = res.data.data
+            })
+            // .catch(err => this.setErrorResponse(err))     
+        },
+        CityFilter(){
+            Request.getFilteredData('admin/branch', {
+                city: this.city
+            })
+            .then(res => {
+                console.log(res)
+                this.branches = res.data.data
+            })
+            // .catch(err => this.setErrorResponse(err))     
         },
     }
 }
