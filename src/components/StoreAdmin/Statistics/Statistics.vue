@@ -40,11 +40,11 @@ export default {
 .statistics_container{
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     .statisticsPart{
         background-color: #FFF;
         border-radius: 10px;
         box-shadow: 0 0 10px #DDD;
-        margin-left: 46px;
         margin-bottom: 30px;
         width: 30%;
         padding: 20px 50px;
@@ -52,6 +52,9 @@ export default {
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        @media (max-width: 768px) {
+            width: 100%;
+        }
         .img_container{
             border-radius: 50%;
             width: 80px;
@@ -61,6 +64,10 @@ export default {
             justify-content: center;
             align-items: center;
             margin-bottom: 20px;
+            @media (max-width: 768px) {
+                width: 62px;
+                height: 62px;
+            }
         }
         > div{
             h3{
@@ -68,12 +75,18 @@ export default {
                 margin-bottom: 20px;
                 font-weight: 600;
                 text-align: center;
+                @media (max-width: 991px) {
+                    font-size: 24px;
+                }
             }
             h4{
                 font-weight: 600;
                 font-size: 30px;
                 margin-bottom: 0;
                 text-align: center;
+                @media (max-width: 991px) {
+                    font-size: 24px;
+                }
             }
         }
     }

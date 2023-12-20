@@ -60,6 +60,13 @@
             </li>
             <li>
               <router-link
+                to="/branches"
+                :class="hoverType == 'branches' ? 'activeLink' : ''"
+                ><span>+</span>الفروع
+              </router-link>
+            </li>
+            <li>
+              <router-link
                 to="/investor-relations"
                 :class="hoverType == 'investor-relations' ? 'activeLink' : ''"
               >
@@ -148,12 +155,21 @@
           </li>
           <li>
             <router-link
+              to="/branches"
+              :class="hoverType == 'branches' ? 'activeLink' : ''"
+            >
+              <span>+</span>الفروع
+            </router-link>
+          </li>
+          <li>
+            <router-link
               to="/investor-relations"
               :class="hoverType == 'investor-relations' ? 'activeLink' : ''"
             >
               <span>+</span>علاقات المستثمرين
             </router-link>
           </li>
+          
         </ul>
       </div>
     </header>
@@ -243,6 +259,8 @@ export default {
         this.hoverType = "form";
       } else if (window.location.href.indexOf("investor-relations") > -1) {
         this.hoverType = "investor-relations";
+      } else if (window.location.href.indexOf("branches") > -1) {
+        this.hoverType = "branches";
       } else {
         this.hoverType = "main";
       }

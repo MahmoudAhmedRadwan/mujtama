@@ -17,31 +17,96 @@
             </div>
             
         </header> -->
-
-        <div class="detailsTable">
-            <div class="table_row">
+        <RequestSpinner v-if="loadingRequest == true" />
+        <div class="detailsTable" v-if="loadingRequest == false">
+            <div class="table_header">
                 <div class="block">
-                    <span>#124</span>
+                    رقم الطلب
+                </div>
+                <div class="block">
+                    العنوان
+                </div>
+                <div class="block">
+                    الحالة
+                </div>
+                <div class="block">
+                    معلومات الاتصال
+                </div>
+                <div class="block">
+                    رقم الوصفة
+                </div>
+                <div class="block">
+
+                </div>
+            </div>
+            <div class="table_row" v-for="(prescription, index) in prescriptions" :key="prescription.id">
+                <div class="block">
+                    <span>#{{prescription.prescription_no}}</span>
                 </div>
                 <div class="block">
                     <p>جدة,الروضة شارع الأمير سعود الفيصل</p>
                 </div>
                 <div class="block">
                     <h4>Processing</h4>
-                    <h3>10:45AM اليوم</h3>
+                    <h3>{{prescription.date}}</h3>
                 </div>
                 <div class="block">
-                    <h5>محمد علي</h5>
-                    <h3>05023329887</h3>
+                    <h5>{{prescription.user}}</h5>
+                    <h3>{{prescription.mobile}}</h3>
                 </div>
                 <div class="block">
-                    <h3>#908908989</h3>
+                    <h3>{{prescription.national_id}}</h3>
                 </div>
                 <div class="block">
-                    <div class="print">
-                        <img src="../../../assets/images/download.png" alt="">
+                    <div class="print" @click="() => toggleCollapse(index)">
+                        <img src="../../../assets/images/print.png" alt="">
                         <div class="detailsClick">
-                            تنزيل المرفقات
+                            التفاصيل    
+                        <b-icon icon="chevron-down" aria-hidden="true"></b-icon>
+                        </div>
+                    </div>
+                </div>
+                <div class="details_container" v-if="prescription.isCollapsed == true">
+                    <div class="details_table">
+                        <div class="table_header">
+                            <div class="block">
+                                رقم الهوية
+                            </div>
+                            <div class="block">
+                                شركة التامين
+                            </div>
+                            <div class="block">
+                                رقم الموافقة
+                            </div>
+                            <div class="block">
+                                رقم العضوية
+                            </div>
+                            <div class="block">
+                                تنزيل الوصفة
+                            </div>
+                        </div>
+
+                        <div class="table_row">
+                            <div class="block">
+                                <span>21515</span>
+                            </div>
+                            <div class="block">
+                                <p>يوبا</p>
+                            </div>
+                            <div class="block">
+                                <p>213135</p>
+                            </div>
+                            <div class="block">
+                                <p>#121515</p>
+                            </div>
+                            <div class="block">
+                                <div class="print">
+                                    <img src="../../../assets/images/download.png" alt="">
+                                    <div class="detailsClick">
+                                        تنزيل المرفقات
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -50,74 +115,122 @@
     </div>
 </template>
 <script>
-// import axios from 'axios';
+import axios from 'axios';
 import HeaderBg from '../../global/HeaderBg/HeaderBg';
+import RequestSpinner from '../../global/loadingSpinners/RequestSpinner';
 export default {
     name: 'Prescriptions',
-    components: {HeaderBg},
+    components: {HeaderBg, RequestSpinner},
     data(){
         return{
+            loadingRequest: true,
+            details: false,
             img: require('../../../assets/images/prescriptionLarg.png'),
             links: [
                 {
-                    to:"/store-admin/prescriptions",
+                    to:"/store-admin/prescriptions/mine",
+                    link: 'وصفاتي',
+                },
+                {
+                    to:"/store-admin/prescriptions/cash",
                     link: 'نقدا',
                     active: 'active'
                 },
                 {
-                    to:"/store-admin/prescriptions-insurance",
+                    to:"/store-admin/prescriptions/insurance",
                     link: 'تأمين'
                 }
-            ]
+            ],
+            prescriptions: []
         }
+    },
+    mounted(){
+        this.getPrescriptions();    
+    },
+    methods:{
+        openDetails(){
+            this.details = !this.details
+        },
+        getPrescriptions(){
+            axios.get(`https://app.almujtama.com.sa/admin/prescriptions`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': '*',
+                    'Authorization': 'Bearer '+ localStorage.getItem('token'),
+                },
+                params:{
+                    type: 'cash'
+                }
+            })
+            .then((response) => {
+                console.log(response, 'mmmmmm')
+                this.prescriptions = response.data.data.data.map(developer => {
+                    return {
+                        ...developer,
+                        isCollapsed: false
+                    };
+                });
+                this.loadingRequest = false;
+            
+            })
+            .catch(err => {
+                if(Request.statusIsFaield(err)){
+                    this.$router.push('/')
+                    localStorage.removeItem('token')
+                }
+            });
+        },
+        downloadfile(e) {
+            console.log(e)
+            const url = window.URL.createObjectURL(new Blob([e]));
+            const link = document.createElement("a");
+            link.href = url;
+            link.setAttribute("download", "file.pdf");
+            document.body.appendChild(link);
+            link.click();
+        },
+        toggleCollapse(index) {
+            this.prescriptions[index].isCollapsed = !this.prescriptions[index].isCollapsed;
+        },
     }
 }
 </script>
 <style lang="scss" scoped>
-.detailsTable{
+.table_header{
+    background-color: #FFF;
+    display: flex;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    .block{
+        width: calc(100% / 6);
+        text-align: center;
+        padding: 15px 0;
+        font-weight: 600;
+    }
+}
+.table_row{
+    flex-wrap: wrap;
+}
+.block{
+    width: calc(100% / 6);
+}
+.details_container{
+    width: 100%;
+    padding: 10px 40px;
+    .details_table{
+        .table_header{
+            .block{
+                color: #1D4D90;
+                font-weight: 900;
+                font-family: flatMedium;
+                width: calc(100% / 5) !important;        
+            }
+        }
+    }
     .table_row{
-        display: flex;
-        justify-content: space-between;
-        border-radius: 10px;
-        background-color: #FFF;
-        width: 100%;
-        margin-bottom: 30px;
         .block{
-            padding: 30px 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            span{
-                font-size: 16px;
-                color: #2E4765;
-            }
-            p{
-                font-size: 16px;
-                font-weight: 600;
-            }
-            h4,
-            h6{
-                font-size: 16px;
-                font-weight: 600;
-            }
-            h3{
-                font-size: 16px;
-                color: #2E4765;
-            }
-            .des{
-                font-size: 18px;
-                font-weight: 800;
-            }
-            .print{
-                img{
-                    display: block;
-                    margin: auto;
-                }
-                .detailsClick{
-                    cursor: pointer;
-                }
-            }
+            width: calc(100% / 5) !important;
         }
     }
 }

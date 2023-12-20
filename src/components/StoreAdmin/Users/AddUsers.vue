@@ -207,10 +207,13 @@ export default {
     justify-content: space-between;
     flex-wrap: wrap;
     .form_container{
-        width: 70%;
+        width: 90%;
         background-color: #FFF;
         border-radius: 10px;
         padding: 30px 20px;
+        @media (max-width: 1400px) {
+            width: 100%;
+        }
         .upload_img{
             display: flex;
             align-items: center;
@@ -251,25 +254,47 @@ export default {
             justify-content: space-between;
             align-items: center;
             margin-bottom: 16px;
+            @media (max-width: 768px) {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+            }
             label{
                 font-size: 14px;
                 white-space: nowrap;
                 width: 10%;
+                @media (max-width: 768px) {
+                    width: 100%;
+                }
             }
             input,
-            select{
+            select,
+            .b-form-datepicker{
                 background-color: #FFF;
                 border-radius: 10px;
                 padding: 10px;
                 font-size: 14px;
                 border: 1px solid #C5C5C5;
-                width: 90%;
+                width: 80%;
+                @media (max-width: 1200px) {
+                    width: 70%;
+                }
+                @media (max-width: 768px) {
+                    width: 100%;
+                }
                 &::placeholder{
                     font-size: 14px;
                     color: #C5C5C5;
                 }
             }
+            .b-form-datepicker{
+                padding: 5px;
+            }
         }
+    }
+    .saveBtn{
+        margin: auto;
+        display: block;
     }
 }
 .radio{

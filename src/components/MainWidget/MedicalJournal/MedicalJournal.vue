@@ -33,7 +33,7 @@
             <h3>الاقسام</h3>
             <div class="line"></div>
             <div class="linRow" v-for="articlesSection in articlesSections" :key="articlesSection.id">
-              <h4>{{articlesSection.translation[0].name}}</h4>
+              <h4 @click="() => getCategoryFilter(articlesSection.id)">{{articlesSection.translation[0].name}}</h4>
               <span>{{articlesSection.code}}</span>
             </div>
             
@@ -43,7 +43,7 @@
               <h3>الأقسام الفرعية</h3>
             </div>
             <div class="linRow" v-for="articlesSubSection in articlesSubSections" :key="articlesSubSection.id">
-              <h4> {{articlesSubSection.translation[0].name}} </h4>
+              <h4 @click="() => getSubCategoryFilter(articlesSubSection.id)"> {{articlesSubSection.translation[0].name}} </h4>
               <!-- <span>10</span> -->
             </div>
 
@@ -76,13 +76,16 @@
 </template>
 <script>
 import axios from 'axios';
+import Request from '../../../services/Request';
 export default {
   name: "MedicalJournal",
   data(){
     return{
       articles: [],
       articlesSections: [],
-      articlesSubSections: []
+      articlesSubSections: [],
+      category_id: '',
+      subcategory_id: ''
     }
   },
   mounted(){
@@ -91,6 +94,24 @@ export default {
     this.getArticlesSubSections();
   },
   methods:{
+    getCategoryFilter(id){
+      Request.getFilteredData('api/article', {
+        category_id: id,
+      })
+      .then(res => {
+        console.log(res)
+        this.articles = res.data.data
+      })
+    },
+    getSubCategoryFilter(id){
+      Request.getFilteredData('api/article', {
+        subcategory_id: id,
+      })
+      .then(res => {
+        console.log(res)
+        this.articles = res.data.data
+      })
+    },
     getArticles() {
       axios.get('https://app.almujtama.com.sa/api/article', {
           headers: {
@@ -241,6 +262,7 @@ export default {
       h4 {
         font-size: 18px;
         color: #78a28f;
+        cursor: pointer;
       }
       span {
         font-size: 18px;

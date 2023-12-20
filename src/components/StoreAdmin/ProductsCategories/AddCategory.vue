@@ -160,22 +160,36 @@ export default {
     margin: auto;
     padding: 100px 20px;
     margin-top: 150px;
+    @media (max-width: 576px) {
+        width: 100%;
+    }
     .input_container{
         display: flex;
         align-items: center;
         justify-content: space-between;
         margin-bottom: 20px;
+        @media (max-width: 576px) {
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
         label{
             font-size: 16px;
             color: #656565;
             margin-left: 20px;
             width: 37%;
+            @media (max-width: 576px) {
+                width: 100%;
+            }
         }
         input{
             border: 10px;
             padding: 5px 10px;
             border: 1px solid #C5C5C5;
             width: 80%;
+            @media (max-width: 576px) {
+                width: 100%;
+            }
         }
     }
     button{

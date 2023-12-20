@@ -67,51 +67,5 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.detailsTable{
-    .table_row{
-        display: flex;
-        justify-content: space-between;
-        border-radius: 10px;
-        background-color: #FFF;
-        width: 100%;
-        margin-bottom: 30px;
-        .block{
-            padding: 30px 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            span{
-                font-size: 16px;
-                color: #2E4765;
-            }
-            p{
-                font-size: 16px;
-                font-weight: 600;
-            }
-            h4,
-            h6{
-                font-size: 16px;
-                font-weight: 600;
-            }
-            h3{
-                font-size: 16px;
-                color: #2E4765;
-            }
-            .des{
-                font-size: 18px;
-                font-weight: 800;
-            }
-            .print{
-                img{
-                    display: block;
-                    margin: auto;
-                }
-                .detailsClick{
-                    cursor: pointer;
-                }
-            }
-        }
-    }
-}
+
 </style>

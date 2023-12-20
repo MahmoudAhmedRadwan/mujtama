@@ -1,7 +1,7 @@
 <template>
     <div>
         <HeaderBg :img="img" title="إدارة الفروع" />
-        <div class="content_container">
+        <div class="largForm">
             <div class="form_container">
                 <form action="" @submit.prevent="addBranch">
                     <div class="upload_img">
@@ -286,92 +286,5 @@ header{
         font-weight: 800;
     }
 }
-.content_container{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    .form_container{
-        width: 70%;
-        background-color: #FFF;
-        border-radius: 10px;
-        padding: 30px 20px;
-        .upload_img{
-            display: flex;
-            align-items: center;
-            margin-bottom: 40px;
-            span{
-                font-size: 16px;
-                color: #656565;
-                margin-left: 50px;
-            }
-            .img_container{
-                width: 80px;
-                height: 80px;
-                border-radius: 50%;
-                background-color: #FAFAFA;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                position: relative;
-                img{
-                    width: 100%;
-                }
-                .photo_upload{
-                    
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    position: absolute;
-                    bottom: 0;
-                    right: 0;
-                    img{
-                        width: 70%;
-                    }
-                }
-            }
-        }
-        .input_container{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-            label{
-                font-size: 14px;
-                white-space: nowrap;
-                width: 10%;
-            }
-            input,
-            select{
-                background-color: #FFF;
-                border-radius: 10px;
-                padding: 10px;
-                font-size: 14px;
-                border: 1px solid #C5C5C5;
-                width: 90%;
-                &::placeholder{
-                    font-size: 14px;
-                    color: #C5C5C5;
-                }
-            }
-        }
-        .checkBox_container{
-            h3{
-                font-size: 16px;
-                color: #656565;
-            }
-            .checkLine{
-                margin-bottom: 5px;
-                display: flex;
-                align-items: center;
-                margin-right: 20px;
-                label{
-                    font-size: 16px;
-                    color: #656565;
-                    white-space: nowrap;
-                    margin-right: 10px;
-                }
-            }
-        }
-    }
-}
+
 </style>

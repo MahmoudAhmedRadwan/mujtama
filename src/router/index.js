@@ -29,12 +29,15 @@ import ArticlesSubSections from '../components/Admin/ArticlesSections/ArticlesSu
 import AddArticlesSubSections from '../components/Admin/ArticlesSections/AddArticlesSubSections'
 import Articles from '../components/Admin/Articles/Articles'
 import AddArticles from '../components/Admin/Articles/AddArticles'
-import JobsForSaudis from '../components/Admin/JobsForSaudis/JobsForSaudis'
 import KeyPerformanceIndicators from '../components/Admin/KeyPerformanceIndicators/KeyPerformanceIndicators'
 import ResultsAndReports from '../components/Admin/ResultsAndReports/ResultsAndReports'
 import AddResultsAndReports from '../components/Admin/ResultsAndReports/AddResultsAndReports'
 import EmploymentApplications from '../components/Admin/EmploymentApplications/EmploymentApplications'
+import JobDetails from '../components/Admin/EmploymentApplications/JobDetails'
 import Main from '../components/Admin/Main/Main'
+import IndicatorPerformance from '../components/Admin/IndicatorPerformance/IndicatorPerformance'
+import EditIndicatorPerformance from '../components/Admin/IndicatorPerformance/EditIndicatorPerformance'
+import keyMetrics from '../components/Admin/IndicatorPerformance/keyMetrics'
 
 // Store Admin
 import StoreAdmin from '../pages/StoreAdmin/StoreAdmin';
@@ -52,6 +55,7 @@ import AddCity from '../components/StoreAdmin/Cities/AddCity'
 import Requests from '../components/StoreAdmin/Requests/Requests'
 import Prescriptions from '../components/StoreAdmin/Prescriptions/Prescriptions'
 import PrescriptionsInsurance from '../components/StoreAdmin/Prescriptions/Prescriptions-insurance'
+import MyPrescriptions from '../components/StoreAdmin/Prescriptions/MyPrescriptions'
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
@@ -183,11 +187,6 @@ const routes = [
         component: AddArticles
       },
       {
-        path: "/admin/jobs-for-saudis",
-        name: "JobsForSaudis",
-        component: JobsForSaudis
-      },
-      {
         path: "/admin/key-performance-indicators",
         name: "KeyPerformanceIndicators",
         component: KeyPerformanceIndicators
@@ -208,9 +207,29 @@ const routes = [
         component: EmploymentApplications
       },
       {
+        path: "/admin/employment-applications/job-details/:id",
+        name: "JobDetails",
+        component: JobDetails
+      },
+      {
         path: "/admin/main",
         name: "Main",
         component: Main
+      },
+      {
+        path: "/admin/indicator-performance",
+        name: "IndicatorPerformance",
+        component: IndicatorPerformance
+      },
+      {
+        path: "/admin/key-metrics",
+        name: "keyMetrics",
+        component: keyMetrics
+      },
+      {
+        path: "/admin/indicator-performance/edit/:id",
+        name: "EditIndicatorPerformance",
+        component: EditIndicatorPerformance
       },
     ]
   },
@@ -301,12 +320,17 @@ const routes = [
         component: Requests
       },
       {
-        path: "/store-admin/prescriptions",
+        path: "/store-admin/prescriptions/mine",
+        name: "MyPrescriptions",
+        component: MyPrescriptions
+      },
+      {
+        path: "/store-admin/prescriptions/cash",
         name: "Prescriptions",
         component: Prescriptions
       },
       {
-        path: "/store-admin/prescriptions-insurance",
+        path: "/store-admin/prescriptions/insurance",
         name: "Prescriptions-insurance",
         component: PrescriptionsInsurance
       },

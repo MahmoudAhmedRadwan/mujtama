@@ -14,7 +14,8 @@
             </div>
             <router-link :to="'/admin/articles-sub-sections/'+this.$route.params.id+'/add-articles-sub-sections'"> أضف قسم جديد </router-link>
         </header>
-        <div class="main_table">
+        <RequestSpinner v-if="loadingRequest == true" />
+        <div class="main_table" v-if="loadingRequest == false">
             <table width="100%">
                 <thead>
                     <tr>
@@ -46,12 +47,14 @@
 import HeaderBg from '../../global/HeaderBg/HeaderBg';
 import Alert from '../../global/Alert/Alert';
 import Request from '../../../services/Request';
+import RequestSpinner from '../../global/loadingSpinners/RequestSpinner';
 import axios from 'axios';
 export default {
     name: 'ArticlesSubSections',
-    components: {HeaderBg, Alert},
+    components: {HeaderBg, Alert, RequestSpinner},
     data(){
         return{
+            loadingRequest: true,
             articlesSubSections: [],
             deleteID: '',
             alertToggle: false,
@@ -75,12 +78,15 @@ export default {
                 }
             })
             .then((response) => {
-                console.log(response, 'mmmmmm')
                 this.articlesSubSections = response.data.data
-            
+                this.loadingRequest = false;
             })
-            .catch((error) => {
-            console.error('Error fetching data from API:', error);
+            .catch(err => {
+                if(Request.statusIsFaield(err)){
+                    this.$router.push('/')
+                    localStorage.removeItem('token')
+                    localStorage.removeItem('user')
+                }
             });
         },
         editArticleSubCategory(id){

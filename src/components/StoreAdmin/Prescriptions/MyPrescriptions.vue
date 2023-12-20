@@ -118,9 +118,9 @@
 import axios from 'axios';
 import HeaderBg from '../../global/HeaderBg/HeaderBg';
 import RequestSpinner from '../../global/loadingSpinners/RequestSpinner';
-// import Request from '../../../services/Request';
+import Request from '../../../services/Request';
 export default {
-    name: 'Prescriptions-insurance',
+    name: 'MyPrescriptions',
     components: {HeaderBg, RequestSpinner},
     data(){
         return{
@@ -131,6 +131,7 @@ export default {
                 {
                     to:"/store-admin/prescriptions/mine",
                     link: 'وصفاتي',
+                    active: 'active'
                 },
                 {
                     to:"/store-admin/prescriptions/cash",
@@ -138,8 +139,7 @@ export default {
                 },
                 {
                     to:"/store-admin/prescriptions/insurance",
-                    link: 'تأمين',
-                    active: 'active'
+                    link: 'تأمين'
                 }
             ],
             prescriptions: []
@@ -161,20 +161,26 @@ export default {
                     'Authorization': 'Bearer '+ localStorage.getItem('token'),
                 },
                 params:{
-                    type: 'insurance'
+                    type: 'mine'
                 }
             })
             .then((response) => {
-                console.log(response, 'mmmmmm')
-                // this.prescriptions = response.data.data.data
-                this.loadingRequest = false;
+                console.log(response.data.data.data, 'mmmmmm')
                 this.prescriptions = response.data.data.data.map(developer => {
                     return {
                         ...developer,
                         isCollapsed: false
                     };
                 });
+                this.loadingRequest = false;
+            
             })
+            .catch(err => {
+                if(Request.statusIsFaield(err)){
+                    this.$router.push('/')
+                    localStorage.removeItem('token')
+                }
+            });
         },
         toggleCollapse(index) {
             this.prescriptions[index].isCollapsed = !this.prescriptions[index].isCollapsed;

@@ -1,7 +1,7 @@
 <template>
     <div>
         <HeaderBg title="المقالات" />
-        <div class="content_container">
+        <div class="largForm">
             <div class="form_container">
                 <form action="" @submit.prevent="addArticle">
                     <div class="upload_img">
@@ -244,105 +244,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-header{
-    margin: 30px 0 42px 0;
-    h2{
-        font-size: 28px;
-        color: #1E1E1E;
-        font-family: flatMedium;
-        font-weight: 800;
-    }
-}
-.content_container{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    .form_container{
-        width: 70%;
-        background-color: #FFF;
-        border-radius: 10px;
-        padding: 30px 20px;
-        @media (max-width:1200px) {
-            width: 100%;
-        }
-        .upload_img{
-            display: flex;
-            align-items: center;
-            margin-bottom: 40px;
-            span{
-                font-size: 16px;
-                color: #656565;
-                margin-left: 50px;
-            }
-            .img_container{
-                width: 80px;
-                height: 80px;
-                border-radius: 50%;
-                background-color: #FAFAFA;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                position: relative;
-                img{
-                    width: 100%;
-                }
-                .photo_upload{
-                    
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    position: absolute;
-                    bottom: 0;
-                    right: 0;
-                    img{
-                        width: 70%;
-                    }
-                }
-            }
-        }
-        .input_container{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-            @media (max-width: 991px) {
-                flex-direction: column;
-            }
-            label{
-                font-size: 14px;
-                white-space: nowrap;
-                margin-left: 20px;
-                @media (max-width: 991px) {
-                    width: 100%;
-                    text-align: center;
-                    margin: 0 0 20px 0;
-                }
-            }
-            input,
-            select,
-            textarea{
-                background-color: #FFF;
-                border-radius: 10px;
-                padding: 10px;
-                font-size: 14px;
-                border: 1px solid #C5C5C5;
-                width: 90%;
-                @media (max-width: 991px) {
-                    width: 100%;
-                }
-                &::placeholder{
-                    font-size: 14px;
-                    color: #C5C5C5;
-                }
-            }
-            textarea{
-                width: 80%;
-                @media (max-width: 991px) {
-                    width: 100%;
-                }
-            }
-        }
-        .option_show{
+.option_show{
             margin: 20px 0;
             p{
                 font-size: 16px;
@@ -368,7 +270,4 @@ header{
                 }
             }
         }
-    }
-}
-
 </style>

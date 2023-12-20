@@ -151,30 +151,29 @@
       <div class="line"></div>
       <div class="numbers container">
         <div class="number_container">
-          <div class="number_round">+160</div>
-          <router-link to="/branches">عدد الفروع</router-link>
-
+          <div class="number_round">+{{indicatorPerformance.branches_number}}</div>
+          <span>عدد الفروع</span>
           <p>160 فرعا منتشرا على نطاق واسع</p>
-          <p>125 فرعا في خدمتكم</p>
+          <p>125 فرعا فى خدمتكم</p>
           <p>35 فرعا تحت التأسيس</p>
         </div>
         <div class="number_container">
-          <div class="number_round"> 40 ر.س</div>
-          <span>سعر السهم</span>
-          <p>يتم تحديث سعر السهم بشكل دوري حسب سعر السهم في تداول</p>
+          <div class="number_round"> {{indicatorPerformance.reference_stock_price}} ر.س</div>
+          <span>سعر السهم الاسترشادي</span>
+          <p>سعر السهم الاسترشادي عند الادراج</p>
         </div>
         <div class="number_container">
-          <div class="number_round">21k+</div>
+          <div class="number_round">{{indicatorPerformance.square_meter}}k+</div>
           <span>متر مربع</span>
           <p>لتقديم افضل جودة في الامداد و التموين</p>
         </div>
         <div class="number_container">
-          <div class="number_round">800K+</div>
+          <div class="number_round">{{indicatorPerformance.number_of_premium_customers}}K+</div>
           <span>عدد عملاء التميز</span>
           <p>يعد برنامج عميل التميز من أفضل برامج جمع النقاط في المملكة</p>
         </div>
         <div class="number_container">
-          <div class="number_round">25K+</div>
+          <div class="number_round">{{indicatorPerformance.products}}K+</div>
           <span>صنفاً بين يديكم</span>
         </div>
       </div>
@@ -224,11 +223,13 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 export default {
   name: "Home",
   data() {
     return {
       pageNumber: 0,
+      indicatorPerformance: {},
       pages: [
         {
           description:
@@ -266,7 +267,9 @@ export default {
       ],
     };
   },
-  mounted() {},
+  mounted() {
+    this.getIndicatorPerformance();
+  },
   methods: {
     changePageNumber(type) {
       if (type == "left") {
@@ -282,6 +285,20 @@ export default {
           this.pageNumber = 4;
         }
       }
+    },
+    getIndicatorPerformance(){
+      axios.create({
+          baseURL: 'https://app.almujtama.com.sa/api',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer '+ localStorage.getItem('token'),
+              // localization: store.state.localization
+          }
+      })
+      .get('/indicatorPerformance')
+      .then(res => {
+        this.indicatorPerformance = res.data.data
+      });
     },
   },
 };

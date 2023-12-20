@@ -20,9 +20,10 @@
             <router-link to="/admin/add-branch"> + أضف فرع جديد </router-link>
             
         </header>
-        
 
-        <div class="main_table">
+        <RequestSpinner v-if="loadingRequest == true" />
+
+        <div class="main_table" v-if="loadingRequest == false">
             <table width="100%">
                 <thead>
                     <tr>
@@ -59,16 +60,18 @@ import axios from 'axios';
 import HeaderBg from '../../global/HeaderBg/HeaderBg';
 import Alert from '../../global/Alert/Alert';
 import Request from '../../../services/Request';
+import RequestSpinner from '../../global/loadingSpinners/RequestSpinner';
 export default {
     name:'Branches',
-    components: {HeaderBg, Alert},
+    components: {HeaderBg, Alert, RequestSpinner},
     data(){
         return{
+            loadingRequest: true,
             img: require('../../../assets/images/branches-main-logo.png'),
             branches: [],
             deleteID: '',
             alertToggle: false,
-            branchName: ''
+            branchName: '',
         }
     },
     mounted(){
@@ -78,20 +81,23 @@ export default {
     },
     methods:{
         getBranches() {
-        axios.get('https://app.almujtama.com.sa/admin/branch', {
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': '*',
-                'Authorization': 'Bearer '+ localStorage.getItem('token'),
-            },
-        })
-            .then((response) => {
-            console.log(response)
-            this.branches = response.data.data
+            axios.get('https://app.almujtama.com.sa/admin/branch', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': '*',
+                    'Authorization': 'Bearer '+ localStorage.getItem('token'),
+                },
             })
-            .catch((error) => {
-            console.error('Error fetching data from API:', error);
+            .then((response) => {
+                this.branches = response.data.data
+                this.loadingRequest = false;
+            })
+            .catch((err) => {
+                if(Request.statusIsFaield(err)){
+                    this.$router.push('/')
+                    localStorage.removeItem('token')
+                }
             });
         },
         editBranch(id){

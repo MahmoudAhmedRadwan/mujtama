@@ -170,7 +170,6 @@
                 <select @change="(e) => downloadcertification(e.target.value)">
                   <option value="" selected disabled>تنزيل الملفات</option>
                   <option value="شهادة توافق مع الشريعة">شهادة توافق مع الشريعة</option>
-                  <option value="النظام الاساس">النظام الاساس</option>
                 </select>
               </div>
             </div>
@@ -226,7 +225,7 @@
           </div>
         </div>
       </div>
-      <a target="_blank" href="https://www.saudiexchange.sa/wps/portal/saudiexchange/newsandreports/issuer-news/issuer-announcements/issuer-announcements-details/!ut/p/z1/jZJdb4IwFIZ_ixdcLudQ-dxdRawyGDLGlN4sxRnHApQYpvHfr27JMnS69a7p85xz3rbAYQm8EbtyI7pSNqJS-5xbzya1kEwdjGPq2phMghGbhXToJwYs-oATMQuTe5rExDYRUwK8dzwee8q_c6YBxgR1PPUxnZsKmEfDEB-QodX3L_XHC4vi_">تفاصيل الاعلان</a>
+      <a target="_blank" href="https://www.saudiexchange.sa/wps/portal/saudiexchange/newsandreports/issuer-news/issuer-announcements/issuer-announcements-details/!ut/p/z1/jZFNU8IwEIZ_CweOsku_6y0IBBAstVYgFybFWjqTNkwpdPj3BpxxLF-aW7LPs8m7AQZzYDnfpwkvU5lzofYLZi1NYqE2cNDziGuj3x916HBM9J5vwKwOOBNqof9CfE-zTcRAA1Yrd7tPyn92BiP0NGzjuY_B1FTAdKKP8RUpWnX_1v14YxH8n_8D0L7WU4Db8bs92kZq_-2zs4iXE6gDVyKegHsZ6h0uHzkClggZfX8YySPdSYAV8WdcxEVrV6jjdVluto9NbGJVVa1EykTErZXMmnhNWcttCfM6eeSOXU5NSv7Bq51QNlOlDc8PwSGLpLrINV0NAl7AQk3W_hX7_clACz2DTsZOmxomzPZpXEGYyyJTDw-OKYVccRHDQulvKvNdfZOFYTjHdPjAooMu9uskWw5Jo_EFSH7kGA!!/dz/d5/L0lDU0lLVUtVSkNncFJDZ3BSQ2lDbEVLSUtVU0ovWUJVRUFBQUlJTUlFQUNJQ0tJS0lHT0JPQkdPSkZKRkdKTk5ETkRMSUVFTkhIUEhQTEhBb0VLSW9FTUEhLzRKQ2lqc1l1T0lRU2t5RkpOUlRrS2FhaG10MnN0bk5Uelc3V1d3V29wVlVZb0EhIS9aN181QTYwMkg4ME8wSFRDMDYwU0c2VVQ4MURRNi9aNl81QTYwMkg4ME8wSFRDMDYwU0c2VVQ4MURJMy92aWV3L25vcm1hbC9BTk5PVU5DRU1FTlRfTlVNQkVSLzc3MjQwL2NvbXBhbnlTeW1ib2wvOTU5Mi9odHRwOiUwJTB0YWRhd3VsJTAvYW5uQ2F0LzEvYW5JZC9hcg!!/">تفاصيل الاعلان</a>
     </section>
 
     <section class="numbers_of_year">
@@ -235,29 +234,29 @@
       <div class="line"></div>
       <div class="numbers container">
         <div class="number_container">
-          <div class="number_round">+160</div>
+          <div class="number_round">+{{indicatorPerformance.branches_number}}</div>
           <span>عدد الفروع</span>
           <p>160 فرعا منتشرا على نطاق واسع</p>
           <p>125 فرعا فى خدمتكم</p>
           <p>35 فرعا تحت التأسيس</p>
         </div>
         <div class="number_container">
-          <div class="number_round"> 40 ر.س</div>
+          <div class="number_round"> {{indicatorPerformance.reference_stock_price}} ر.س</div>
           <span>سعر السهم الاسترشادي</span>
           <p>سعر السهم الاسترشادي عند الادراج</p>
         </div>
         <div class="number_container">
-          <div class="number_round">21k+</div>
+          <div class="number_round">{{indicatorPerformance.square_meter}}k+</div>
           <span>متر مربع</span>
           <p>لتقديم افضل جودة في الامداد و التموين</p>
         </div>
         <div class="number_container">
-          <div class="number_round">800K+</div>
+          <div class="number_round">{{indicatorPerformance.number_of_premium_customers}}K+</div>
           <span>عدد عملاء التميز</span>
           <p>يعد برنامج عميل التميز من أفضل برامج جمع النقاط في المملكة</p>
         </div>
         <div class="number_container">
-          <div class="number_round">25K+</div>
+          <div class="number_round">{{indicatorPerformance.products}}K+</div>
           <span>صنفاً بين يديكم</span>
         </div>
       </div>
@@ -269,23 +268,23 @@
 
       <div class="numbers container">
         <div class="number_container">
-          <div class="number_round">204,133,493</div>
+          <div class="number_round">{{indicatorPerformance.income}}</div>
           <span>الإيرادات</span>
         </div>
         <div class="number_container">
-          <div class="number_round"> 11,332,480 </div>
+          <div class="number_round"> {{indicatorPerformance.net_income}} </div>
           <span> صافى الربح </span>
         </div>
         <div class="number_container">
-          <div class="number_round">32.6%</div>
+          <div class="number_round">{{indicatorPerformance.gross_profit_margin}} %</div>
           <span>هامش مجمل الربح</span>
         </div>
         <div class="number_container">
-          <div class="number_round">8.74%</div>
+          <div class="number_round">{{indicatorPerformance.return_on_equity}}%</div>
           <span>العائد على حقوق المساهمين</span>
         </div>
         <div class="number_container">
-          <div class="number_round">5.5%</div>
+          <div class="number_round">{{indicatorPerformance.net_income_margin}}%</div>
           <span>هامش صافى الربح</span>
         </div>
       </div>
@@ -485,6 +484,7 @@ export default {
     return{
       toggleQuestion: '0',
       pageNumber: 0,
+      indicatorPerformance: {},
       pages: [
         {
           description:
@@ -521,6 +521,9 @@ export default {
         },
       ],
     }
+  },
+  mounted(){
+    this.getIndicatorPerformance();
   },
   methods: {
     toggleClick(index){
@@ -650,6 +653,23 @@ export default {
           this.pageNumber = 4;
         }
       }
+    },
+    getIndicatorPerformance(){
+      axios.create({
+          baseURL: 'https://app.almujtama.com.sa/api',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer '+ localStorage.getItem('token'),
+              // localization: store.state.localization
+          },
+          params:{
+                    category: 'kpis'
+                }
+      })
+      .get('/indicatorPerformance')
+      .then(res => {
+        this.indicatorPerformance = res.data.data
+      });
     },
   },
 };

@@ -2,41 +2,31 @@
 <template>
     <!-- EmploymentApplications.vue -->
     <div>
-        <HeaderBg title="طلبات التوظيف" />
-        <header class="admin_content_header">
-            <h2></h2>
-            <div class="search">
-                <input type="text" placeholder="البحث برقم الفرع">
-            </div>
-            <div></div>
-            
-        </header>
-        <div class="filter">
-            <select>
-                <option value="" selected disabled>المدينة</option>
-            </select>
-        </div>
+        <HeaderBg title="الموشرات الرئيسية" />
 
         <RequestSpinner v-if="loadingRequest == true" />
         <div class="main_table" v-if="loadingRequest == false">
             <table width="100%">
                 <thead>
                     <tr>
-                        <th> رقم الفرع</th>
-                        <th> أسم الفرع</th>
-                        <th> الهاتف</th>
-                        <th> الوظيفة</th>
+                        <th> الاسم</th>
+                        <th> الرقم</th>
+                        <th> الوصف</th>
                         <th> </th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="application in applications" :key="application.id">
-                        <td>{{application.id}}</td>
-                        <td>{{application.name}}</td>
-                        <td>{{application.phone_number}}</td>
-                        <td>{{application.job}}</td>
-                        <td class="link_to">
-                            <router-link :to="'/admin/employment-applications/job-details/'+application.id">مشاهدة <img src="../../../assets/images/edit-text.svg" alt=""></router-link>
+                    <tr v-for="indicatorPerformance in indicatorPerformances" :key="indicatorPerformance.id">
+                        <td>{{indicatorPerformance.id}}</td>
+                        <td>{{indicatorPerformance.name}}</td>
+                        <td>{{indicatorPerformance.phone_number}}</td>
+                        <td>
+                            <div class="options_container">
+                                <img src="../../../assets/images/selectIcon.png" alt="">
+                                <div class="hidden_options">
+                                    <button @click="() => editPerformance(indicatorPerformance.id)"> <img src="../../../assets/images/edit-text.png" alt=""> تعديل  </button>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
@@ -50,30 +40,36 @@ import HeaderBg from '../../global/HeaderBg/HeaderBg'
 import Request from '../../../services/Request';
 import RequestSpinner from '../../global/loadingSpinners/RequestSpinner';
 export default {
-    name:'EmploymentApplications',
+    name:'IndicatorPerformance',
     components: {HeaderBg, RequestSpinner},
     data(){
         return{
             loadingRequest: true,
-            applications: []
+            indicatorPerformances: []
         }
     },
     mounted(){
-        this.getApplications();
+        this.getPerformance();
     },
     methods:{
-        getApplications() {
-            axios.get('https://app.almujtama.com.sa/admin/employmentRequests', {
+        editPerformance(id){
+            this.$router.push(`/admin/indicator-performance/edit/${id}`)
+        },
+        getPerformance() {
+            axios.get('https://app.almujtama.com.sa/admin/indicatorPerformance', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*',
                     'Access-Control-Allow-Headers': '*',
                     'Authorization': 'Bearer '+ localStorage.getItem('token'),
                 },
+                params:{
+                    category: 'kpis'
+                }
             })
             .then((response) => {
                 console.log(response.data.data)
-                this.applications = response.data.data
+                this.indicatorPerformances = response.data.data
                 this.loadingRequest = false;
             })
             .catch((err) => {

@@ -2,6 +2,9 @@
 <!-- Admin.vue -->
     <div class="admin_page">
         <div class="side_menu" :class="showSideMenu == true ? 'menuShow' : 'menuHide'">
+            <div class="toggleMenu" @click="toggleMenu">
+                <b-icon icon="caret-right-fill" aria-hidden="true"></b-icon>
+            </div>
             <div class="logo">
                 <img src="../../assets/images/newLogo.png" alt="">
             </div>
@@ -22,16 +25,12 @@
                         </router-link>
                     </li>
                     <li>
-                        <router-link to="/store-admin/prescriptions" :class="hoverType == 'prescriptions' ? 'aciveLink' : ''">
+                        <router-link to="/store-admin/prescriptions/mine" :class="hoverType == 'prescriptions' ? 'aciveLink' : ''">
                             <div class="img_container"><img src="../../assets/images/prescription.png" alt=""></div> 
                              الوصفات 
                         </router-link>
                     </li>
                     <li>
-                        <router-link to="" :class="hoverType == 'branches' ? 'aciveLink' : ''">
-                             <img src="../../assets/images/logo-rgb-2048x1427.png" alt="">
-                        </router-link>
-                    </li>
                     <li>
                         <router-link to="" :class="hoverType == 'test' ? 'aciveLink' : ''">
                             <div class="img_container"><img src="../../assets/images/products.png" alt=""></div> 
@@ -56,12 +55,12 @@
                             المستخدمين
                         </router-link>
                     </li>
-                    <li>
+                    <!-- <li>
                         <router-link to="/store-admin/cities" :class="hoverType == 'cities' ? 'aciveLink' : ''">
                             <div class="img_container"><img src="../../assets/images/locationBlack.png" alt=""></div> 
                             مدن التوصيل
                         </router-link>
-                    </li>
+                    </li> -->
                  
                 </ul>
                 
@@ -166,6 +165,7 @@ export default {
     width: 0;
     @media (max-width: 991px) {
         width: 225px;
+        right: 0 !important;
     }
 }
 .contentShow{
@@ -177,17 +177,42 @@ export default {
 .contenthide{
     width: 100%;
     @media (max-width: 991px) {
-        width: calc(100% - 225px);
+        width: 100%;
     }
 }
 .admin_page{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    @media (max-width: 991px) {
+        position: relative;
+    }
     .side_menu{
         transition: .3s ease-in-out;
         background-color: #FFF;
         min-height: 100vh;
+        @media (max-width: 991px) {
+            position: absolute;
+            top: 0;
+            right: -277px;
+            bottom: 0;
+            background-color: #FFFF;
+            z-index: 99;
+            width: 225px;
+        }
+        .toggleMenu{
+            display: flex;
+            justify-content: flex-end;
+            padding: 20px 0 0 0;
+            display: none;
+            @media (max-width: 991px) {
+                display: flex;
+            }
+            svg{
+                font-size: 35px;
+                color: #78A28F; 
+            }
+        }
         .logo{
             width: 186px;
             margin: 10px auto 40px auto;

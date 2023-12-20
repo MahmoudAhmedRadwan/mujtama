@@ -27,10 +27,16 @@
       <div class="container">
         <div class="inputs">
           <div class="input_container">
-            <input type="text" placeholder=" بحث بالإسم" v-model="branchName" @change="NameFilter"/>
+            <form @submit.prevent="NameFilter">
+              <input type="text" placeholder=" بحث بالإسم" v-model="branchName"/>
+              <button class="saveBtn">بحث</button>
+            </form>
           </div>
           <div class="input_container">
-            <input type="text" placeholder="بحث بالمدينة" v-model="city" @change="CityFilter"/>
+            <form @submit.prevent="CityFilter">
+              <input type="text" placeholder="بحث بالمدينة" v-model="city"/>
+              <button class="saveBtn">بحث</button>
+            </form>
           </div>
           
           <button>
@@ -195,10 +201,26 @@ export default {
   .inputs {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     flex-wrap: wrap;
+    @media (max-width: 991px) {
+      flex-direction: column;
+      justify-content: center;
+    }
     .input_container {
       position: relative;
       margin-left: 30px;
+      @media (max-width: 991px) {
+        margin-left: 0;
+      }
+      form{
+        display: flex;
+        button{
+          width: 70px;
+          margin: 0 30px 10px 0;
+          
+        }
+      }
     }
     select,
     input {
@@ -207,8 +229,11 @@ export default {
       width: 271px;
       padding: 10px;
       margin-bottom: 10px;
+      @media (max-width: 1199px) {
+        width: 177px;
+      }
     }
-    button {
+    > button {
       background-color: #d8d253;
       width: 243px;
       font-weight: 600;
@@ -221,6 +246,10 @@ export default {
       justify-content: center;
       align-items: center;
       border-radius: 5px;
+      @media (max-width: 991px) {
+          margin: 0;
+          width: 274px;
+      }
       img {
         margin-right: 10px;
       }
@@ -243,6 +272,10 @@ export default {
       padding: 10px;
       margin-bottom: 30px;
       width: 31%;
+      .img_container{
+        width: 70%;
+        margin: auto;
+      }
       @media (max-width: 991px) {
         width: 45%;
       }

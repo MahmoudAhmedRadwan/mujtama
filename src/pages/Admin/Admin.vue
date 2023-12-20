@@ -2,6 +2,9 @@
 <!-- Admin.vue -->
     <div class="admin_page">
         <div class="side_menu" :class="showSideMenu == true ? 'menuShow' : 'menuHide'">
+            <div class="toggleMenu" @click="toggleMenu">
+                <b-icon icon="caret-right-fill" aria-hidden="true"></b-icon>
+            </div>
             <div class="logo">
                 <img src="../../assets/images/newLogo.png" alt="">
             </div>
@@ -44,18 +47,6 @@
                             <div class="img_container"><img src="../../assets/images/jops.png" alt=""></div> 
                             طلبات التوظيف
                         </router-link>
-                        <ul>
-                            <li>
-                                <router-link to="/admin/jobs-for-saudis" :class="hoverType == 'jobs-for-saudis' ? 'aciveLink' : ''">
-                                    وظائف للسعودين
-                                </router-link>
-                            </li>
-                            <li>
-                                <router-link to="" :class="hoverType == 'employment-applicationss' ? 'aciveLink' : ''">
-                                    وظائف لغير السعودين
-                                </router-link>
-                            </li>
-                        </ul>
                     </li>
                     <li>
                         <router-link to="" :class="hoverType == 'SupportTickets' ? 'aciveLink' : ''">
@@ -64,13 +55,13 @@
                         </router-link>
                     </li>
                     <li>
-                        <router-link to="" >
+                        <router-link to="/admin/key-metrics" :class="hoverType == 'key-metrics' ? 'aciveLink' : ''">
                             <div class="img_container"></div> 
                             مؤشرات الأداء الرئيسية
                         </router-link>
                     </li>
                     <li>
-                        <router-link to="/admin/key-performance-indicators" :class="hoverType == 'key-performance-indicators' ? 'aciveLink' : ''">
+                        <router-link to="/admin/indicator-performance" :class="hoverType == 'indicator-performance' ? 'aciveLink' : ''">
                             <div class="img_container"></div> 
                             المؤشرات الرئيسية
                         </router-link>
@@ -79,6 +70,12 @@
                         <router-link to="/admin/results-and-reports" :class="hoverType == 'results-and-reports' ? 'aciveLink' : ''">
                             <div class="img_container"></div> 
                             النتائج و التقارير
+                        </router-link>
+                    </li>
+                    <li>
+                        <router-link to="/" >
+                            <div class="img_container"></div>
+                            تسجيل الخروج
                         </router-link>
                     </li>
                  
@@ -144,12 +141,14 @@ export default {
                 this.hoverType = 'articles'
             } else if(window.location.href.indexOf("employment-applications") > -1){
                 this.hoverType = 'employment-applications'
-            } else if(window.location.href.indexOf("jobs-for-saudis") > -1){
-                this.hoverType = 'jobs-for-saudis'
             } else if(window.location.href.indexOf("key-performance-indicators") > -1){
                 this.hoverType = 'key-performance-indicators'
             } else if(window.location.href.indexOf("results-and-reports") > -1){
                 this.hoverType = 'results-and-reports'
+            } else if(window.location.href.indexOf("indicator-performance") > -1){
+                this.hoverType = 'indicator-performance'
+            } else if(window.location.href.indexOf("key-metrics") > -1){
+                this.hoverType = 'key-metrics'
             }
         },
         toggleMenu(){
@@ -187,6 +186,7 @@ export default {
     width: 0;
     @media (max-width: 991px) {
         width: 225px;
+        right: 0 !important;
     }
 }
 .contentShow{
@@ -198,17 +198,42 @@ export default {
 .contenthide{
     width: 100%;
     @media (max-width: 991px) {
-        width: calc(100% - 225px);
+        width: 100%;
     }
 }
 .admin_page{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    @media (max-width: 991px) {
+        position: relative;
+    }
     .side_menu{
         transition: .3s ease-in-out;
         background-color: #FFF;
         min-height: 100vh;
+        @media (max-width: 991px) {
+            position: absolute;
+            top: 0;
+            right: -277px;
+            bottom: 0;
+            background-color: #FFFF;
+            z-index: 99;
+            width: 225px;
+        }
+        .toggleMenu{
+            display: flex;
+            justify-content: flex-end;
+            padding: 20px 0 0 0;
+            display: none;
+            @media (max-width: 991px) {
+                display: flex;
+            }
+            svg{
+                font-size: 35px;
+                color: #78A28F; 
+            }
+        }
         .logo{
             width: 186px;
             margin: 10px auto 40px auto;
@@ -274,6 +299,7 @@ export default {
             justify-content: space-between;
             align-items: center;
             align-items: center;
+            margin-bottom: 40px;
             .side{
                 display: flex;
                 align-items: center;
