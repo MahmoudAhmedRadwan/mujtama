@@ -20,10 +20,13 @@
     </header>
 
     <div class="container">
-      <div class="search">
-        <input type="text" placeholder="البحث" />
-        <b-icon icon="search" font-scale="5" class="icon"></b-icon>
-      </div>
+      <form @submit.prevent="searchByName">
+        <div class="search">
+          <input type="text" placeholder="البحث" v-model="nameSearch"/>
+          <b-icon icon="search" font-scale="5" class="icon"></b-icon>
+        </div>
+        <button class="saveBtn">بحث</button>
+      </form>
     </div>
 
     <section>
@@ -33,17 +36,18 @@
             <h3>الاقسام</h3>
             <div class="line"></div>
             <div class="linRow" v-for="articlesSection in articlesSections" :key="articlesSection.id">
-              <h4 @click="() => getCategoryFilter(articlesSection.id)">{{articlesSection.translation[0].name}}</h4>
+              <h4 @click="() => getCategoryFilter(articlesSection.id)">{{articlesSection.translation[0].name}} <div class="small_line"></div></h4>
               <span>{{articlesSection.code}}</span>
             </div>
             
-
-            <div class="title_line">
+            <h3>الأقسام الفرعية</h3>
+            <div class="line"></div>
+            <!-- <div class="title_line">
               <div class="small_line"></div>
               <h3>الأقسام الفرعية</h3>
-            </div>
+            </div> -->
             <div class="linRow" v-for="articlesSubSection in articlesSubSections" :key="articlesSubSection.id">
-              <h4 @click="() => getSubCategoryFilter(articlesSubSection.id)"> {{articlesSubSection.translation[0].name}} </h4>
+              <h4 @click="() => getSubCategoryFilter(articlesSubSection.id)"> {{articlesSubSection.translation[0].name}} <div class="small_line"></div> </h4>
               <!-- <span>10</span> -->
             </div>
 
@@ -61,7 +65,7 @@
                 </div>
                 <div class="date">
                   <img src="../../../assets/images/calender.png" alt="" />
-                  15/5//2022
+                  {{article.created_at}}
                 </div>
               </div>
               <h3>{{article.translation[0].name}}</h3>
@@ -85,7 +89,8 @@ export default {
       articlesSections: [],
       articlesSubSections: [],
       category_id: '',
-      subcategory_id: ''
+      subcategory_id: '',
+      nameSearch: ''
     }
   },
   mounted(){
@@ -94,6 +99,15 @@ export default {
     this.getArticlesSubSections();
   },
   methods:{
+    searchByName(){
+      Request.getFilteredData('api/article', {
+        name: this.nameSearch,
+      })
+      .then(res => {
+        console.log(res)
+        this.articles = res.data.data
+      })
+    },
     getCategoryFilter(id){
       Request.getFilteredData('api/article', {
         category_id: id,
@@ -263,6 +277,22 @@ export default {
         font-size: 18px;
         color: #78a28f;
         cursor: pointer;
+        display: flex;
+        align-items: center;
+        transition: .3s ease-in-out;
+        &:hover{
+          color: #d8d253;
+        }
+        .small_line{
+          margin-right: 5px;
+          height: 2px;
+          width: 50px;
+          background: #d8d253;
+          display: none;
+        }
+      }
+      h4:hover .small_line{
+        display: block;
       }
       span {
         font-size: 18px;
@@ -325,7 +355,7 @@ export default {
         justify-content: center;
         align-items: center;
         img {
-          max-width: 100%;
+          width: 100%;
           max-height: 100%;
         }
       }

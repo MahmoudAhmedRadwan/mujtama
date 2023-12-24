@@ -5,7 +5,7 @@
             <form @submit.prevent="editIndicatorPerformance">
                 <div class="input_container">
                     <label>الاسم</label>
-                    <input type="text" v-model="indicatorPerformance.title">
+                    <input type="text" v-model="indicatorPerformance.translation[0].title">
                 </div>
                 <div class="input_container">
                     <label>الرقم</label>
@@ -13,14 +13,7 @@
                 </div>
                 <div class="input_container">
                     <label>الوصف</label>
-                    <input type="text" v-model="indicatorPerformance.description">
-                </div>
-                <div class="input_container">
-                    <label>التصنيف</label>
-                    <b-form-group class="radiroFlex" v-slot="{ ariaDescribedby }">
-                        <b-form-radio :aria-describedby="ariaDescribedby" v-model="indicatorPerformance.category" value="key_metrics"> المؤشرات الرئيسية </b-form-radio>
-                        <b-form-radio :aria-describedby="ariaDescribedby" v-model="indicatorPerformance.category" value="kpis">مؤشرات الأداء الرئيسية</b-form-radio>
-                    </b-form-group>
+                    <input type="text" v-model="indicatorPerformance.translation[0].description">
                 </div>
                 <div class="alert alert-danger" role="alert" v-if="ErrorCheck == true">
                     <p v-for="(error, index) in errors" :key="index"> {{error}} </p>
@@ -47,15 +40,12 @@ export default {
                     {
                         title: '',
                         description: '',
-                    },
-                    {
-                        title: '',
-                        description: '',
+                        locale: 'ar'
                     }
                 ],
-                value: '',
-                category: '',
+                value: ''
             },
+            category: '',
             errors: [],
             ErrorCheck: false,
         }
@@ -75,10 +65,10 @@ export default {
             })
                 .then((response) => {
                 console.log(response, 'mmmmmm')
-                this.indicatorPerformance.title = response.data.data
-                this.indicatorPerformance.value = response.data.data
-                this.indicatorPerformance.description = response.data.data
-                this.indicatorPerformance.category = response.data.data
+                this.indicatorPerformance.translation[0].title = response.data.data.translations[0].title
+                this.indicatorPerformance.value = response.data.data.value
+                this.indicatorPerformance.translation[0].description = response.data.data.translations[0].description
+                this.category = response.data.data.category
                 })
                 .catch((error) => {
                 console.error('Error fetching data from API:', error);
@@ -86,11 +76,15 @@ export default {
         },
         editIndicatorPerformance(){
             this.postLoaded = true
-            axios.post(`https://app.almujtama.com.sa/admin/indicatorPerformance/${this.$route.params.id}`, this.indicatorPerformance, {
+            axios.put(`https://app.almujtama.com.sa/admin/indicatorPerformance/${this.$route.params.id}`, this.indicatorPerformance, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             })
             .then( res => {
-                this.$router.push('/admin/indicator-performance')
+                if(this.category == "key_metrics"){
+                    this.$router.push('/admin/key-metrics')
+                } else if(this.category == "kpis"){
+                    this.$router.push('/admin/indicator-performance')
+                }
                 console.log(res)
                 // this.error = {}
                 this.postLoaded = false

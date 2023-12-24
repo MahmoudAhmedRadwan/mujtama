@@ -19,22 +19,23 @@
         </header> -->
 
         <div class="detailsTable">
-            <div class="table_row">
+            <div class="table_row" v-for="order in orders" :key="order.id">
                 <div class="block">
-                    <span>#124</span>
+                    <span>#{{order.id}}</span>
                 </div>
                 <div class="block">
-                    <p>جدة,الروضة شارع الأمير سعود الفيصل</p>
+                    <p>{{order.address}}</p>
                 </div>
                 <div class="block">
-                    <h4>Processing</h4>
+                    <h4>{{order.status.name}}</h4>
                     <h3>10:45AM اليوم</h3>
+                    <!-- <h3>{{order.date}}</h3> -->
                 </div>
                 <div class="block">
-                    <h6>بطاقة</h6>
+                    <h6>نقدي</h6>
                 </div>
                 <div class="block">
-                    <h5>1251.2</h5>
+                    <h5>{{order.price}}</h5>
                     <h3>ريال إجمالي الفاتورة</h3>
                 </div>
                 <div class="block">
@@ -54,15 +55,42 @@
     </div>
 </template>
 <script>
-// import axios from 'axios';
 import HeaderBg from '../../global/HeaderBg/HeaderBg';
+import axios from 'axios';
 export default {
     name: 'Requests',
     components: {HeaderBg},
     data(){
         return{
             img: require('../../../assets/images/requests.png'),
+            orders: []
         }
+    },
+    mounted(){
+        this.getRequests();
+    },
+     methods:{
+        getRequests(){
+            axios.get(`https://app.almujtama.com.sa/admin/orders`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': '*',
+                    'Authorization': 'Bearer '+ localStorage.getItem('token'),
+                },
+                params:{
+                    category_id : this.$route.params.id
+                }
+            })
+            .then((response) => {
+                console.log(response.data.data.data, 'mmmmmm')
+                this.orders = response.data.data.data
+            
+            })
+            .catch((error) => {
+            console.error('Error fetching data from API:', error);
+            });
+        },
     }
 }
 </script>

@@ -23,9 +23,9 @@
                 <div class="block">
                     رقم الطلب
                 </div>
-                <div class="block">
+                <!-- <div class="block">
                     العنوان
-                </div>
+                </div> -->
                 <div class="block">
                     الحالة
                 </div>
@@ -33,21 +33,18 @@
                     معلومات الاتصال
                 </div>
                 <div class="block">
-                    رقم الوصفة
-                </div>
-                <div class="block">
 
                 </div>
             </div>
-            <div class="table_row" v-for="(prescription, index) in prescriptions" :key="prescription.id">
+            <div class="table_row" v-for="(prescription) in prescriptions" :key="prescription.id">
                 <div class="block">
-                    <span>#{{prescription.prescription_no}}</span>
+                    <span>#{{prescription.id}}</span>
                 </div>
-                <div class="block">
+                <!-- <div class="block">
                     <p>جدة,الروضة شارع الأمير سعود الفيصل</p>
-                </div>
+                </div> -->
                 <div class="block">
-                    <h4>Processing</h4>
+                    <h4>{{prescription.status.name}}</h4>
                     <h3>{{prescription.date}}</h3>
                 </div>
                 <div class="block">
@@ -55,18 +52,21 @@
                     <h3>{{prescription.mobile}}</h3>
                 </div>
                 <div class="block">
-                    <h3>{{prescription.national_id}}</h3>
-                </div>
-                <div class="block">
-                    <div class="print" @click="() => toggleCollapse(index)">
+                    <div class="print">
+                        <img src="../../../assets/images/download.png" alt="">
+                        <div class="detailsClick">
+                            تنزيل المرفقات
+                        </div>
+                    </div>
+                    <!-- <div class="print" @click="() => toggleCollapse(index)">
                         <img src="../../../assets/images/print.png" alt="">
                         <div class="detailsClick">
                             التفاصيل    
                         <b-icon icon="chevron-down" aria-hidden="true"></b-icon>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
-                <div class="details_container" v-if="prescription.isCollapsed == true">
+                <!-- <div class="details_container" v-if="prescription.isCollapsed == true">
                     <div class="details_table">
                         <div class="table_header">
                             <div class="block">
@@ -109,7 +109,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -164,13 +164,14 @@ export default {
                 }
             })
             .then((response) => {
-                console.log(response, 'mmmmmm')
-                this.prescriptions = response.data.data.data.map(developer => {
-                    return {
-                        ...developer,
-                        isCollapsed: false
-                    };
-                });
+                console.log(response, 'prescriptions')
+                this.prescriptions = response.data.data.data
+                // this.prescriptions = response.data.data.data.map(developer => {
+                //     return {
+                //         ...developer,
+                //         isCollapsed: false
+                //     };
+                // });
                 this.loadingRequest = false;
             
             })
@@ -203,7 +204,7 @@ export default {
     margin-bottom: 20px;
     border-radius: 10px;
     .block{
-        width: calc(100% / 6);
+        width: calc(100% / 4);
         text-align: center;
         padding: 15px 0;
         font-weight: 600;
@@ -218,19 +219,17 @@ export default {
 .details_container{
     width: 100%;
     padding: 10px 40px;
-    .details_table{
-        .table_header{
-            .block{
-                color: #1D4D90;
-                font-weight: 900;
-                font-family: flatMedium;
-                width: calc(100% / 5) !important;        
-            }
+    .table_header{
+        .block{
+            color: #1D4D90;
+            font-weight: 900;
+            font-family: flatMedium;
+            width: calc(100% / 4) !important;        
         }
     }
     .table_row{
         .block{
-            width: calc(100% / 5) !important;
+            width: calc(100% / 4) !important;
         }
     }
 }

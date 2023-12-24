@@ -111,9 +111,10 @@
       </div>
       <div class="lang">
         <h3>عربي</h3>
-        <select>
-          <option value="">Ar</option>
-          <option value="">En</option>
+        <select v-model="localelang" @change="changeUrl">
+          <option v-for="(lang, i) in $i18n.availableLocales" :key="`Lang${i}`" :value="lang">
+              {{ lang }}
+          </option>
         </select>
       </div>
 
@@ -124,7 +125,7 @@
               to="/"
               :class="hoverType == 'main' ? 'activeLink' : ''"
             >
-              الرئيسية
+             {{$t('landing.Home')}}
             </router-link>
           </li>
 
@@ -133,40 +134,40 @@
               to="/about-us"
               :class="hoverType == 'about-us' ? 'activeLink' : ''"
             >
-              <span>+</span>تعرف علينا
+              <span>+</span>{{$t('landing.AboutUs')}}
             </router-link>
           </li>
           <li>
-            <router-link to="Error"><span>+</span>المتجر </router-link>
+            <router-link to="Error"><span>+</span> {{$t('landing.Store')}}</router-link>
           </li>
           <li>
             <router-link
               to="/medical-journal"
               :class="hoverType == 'medical-journal' ? 'activeLink' : ''"
-              ><span>+</span>المجلة الإلكترونية
+              ><span>+</span> {{$t('landing.EMagazine')}}
             </router-link>
           </li>
           <li>
             <router-link
               to="/form"
               :class="hoverType == 'form' ? 'activeLink' : ''"
-              ><span>+</span>الوظائف
+              ><span>+</span> {{$t('landing.Jobs')}}
             </router-link>
           </li>
           <li>
             <router-link
               to="/branches"
               :class="hoverType == 'branches' ? 'activeLink' : ''"
-            >
-              <span>+</span>الفروع
-            </router-link>
+            > 
+              <span>+</span> {{$t('landing.OurBranches')}}
+            </router-link> 
           </li>
           <li>
             <router-link
               to="/investor-relations"
               :class="hoverType == 'investor-relations' ? 'activeLink' : ''"
             >
-              <span>+</span>علاقات المستثمرين
+              <span>+</span> {{$t('landing.InvestorRelations')}}
             </router-link>
           </li>
           
@@ -181,26 +182,26 @@
           <img src="../../assets/images/footerLogoNew.png" alt="" />
         </div>
         <div class="shortCuts">
-          <h3>صفحات</h3>
+          <h3>{{$t('landing.Pages')}}</h3>
           <ul>
-            <li><router-link to="/about-us"> تعرف علينا </router-link></li>
-            <li><router-link to="/Error"> المتجر </router-link></li>
-            <li><router-link to="/Not-found"> المجلة الإلكترونية </router-link></li>
-            <li><router-link to="/branches"> فروعنا </router-link></li>
-            <li><router-link to="/investor-relations">علاقات المستثمرين</router-link></li>
-            <li><router-link to=""> اجمع مع المجتمع </router-link></li>
-            <li><router-link to="/form"> الوظائف </router-link></li>
+            <li><router-link to="/about-us"> {{$t('landing.AboutUs')}} </router-link></li>
+            <li><router-link to="/Error">  {{$t('landing.Store')}}</router-link></li>
+            <li><router-link to="/Not-found">   {{$t('landing.EMagazine')}}</router-link></li>
+            <li><router-link to="/branches">  {{$t('landing.OurBranches')}}</router-link></li>
+            <li><router-link to="/investor-relations"> {{$t('landing.InvestorRelations')}}</router-link></li>
+            <li><router-link to=""> {{$t('landing.Collectwithalmujtamajobs')}}</router-link></li>
+            <li><router-link to="/form"> {{$t('landing.Jobs')}}</router-link></li>
           </ul>
         </div>
         <div class="contacts">
-          <h3>معلومات التواصل</h3>
+          <h3>  {{$t('landing.ContactInformation')}}</h3>
           <ul>
             <li>
               <div class="icon_container">
                 <b-icon icon="telephone-fill" font-scale="5" class="icon"></b-icon>
               </div>
               <div class="words">
-                <h4>الرقم الموحد</h4>
+                <h4> {{$t('landing.PhoneNumber')}}</h4>
                 <h5>920008144</h5>
               </div>
             </li>
@@ -209,28 +210,25 @@
                 <b-icon icon="envelope-fill" font-scale="5" class="icon"></b-icon>
               </div>
               <div class="words">
-                <h4>البريد الالكتروني</h4>
+                <h4>{{$t('landing.Email')}}</h4>
                 <h5>info@almujtama.com.sa</h5>
               </div>
             </li>
           </ul>
         </div>
         <div class="contact_info">
-          <h3>معلومات التواصل</h3>
+          <h3> {{$t('landing.ContactInformation')}}</h3>
           <ul>
-            <li>رقم وزارة الصحة الموحد: 937</li>
-            <li>رقم الترخيص: 2600011949</li>
-            <li>رقم هيئة الدواء والغذاء: 19999</li>
-            <li>برنامج تيقظ ( مرتبط بهذا الرابط ): https://ade.sfda.gov.sa</li>
+            <li>{{$t('landing.Jobs')}} : 937  </li>
+            <li>{{$t('landing.LicenseNo')}}: 2600011949  </li>
+            <li>{{$t('landing.FoodAndDrugsAdminNo')}}: 19999  </li>
+            <li> {{$t('landing.VigilanceProgramme')}}: https://ade.sfda.gov.sa  </li>
           </ul>
         </div>
         <div class="call_us">
-          <router-link to="/contact-us">اتصل بنا</router-link>
+          <router-link to="/contact-us">{{$t('landing.ContactUs')}}</router-link>
         </div>
       </div>
-      <!-- <div class="copyRights">
-        <p>Merkulove @ 2022 Hairty Template. All Rights Reserved</p>
-      </div> -->
     </footer>
   </div>
 </template>
@@ -241,12 +239,27 @@ export default {
     return {
       hoverType: "",
       menuToggle: false,
+      localelang: 'ar',
     };
   },
   mounted() {
     this.linkUrlCheck();
   },
   methods: {
+    changeUrl(){
+      this.$i18n.locale = this.localelang
+      localStorage.setItem('lang', this.localelang)
+      // this.$router.push({
+      //     params: {lang: this.localelang}
+      // })
+      if (this.$i18n.locale === "ar") {
+          document.querySelector("html").style.direction = "rtl";
+          document.querySelector("body").style.direction = "rtl";
+      } else {
+          document.querySelector("html").style.direction = "ltr";
+          document.querySelector("body").style.direction = "ltr";
+      }
+    },
     menuToggleClick(){
       this.menuToggle = !this.menuToggle
     },

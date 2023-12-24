@@ -4,6 +4,9 @@
     box-sizing: border-box;
     outline: none;
 }
+.en *{
+    direction: ltr !important;
+}
 
 a {
     text-decoration: none;
@@ -215,6 +218,7 @@ ul {
                     margin-bottom: 5px;
                     img{
                         margin-left: 10px;
+                        width: 15px;
                     }
                 }
             }

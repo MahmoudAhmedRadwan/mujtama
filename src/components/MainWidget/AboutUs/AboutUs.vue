@@ -5,12 +5,12 @@
       <div class="container">
         <div class="headerContainer">
           <div class="side">
-            <h2>تعرف علينا</h2>
+            <h2>{{$t('aboutUs.aboutUs')}}</h2>
             <div class="line"></div>
             <div class="breadCrobs">
-              <router-link to="/">الرئيسية</router-link>
+              <router-link to="/"> {{$t('landing.Home')}} </router-link>
               <span>>></span>
-              <h3>تعرف علينا</h3>
+              <h3>{{$t('aboutUs.aboutUs')}}</h3>
             </div>
           </div>
           <div class="side">
@@ -33,20 +33,16 @@
           </div>
 
           <div class="description">
-            <h3>نبذة عن الشركة</h3>
+            <h3>{{$t('home.AbouttheGroup')}}</h3>
             <div class="line"></div>
 
-            <p>
-              • صيدليات المجتمع مجموعة رائدة ومتكاملة في تقديم الخدمات الصيدلانية.
-            </p>
-            <p>
-              •	شركاء وزارة الصحة في تنفيذ برامج الرعاية الصحية ومبادرات منظومة الوزارة لبرامج التحول الوطني 2020 ضمن رؤية المملكة 2030. 
-            </p>
-            <p>•	شركاء وزارة الصحة بالتنسيق مع الشركة الوطنية للشراء الموحد (نوبكو) لصرف الوصفات الطبية (وصفتي) الصادرة من مراكز الرعاية الأولية والمستشفيات التابعة لوزارة الصحة إضافة الى المستشفيات التابعة للخدمات الطبية بالقطاعات الحكومية الأخرى مثل: وزارة الدفاع ووزارة الداخلية ووزارة التعليم العالي في كل من: (جدة – مكة المكرمة – الطائف - الرياض - المدينة المنورة - الخرج - مدينة الملك عبد الله الاقتصادية- ينبع - رابغ – جازان- صبيا).</p>
-            <p>•	بالتعاون مع وزارة الصحة، تقدم مجموعة صيدليات المجتمع خدمة صرف الوصفات الإلكترونية الصادرة من تطبيق (صحتي) والهاتف الموحد (937) من خلال فروعها. </p>
-            <p>•	شركاء وزارة الصحة وعدد من المؤسسات التعليمية (جامعة الملك عبد العزيز- جامعة الطائف) لتقديم الخدمات المجتمعية وتدريب طلبة الامتياز بكلية الصيدلة والمساهمة في البحوث العلمية التي تهدف الى تطوير مهنة الصيدلة وقطاع الدواء. </p>
-            <p>•	شركاء وزارة الصحة في تقديم خدمة التطعيمات الموسمية، إضافة الى رصد المؤشرات الحيوية ضمن الحملة الوطنية # اعرف ارقامك # تمهيداً لتطبيق نظام الملف الموحد لجميع المواطنين وذلك بالتنسيق مع الجهات الحكومية ذات العلاقة.</p>
-            <p>•	بإشراف من وزارة الصحة تقدم صيدليات المجتمع خدمة الرعاية الصحية غير العاجلة داخل عيادات مجهزة ومخصصة لتقديم الخدمة والاستفادة من خدمة الطب الاتصالي لتقديم أفضل الخدمات الصحية.</p>
+            <p>{{$t('aboutUs.AbouttheGroupDescriptionpoint1')}}</p>
+            <p>{{$t('aboutUs.AbouttheGroupDescriptionpoint2')}}</p>
+            <p>{{$t('aboutUs.AbouttheGroupDescriptionpoint3')}}</p>
+            <p>{{$t('aboutUs.AbouttheGroupDescriptionpoint4')}}</p>
+            <p>{{$t('aboutUs.AbouttheGroupDescriptionpoint5')}}</p>
+            <p>{{$t('aboutUs.AbouttheGroupDescriptionpoint6')}}</p>
+            <p>{{$t('aboutUs.AbouttheGroupDescriptionpoint7')}}</p>
           </div>
         </div>
       </div>
@@ -65,15 +61,15 @@
       />
       <div class="container">
         <div class="know_us_container">
-          <h3>تعرف علينا</h3>
+          <h3>{{$t('aboutUs.aboutUs')}}</h3>
           <div class="line"></div>
           <div class="description">
             <div class="img_container">
               <img src="../../../assets/images/new12.png" alt="" />
             </div>
             <div class="des">
-              <h4>رؤيتنا</h4>
-              <p>الريادة في خدمة المجتمع لمجتمع صحي واع.</p>
+              <h4> {{$t('aboutUs.OurVision')}}</h4>
+              <p> {{$t('aboutUs.OurVision')}}</p>
             </div>
           </div>
           <div class="description">
@@ -81,14 +77,10 @@
               <img src="../../../assets/images/rocket.png" alt="" />
             </div>
             <div class="des">
-              <h4>رسالتنا</h4>
+              <h4> {{$t('aboutUs.OurVision')}}</h4>
               <ul>
-                <li><p>
-                	تقديم الخدمات الصيدلانية المتكاملة الى كافة شرائح المجتمع.
-              </p></li>
-                <li><p>
-                	حماية المجتمع من المنتج المقلد والسعر المبالغ فيه، شعارنا:(المنتج الأصل بالسعر الأقل).
-              </p></li>
+                <li><p>{{$t('aboutUs.OurMessageDescription')}}</p></li>
+                <li><p>{{$t('aboutUs.OurMessageDescription2')}}</p></li>
               </ul>
               
             </div>
@@ -104,60 +96,49 @@
         alt=""
       />
       <div class="container">
-        <h3>الهيكل التنظيمي</h3>
+        <h3>{{$t('aboutUs.OrganizationalChart')}}</h3>
         <div class="line"></div>
-        <p>
-         يُعتبَر الهيكل التنظيميّ وسيلة أو أداة لمساعدة إدارة الشركة في تحقيق أهدافها بكفاءة وفاعلية، حيث إنّ من شأنه بيان الوحدات التنظيميّة التي تتألَّف منها ضمن مستويات هرميّة مرتبطة ببعضها بروابط السُّلطة التي تتخلَّلها التعليمات والأوامر والعلاقات ويمكِّنها من تنفيذ الخطط واتخاذ القرارات وتحديد أدوار كل إدارة وموظفيها لتفادي التداخل والازدواجية.
-        </p>
-        <p class="bg_p">
-          يتواءم الهيكل التنظيمي للشركة مع متطلبات الحوكمة والشفافية ومتطلبات نظام الشركات.
-        </p>
+        <p> {{$t('aboutUs.OrganizationalChart')}} </p>
+        <p class="bg_p">{{$t('aboutUs.OrganizationalChart')}}</p>
         <div class="img_container">
-          <img src="../../../assets/images/employees.png" alt="" />
+          <img src="../../../assets/images/employees.png" alt="" v-if="lang == 'ar'"/>
+          <img src="../../../assets/images/employeesEnglish.png" alt="" v-if="lang == 'en'" />
         </div>
       </div>
     </section>
 
     <section class="our_services">
       <div class="container">
-        <h3>خدماتنا</h3>
+        <h3> {{$t('home.OurServices')}}</h3>
         <div class="line"></div>
         <div class="services">
           <div class="service">
             <div class="icon_container">
               <img src="../../../assets/images/new3.png" alt="" />
             </div>
-            <h3>المجتمع أون لاين</h3>
-            <p>
-              هي خدمة رائدة تقدمها صيدليات المجتمع تهدف الى تقديم الخدمات الصيدلانية تحقيقا لمعنى طب المجتمع وذلك عن طريق الانترنت من خلال الموقع الرسمي الخاص بالمجموعة: www.almujtama.com.sa أومن خلال حسابها الرسمي لدى وسائل التواصل الاجتماعي(@almujtampharma)بكافة منصاتها الإعلامية المتاحة وبأحدث الوسائل التقنية.
-            </p>
+            <h3> {{$t('aboutUs.OnlineCommunity')}}</h3>
+            <p>{{$t('aboutUs.OnlineCommunityTitle')}}</p>
           </div>
           <div class="service">
             <div class="icon_container">
               <img src="../../../assets/images/new1.png" alt="" />
             </div>
-            <h3>المجلة الإلكترونية</h3>
-            <p>
-              هي مجلة تعني بالمجال الصحي الطبي والصيدلاني وتقوم بطرح آخر المستجدات في المجال الصحي وتنشر المقالات الطبية تحت إشراف استشاري طب المجتمع ونخبة من صيادلة مجموعة صيدليات المجتمع اضافة الى عرض اهم المؤتمرات والندوات الطبية المقامة في المحافل المحلية والإقليمية والعالمية.
-            </p>
+            <h3> {{$t('aboutUs.aboutUsEMagazine')}}</h3>
+            <p>{{$t('aboutUs.aboutUsEMagazineDescription')}}</p>
           </div>
           <div class="service">
             <div class="icon_container">
               <img src="../../../assets/images/new2.png" alt="" />
             </div>
-            <h3>المتجر الإلكتروني</h3>
-            <p>
-              يتيح لعملائه الكرام التسوق والشراء من خلال الصيدلية الالكترونية على الموقع الرسمي كما يقدم المتجر خدمة التوصيل المجاني.
-            </p>
+            <h3> {{$t('aboutUs.aboutUsOnlineStore')}}</h3>
+            <p>{{$t('aboutUs.aboutUsOnlineStoreDescription')}}</p>
           </div>
           <div class="service">
             <div class="icon_container">
               <img src="../../../assets/images/new11.png" alt="" />
             </div>
-            <h3>خدمة العملاء</h3>
-            <p>
-              إيماناً من مجموعة صيدليات المجتمع بأن عملاءها الكرام هم شركاء النجاح ومحور الرعاية فإن اقتراحاتهم ونصائحهم وحتى شكاواهم هي محل اهتمامنا ويمكنهم تقديمها من خلال التواصل عن طريق:
-            </p>
+            <h3> {{$t('aboutUs.CustomerService')}}</h3>
+            <p>{{$t('aboutUs.CustomerServiceDescription')}}</p>
           </div>
         </div>
       </div>
@@ -171,99 +152,86 @@
       />
       <img class="sharingLeftBg" src="../../../assets/images/sharing.png" alt="" />
       <div class="container">
-        <h3>المشاركات المجتمعية</h3>
-        <p>
-          شاركت مجموعة صيدليات المجتمع في تقديم العديد من الخدمات المجتمعية: تحقيقاً لرؤيتها ورسالتها في خدمة المجتمع ومن أهم تلك المشاركات
-        </p>
+        <h3> {{$t('aboutUs.CommunityContributions')}}</h3>
+        <p>{{$t('aboutUs.CommunityContributionsDescription')}}</p>
         <div class="line"></div>
         <p>
-          • المشاركة في حملة # خدمة التنبيه بمواعيد تطعيم الأطفال # بإشراف إدارة التوعية الصحية بوزارة الصحة، وقد تحصلت صيدليات المجتمع على شهادة شكر وتقدير من معالي وزير الصحة معالي الدكتور/ توفيق الربيعة تقديرا لجهودها في الحملة.<br />
-          • المشاركة في حملة # عدل عاداتك # بإشراف إدارة التوعية الصحية بوزارة الصحة. <br />
-          • المشاركة في إنجاح الأسبوع الخليجي لصحة الفم والأسنان تحت شعار (الأسنان صحة وجمال) لمدة تسع سنوات.<br />
-          • شركاء وزارة الصحة في تقديم خدمة التطعيم ضد الإنفلونزا الموسمية ولمدة 3 سنوات ابتداء من عام 1439هــ .<br />
-          • تدريب طلبة كلية الصيدلة (مرحلة الامتياز) بناء على اتفاقية مع كل من
-          وزارة الصحة وكلية الصيدلة بجامعة الملك عبد العزيز لمدة 6 سنوات ابتداء من عام 1439 هــ. <br />
-          • المشاركة في تقديم الخدمات التدريبية والتثقيفية والتعاونية داخل بعض المدارس. <br />
-          • المشاركة في حفل تخرج طلاب و طالبات كلية الصيدلة بجامعة الملك عبد العزيز لآخر 5 سنوات، إضافة إلى رعاية جميع الفعاليات التي تقيمها كلية الصيدلة بجامعة الملك عبد العزيز.<br />
-          • تشغيل وإدارة صيدليات العيادات الخارجية لعدد من مستشفيات وزارة الصحة وغيرها. <br />
-          • المساهمة الفعالة في.. برنامج "رصد" وبناء التكامل بين نظام المجموعة وهيئة الغذاء والدواء. <br />
-          • المساهمة في برنامج "تيقظ" والإبلاغ عن المجاميع العلاجية الواجب توفرها في الصيدلية المجتمعية و التي لم تكن تتوفر بها في السابق.<br>
-          • اقتراح البدائل ومصادرها مما أتاح رفع نسبة التوفر وعدم الاعتماد على أسماء تجارية بعينها.
+          {{$t('aboutUs.CommunityContributionsPoint1')}}<br>
+          {{$t('aboutUs.CommunityContributionsPoint2')}}<br>
+          {{$t('aboutUs.CommunityContributionsPoint3')}}<br>
+          {{$t('aboutUs.CommunityContributionsPoint4')}}<br>
+          {{$t('aboutUs.CommunityContributionsPoint5')}}<br>
+          {{$t('aboutUs.CommunityContributionsPoint6')}}<br>
+          {{$t('aboutUs.CommunityContributionsPoint7')}}<br>
+          {{$t('aboutUs.CommunityContributionsPoint8')}}<br>
+          {{$t('aboutUs.CommunityContributionsPoint9')}}<br>
+          {{$t('aboutUs.CommunityContributionsPoint10')}}<br>
+          {{$t('aboutUs.CommunityContributionsPoint11')}}<br>
         </p>
       </div>
     </section>
 
     <section class="our_branches">
       <div class="container">
-        <h3>فروعنا</h3>
+        <h3>{{$t('home.homeOurBranches')}}</h3>
         <div class="line"></div>
         <div class="branch_line">
           <div class="icon_container">
             <b-icon icon="check2" font-scale="5" class="icon"></b-icon>
           </div>
-          <p>(160 ) فرعاً منتشرا على نطاق واسع</p>
+          <p> {{$t('aboutUs.branchesspreadwidely')}} </p>
         </div>
         <div class="branch_line">
           <div class="icon_container">
             <b-icon icon="check2" font-scale="5" class="icon"></b-icon>
           </div>
-          <p> (125) فرعا فى خدمتكم </p>
+          <p>   {{$t('aboutUs.branchesOnService')}}</p>
         </div>
         <div class="branch_line">
           <div class="icon_container">
             <b-icon icon="check2" font-scale="5" class="icon"></b-icon>
           </div>
-          <p>(35) فرعاّ تحت التأسيس </p>
+          <p> {{$t('aboutUs.branchesUnderEstablishment')}}</p>
         </div>
 
-        <h3>مستودعاتنا</h3>
+        <h3> {{$t('aboutUs.OurWarehouses')}}</h3>
         <div class="line"></div>
 
         <div class="branch_line">
           <div class="icon_container">
             <b-icon icon="check2" font-scale="5" class="icon"></b-icon>
           </div>
-          <p>
-            نسعى جادين لتحقيق أعلى معايير السلامة والجودة العالمية في مستودعاتنا
-            بترخيص وإشراف الهيئة العامة للغذاء والدواء وتطبيق الأنظمة الجديدة
-            مثل نظام التتبع الدوائي.
-          </p>
+          <p> {{$t('aboutUs.OurWarehousesDecription1')}}</p>
         </div>
         <div class="branch_line">
           <div class="icon_container">
             <b-icon icon="check2" font-scale="5" class="icon"></b-icon>
           </div>
-          <p>
-            أسطول من وسائل النقل إلى فروعنا التي تحقق المعايير المطلوبة في نقل
-            الأدوية وباقي المستحضرات والصيدلانية والطبية والتجميلية وأغذية
-            الأطفال وباقي أصناف الصيدلية.
-          </p>
+          <p> {{$t('aboutUs.OurWarehousesDecription2')}}</p>
         </div>
         <div class="branch_line">
           <div class="icon_container">
             <b-icon icon="check2" font-scale="5" class="icon"></b-icon>
           </div>
-          <p>أكثر من (25,000) صنف بين يديكم.</p>
+          <p> {{$t('aboutUs.OurWarehousesDecription3')}}</p>
         </div>
         <div class="branch_line">
           <div class="icon_container">
             <b-icon icon="check2" font-scale="5" class="icon"></b-icon>
           </div>
-          <p>
-            يقع مستودعنا المركزي في مدينة جدة في المنطقة الصناعية الثالثة "مدن" بمساحة إجمالية (21,000) متر مربع لتقديم أفضل جودة في الإمداد والتموين وتطبيق أعلى معايير الخدمات اللوجستية لفروع الشركة.
-          </p>
+          <p>{{$t('aboutUs.OurWarehousesDecription4')}}</p>
         </div>
         <div class="branch_line">
           <div class="icon_container">
             <b-icon icon="check2" font-scale="5" class="icon"></b-icon>
           </div>
-          <p>( 21.000 ) متر مربع مساحة تخزينية لخدمة جميع أذواق عملائنا الكرام</p>
+          <p>{{$t('aboutUs.OurWarehousesDecription5')}}</p>
         </div>
         <div class="branch_line">
           <div class="icon_container">
             <b-icon icon="check2" font-scale="5" class="icon"></b-icon>
           </div>
-          <p>يتم استلام وإرسال أكثر من( 3000 ) طرد يوميا.</p>
+          <p> {{$t('aboutUs.OurWarehousesDecription6')}}</p>
         </div>
       </div>
     </section>
@@ -272,6 +240,14 @@
 <script>
 export default {
   name: "AboutUs",
+  data(){
+    return{
+      lang: ''
+    }
+  },
+  mounted(){
+    this.lang = localStorage.getItem('lang')
+  }
 };
 </script>
 <style lang="scss" scoped>

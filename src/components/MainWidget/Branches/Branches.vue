@@ -32,12 +32,12 @@
               <button class="saveBtn">بحث</button>
             </form>
           </div>
-          <div class="input_container">
+          <!-- <div class="input_container">
             <form @submit.prevent="CityFilter">
               <input type="text" placeholder="بحث بالمدينة" v-model="city"/>
               <button class="saveBtn">بحث</button>
             </form>
-          </div>
+          </div> -->
           
           <button>
             فروعنا على الخريطة
@@ -56,15 +56,19 @@
             </div>
             <div class="address">
               <h3>{{branch.translations[0].name}}</h3>
-              <h3>{{branch.address}}</h3>
+              <h3>{{branch.address+ ' ' +branch.city}}</h3>
             </div>
             <div class="phone">
               <h3>رقم الهاتف</h3>
               <h3>{{branch.mobile}}</h3>
             </div>
-            <div class="times">
+            <div class="times" v-if="branch.is_24_hour == false">
               <h4>اوقات الدوام</h4>
-              <h3>{{branch.time}}</h3>
+              <h3> من {{branch.from_time}} إلي {{branch.to_time}} </h3>
+            </div>
+            <div class="times" v-if="branch.is_24_hour == true">
+              <h4>اوقات الدوام</h4>
+              <h3> 24 ساعة</h3>
             </div>
             <div class="services">
               <h4>خدمات فرع إضافية</h4>
@@ -119,7 +123,7 @@ export default {
     },
     NameFilter(){
       Request.getFilteredData('api/branches', {
-        name: this.branchName
+        search: this.branchName
       })
       .then(res => {
         console.log(res)

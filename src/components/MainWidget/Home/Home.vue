@@ -6,21 +6,21 @@
         <div class="numbers">
           <div class="number">160</div>
           <div class="line"></div>
-          <h3>فرعاّ منتشراّ على نطاق واسع</h3>
+          <h3> {{$t('home.branchesWidelySpread')}}</h3>
         </div>
         <div class="numbers">
           <div class="number">21K+</div>
           <div class="line"></div>
-          <h3>متر مربع لتقديم أفضل جودة في الإمداد والتموين</h3>
+          <h3> {{$t('home.squareMeterToProvideBestQualityInSupplyAnd')}}</h3>
         </div>
         <div class="numbers">
           <div class="number">25K+</div>
           <div class="line"></div>
-          <h3>صنفاً بين ايديكم</h3>
+          <h3> {{$t('home.ItemsInYourHands')}}</h3>
         </div>
         <router-link to="/branches" class="our_branches">
           <div>
-            <span>فروعنا</span>
+            <span> {{$t('home.homeOurBranches')}}</span>
             <div class="line"></div>
           </div>
           <b-icon icon="arrow-left" font-scale="5" class="icon"></b-icon>
@@ -39,19 +39,18 @@
       </div>
       <div class="description">
         <router-link to="/about-us">
-          <h3>نبذة عن الشركة</h3>
+          <h3> {{$t('home.AbouttheGroup')}}</h3>
         </router-link>
         <div class="line"></div>
         <p>
-          صيدليات المجتمع مجموعة رائدة ومتكاملة في تقديم الخدمات الصيدلانية.
-          شركاء وزارة الصحة في تنفيذ برامج الرعاية الصحية ومبادرات منظومة
-          الوزارة لبرامج التحول الوطني 2020 ضمن رؤية المملكة 2030.
+          {{$t('home.AbouttheGroupDescription')}}
+          
         </p>
         <p>
-          شركاء وزارة الصحة بالتنسيق مع الشركة الوطنية للشراء الموحد (نوبوكو) لصرف الوصفات الطبية (وصفتي) الصادرة من مراكز الرعاية الأولية والمستشفيات التابعة لوزارة الصحة إضافة إلى المستشفيات التابعة للخدمات الطبية بالقطاعات الحكومية الأخرى مثل: وزارة الدفاع ووزارة الداخلية ووزارة التعليم العالي في كل من: (جدة – مكة المكرمة – الطائف- الرياض- المدينة المنورة- الخرج- مدينة الملك عبد الله الاقتصادية- ينبع- رابغ – جازان- صبيا)
+          {{$t('home.AbouttheGroupDescriptionSeconde')}}
         </p>
         <div class="society">
-          <span>الريادة في خدمة المجتمع</span>
+          <span> {{$t('home.LeadershipInCommunityServices')}} </span>
           <div class="img_container">
             <img src="../../../assets/images/hands.png" alt="" />
           </div>
@@ -64,10 +63,10 @@
         <img src="../../../assets/images/group2.png" alt="" />
       </div>
       <div class="description">
-        <span class="smallTitle">خدماتنا</span>
+        <span class="smallTitle"> {{$t('home.OurServices')}}</span>
         <router-link to="/about-us">
           <h3>
-            صيدليات المجتمع مجموعة رائدة ومتكاملة في تقديم الخدمات الصيدلانية
+            {{$t('home.OurServicesDescription')}}
           </h3>
         </router-link>
         <div class="line"></div>
@@ -77,25 +76,25 @@
               <div class="icon_container">
                 <b-icon icon="check2" font-scale="5" class="icon"></b-icon>
               </div>
-              <h4>المجتمع أون لاين</h4>
+              <h4> {{$t('home.OnlineCommunity')}}</h4>
             </li>
             <li>
               <div class="icon_container">
                 <b-icon icon="check2" font-scale="5" class="icon"></b-icon>
               </div>
-              <h4>المجلة الإلكترونية</h4>
+              <h4> {{$t('home.OnlineCommunityEMagazine')}}</h4>
             </li>
             <li>
               <div class="icon_container">
                 <b-icon icon="check2" font-scale="5" class="icon"></b-icon>
               </div>
-              <h4>المتجر الإلكتروني</h4>
+              <h4> {{$t('home.OnlineCommunityOnlineStore')}}</h4>
             </li>
             <li>
               <div class="icon_container">
                 <b-icon icon="check2" font-scale="5" class="icon"></b-icon>
               </div>
-              <h4>خدمة العملاء والتواصل مع الجمهور</h4>
+              <h4> {{$t('home.OnlineCommunityCustomerService')}}</h4>
             </li>
           </ul>
         </div>
@@ -107,10 +106,10 @@
         <img src="../../../assets/images/InvestorRelations.png" alt="" />
       </div>
       <div class="description">
-        <span class="smallTitle">علاقات المستثمرين</span>
+        <span class="smallTitle"> {{$t('home.homeInvestorRelations')}}</span>
         <router-link to="/investor-relations">
         <h3>
-          من خلال صفحة علاقات المستثمرين يستطيع المستثمر الاطلاع على التقارير والنتائج الخاصة بالشركة
+          {{$t('home.homeInvestorRelationsDescriptiom')}}
         </h3>
         </router-link>
         <div class="line"></div>
@@ -146,35 +145,14 @@
     </section>
 
     <section class="numbers_of_year">
-      <span>علاقات المستثمرين</span>
-      <h3>المؤشرات الرئيسية</h3>
+      <span>{{$t('home.homeInvestorRelations')}}</span>
+      <h3> {{$t('home.RelationshipOfInvestors')}}</h3>
       <div class="line"></div>
       <div class="numbers container">
-        <div class="number_container">
-          <div class="number_round">+{{indicatorPerformance.branches_number}}</div>
-          <span>عدد الفروع</span>
-          <p>160 فرعا منتشرا على نطاق واسع</p>
-          <p>125 فرعا فى خدمتكم</p>
-          <p>35 فرعا تحت التأسيس</p>
-        </div>
-        <div class="number_container">
-          <div class="number_round"> {{indicatorPerformance.reference_stock_price}} ر.س</div>
-          <span>سعر السهم الاسترشادي</span>
-          <p>سعر السهم الاسترشادي عند الادراج</p>
-        </div>
-        <div class="number_container">
-          <div class="number_round">{{indicatorPerformance.square_meter}}k+</div>
-          <span>متر مربع</span>
-          <p>لتقديم افضل جودة في الامداد و التموين</p>
-        </div>
-        <div class="number_container">
-          <div class="number_round">{{indicatorPerformance.number_of_premium_customers}}K+</div>
-          <span>عدد عملاء التميز</span>
-          <p>يعد برنامج عميل التميز من أفضل برامج جمع النقاط في المملكة</p>
-        </div>
-        <div class="number_container">
-          <div class="number_round">{{indicatorPerformance.products}}K+</div>
-          <span>صنفاً بين يديكم</span>
+         <div class="number_container" v-for="key_metric in key_metrics" :key="key_metric.id">
+          <div class="number_round">{{key_metric.value}}</div>
+          <span>{{key_metric.translations[0].title}}</span>
+          <p>{{key_metric.translations[0].description}}</p>
         </div>
       </div>
     </section>
@@ -186,13 +164,13 @@
       <div class="container">
         <div class="groupingFlex">
           <div>
-            <h3>اجمع مع المجتمع</h3>
+            <h3> {{$t('home.CollectWithALMujtama')}}</h3>
             <p>
-           إيمانا من مجموعة صيدليات المجتمع بأن عملاءها الكرام هم شركاء النجاح ومحور الرعاية وتقدير لعملائها الكرام، فقد طورت صيدليات المجتمع نظام الولاء حيث يتيح لعملائها الكرام الحصول بضائع مجانية تعادل 3 % من مشترياتها.
+              {{$t('home.CollectWithALMujtamaDescription')}}
             </p>
             <div class="line"></div>
           </div>
-          <router-link to="/about-us" ><b-icon icon="heart-fill" font-scale="5" class="icon"></b-icon>سجل الان </router-link>
+          <router-link to="/about-us" ><b-icon icon="heart-fill" font-scale="5" class="icon"></b-icon>  {{$t('home.RegisterNow')}}</router-link>
         </div>
       </div>
     </section>
@@ -202,12 +180,12 @@
         <div class="img_container_position">
           <img src="../../../assets/images/offersHeart.png" alt="" />
         </div>
-        <h3>برنامج عملاء التميز</h3>
-        <h4> هو برنامج يتيح لعملاء صيدليات المجتمع الحصول على بضاعة مجانية تعادل 3 % من مشترياتهم عند الوصول الى مبلغ 300 ريال (غير شامل ضريبة القيمة المضافة) من أي من فروعها أو الموقع الإلكتروني والتطبيق.
-يعد برنامج عميل التميز من أفضل برامج جمع النقاط في المملكة.
- </h4>
+        <h3> {{$t('home.TheLoyaltyClientProgram')}}</h3>
+        <h4> 
+          {{$t('home.TheLoyaltyClientProgramDescription')}}
+        </h4>
         <p>
-          *عدا الورقيات والحفائظ وبعض الأدوية حيث تحسب البضاعة المجانية بما يعادل 1% من قيمة المشتريات ولا يتم احتساب أي نقاط لمشتريات الحليبات ومنتجات الرضاعة الصناعية حسب تعميم وزارة الصحة بمنع الترويج للمنتجات المساعدة على الرضاعة الصناعية تشجيعاً للرضاعة الطبيعية
+          {{$t('home.TheLoyaltyClientProgramDescriptionTwo')}}
         </p>
         
       </div>
@@ -230,6 +208,7 @@ export default {
     return {
       pageNumber: 0,
       indicatorPerformance: {},
+      key_metrics: [],
       pages: [
         {
           description:
@@ -268,7 +247,7 @@ export default {
     };
   },
   mounted() {
-    this.getIndicatorPerformance();
+    this.getIndicatorPerformancekey_metrics();
   },
   methods: {
     changePageNumber(type) {
@@ -286,18 +265,22 @@ export default {
         }
       }
     },
-    getIndicatorPerformance(){
+    getIndicatorPerformancekey_metrics(){
       axios.create({
           baseURL: 'https://app.almujtama.com.sa/api',
           headers: {
               'Content-Type': 'application/json',
               'Authorization': 'Bearer '+ localStorage.getItem('token'),
               // localization: store.state.localization
+          },
+          params:{
+            category: 'key_metrics'
           }
       })
       .get('/indicatorPerformance')
       .then(res => {
-        this.indicatorPerformance = res.data.data
+      console.log(res, 'all data key_metrics')
+        this.key_metrics = res.data.data
       });
     },
   },

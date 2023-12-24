@@ -55,11 +55,13 @@
                     </div>
                     <div class="input_container">
                         <label> اوقات الدوام من : </label>
-                         <b-time v-model="branch.time_from" locale="en"></b-time>
+                        <vue-timepicker v-model="branch.time_from" format="hh A"></vue-timepicker>
+                         <!-- <b-time v-model="branch.time_from" format="h"  locale="en"></b-time> -->
                     </div>
                     <div class="input_container">
                         <label>أوقات الدوام إلي</label>
-                         <b-time v-model="branch.time_to" locale="en"></b-time>
+                        <vue-timepicker v-model="branch.time_to" format="hh A"></vue-timepicker>
+                         <!-- <b-time v-model="branch.time_to" locale="en"></b-time> -->
                     </div>
                     <div class="checkBox_container">
                         <h3>خدمات الفرع</h3>
@@ -83,11 +85,13 @@
     </div>
 </template>
 <script>
+import VueTimepicker from 'vue2-timepicker'
+import 'vue2-timepicker/dist/VueTimepicker.css'
 import HeaderBg from '../../global/HeaderBg/HeaderBg';
 import axios from 'axios';
 export default {
     name: 'AddBranch',
-    components: {HeaderBg},
+    components: {HeaderBg,VueTimepicker},
     data(){
         return{
             pageType: 'add',

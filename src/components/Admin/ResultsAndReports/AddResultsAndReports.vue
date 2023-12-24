@@ -3,38 +3,54 @@
         <HeaderBg title="النتائج و التقارير" />
         <div class="largForm">
             <div class="form_container">
-                <form action="">
-                    <div class="input_container">
-                        <label>العنوان الرئيسي عربي :</label>
-                        <input type="text" placeholder="Username">
-                    </div>
-                    <div class="input_container">
-                        <label>العنوان الرئيسي انجليزي :</label>
-                        <input type="text" placeholder="User Role">
-                    </div>
-
-                    <div>
-                        <div class="upload_img">
-                            <span>الصورة الرئيسية :</span>
-                            <div class="img_container">
-                                <img src="../../../assets/images/replaceImg.svg" alt="">
-                                <div class="input_file">
-                                    <img src="../../../assets/images/inputFile.svg" alt="">
+                <div class="input_container">
+                    <label>العنوان الرئيسي عربي :</label>
+                    <input type="text" placeholder="Username" v-model="results.translation[0].title">
+                </div>
+                <div class="input_container">
+                    <label>العنوان الرئيسي انجليزي :</label>
+                    <input type="text" placeholder="User Role" v-model="results.translation[1].title">
+                </div>
+                <div class="upload_img">
+                        <span>إرفاق صورة الفرع</span>
+                        <div class="img_container">
+                            <img src="../../../assets/images/replaceImg.svg" alt="" v-if="imgUrl == ''">
+                            <img :src="imgUrl" alt="" v-if="imgUrl !== ''">
+                            <div class="photo_upload">
+                                <div class="upladImg">
+                                    <div class="upload">
+                                        <label for="">
+                                            <img src="../../../assets/images/inputFile.svg" alt="">
+                                            <input type="file" v-on="{ change: [uploadResultsImg] }">
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="input_container">
-                            <label>عنوان الملف الاول عربي</label>
-                            <input type="text" placeholder="Full Name">
-                        </div>
-                        <div class="input_container">
-                            <label>عنوان الملف الاول اجليزي</label>
-                            <input type="text" placeholder="Language">
-                        </div>
                     </div>
+
+                <div class="multi_inputs" v-for="(result, index) in results.files" :key="index">
+                    <div class="input_container">
+                        <label>عنوان الملف عربي</label>
+                        <input type="text" placeholder="Full Name" v-model="result.translation[0].title">
+                    </div>
+                    <div class="input_container">
+                        <label>عنوان الملف انجليزي</label>
+                        <input type="text" placeholder="Language" v-model="result.translation[1].title">
+                    </div>
+                    <div class="input_container">
+                        <label> الملف</label>
+                        <input type="file" placeholder="Language" @change="uploadFile(index, $event)">
+                    </div>
+                </div>
+                <div class="addNew">
+                    <button @click="addNew"> إضافة نتائج و تقارير إضافية </button>
+                </div>
+
+                <div class="actions">
+                    <button class="saveBtn" @click="addReportsResults">حفظ</button>
+                </div>
                   
-                </form>
             </div>
             
             
@@ -42,13 +58,136 @@
     </div>
 </template>
 <script>
-import HeaderBg from '../../global/HeaderBg/HeaderBg'
+import HeaderBg from '../../global/HeaderBg/HeaderBg';
+import axios from 'axios';
 export default {
     name: 'AddResultsAndReports',
     components: {HeaderBg},
+    data(){
+        return{
+            imgUrl: '',
+            results: {
+                image: '',
+                translation: [
+                    {
+                        title: '',
+                        local: 'ar',
+                    },
+                    {
+                        title: '',
+                        local: 'en'
+                    }
+                ],
+                files: [
+                    {
+                        file: '',
+                        translation: [
+                            {
+                                title: '',
+                                local: 'ar',
+                            },
+                            {
+                                title: '',
+                                local: 'en'
+                            }
+                        ],
+                    }
+                ]
+            } 
+        }
+    },
+    methods:{
+
+        addReportsResults(){
+            // this.postLoaded = true
+            const formData = new FormData();
+                formData.append('image', this.results.image);
+                formData.append('translation[0][title]', this.results.translation[0].title);
+                formData.append('translation[0][locale]', this.results.translation[0].local);
+                formData.append('translation[1][title]', this.results.translation[1].title);
+                formData.append('translation[1][locale]', this.results.translation[1].local);
+
+                for (let i = 0; i<this.results.files.length; i++) {
+                    formData.append(`attachments[${i}][file]`, this.results.files[i].file);
+                    formData.append(`attachments[${i}][translation][0][title]`, this.results.files[i].translation[0].title);
+                    formData.append(`attachments[${i}][translation][0][locale]`, this.results.files[i].translation[0].local);
+                    formData.append(`attachments[${i}][translation][1][title]`, this.results.files[i].translation[1].title);
+                    formData.append(`attachments[${i}][translation][1][locale]`, this.results.files[i].translation[1].local);
+                }
+
+                axios.post('https://app.almujtama.com.sa/admin/reportsResults', formData, {
+                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+                })
+                .then( res => {
+                // this.$router.push('/admin/branches')
+                    console.log(res)
+                    // this.error = {}
+                    this.postLoaded = false
+                })  
+                .catch(err =>  {
+                    console.log(err.response.data.errors)
+                    this.errors = err.response.data.errors;
+                    this.ErrorCheck = true;
+                    this.postLoaded = false;
+                    
+                })
+            
+        },
+
+
+        addNew(){
+            this.results.files.push({
+                file: '',
+                translation: [
+                    {
+                        title: '',
+                        local: 'ar'
+                    },
+                    {
+                        title: '',
+                        local: 'en'
+                    }
+                ],
+            })
+        },
+        uploadResultsImg(e) {
+            this.results.image = e.target.files[0];
+            this.imgUrl = URL.createObjectURL(e.target.files[0]);
+        },
+        uploadFile(id, event){
+        this.results.files.map((data, index) => {
+            if(id == index){
+            data.file = event.target.files[0];
+            }
+            // console.log(data, id, event, index)
+
+                // console.log(event.target.files[0])
+                // data[id].file = event.target.files[0];
+            
+        })
+        
+        },
+    }
 }
 </script>
 <style lang="scss" scoped>
+.multi_inputs{
+    border-bottom: 1px solid #DDD;
+    margin-bottom: 40px;
+    width: 90%;
+}
+.addNew button{
+    background-color: #78A28F;
+    border: 0;
+    font-size: 16px;
+    color: #FFF;
+    padding: 10px 30px;
+    margin-bottom: 30px;
+    @media (max-width: 768px) {
+        margin: 20px auto;
+        display: block;
+    }
+}
 .upload_img{
     display: flex;
     align-items: center;
@@ -83,6 +222,7 @@ export default {
             }
         }
     }
+    
 }
 
 

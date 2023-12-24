@@ -124,21 +124,18 @@
             <img src="../../../assets/images/reportsResults.png" alt="" />
           </div>
           <div class="content">
-            <!-- <div class="content_row">
+            <div class="content_row" v-for="reportsResult in reportsResults" :key="reportsResult.id">
               <div class="side">
-                <h3>افصاحات سوق المال</h3>
+                <h3>{{reportsResult.translation[0].title}}</h3>
               </div>
               <div class="side">
-                <button class="dis">تنزيل الملفات</button>
-                <select>
+                <select @change="(e) => download_file(e)">
                   <option value="" selected disabled>تنزيل الملفات</option>
-                  <option value="20/06/2021">20/06/2021</option>
-                  <option value="20/06/2020">20/06/2020</option>
-                  <option value="20/06/2019">20/06/2019</option>
+                  <option :value="file.download_url" v-for="file in reportsResult.files" :key="file.id">{{file.translation[0].title}}</option>
                 </select>
               </div>
-            </div> -->
-            <div class="content_row">
+            </div>
+            <!-- <div class="content_row">
               <div class="side">
                 <h3>القوائم المالية</h3>
               </div>
@@ -173,6 +170,19 @@
                 </select>
               </div>
             </div>
+            
+            <div class="content_row">
+              <div class="side">
+                <h3>احصائيات و تقارير مالية</h3>
+              </div>
+              <div class="side">
+                <button class="dis">تنزيل الملفات</button>
+                 <select>
+                  <option value="" selected disabled>تنزيل الملفات</option>
+                  <option value="">نتائج النصف الأول</option>
+                </select>
+              </div>
+            </div>
             <div class="content_row">
               <div class="side">
                 <h3>النظام الاساس</h3>
@@ -186,18 +196,6 @@
             </div>
             <div class="content_row">
               <div class="side">
-                <h3>احصائيات و تقارير مالية</h3>
-              </div>
-              <div class="side">
-                <button class="dis">تنزيل الملفات</button>
-                <!-- <select>
-                  <option value="" selected disabled>تنزيل الملفات</option>
-                  <option value="">نتائج النصف الأول</option>
-                </select> -->
-              </div>
-            </div>
-            <div class="content_row">
-              <div class="side">
                 <h3> مستند التسجيل </h3>
               </div>
               <div class="side">
@@ -207,7 +205,7 @@
                   <option value="en">تنزيل الملفات باللغه الانجليزية</option>
                 </select>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -233,14 +231,19 @@
       <h3>المؤشرات الرئيسية</h3>
       <div class="line"></div>
       <div class="numbers container">
-        <div class="number_container">
+        <div class="number_container" v-for="key_metric in key_metrics" :key="key_metric.id">
+          <div class="number_round">{{key_metric.value}}</div>
+          <span>{{key_metric.translations[0].title}}</span>
+          <p>{{key_metric.translations[0].description}}</p>
+        </div>
+        <!--<div class="number_container">
           <div class="number_round">+{{indicatorPerformance.branches_number}}</div>
           <span>عدد الفروع</span>
           <p>160 فرعا منتشرا على نطاق واسع</p>
           <p>125 فرعا فى خدمتكم</p>
           <p>35 فرعا تحت التأسيس</p>
         </div>
-        <div class="number_container">
+         <div class="number_container">
           <div class="number_round"> {{indicatorPerformance.reference_stock_price}} ر.س</div>
           <span>سعر السهم الاسترشادي</span>
           <p>سعر السهم الاسترشادي عند الادراج</p>
@@ -258,7 +261,7 @@
         <div class="number_container">
           <div class="number_round">{{indicatorPerformance.products}}K+</div>
           <span>صنفاً بين يديكم</span>
-        </div>
+        </div> -->
       </div>
     </section>
     <section class="numbers_of_year secondeNumbers">
@@ -267,7 +270,12 @@
       <h6>(النصف الأول من العام 2023)</h6>
 
       <div class="numbers container">
-        <div class="number_container">
+        <div class="number_container" v-for="performance in indicatorPerformance" :key="performance.id">
+          <div class="number_round">{{performance.value}}</div>
+          <span>{{performance.translations[0].title}}</span>
+          <p>{{performance.translations[0].description}}</p>
+        </div>
+        <!-- <div class="number_container">
           <div class="number_round">{{indicatorPerformance.income}}</div>
           <span>الإيرادات</span>
         </div>
@@ -286,7 +294,7 @@
         <div class="number_container">
           <div class="number_round">{{indicatorPerformance.net_income_margin}}%</div>
           <span>هامش صافى الربح</span>
-        </div>
+        </div> -->
       </div>
     </section>
 
@@ -484,7 +492,9 @@ export default {
     return{
       toggleQuestion: '0',
       pageNumber: 0,
-      indicatorPerformance: {},
+      indicatorPerformance: [],
+      key_metrics: [],
+      reportsResults: [],
       pages: [
         {
           description:
@@ -523,9 +533,36 @@ export default {
     }
   },
   mounted(){
-    this.getIndicatorPerformance();
+    this.getResultsAndReports();
+    this.getIndicatorPerformancekpis();
+    this.getIndicatorPerformancekey_metrics();
   },
   methods: {
+    getResultsAndReports() {
+            axios.get('https://app.almujtama.com.sa/api/reportsResults', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': '*',
+                    'Authorization': 'Bearer '+ localStorage.getItem('token'),
+                },
+            })
+            .then((response) => {
+                console.log(response)
+                this.reportsResults = response.data.data
+                // this.loadingRequest = false;
+            })
+            .catch((err) => {
+                if(Request.statusIsFaield(err)){
+                    this.$router.push('/')
+                    localStorage.removeItem('token')
+                }
+            });
+    },
+    download_file(e){
+      console.log(e.target.value)
+      window.open(e.target.value, '_blank');
+    },
     toggleClick(index){
       if(this.toggleQuestion == index){
         this.toggleQuestion = 0
@@ -654,7 +691,7 @@ export default {
         }
       }
     },
-    getIndicatorPerformance(){
+    getIndicatorPerformancekpis(){
       axios.create({
           baseURL: 'https://app.almujtama.com.sa/api',
           headers: {
@@ -663,12 +700,31 @@ export default {
               // localization: store.state.localization
           },
           params:{
-                    category: 'kpis'
-                }
+            category: 'kpis'
+          }
       })
       .get('/indicatorPerformance')
       .then(res => {
+      console.log(res, 'all data')
         this.indicatorPerformance = res.data.data
+      });
+    },
+    getIndicatorPerformancekey_metrics(){
+      axios.create({
+          baseURL: 'https://app.almujtama.com.sa/api',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer '+ localStorage.getItem('token'),
+              // localization: store.state.localization
+          },
+          params:{
+            category: 'key_metrics'
+          }
+      })
+      .get('/indicatorPerformance')
+      .then(res => {
+      console.log(res, 'all data key_metrics')
+        this.key_metrics = res.data.data
       });
     },
   },
@@ -956,7 +1012,7 @@ export default {
             border: 0;
             border-radius: 4px;
             display: block;
-            width: 160px;
+            width: 180px;
             option {
               background-color: #fff;
               color: #000;

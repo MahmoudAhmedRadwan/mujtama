@@ -17,9 +17,9 @@
                     </thead>
                     <tbody>
                     <tr v-for="indicatorPerformance in indicatorPerformances" :key="indicatorPerformance.id">
-                        <td>{{indicatorPerformance.id}}</td>
-                        <td>{{indicatorPerformance.name}}</td>
-                        <td>{{indicatorPerformance.phone_number}}</td>
+                        <td>{{indicatorPerformance.translations[0].title}}</td>
+                        <td>{{indicatorPerformance.value}}</td>
+                        <td>{{indicatorPerformance.translations[0].description}}</td>
                         <td>
                             <div class="options_container">
                                 <img src="../../../assets/images/selectIcon.png" alt="">
@@ -54,6 +54,7 @@ export default {
     methods:{
         editPerformance(id){
             this.$router.push(`/admin/indicator-performance/edit/${id}`)
+            localStorage.setItem('type', 'keyMetrics')
         },
         getApplications() {
             axios.get('https://app.almujtama.com.sa/admin/indicatorPerformance', {

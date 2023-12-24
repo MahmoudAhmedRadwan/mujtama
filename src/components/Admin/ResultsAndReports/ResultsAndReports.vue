@@ -15,19 +15,13 @@
             <table width="100%">
                 <thead>
                     <tr>
-                        <th> رقم الفرع</th>
-                        <th> أسم الفرع</th>
-                        <th> الهاتف</th>
-                        <th> المدينة</th>
+                        <th> الاسم</th>
                         <th> </th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>#5036</td>
-                        <td>صيدلية المجتمع الرائدة 1</td>
-                        <td>0599132523</td>
-                        <td>جدة</td>
+                    <tr v-for="reportsResult in reportsResults" :key="reportsResult.id">
+                        <td>{{reportsResult.translation[0].title}}</td>
                         <td>
                             <div class="options_container">
                                 <img src="../../../assets/images/selectIcon.png" alt="">
@@ -44,10 +38,42 @@
     </div>
 </template>
 <script>
-import HeaderBg from '../../global/HeaderBg/HeaderBg'
+import HeaderBg from '../../global/HeaderBg/HeaderBg';
+import axios from 'axios';
 export default {
     name:'ResultsAndReports',
     components: {HeaderBg},
+    data(){
+        return{
+            reportsResults: []
+        }
+    },
+    mounted(){
+        this.getResultsAndReports();
+    },
+    methods:{
+        getResultsAndReports() {
+            axios.get('https://app.almujtama.com.sa/admin/reportsResults', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': '*',
+                    'Authorization': 'Bearer '+ localStorage.getItem('token'),
+                },
+            })
+            .then((response) => {
+                console.log(response)
+                this.reportsResults = response.data.data
+                // this.loadingRequest = false;
+            })
+            .catch((err) => {
+                if(Request.statusIsFaield(err)){
+                    this.$router.push('/')
+                    localStorage.removeItem('token')
+                }
+            });
+        },
+    }
 }
 </script>
 <style lang="scss" scoped>

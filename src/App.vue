@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :class='$i18n.locale'>
     <router-view />
   </div>
 </template>

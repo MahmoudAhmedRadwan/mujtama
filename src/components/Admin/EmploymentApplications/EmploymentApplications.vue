@@ -22,10 +22,10 @@
             <table width="100%">
                 <thead>
                     <tr>
-                        <th> رقم الفرع</th>
-                        <th> أسم الفرع</th>
+                        <th> رقم الطلب</th>
+                        <th> الاسم</th>
                         <th> الهاتف</th>
-                        <th> الوظيفة</th>
+                        <th> الوظيفة المطلوبة</th>
                         <th> </th>
                     </tr>
                     </thead>
@@ -36,7 +36,7 @@
                         <td>{{application.phone_number}}</td>
                         <td>{{application.job}}</td>
                         <td class="link_to">
-                            <router-link :to="'/admin/employment-applications/job-details/'+application.id">مشاهدة <img src="../../../assets/images/edit-text.svg" alt=""></router-link>
+                            <router-link :to="'/admin/employment-applications/job-details/'+application.id"> <img src="../../../assets/images/bin.png11.png" alt=""> معاينة </router-link>
                         </td>
                     </tr>
                 </tbody>
@@ -101,7 +101,12 @@ export default {
 .link_to{
     a{
         font-size: 12px;
-        color: #656565;
+        color: #0000E0;
+        font-weight: 600;
+        
+        img{
+            width: 30px;
+        }
     }
 }
 

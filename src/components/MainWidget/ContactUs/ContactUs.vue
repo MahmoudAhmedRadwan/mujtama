@@ -66,25 +66,30 @@
               <form @submit.prevent="contactUs">
                 <div class="form_input">
                   <label>الاسم</label>
-                  <input type="text" placeholder="الاسم" />
+                  <input type="text" placeholder="الاسم" v-model="contact_us.name" />
                 </div>
                 <div class="form_input">
                   <label>البريد الالكتروني</label>
-                  <input type="text" placeholder="البريد" />
+                  <input type="email" placeholder="البريد" v-model="contact_us.email" />
                 </div>
                 <div class="form_input">
                   <label>رقم الجوال</label>
-                  <input type="text" placeholder="الرقم" />
+                  <input type="text" placeholder="الرقم" v-model="contact_us.phone"/>
                 </div>
                 <div class="form_input">
                   <label>عنوان الرسالة</label>
-                  <input type="text" placeholder="العنوان" />
+                  <input type="text" placeholder="العنوان" v-model="contact_us.title" />
                 </div>
                 <div class="form_text">
                   <label>الرسالة</label>
-                  <textarea placeholder="كتابة النص هنا"></textarea>
+                  <textarea placeholder="كتابة النص هنا" v-model="contact_us.message"></textarea>
                 </div>
-                <button>إرسال</button>
+                <div class="alert alert-danger" role="alert" v-if="ErrorCheck == true">
+                  <p v-for="(error, index) in errors" :key="index"> {{error}} </p>
+                </div>
+                 <b-alert variant="success" show v-if="success == true"> تم إرسال الرسالة بنجاح </b-alert>
+                <button v-if="postLoaded == false">إرسال</button>
+                <button v-if="postLoaded == true"><b-spinner></b-spinner></button>
               </form>
             </div>
           </div>
@@ -95,21 +100,50 @@
   </div>
 </template>
 <script>
+import axios from 'axios';
 export default {
   name: "ContactUs",
   data(){
     return{
-
+      postLoaded: false,
+      success: false,
+      contact_us:{
+        name : "",
+        email : "",
+        phone : "",
+        title : "",
+        message : ""
+      },
+      errors: [],
+      ErrorCheck: false,
     }
   },
   methods:{
     contactUs(){
-      console.log('test contact')
+      this.postLoaded = true
+      axios.post(`https://app.almujtama.com.sa/api/contactInvestor`, this.contact_us, {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      })
+      .then( () => {
+        this.success = true;
+        this.postLoaded = false
+        this.ErrorCheck = false;
+      })  
+      .catch(err =>  {
+          this.errors = err.response.data.errors;
+          this.ErrorCheck = true;
+          this.postLoaded = false;
+          this.success = false;
+          
+      })
     }
   }
 };
 </script>
 <style lang="scss" scoped>
+.alert{
+  width: 100%;
+}
 .contactUs {
   .contact_us_header {
     background-color: #78a28f;
@@ -179,7 +213,7 @@ export default {
         .line {
           margin: 30px 0;
         }
-        p {
+        > p {
           font-size: 16px;
           color: #6f7775;
           margin-bottom: 50px;
