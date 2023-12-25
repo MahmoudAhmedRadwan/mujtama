@@ -185,7 +185,7 @@
           <div class="icon_container">
             <b-icon icon="check2" font-scale="5" class="icon"></b-icon>
           </div>
-          <p>   {{$t('aboutUs.branchesOnService')}}</p>
+          <p> {{$t('aboutUs.branchesOnService')}}</p>
         </div>
         <div class="branch_line">
           <div class="icon_container">

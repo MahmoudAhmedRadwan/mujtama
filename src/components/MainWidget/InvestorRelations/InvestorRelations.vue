@@ -11,17 +11,15 @@
           <img src="../../../assets/images/newLogo.png" alt="" />
         </div>
         <div class="title">
-          <h2>علاقات المستثمرين</h2>
+          <h2> {{$t('investor.INVESOTRSRELATION')}}</h2>
           <div class="line"></div>
-          <p>
-            من خلال صفحة علاقات المستثمرين يستطيع المستثمر الاطلاع على التقارير والنتائج الخاصة بالشركة
-          </p>
-          <a href="#results_reports">النتائج و التقارير </a>
+          <p>{{$t('investor.INVESOTRSRELATIONDescription')}}</p>
+          <a href="#results_reports">{{$t('investor.INVESOTRSRELATION')}}</a>
         </div>
         <div class="breadCrobs">
-          <router-link to="/">الرئيسية</router-link>
+          <router-link to="/"> {{$t('landing.Home')}}</router-link>
           <span>>></span>
-          <h3>علاقات المستثمرين</h3>
+          <h3>{{$t('investor.INVESOTRSRELATION')}}</h3>
         </div>
       </div>
     </header>
@@ -39,48 +37,16 @@
           </div>
 
           <div class="description">
-            <h3>نبذة عن الشركة</h3>
+            <h3>{{$t('investor.AboutTheGroup')}}</h3>
             <div class="line"></div>
 
-            <p>
-              • صيدليات المجتمع مجموعة رائدة ومتكاملة في تقديم الخدمات
-              الصيدلانية.
-            </p>
-            <p>
-              • شركاء وزارة الصحة في تنفيذ برامج الرعاية الصحية ومبادرات منظومة
-              الوزارة لبرامج التحول الوطني 2020 ضمن رؤية المملكة 2030.
-            </p>
-            <p>
-              • شركاء وزارة الصحة بالتنسيق مع الشركة الوطنية للشراء الموحد
-              (نوبكو) لصرف الوصفات الطبية (وصفتي) الصادرة من مراكز الرعاية
-              الأولية والمستشفيات التابعة لوزارة الصحة <br>إضافة الى المستشفيات
-              التابعة للخدمات الطبية بالقطاعات الحكومية الأخرى مثل: وزارة الدفاع
-              و وزارة الداخلية و وزارة التعليم العالي لكل من: (جدة – مكة المكرمة
-              – الطائف - الرياض - المدينة المنورة - الخرج - مدينة الملك عبد الله
-              الاقتصادية- ينبع - رابغ –جازان- صبيا)
-            </p>
-            <p>
-              • بالتعاون مع وزارة الصحة،تقدم مجموعة صيدليات المجتمع خدمة صرف
-              الوصفات الإلكترونية الصادرة من تطبيق (صحتي) والهاتف الموحد (937)
-              من خلال فروعها.
-            </p>
-            <p>
-              • شركاء وزارة الصحة وعدد من المؤسسات التعليمية (جامعة الملك عبد
-              العزيز- جامعة الطائف) لتقديم الخدمات المجتمعية وتدريب طلبة
-              الامتياز بكلية الصيدلة والمساهمة في البحوث العلمية التي تهدف الى
-              تطوير مهنة الصيدلة وقطاع الدواء.
-            </p>
-            <p>
-              • شركاء وزارة الصحة في تقديم خدمة التطعيمات الموسمية، إضافة الى
-              رصد المؤشرات الحيوية ضمن الحملة الوطنية # اعرف ارقامك # تمهيداً
-              لتطبيق نظام الملف الموحد لجميع المواطنين وذلك بالتنسيق مع الجهات
-              الحكومية ذات العلاقة.
-            </p>
-            <p>
-              • بإشراف من وزارة الصحة تقدم صيدليات المجتمع خدمة الرعاية الصحية
-              غير العاجلة داخل عيادات مجهزة ومخصصة لتقديم الخدمة والاستفادة من
-              خدمة الطب الاتصالي لتقديم أفضل الخدمات الصحية.
-            </p>
+            <p> {{$t('investor.AboutTheGroupDescription1')}}</p>
+            <p>{{$t('investor.AboutTheGroupDescription2')}}</p>
+            <p>{{$t('investor.AboutTheGroupDescription3')}}</p>
+            <p>{{$t('investor.AboutTheGroupDescription4')}}</p>
+            <p>{{$t('investor.AboutTheGroupDescription5')}}</p>
+            <p>{{$t('investor.AboutTheGroupDescription6')}}</p>
+            <p>{{$t('investor.AboutTheGroupDescription7')}}</p>
           </div>
         </div>
       </div>
@@ -88,7 +54,7 @@
 
     <section class="new_pharmacy">
       <div class="description">
-        <span>اخر الأخبار</span>
+        <span> {{$t('investor.LatestNews')}}</span>
         <h3>
           {{ pages[pageNumber].description }}
         </h3>
@@ -117,7 +83,7 @@
 
     <section class="results_reports" id="results_reports">
       <div class="container">
-        <h3>النتائج و التقارير</h3>
+        <h3> {{$t('investor.ReportsAndResults')}}</h3>
         <div class="line"></div>
         <div class="content_container">
           <div class="img_container">
@@ -130,7 +96,7 @@
               </div>
               <div class="side">
                 <select @change="(e) => download_file(e)">
-                  <option value="" selected disabled>تنزيل الملفات</option>
+                  <option value="" selected disabled> {{$t('investor.downloadTheFile')}}</option>
                   <option :value="file.download_url" v-for="file in reportsResult.files" :key="file.id">{{file.translation[0].title}}</option>
                 </select>
               </div>
@@ -212,10 +178,10 @@
     </section>
 
     <section class="yearly_reort">
-      <h3>افصاحات سوق المال </h3>
+      <h3> {{$t('investor.MoneyMarketDisclosure')}}</h3>
       <div class="line"></div>
       <div class="aannouncement">
-        <p>تعلن شركة المجتمع الرائدة الطبية عن موافقة مجلس الإدارة في اجتماعه المنعقد بتاريخ 04/12/2023م على قبول استقالة عضو مجلس الإدارة الأستاذ/ هشام عمر باروم ( غير تنفيذي ) من منصبه وذلك بتاريخ 04/12/2023م على أن تسري الاستقالة من تاريخ تقديم الاستقالة في 04/12/2023م ويعود سبب الاستقالة إلى انتهاء ترخيص الجمعية العامة المنعقدة بتاريخ 06/10/2022م بشأن السماح له بالاشتراك في عضوية مجلس إدارة شركة انوفا السعودية للرعاية الصحية.<br> <br> وقد عبر العضو عن شكره وامتنانه لمساهمي الشركة وأعضاء المجلس على الفترة التي قضاها كعضو في مجلس الإدارة، ويتوجه مجلس إدارة الشركة بجزيل الشكر والتقدير للأستاذ/ هشام عمر باروم متمنيين له دوام التوفيق والنجاح.</p>
+        <p>{{$t('investor.MoneyMarketDisclosureDescription')}}</p>
         <div class="date_container">
           <div class="date">
             07/12/2023
@@ -223,12 +189,12 @@
           </div>
         </div>
       </div>
-      <a target="_blank" href="https://www.saudiexchange.sa/wps/portal/saudiexchange/newsandreports/issuer-news/issuer-announcements/issuer-announcements-details/!ut/p/z1/jZFNU8IwEIZ_CweOsku_6y0IBBAstVYgFybFWjqTNkwpdPj3BpxxLF-aW7LPs8m7AQZzYDnfpwkvU5lzofYLZi1NYqE2cNDziGuj3x916HBM9J5vwKwOOBNqof9CfE-zTcRAA1Yrd7tPyn92BiP0NGzjuY_B1FTAdKKP8RUpWnX_1v14YxH8n_8D0L7WU4Db8bs92kZq_-2zs4iXE6gDVyKegHsZ6h0uHzkClggZfX8YySPdSYAV8WdcxEVrV6jjdVluto9NbGJVVa1EykTErZXMmnhNWcttCfM6eeSOXU5NSv7Bq51QNlOlDc8PwSGLpLrINV0NAl7AQk3W_hX7_clACz2DTsZOmxomzPZpXEGYyyJTDw-OKYVccRHDQulvKvNdfZOFYTjHdPjAooMu9uskWw5Jo_EFSH7kGA!!/dz/d5/L0lDU0lLVUtVSkNncFJDZ3BSQ2lDbEVLSUtVU0ovWUJVRUFBQUlJTUlFQUNJQ0tJS0lHT0JPQkdPSkZKRkdKTk5ETkRMSUVFTkhIUEhQTEhBb0VLSW9FTUEhLzRKQ2lqc1l1T0lRU2t5RkpOUlRrS2FhaG10MnN0bk5Uelc3V1d3V29wVlVZb0EhIS9aN181QTYwMkg4ME8wSFRDMDYwU0c2VVQ4MURRNi9aNl81QTYwMkg4ME8wSFRDMDYwU0c2VVQ4MURJMy92aWV3L25vcm1hbC9BTk5PVU5DRU1FTlRfTlVNQkVSLzc3MjQwL2NvbXBhbnlTeW1ib2wvOTU5Mi9odHRwOiUwJTB0YWRhd3VsJTAvYW5uQ2F0LzEvYW5JZC9hcg!!/">تفاصيل الاعلان</a>
+      <a target="_blank" href="https://www.saudiexchange.sa/wps/portal/saudiexchange/newsandreports/issuer-news/issuer-announcements/issuer-announcements-details/!ut/p/z1/jZFNU8IwEIZ_CweOsku_6y0IBBAstVYgFybFWjqTNkwpdPj3BpxxLF-aW7LPs8m7AQZzYDnfpwkvU5lzofYLZi1NYqE2cNDziGuj3x916HBM9J5vwKwOOBNqof9CfE-zTcRAA1Yrd7tPyn92BiP0NGzjuY_B1FTAdKKP8RUpWnX_1v14YxH8n_8D0L7WU4Db8bs92kZq_-2zs4iXE6gDVyKegHsZ6h0uHzkClggZfX8YySPdSYAV8WdcxEVrV6jjdVluto9NbGJVVa1EykTErZXMmnhNWcttCfM6eeSOXU5NSv7Bq51QNlOlDc8PwSGLpLrINV0NAl7AQk3W_hX7_clACz2DTsZOmxomzPZpXEGYyyJTDw-OKYVccRHDQulvKvNdfZOFYTjHdPjAooMu9uskWw5Jo_EFSH7kGA!!/dz/d5/L0lDU0lLVUtVSkNncFJDZ3BSQ2lDbEVLSUtVU0ovWUJVRUFBQUlJTUlFQUNJQ0tJS0lHT0JPQkdPSkZKRkdKTk5ETkRMSUVFTkhIUEhQTEhBb0VLSW9FTUEhLzRKQ2lqc1l1T0lRU2t5RkpOUlRrS2FhaG10MnN0bk5Uelc3V1d3V29wVlVZb0EhIS9aN181QTYwMkg4ME8wSFRDMDYwU0c2VVQ4MURRNi9aNl81QTYwMkg4ME8wSFRDMDYwU0c2VVQ4MURJMy92aWV3L25vcm1hbC9BTk5PVU5DRU1FTlRfTlVNQkVSLzc3MjQwL2NvbXBhbnlTeW1ib2wvOTU5Mi9odHRwOiUwJTB0YWRhd3VsJTAvYW5uQ2F0LzEvYW5JZC9hcg!!/"> {{$t('investor.AdvertisementDetails')}}</a>
     </section>
 
     <section class="numbers_of_year">
-      <span>علاقات المستثمرين</span>
-      <h3>المؤشرات الرئيسية</h3>
+      <span>{{$t('investor.INVESOTRSRELATION')}}</span>
+      <h3> {{$t('investor.KeyIndex')}}</h3>
       <div class="line"></div>
       <div class="numbers container">
         <div class="number_container" v-for="key_metric in key_metrics" :key="key_metric.id">
@@ -265,9 +231,9 @@
       </div>
     </section>
     <section class="numbers_of_year secondeNumbers">
-      <h3>مؤشرات الأداء الرئيسية</h3>
+      <h3>{{$t('investor.KeyPerformanceIndex')}}</h3>
       <div class="line"></div>
-      <h6>(النصف الأول من العام 2023)</h6>
+      <h6> {{$t('investor.FirstQuarter')}}</h6>
 
       <div class="numbers container">
         <div class="number_container" v-for="performance in indicatorPerformance" :key="performance.id">
@@ -300,90 +266,90 @@
 
     <section class="questions">
       <div class="container">
-        <h3>مقابلة مع الرئيس التنفيذي و العضو المنتدب لشركة المجتمع الرائدة الطبية :</h3>
-        <p>تعرّف على استراتيجية شركة المجتمع الرائدة الطبية ومزاياها التنافسية</p>
+        <h3> {{$t('investor.quetionsHeadTitle')}}</h3>
+        <p>{{$t('investor.quetionsTitle')}}</p>
         <div class="question_container">
           <div class="toggle_flex">
-            <h4>1-ما تقييمكم للمنافسة في سوق الصيدليات في المملكة؟ وكم تبلغ حصتكم السوقية؟</h4>
+            <h4>{{$t('investor.question1')}}</h4>
 
             <div class="toggleClick" @click="() => toggleClick(1)">
                 {{toggleQuestion == 1 ? '-' : '+'}}
             </div>
           </div>
 
-          <p :class="toggleQuestion == 1 ? 'active_p' : ''">يبلغ عدد الصيدليات المجتمعية في المملكة (9) الاف صيدلية تقريباً، وتمتلك مجموعتنا حوالي (125) صيدلية حتى تاريخه، وسيتم إضافة (40) صيدلية على الأقل مع نهاية عام 2024م بإذن الله، ومن ناحية الحصة السوقية فلا توجد إحصائية رسمية يمكن الادلاء بها في الوقت الحالي، ولكن يمكنني القول بأن شركة المجتمع الرائدة الطبية تستحوذ حالياً على ما نسبته من 8 – 10 % من عدد الوصفات التي تصدر من مختلف المستشفيات ومراكز الرعاية الصحية الأولية بالمملكة عن طريق نظام وصفتي.</p>
+          <p :class="toggleQuestion == 1 ? 'active_p' : ''">{{$t('investor.answer1')}}</p>
         </div>
         <div class="question_container">
           <div class="toggle_flex">
-            <h4>2-ما هي استراتيجية الشركة فيما يتعلق بالتوسع في فتح المزيد من الصيدليات؟ وما هي المناطق المستهدفة للتوسع في المستقبل؟</h4>
+            <h4>{{$t('investor.question2')}}</h4>
             <div class="toggleClick" @click="() => toggleClick(2)">
                 {{toggleQuestion == 2 ? '-' : '+'}}
             </div>
           </div>
-          <p :class="toggleQuestion == 2 ? 'active_p' : ''">افتتاح المزيد من الفروع كان وما زال من أهداف الشركة مع ازدياد في وتيرته في الفترة الأخيرة، حيث يتم افتتاح بين 25 – 30 صيدلية سنويا في الوقت الحالي، ومن المتوقع خلال شهر من الآن وبعد الانتهاء من تشغيل المستودع الرئيسي على مساحة (21,000 متر مربع) أن يرتفع هذا العدد ليصبح ما تتم إضافته من فروع إلى 40 فرعا سنويا -بإذن الله-. أما بالنسبة للمناطق المستهدفة فسوف تتم مراعاة التوزيع الجغرافي والتوجه إلى مناطق غير مخدومة، فعلى الرغم من أن عدد الصيدليات المجتمعية بالمملكة (صيدلية لكل 4000 نسمة) وهو أعلى من المعدل العالمي (صيدلية لكل 8000 نسمة) إلا أن هناك مناطق شاسعة لم تصلها الخدمة. كما أن صيدليات المجتمع لها الأسبقية في تشغيل وإدارة صيدليات العيادات الخارجية لمستشفيات ومراكز الرعاية الأولية التابعة لوزارة الصحة داخل أروقتها (3 مستشفيات + مستشفى جامعي) ضمن فروعها ال (125) حتى تاريخ هذه المقابلة حيث تقوم بصرف الوصفات الطبية بنظام "وصفتي". كما أن الخدمات المتميزة التي تقدمها صيدليات المجتمع – العديد منها مرجعية- مثل تقديم الاستشارات الدوائية والطب الاتصالي والمتجر الإلكتروني والتوصيل المنزلي زاد من الحاجة إلى توسيع التوزيع الجغرافي.</p>
+          <p :class="toggleQuestion == 2 ? 'active_p' : ''">{{$t('investor.answer2')}}</p>
         </div>
         <div class="question_container">
           <div class="toggle_flex">
-            <h4>3-ما التوزيع الجغرافي للصيدليات؟</h4>
+            <h4>{{$t('investor.question3')}}</h4>
             <div class="toggleClick" @click="() => toggleClick(3)">
                 {{toggleQuestion == 3 ? '-' : '+'}}
             </div>
           </div>
-          <p :class="toggleQuestion == 3 ? 'active_p' : ''">فيما يلي جدول يوضح التوزيع الجغرافي الحالي لصيدليات المجتمع:</p>
+          <p :class="toggleQuestion == 3 ? 'active_p' : ''">{{$t('investor.answer3')}}</p>
           <div class="tableAnsewer" :class="toggleQuestion == 3 ? 'active_p' : ''">
             <table>
               <tr>
-                <th>المدينة</th>
-                <th>عدد الفروع</th>
-                <th>النسبة (%)</th>
+                <th> {{$t('investor.tableHeader1')}}</th>
+                <th>{{$t('investor.tableHeader2')}}</th>
+                <th>{{$t('investor.tableHeader3')}}</th>
               </tr>
               <tr>
-                <td> جدة </td>
+                <td>  {{$t('investor.JEDDAH')}}</td>
                 <td> 69 </td>
                 <td> 55% </td>
               </tr>
               <tr>
-                <td> الطائف </td>
+                <td>  {{$t('investor.TAIF')}}</td>
                 <td> 17 </td>
                 <td> 14% </td>
               </tr>
               <tr>
-                <td> مكة </td>
+                <td>  {{$t('investor.MAKKAH')}}</td>
                 <td> 15 </td>
                 <td>12%  </td>
               </tr>
               <tr>
-                <td> الرياض </td>
+                <td>  {{$t('investor.RIYADH')}}</td>
                 <td> 7 </td>
                 <td> 5% </td>
               </tr>
               <tr>
-                <td> جازان </td>
+                <td>  {{$t('investor.JAZAN')}}</td>
                 <td> 6 </td>
                 <td> 4% </td>
               </tr>
               <tr>
-                <td> المدينة </td>
+                <td>  {{$t('investor.MADINAH')}}</td>
                 <td> 5 </td>
                 <td> 4% </td>
               </tr>
               <tr>
-                <td> رابغ </td>
+                <td>  {{$t('investor.RABIGH')}}</td>
                 <td> 2 </td>
                 <td> 2% </td>
               </tr>
               <tr>
-                <td> الخرج </td>
+                <td>  {{$t('investor.ALKHARJ')}}</td>
                 <td> 2 </td>
                 <td> 2% </td>
               </tr>
               <tr>
-                <td> ينبع </td>
+                <td>  {{$t('investor.YANBU')}}</td>
                 <td> 1 </td>
                 <td> 2% </td>
               </tr>
               <tr>
-                <td> المتجر الالكتروني </td>
+                <td>  {{$t('investor.ONLINESTORE')}}</td>
                 <td> 1 </td>
                 <td> 1% </td>
               </tr>
@@ -397,48 +363,48 @@
         </div>  
         <div class="question_container">
           <div class="toggle_flex">
-            <h4>4-تمتلك الشركة سلسلة كبيرة من الصيدليات في مختلف مناطق المملكة، هل يمكنكم تزويدنا بتفاصيل حول أداء هذه الصيدليات من ناحية الإيرادات وصافي الأرباح ونسب النمو؟</h4>
+            <h4>{{$t('investor.question4')}}</h4>
             <div class="toggleClick" @click="() => toggleClick(5)">
                 {{toggleQuestion == 5 ? '-' : '+'}}
             </div>
           </div>
-          <p :class="toggleQuestion == 5 ? 'active_p' : ''">حققت الشركة إيرادات بلغت حوالي 367 مليون ريال سعودي وصافي أرباح بلغ حوالي 19مليون ريال سعودي كما في نهاية عام 2022م حيث حققت الشركة نمو في الإيرادات بنسبة 21% ونمو في صافي الأرباح بنسبة 144% عن العام المالي السابق. كما بلغت إيرادات الشركة حوالي 204 مليون ريال سعودي وبلغ صافي الأرباح حوالي 11 مليون ريال سعودي كما في 30 يونيو 2023م، أي بما يتمثل في نمو في الإيرادات بنسبة 19% ونمو في صافي الأرباح بنسبة 66% عن الفترة المالية المماثلة السابقة.</p>
+          <p :class="toggleQuestion == 5 ? 'active_p' : ''">{{$t('investor.answer4')}}</p>
         </div>
         <div class="question_container">
           <div class="toggle_flex">
-            <h4>5-حققت الشركة أرباحاً بـ 11.3 مليون ريال بنهاية النصف الأول من عام 2023م، ما تعليقكم على هذه النتائج؟ وما توقعاتكم لأداء النصف الثاني؟</h4>
+            <h4>{{$t('investor.question5')}}</h4>
             <div class="toggleClick" @click="() => toggleClick(6)">
                 {{toggleQuestion == 6 ? '-' : '+'}}
             </div>
           </div>
-          <p :class="toggleQuestion == 6 ? 'active_p' : ''">حققت الشركة نمو في صافي الأرباح في عام 2022م بنسبة 144% عن العام المالي السابق، وذلك جراء ضخ سيولة إضافية في الشركة مع دخول مستثمرين جدد، وأيضاً ازدياد معدل عدد الفروع الجديدة عن الذي كانت عليه في الأعوام السابقة قبل ضخ السيولة الإضافية. وبناءً على ذلك تم تحقيق نمو إضافي في الإيرادات وصافي الأرباح خلال النصف الأول من عام 2023م، حيث بلغت أرباح الشركة 11,33 مليون ريال سعودي كما في 30 يونيو 2023م. ومن المتوقع أن تحقق الشـركة إجمالي مبيعات تبلغ 430 مليون ريال سعودي بنهاية عام 2023م وصافي أرباح تبلغ 24 مليون ريال سعودي أي بزيادة بمعدل 25% عن عام 2022م بإذن الله.</p>
+          <p :class="toggleQuestion == 6 ? 'active_p' : ''">{{$t('investor.answer5')}}</p>
         </div>
         <div class="question_container">
           <div class="toggle_flex">
-            <h4>6-ما هو تصور الشركة لمستقبل صناعة الرعاية الصحية في المملكة والتحديات والفرص المتوقعة في هذا القطاع؟</h4>
+            <h4>{{$t('investor.question6')}}</h4>
             <div class="toggleClick" @click="() => toggleClick(7)">
                 {{toggleQuestion == 7 ? '-' : '+'}}
             </div>
           </div>
-          <p :class="toggleQuestion == 7 ? 'active_p' : ''">منذ الإعلان عن توجه الدولة رعاها الله لتخصيص خدمة الرعاية الصحية، اتخذ القطاع الصحي الخاص خطوات مهمة تتمثل بدخول مستثمرين لإنشاء العديد من المستشفيات والمراكز المتخصصة بالشراكة مع خبرات عالمية ومحلية ذات تجربة واسعة. وفي هذا الصدد، قامت شركة المجتمع الرائدة الطبية بإنشاء مستودع على مساحة 21 ألف متر مربع مجهز بأحدث وسائل التخزين والصـرف لمقابلة الطلب المتزايد على خدمات فروعها التي يجري افتتاحها والتوسع في مناطق جغرافية جديدة. كما أن قيام شركة المجتمع الرائدة الطبية بتشغيل الصيدليات الخارجية لعدد من المستشفيات التابعة لوزارة الصحة ووزارة التعليم العالي في كل من: جدة والطائف وجازان وصبيا ألقى عليها مسؤولية زيادة طاقتها الاستيعابية والتشغيلية وتدريب وتوظيف الكوادر الصحية الوطنية ووضع الخطط المستقبلية كشركة رائدة في تنفيذ برامج التحول الوطني ورؤية 2030 وكأول سلسلة صيدليات مجتمعية حققت مبدأ التكامل مع مستشفيات ومراكز صحية حكومية. وإذا علمنا أن عدد مستشفيات وزارة الصحة تبلغ 284 مستشفى وحوالي 2300 مركز رعاية أولية فيتضح لنا جلياً أن توجه الشركة بعقد شراكات طويلة الأمد مع وزارة الصحة وغيرها من القطاعات الصحية الحكومية هو استثمار ممتاز ذو نظرة مستقبلية واعدة.</p>
+          <p :class="toggleQuestion == 7 ? 'active_p' : ''">{{$t('investor.answer6')}}</p>
         </div>
         <div class="question_container">
           <div class="toggle_flex">
-            <h4>7-ما توقعاتكم لحجم الإيرادات الإضافية والربحية الناتجة من التوسعات الجديدة؟</h4>
+            <h4>{{$t('investor.question7')}}</h4>
             <div class="toggleClick" @click="() => toggleClick(8)">
                 {{toggleQuestion == 8 ? '-' : '+'}}
             </div>
           </div>
-          <p :class="toggleQuestion == 8 ? 'active_p' : ''">كما تمت الإشارة في الإجابة على الأسئلة رقم(4) ورقم (5) ورقم (6) فإن مجال قطاع الدواء هو مجال واعد، ومن خلال النظرة المتمعنة من إدارة الشـركة التي ترى في الأفق مجالاً رحباً للتوسع الأفقي بافتتاح فروع في مناطق جغرافية جديدة، والتوسع الرأسي بتطوير وادخال أحدث انظمة الادارة والمحاسبة وادارة المخزون حسب المعايير الدولية والتدريب على مهارات البيع، كما وضعت ضمن اولوياتها تطوير وتدريب الكادر الصحي الوطني وتحقيق نسبة التوطين المطلوبة لمهنة "صيدلي" وتوقيع الاتفاقيات في هذا الشأن مع عدد من كليات الصيدلة ووضع برامج التدريب المناسبة لتأهيل الكادر الوطني للعمل في مجال الصيدليات المجتمعية، مما ساهم في رفع مستوى الاداء وانعكس على هيئة قفزات مهمة في رقم المبيعات وزيادة في الربحية. وإجابة على سؤالكم، يُتوقع في نهاية عام 2024م أن تزيد المبيعات عن نصف مليار ريال سعودي وصافي أرباح تتجاوز (27) مليون ريال سعودي.</p>
+          <p :class="toggleQuestion == 8 ? 'active_p' : ''">{{$t('investor.answer7')}}</p>
         </div>
         <div class="question_container">
           <div class="toggle_flex">
-            <h4>8-هل هناك خطط للانتقال إلى السوق الرئيسية؟</h4>
+            <h4> {{$t('investor.question8')}}</h4>
             <div class="toggleClick" @click="() => toggleClick(9)">
                 {{toggleQuestion == 9 ? '-' : '+'}}
             </div>
           </div>
-          <p :class="toggleQuestion == 9 ? 'active_p' : ''">نعم بالتأكيد، خاصة وأن الشركة تسعى لأن تعزز مكانتها وريادتها في مجال الخدمات الصيدلانية، خاصةً في مجال إدارة المخزون وسلاسل الإمداد والصرف الآمن والرشيد لتوفير الدواء والمستحضرات الصيدلانية للمستفيد.</p>
+          <p :class="toggleQuestion == 9 ? 'active_p' : ''">{{$t('investor.answer8')}}</p>
         </div>
       </div>
     </section>
@@ -447,33 +413,33 @@
       <div class="container">
         <div class="contact_container">
           <div class="side">
-            <h3>تواصل مع علاقات المستثمرين</h3>
+            <h3> {{$t('investor.ConnectingwithinvestorsRelation')}}</h3>
             <div class="line"></div>
           </div>
           <div class="side">
             <div class="contact_invstor">
               <form action="" @submit.prevent="contactUs">
                 <div class="form_input">
-                  <label>الاسم</label>
-                  <input type="text" placeholder="الاسم" />
+                  <label> {{$t('investor.Name')}}</label>
+                  <input type="text" :placeholder="$t('investor.Name')" />
                 </div>
                 <div class="form_input">
-                  <label>البريد الالكتروني</label>
-                  <input type="text" placeholder="البريد" />
+                  <label> {{$t('investor.Email')}}</label>
+                  <input type="text" :placeholder="$t('investor.Email')" />
                 </div>
                 <div class="form_input">
-                  <label>رقم الجوال</label>
-                  <input type="text" placeholder="الرقم" />
+                  <label> {{$t('investor.CellNo')}}</label>
+                  <input type="text" :placeholder="$t('investor.CellNo')" />
                 </div>
                 <div class="form_input">
-                  <label>عنوان الرسالة</label>
-                  <input type="text" placeholder="العنوان" />
+                  <label> {{$t('investor.Subject')}}</label>
+                  <input type="text" :placeholder="$t('investor.Subject')" />
                 </div>
                 <div class="form_text">
-                  <label>الرسالة</label>
-                  <textarea placeholder="كتابة النص هنا"></textarea>
+                  <label> {{$t('investor.Mail')}}</label>
+                  <textarea :placeholder="$t('investor.Mail')"></textarea>
                 </div>
-                <button>إرسال</button>
+                <button> {{$t('investor.Send')}}</button>
               </form>
             </div>
           </div>

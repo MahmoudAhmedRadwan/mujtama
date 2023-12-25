@@ -4,12 +4,12 @@
       <div class="container">
         <div class="headerContainer">
           <div class="side">
-            <h2>الوظائف</h2>
+            <h2>{{$t('landing.Jobs')}}</h2>
             <div class="line"></div>
             <div class="breadCrobs">
-              <router-link to="/">الرئيسية</router-link>
+              <router-link to="/">{{$t('landing.Home')}}</router-link>
               <span>>></span>
-              <h3>الوظائف</h3>
+              <h3>{{$t('landing.Jobs')}}</h3>
             </div>
           </div>
           <div class="side">
@@ -22,305 +22,307 @@
     <div class="form_container">
       <div class="container">
         <div class="form">
-          <h3>نموذج طلب التوظيف</h3>
+          <h3> {{$t('jobForm.EMPLOYMENTAPPLICATIONFORM')}}</h3>
           <div class="line"></div>
 
           <form @submit.prevent="send">
             <div class="input_container">
               <label>
-                الوظيفة المطلوبة
+                {{$t('jobForm.RequiredJOB')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
-              <input type="text" placeholder="اكتب هنا" v-model="form.job" />
+              <input type="text" :placeholder="$t('writeHere')" v-model="form.job" />
             </div>
             <div class="input_container">
-              <label>الاسم (حسب جواز السفر)
+              <label>{{$t('jobForm.mentionedInPassport')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
-              <input type="text" placeholder="اكتب هنا" v-model="form.name" />
+              <input type="text" :placeholder="$t('writeHere')" v-model="form.name" />
             </div>
             <div class="input_container">
-              <label>تاريخ الميلاد
+              <label>{{$t('jobForm.DOB')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
               <b-form-datepicker v-model="form.birth_date" class="mb-2"></b-form-datepicker>
             </div>
             <div class="input_container">
-              <label>محل الاقامة
+              <label>{{$t('jobForm.Address')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
-              <input type="text" placeholder="اكتب هنا"  v-model="form.residence"/>
+              <input type="text" :placeholder="$t('writeHere')"  v-model="form.residence"/>
             </div>
             <div class="input_container">
-              <label>رقم الهوية
+              <label>{{$t('jobForm.IDno')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
-              <input type="text" placeholder="اكتب هنا" v-model="form.id_number" />
+              <input type="text" :placeholder="$t('writeHere')" v-model="form.id_number" />
             </div>
             <div class="input_container">
-              <label>الجنسية
+              <label>{{$t('jobForm.Nationality')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
-              <input type="text" placeholder="اكتب هنا"  v-model="form.nationality"/>
+              <input type="text" :placeholder="$t('writeHere')"  v-model="form.nationality"/>
             </div>
             <div class="input_container">
-              <label>تاريخ الانتهاء
+              <label>{{$t('jobForm.ExpiryDate')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
               <b-form-datepicker v-model="form.expiry_date" class="mb-2"></b-form-datepicker>
             </div>
             <div class="input_container">
-              <label>الديانة
+              <label>{{$t('jobForm.Religion')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
               <b-form-group class="radiroFlex" v-slot="{ ariaDescribedby }">
-                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.religion" value="muslim">مسلم</b-form-radio>
-                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.religion" value="other">غير دلك</b-form-radio>
+                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.religion" value="muslim">{{$t('Muslim')}}</b-form-radio>
+                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.religion" value="other"> {{$t('NonMuslim')}}</b-form-radio>
               </b-form-group>
             </div>
             <div class="input_container">
-              <label>الحالة الاجتماعية
+              <label>{{$t('jobForm.Maritalstatus')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
               <b-form-group class="radiroFlex" v-slot="{ ariaDescribedby }">
-                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.marital_status" value="single">أعزب</b-form-radio>
-                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.marital_status" value="married">متزوج</b-form-radio>
+                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.marital_status" value="single"> {{$t('single')}}</b-form-radio>
+                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.marital_status" value="married"> {{$t('married')}}</b-form-radio>
               </b-form-group>
             </div>
             <div class="input_container">
-              <label>عدد الابناء
+              <label>{{$t('jobForm.NoOfChildren')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
-              <input type="number" placeholder="اكتب هنا" v-model="form.number_of_children"/>
+              <input type="number" :placeholder="$t('writeHere')" v-model="form.number_of_children"/>
             </div>
             <div class="input_container">
-              <label>عنوان السكن
+              <label>{{$t('jobForm.HomeAddress')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
-              <input type="text" placeholder="اكتب هنا"  v-model="form.home_address"/>
+              <input type="text" :placeholder="$t('writeHere')"  v-model="form.home_address"/>
             </div>
             <div class="input_container">
-              <label>رقم الهاتف
+              <label>{{$t('jobForm.MobileNo')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
-              <input type="text" placeholder="اكتب هنا" v-model="form.phone_number" />
+              <input type="text" :placeholder="$t('writeHere')" v-model="form.phone_number" />
             </div>
             <div class="input_container">
-              <label>التخصص
+              <label>{{$t('jobForm.Profession')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
-              <input type="text" placeholder="اكتب هنا"  v-model="form.specialization"/>
+              <input type="text" :placeholder="$t('writeHere')"  v-model="form.specialization"/>
             </div>
             <div class="input_container">
-              <label>البريد الالكتروني
+              <label>{{$t('jobForm.EmailID')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
-              <input type="text" placeholder="اكتب هنا" v-model="form.email"/>
+              <input type="text" :placeholder="$t('writeHere')" v-model="form.email"/>
             </div>
             <div class="input_container">
-              <label>المؤهلات العلمية
+              <label>{{$t('jobForm.Qualification')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
               <b-form-group class="radiroFlex" v-slot="{ ariaDescribedby }">
-                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.scientific_qualifications" name="bachelor" value="bachelor">بكالوريوس</b-form-radio>
-                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.scientific_qualifications" name="diploma" value="diploma">دبلوم</b-form-radio>
-                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.scientific_qualifications" name="master" value="master">ماجستير</b-form-radio>
-                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.scientific_qualifications" name="phd" value="phd">دكتوراة</b-form-radio>
+                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.scientific_qualifications" name="bachelor" value="bachelor"> {{$t('Bachelors')}}</b-form-radio>
+                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.scientific_qualifications" name="diploma" value="diploma"> {{$t('Diploma')}}</b-form-radio>
+                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.scientific_qualifications" name="master" value="master"> {{$t('Masters')}}</b-form-radio>
+                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.scientific_qualifications" name="phd" value="phd"> {{$t('PHD')}}</b-form-radio>
               </b-form-group>
             </div>
 
             <div class="input_container">
-              <label>المدرسة/المعهد/الجامعة
+              <label>{{$t('jobForm.SchoolInstitutionUniversity')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
-              <input type="text" placeholder="اكتب هنا" v-model="form.school_institute_university"/>
+              <input type="text" :placeholder="$t('writeHere')" v-model="form.school_institute_university"/>
             </div>
             <div class="input_container">
-              <label>سنة الحصول عليها
+              <label>{{$t('jobForm.YearOfGraduation')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
-              <input type="text" placeholder="اكتب هنا" v-model="form.graduation_year" />
+              <input type="text" :placeholder="$t('writeHere')" v-model="form.graduation_year" />
             </div>
             <div class="input_container">
-              <label>المعدل/التقدير
+              <label>{{$t('jobForm.Percentage')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
-              <input type="text" placeholder="اكتب هنا" v-model="form.gpa" />
+              <input type="text" :placeholder="$t('writeHere')" v-model="form.gpa" />
             </div>
 
             <div class="input_container w100">
-              <label>عدد الخبرات العملية: ( عدد الوظائف التي عملت بها):
+              <label>{{$t('jobForm.YearsOfExperience')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
               <b-form-group class="radiroFlex" v-slot="{ ariaDescribedby }">
-                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.number_of_jobs_worked" :value="1">وظيفة</b-form-radio>
-                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.number_of_jobs_worked" :value="2">وظيفتان</b-form-radio>
-                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.number_of_jobs_worked" :value="3">ثلاث وظائف</b-form-radio>
-                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.number_of_jobs_worked" :value="4">اربع وظائف</b-form-radio>
+                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.number_of_jobs_worked" :value="1"> {{$t('Job1')}}</b-form-radio>
+                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.number_of_jobs_worked" :value="2"> {{$t('Job2')}}</b-form-radio>
+                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.number_of_jobs_worked" :value="3"> {{$t('Job3')}}</b-form-radio>
+                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.number_of_jobs_worked" :value="4"> {{$t('Job4')}}</b-form-radio>
               </b-form-group>
             </div>
 
             <div class="input_container">
-              <input type="text" placeholder="مكان العمل" v-model="form.workplace"/>
+              <input type="text" :placeholder="$t('jobForm.Workplace')" v-model="form.workplace"/>
             </div>
             <div class="input_container">
-              <input type="text" placeholder="المدينة التي بها العمل" v-model="form.workplace_country_city" />
+              <input type="text" :placeholder=" $t('jobForm.TheCityWhereYouWork')" v-model="form.workplace_country_city" />
             </div>
             <div class="input_container">
-              <input type="text" placeholder="المسمى الوظيفي" v-model="form.job_title" />
+              <input type="text" :placeholder=" $t('jobForm.JobTitle')" v-model="form.job_title" />
             </div>
             <div class="input_container">
-              <input type="text" placeholder="عدد سنوات العمل" v-model="form.years_of_work" />
+              <input type="text" :placeholder="$t('jobForm.NumberOfYearsOfWork')" v-model="form.years_of_work" />
             </div>
             <div class="input_container">
-              <input type="text" placeholder="أسباب ترك العمل" v-model="form.leaving_work_reason" />
+              <input type="text" :placeholder=" $t('jobForm.ReasonsForLeavingWork')" v-model="form.leaving_work_reason" />
             </div>
             <div class="input_container">
-              <input type="text" placeholder="متطلبات الوظيفة" v-model="form.main_tasks" />
+              <input type="text" :placeholder="$t('jobForm.JobRequirements')" v-model="form.main_tasks" />
             </div>
             <div class="right_title">
-              <h4>الدورات التدريبية</h4>
+              <h4>  {{$t('jobForm.TrainingCourses')}}</h4>
             </div>
             <div class="input_container">
-              <input type="text" placeholder="اسم الدورة 1" v-model="form.course_name_1" />
+              <input type="text" :placeholder=" $t('jobForm.CourseName1')" v-model="form.course_name_1" />
             </div>
             <div class="input_container">
-              <input type="text" placeholder="الجهة القائمة عليها" v-model="form.course_name_1_party_of_charge" />
+              <input type="text" :placeholder=" $t('jobForm.ThePartyInChargeOfIt')" v-model="form.course_name_1_party_of_charge" />
             </div>
             <div class="input_container">
-              <input type="text" placeholder="اسم الدورة 2" v-model="form.course_name_2" />
+              <input type="text" :placeholder="$t('jobForm.CourseName2')" v-model="form.course_name_2" />
             </div>
             
             <div class="input_container">
-              <input type="text" placeholder="الجهة القائمة عليها" v-model="form.course_name_2_party_of_charge" />
+              <input type="text" :placeholder="$t('jobForm.ThePartyInChargeOfIt')" v-model="form.course_name_2_party_of_charge" />
             </div>
 
             <div class="input_container">
-              <label
-                >هل قدمت أوراقك (شهادة التخرج وشهادة الخبرة) للحصول على شهادة
-                الداتافلو Did you upload your documents (University Certificate
-                and Experience Certificate) for Dataflow verification ؟ (For
-                Pharmacist job ONLY)
-                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon></label
-              >
+              <label> 
+                {{$t('jobForm.DidYouUploadYourDocuments')}}
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
               <b-form-group class="radiroFlex" v-slot="{ ariaDescribedby }">
-                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.dataflow_verification_documents_uploaded" :value="1">نعم</b-form-radio>
-                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.dataflow_verification_documents_uploaded" :value="0">لا</b-form-radio>
+                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.dataflow_verification_documents_uploaded" :value="1">{{$t('yes')}}</b-form-radio>
+                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.dataflow_verification_documents_uploaded" :value="0">{{$t('no')}}</b-form-radio>
               </b-form-group>
             </div>
             <div class="input_container">
-              <label
-                >هل تقدمت لإختبار البرومترك (بيرسون فيو) Did you admit to
-                Prometric (Pearson VUE) exam؟ (For Pharmacist job ONLY)
-                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon></label
-              >
+              <label>
+                {{$t('jobForm.DidYouAdmitTo')}}  
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
                <b-form-group class="radiroFlex" v-slot="{ ariaDescribedby }">
-                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.admit_to_prometric_pearson_vue_exam" :value="1">نعم</b-form-radio>
-                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.admit_to_prometric_pearson_vue_exam" :value="0">لا</b-form-radio>
+                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.admit_to_prometric_pearson_vue_exam" :value="1">{{$t('yes')}}</b-form-radio>
+                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.admit_to_prometric_pearson_vue_exam" :value="0">{{$t('no')}}</b-form-radio>
               </b-form-group>
             </div>
             <div class="input_container">
-              <label
-                >هل تحمل شهادة التصنيف المهني من الهيئة السعودية للتخصصات الصحية
-                Do you have the SCFHS Accreditation Certificate ؟ (For
-                Pharmacist job ONLY)
+              <label>
+                {{$t('jobForm.DoYouHaveTheSCFHS')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
-              </label
-              >
+              </label>
               <b-form-group class="radiroFlex" v-slot="{ ariaDescribedby }">
-                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.have_scfhs_accreditation_certificate" :value="1">نعم</b-form-radio>
-                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.have_scfhs_accreditation_certificate" :value="0">لا</b-form-radio>
+                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.have_scfhs_accreditation_certificate" :value="1">{{$t('yes')}}</b-form-radio>
+                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.have_scfhs_accreditation_certificate" :value="0">{{$t('no')}}</b-form-radio>
               </b-form-group>
             </div>
 
             <div class="input_container">
-              <label>هل تحمل رخصة قيادة ؟
+              <label>
+                {{$t('jobForm.DoYouHaveDrivingLicense')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
               <b-form-group class="radiroFlex" v-slot="{ ariaDescribedby }">
-                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.have_driving_license" :value="1">نعم</b-form-radio>
-                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.have_driving_license" :value="0">لا</b-form-radio>
+                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.have_driving_license" :value="1">{{$t('yes')}}</b-form-radio>
+                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.have_driving_license" :value="0">{{$t('no')}}</b-form-radio>
               </b-form-group>
             </div>
 
             <div class="input_container">
-              <label>هل تجيد قيادة السيارات ؟
+              <label>
+                {{$t('jobForm.AreYouAbleToDrive')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
               <b-form-group class="radiroFlex" v-slot="{ ariaDescribedby }">
-                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.good_at_driving_cars" :value="1">نعم</b-form-radio>
-                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.good_at_driving_cars" :value="0">لا</b-form-radio>
+                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.good_at_driving_cars" :value="1">{{$t('yes')}}</b-form-radio>
+                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.good_at_driving_cars" :value="0">{{$t('no')}}</b-form-radio>
               </b-form-group>
             </div>
             <div class="input_container">
-              <label>درجة اجادة اللغة الانجليزية
+              <label>
+                {{$t('jobForm.EnglishLevelProficiency')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
               <b-form-group class="radiroFlex" v-slot="{ ariaDescribedby }">
-                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.english_fluency_degree" value="excellent">ممتاز</b-form-radio>
-                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.english_fluency_degree" value="middle">متوسط</b-form-radio>
-                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.english_fluency_degree" value="weak">ضعيف</b-form-radio>
+                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.english_fluency_degree" value="excellent"> {{$t('Professional')}}</b-form-radio>
+                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.english_fluency_degree" value="middle"> {{$t('Advance')}}</b-form-radio>
+                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.english_fluency_degree" value="weak"> {{$t('Intermediate')}}</b-form-radio>
               </b-form-group>
             </div>
 
             <div class="input_container">
-              <label>ارفاق صورة الهوية او جواز السفر
+              <label>
+                {{$t('jobForm.KindlyAttachedPassport')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
               <input type="file" @change="handleFileUpload_id_number($event)" />
             </div>
             <div class="input_container">
-              <label>ارفاق السيرة الذاتية
+              <label>
+                {{$t('jobForm.KindlyAttachedCV')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
               <input type="file" ref="files" @change="handleFileUpload_cv($event)" />
             </div>
             <div class="input_container">
-              <label>ارفاق شهادة البكالوريوس
+              <label>
+                {{$t('jobForm.KindlyattachedBachelorsdegree')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
               <input type="file" ref="files" @change="handleFileUpload_bachelor_degree_certificate($event)" />
             </div>
             <div class="input_container">
-              <label>ارفق كارنية نقابة الصيادلة
+              <label>
+                {{$t('jobForm.KindlyAttachedSyndicateOfPharmacy')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
               <input type="file" ref="files" @change="handleFileUpload_pharmacists_union_membership_card($event)" />
             </div>
             <div class="input_container">
-              <label>ارفاق ترخيص مزاولة المهنة بوزارة الصحة بدولتك
+              <label>
+                {{$t('jobForm.KindlyAttachedLicenseForPractisingProfession')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
               <input type="file" ref="files" @change="handleFileUpload_license_to_practice_profession_in_your_country($event)" />
             </div>
             <div class="input_container">
-              <label>شهادات الخبرة 1
+              <label>
+                {{$t('jobForm.ExperienceCertificate1')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
               <input type="file" ref="files" @change="handleFileUpload_experience_certificate_1($event)" />
             </div>
             <div class="input_container">
-              <label>شهادات الخبرة 2
+              <label>{{$t('jobForm.ExperienceCertificate2')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
               <input type="file" ref="files" @change="handleFileUpload_experience_certificate_2($event)" />
             </div>
             <div class="input_container">
-              <label>شهادات الخبرة 3
+              <label>{{$t('jobForm.ExperienceCertificate3')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
               <input type="file" ref="files" @change="handleFileUpload_experience_certificate_3($event)" />
             </div>
             <div class="input_container">
-              <label>ارفاق صورة بيان الدرجات
+              <label>
+                {{$t('jobForm.AttachACopyOfYourTranscript')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
               <input type="file" ref="files" @change="handleFileUpload_transcript($event)" />
             </div>
             <div class="input_container">
-              <label
-                >ارفق صورة من ترخيص مزاولة المهنة في المملكة العربية
-                السعودية
+              <label>
+                {{$t('jobForm.professionInKSA')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
               <input type="file" ref="files" @change="handleFileUpload_license_to_practice_profession_in_ksa($event)" />
@@ -331,7 +333,8 @@
             </div>
             <div class="action">
               <button v-if="postLoaded == false">
-                  {{this.$route.params.id !== undefined ? ' تعديل' : 'إرسال +' }}
+                
+                {{$t('investor.Send')}}
               </button>
               <button class="saveBtn" v-if="postLoaded == true"><b-spinner></b-spinner></button>
             </div>

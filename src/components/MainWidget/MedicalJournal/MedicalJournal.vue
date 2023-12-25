@@ -4,12 +4,12 @@
       <div class="container">
         <div class="headerContainer">
           <div class="side">
-            <h2>المجلة الإلكترونية </h2>
+            <h2>{{$t('landing.EMagazine')}}</h2>
             <div class="line"></div>
             <div class="breadCrobs">
-              <router-link to="/">الرئيسية</router-link>
+              <router-link to="/">{{$t('landing.Home')}}</router-link>
               <span>>></span>
-              <h3>المجلة الطبية</h3>
+              <h3> {{$t('medicalJournal.medicalJournalEmagazine')}}</h3>
             </div>
           </div>
           <div class="side">
@@ -22,10 +22,10 @@
     <div class="container">
       <form @submit.prevent="searchByName">
         <div class="search">
-          <input type="text" placeholder="البحث" v-model="nameSearch"/>
+          <input type="text" :placeholder="$t('medicalJournal.search')" v-model="nameSearch"/>
           <b-icon icon="search" font-scale="5" class="icon"></b-icon>
         </div>
-        <button class="saveBtn">بحث</button>
+        <button class="saveBtn"> {{$t('medicalJournal.search')}}</button>
       </form>
     </div>
 
@@ -33,14 +33,14 @@
       <div class="container">
         <div class="journal">
           <div class="sections">
-            <h3>الاقسام</h3>
+            <h3> {{$t('medicalJournal.Category')}}</h3>
             <div class="line"></div>
             <div class="linRow" v-for="articlesSection in articlesSections" :key="articlesSection.id">
               <h4 @click="() => getCategoryFilter(articlesSection.id)">{{articlesSection.translation[0].name}} <div class="small_line"></div></h4>
               <span>{{articlesSection.code}}</span>
             </div>
             
-            <h3>الأقسام الفرعية</h3>
+            <h3> {{$t('medicalJournal.SubCategory')}}</h3>
             <div class="line"></div>
             <!-- <div class="title_line">
               <div class="small_line"></div>
@@ -52,7 +52,7 @@
             </div>
 
             <div class="hash_tag">
-              <h3>هاشتاق</h3>
+              <h3> {{$t('medicalJournal.Tags')}}</h3>
               <div class="single_hash" v-for="article in articles" :key="article.id">#{{article.translation[0].tags}}</div>
             </div>
           </div>

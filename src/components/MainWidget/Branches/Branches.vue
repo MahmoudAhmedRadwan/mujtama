@@ -4,12 +4,12 @@
       <div class="container">
         <div class="headerContainer">
           <div class="side">
-            <h2>فروعنا</h2>
+            <h2>{{$t('home.homeOurBranches')}}</h2>
             <div class="line"></div>
             <div class="breadCrobs">
-              <router-link to="/">الرئيسية</router-link>
+              <router-link to="/">{{$t('landing.Home')}}</router-link>
               <span>>></span>
-              <h3>فروعنا</h3>
+              <h3>{{$t('home.homeOurBranches')}}</h3>
             </div>
           </div>
           <div class="side">
@@ -20,7 +20,7 @@
     </header>
 
     <div class="title">
-      <h2>الفروع</h2>
+      <h2>{{$t('landing.OurBranches')}}</h2>
     </div>
 
     <div class="branches_filters">
@@ -28,8 +28,8 @@
         <div class="inputs">
           <div class="input_container">
             <form @submit.prevent="NameFilter">
-              <input type="text" placeholder=" بحث بالإسم" v-model="branchName"/>
-              <button class="saveBtn">بحث</button>
+              <input type="text" placeholder=" $t('medicalJournal.search')" v-model="branchName"/>
+              <button class="saveBtn">{{$t('medicalJournal.search')}}</button>
             </form>
           </div>
           <!-- <div class="input_container">
@@ -40,7 +40,7 @@
           </div> -->
           
           <button>
-            فروعنا على الخريطة
+            {{$t('branches.OnTheMap')}}
             <img src="../../../assets/images/mapLocation.png" alt="" />
           </button>
         </div>
@@ -59,19 +59,19 @@
               <h3>{{branch.address+ ' ' +branch.city}}</h3>
             </div>
             <div class="phone">
-              <h3>رقم الهاتف</h3>
+              <h3>{{$t('investor.CellNo')}}</h3>
               <h3>{{branch.mobile}}</h3>
             </div>
             <div class="times" v-if="branch.is_24_hour == false">
-              <h4>اوقات الدوام</h4>
+              <h4>{{$t('branches.WorkingHours')}}</h4>
               <h3> من {{branch.from_time}} إلي {{branch.to_time}} </h3>
             </div>
             <div class="times" v-if="branch.is_24_hour == true">
-              <h4>اوقات الدوام</h4>
+              <h4>{{$t('branches.branchesWorkingHours')}}</h4>
               <h3> 24 ساعة</h3>
             </div>
             <div class="services">
-              <h4>خدمات فرع إضافية</h4>
+              <h4>{{$t('branches.AdditionalBranchServices')}}</h4>
               <h3>
                 <div class="true">
                   <img src="../../../assets/images/greenTrue.png" alt="" />
@@ -80,7 +80,7 @@
               </h3>
             </div>
             <a target="_blank" :href="branch.google_map_url">
-              عرض على الخريطة
+              {{$t('branches.OnTheMap')}}
               <img src="../../../assets/images/mapLocation.png" alt="" />
             </a>
           </div>
