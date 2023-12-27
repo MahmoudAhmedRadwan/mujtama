@@ -383,4 +383,18 @@ export default {
     }
   }
 }
+
+.en{
+  .breadCrobs{
+    a,
+    span{
+      margin: 0 10px 0 0;
+    }
+  }
+  form{
+    .saveBtn{
+      margin-left: 10px;
+    }
+  }
+}
 </style>

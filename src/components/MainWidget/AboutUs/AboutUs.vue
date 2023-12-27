@@ -696,4 +696,32 @@ export default {
     }
   }
 }
+
+.en{
+  .breadCrobs{
+    a,
+    span{
+      margin: 0 10px 0 0;
+    }
+  }
+
+  .know_us{
+    .description{
+      .img_container{
+        margin: 0 20px 0 0;
+      }
+      .des{
+        margin: 0 0 0 20px;
+      }
+    }
+  }
+
+  .our_branches{
+    .branch_line{
+      .icon_container{
+        margin: 0 10px 0 0;
+      }
+    }
+  }
+}
 </style>

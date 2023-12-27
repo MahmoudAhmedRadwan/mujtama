@@ -47,8 +47,14 @@
                     <button @click="addNew"> إضافة نتائج و تقارير إضافية </button>
                 </div>
 
+                <div class="alert alert-danger" role="alert" v-if="ErrorCheck == true">
+                        <p v-for="(error, index) in errors" :key="index"> {{error}} </p>
+                    </div>
+
                 <div class="actions">
-                    <button class="saveBtn" @click="addReportsResults">حفظ</button>
+                    <button class="saveBtn" @click="addReportsResults" v-if="postLoaded == false && this.$route.params.id == undefined">حفظ</button>
+                    <button class="saveBtn" @click="addReportsResults" v-if="postLoaded == false && this.$route.params.id !== undefined">تعديل</button>
+                    <button class="saveBtn" v-if="postLoaded == true"><b-spinner></b-spinner></button>
                 </div>
                   
             </div>
@@ -65,6 +71,7 @@ export default {
     components: {HeaderBg},
     data(){
         return{
+            postLoaded: false,
             imgUrl: '',
             results: {
                 image: '',
@@ -81,6 +88,7 @@ export default {
                 files: [
                     {
                         file: '',
+                        id: '',
                         translation: [
                             {
                                 title: '',
@@ -93,14 +101,100 @@ export default {
                         ],
                     }
                 ]
-            } 
+            },
+            errors: [],
+            ErrorCheck: false,
         }
     },
+    mounted(){
+        this.getReportsResults();
+    },
     methods:{
+        getReportsResults(){
+            if(this.$route.params.id !== undefined){
+                axios.get(`https://app.almujtama.com.sa/admin/reportsResults/${this.$route.params.id}`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Headers': '*',
+                        'Authorization': 'Bearer '+ localStorage.getItem('token'),
+                    },
+                })
+                .then((response) => {
+                    console.log(response, 'mmmmmm')
+                    // this.results = response.data.data.image
+                    this.results.translation[0].title = response.data.data.translation[0].title
+                    this.results.translation[1].title = response.data.data.translation[1].title
+                    this.imgUrl = response.data.data.image
+                    response.data.data.files.map((data, index) => {
+                        if(index == 0){
+                            this.results.files[0].id = data.id;
+                            this.results.files[0].translation[0].title = data.translation[0].title;
+                            this.results.files[0].translation[1].title = data.translation[1].title;
 
+                        } else if(index > 0){
+                            this.results.files.push({
+                                file: '',
+                                id: data.id,
+                                translation: [
+                                    {
+                                        title: data.translation[0].title,
+                                        local: 'ar',
+                                    },
+                                    {
+                                        title: data.translation[1].title,
+                                        local: 'en'
+                                    }
+                                ],
+                            })
+                        }
+                    })
+                })
+                .catch((error) => {
+                console.error('Error fetching data from API:', error);
+                });
+            }
+        },
         addReportsResults(){
             // this.postLoaded = true
             const formData = new FormData();
+            if(this.$route.params.id !== undefined){
+                formData.append('_method', 'PUT');
+            }
+            formData.append('image', this.results.image);
+            formData.append('translation[0][title]', this.results.translation[0].title);
+            formData.append('translation[0][locale]', this.results.translation[0].local);
+            formData.append('translation[1][title]', this.results.translation[1].title);
+            formData.append('translation[1][locale]', this.results.translation[1].local);
+
+            for (let i = 0; i<this.results.files.length; i++) {
+                formData.append(`attachments[${i}][file]`, this.results.files[i].file);
+                formData.append(`attachments[${i}][id]`, this.results.files[i].id);
+                formData.append(`attachments[${i}][translation][0][title]`, this.results.files[i].translation[0].title);
+                formData.append(`attachments[${i}][translation][0][locale]`, this.results.files[i].translation[0].local);
+                formData.append(`attachments[${i}][translation][1][title]`, this.results.files[i].translation[1].title);
+                formData.append(`attachments[${i}][translation][1][locale]`, this.results.files[i].translation[1].local);
+            }
+            if(this.$route.params.id !== undefined){
+                axios.post(`https://app.almujtama.com.sa/admin/reportsResults/${this.$route.params.id}`, formData, {
+                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+                })
+                .then( res => {
+                // this.$router.push('/admin/branches')
+                    console.log(res)
+                    // this.error = {}
+                    this.postLoaded = false
+                    this.$router.push('/admin/results-and-reports')
+                })  
+                .catch(err =>  {
+                    console.log(err.response.data.errors)
+                    this.errors = err.response.data.errors;
+                    this.ErrorCheck = true;
+                    this.postLoaded = false;
+                    
+                })
+            } else {
+                const formData = new FormData();
                 formData.append('image', this.results.image);
                 formData.append('translation[0][title]', this.results.translation[0].title);
                 formData.append('translation[0][locale]', this.results.translation[0].local);
@@ -123,6 +217,7 @@ export default {
                     console.log(res)
                     // this.error = {}
                     this.postLoaded = false
+                    this.$router.push('/admin/results-and-reports')
                 })  
                 .catch(err =>  {
                     console.log(err.response.data.errors)
@@ -131,6 +226,7 @@ export default {
                     this.postLoaded = false;
                     
                 })
+            }
             
         },
 
@@ -138,6 +234,7 @@ export default {
         addNew(){
             this.results.files.push({
                 file: '',
+                id: '',
                 translation: [
                     {
                         title: '',

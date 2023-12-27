@@ -3,9 +3,9 @@
     <div class="error_container">
       <span>Error Page</span>
       <img src="../../../assets/images/404.png" alt="" />
-      <h4>المتجر تحت الصيانة مؤقتاَ</h4>
+      <h4>{{$t('storeStatus')}}</h4>
       <div class="line"></div>
-      <p>عملائنا الكرام نأسف لعدم توفر الخدمة في الوقت الحالي</p>
+      <p>{{$t('weareSorry')}}</p>
     </div>
     <span></span>
   </div>
@@ -50,10 +50,12 @@ export default {
       font-size: 40px;
       color: #78a28f;
       font-weight: 800;
+      text-align: center;
     }
     p {
       font-size: 20px;
       color: #6f7775;
+      text-align: center;
     }
   }
 }

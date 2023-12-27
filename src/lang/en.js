@@ -1,4 +1,9 @@
 export default {
+
+  // remove this
+  storeStatus: 'The store is temporarily under maintenance',
+  weareSorry: 'Dear customers, we regret that the service is not available at the present time',
+
   writeHere : 'write Here',
   Muslim : 'Muslim',
   NonMuslim : 'Non – Muslim',
@@ -18,6 +23,10 @@ export default {
   Advance : 'Advance',
   Intermediate : 'Intermediate',
 
+  slider:{
+    newOpening: 'We happily announce that we have opened our new branch for AL MUJTAMA pharmacies in AL SAFA district- PRINCE MUTAIB BIN ABDUL AZIZ – JEDDAH',
+    newOpeningDescription: 'Join us in the new branch and benefit from our distinguished services. Community_pharmacies #Leadership_in_Community_Service'
+  },
 
   landing: {
     Home: 'Home',
@@ -82,8 +91,8 @@ export default {
     OurVision:'Our Visio',
     OurVisionDescription:'leadership in serving the community, for a healthy, conscious society',
     OurMessage:'Our Message',
-    OurMessageDescription:'• Provide integrated pharmaceutical services to all segments of society.',
-    OurMessageDescription2:'• Protect society from counterfeit and overpriced products. Our slogan: (The original product at the lowest price).',
+    OurMessageDescription:'Provide integrated pharmaceutical services to all segments of society.',
+    OurMessageDescription2:'Protect society from counterfeit and overpriced products. Our slogan: (The original product at the lowest price).',
     OrganizationalChart:'Organizational Chart',
     OrganizationalChartDescription:'The organizational structure is considered a means or tool to help the company`s management achieve its goals efficiently and effectively, as it explains the organizational units that comprise it within hierarchical levels linked together by links of authority that include instructions, orders, and relationships. The organizational structure enables the company to implement plans, make decisions, and define the roles of each department and its employees to avoid overlap and duplication',
     OrganizationalChartDescription2:'The company`s organization structure copes with governance, transparency and corporation system requirements',

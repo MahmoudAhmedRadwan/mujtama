@@ -119,7 +119,7 @@
 
     <section class="new_pharmacy">
       <div class="description">
-        <span>اخر الأخبار</span>
+        <span> {{$t('investor.LatestNews')}}</span>
         <h3>
           {{ pages[pageNumber].description }}
         </h3>
@@ -225,10 +225,8 @@ export default {
           img: require("../../../assets/images/new7.jpg"),
         },
         {
-          description:
-            "يسرنا أن نعلن أنه تم -بحمد الله- افتتاح فرع جديد لصيدلية المجتمع في حي الصفا- طريق الأمير متعب بن عبد العزيز- جدة",
-          seconde_description:
-            "انضموا إلينا في الفرع الجديد واستفيدوا من خدماتنا المتميزة صيدليات_المجتمع #الريادة_في_خدمة_المجتمع",
+          description:this.$t('slider.newOpening'),
+          seconde_description:this.$t('slider.newOpeningDescription'),
           img: require("../../../assets/images/opening.png"),
         },
         {
@@ -397,6 +395,9 @@ export default {
       right: -53px;
       top: -21px;
     }
+    @media (max-width: 991px) {
+      display: none;
+    }
   }
   > .img_container {
     width: 45%;
@@ -531,6 +532,7 @@ export default {
             font-size: 18px;
             color: #78a28f;
             font-weight: 600;
+            margin-bottom: 0;
           }
           &:hover{
             h4 {
@@ -838,7 +840,7 @@ export default {
     @media (max-width: 991px) {
       width: 100%;
       margin-bottom: 30px;
-      padding: 70px 10px 10px 70px;
+      padding: 70px 15px 10px 15px;
     }
     .img_container_position {
       position: absolute;
@@ -879,6 +881,63 @@ export default {
       }
       img {
         max-width: 100%;
+      }
+    }
+  }
+}
+
+.en{
+  .home_page_description_sections{
+    .society{
+      span{
+        margin: 0 20px 0 0;
+      }
+    }
+    .list{
+      ul{
+        li{
+          .icon_container{
+            margin: 0 10px 0 0;
+          }
+        }
+      }
+    }
+  }
+
+  .new_pharmacy{
+    .description{
+      .arrows{
+        .arrow:first-child{
+          order: 2;
+          margin: 30px 0 0 10px;
+        }
+        .arrow:last-child{
+          
+          order: 1;
+        }
+      }
+    }
+  }
+
+  .grouping{
+    .groupingFlex{
+      a{
+        margin: auto 0 auto 40px;
+      }
+    }
+  }
+
+  .distinguished_clients{
+    .description{
+      .img_container_position{
+        left: unset;
+        right: 50px;
+      }
+    }
+    .img_container{
+      margin: 0 0 0 30px;
+      @media (max-width: 991px) {
+        margin: 20px 0 0 0;
       }
     }
   }

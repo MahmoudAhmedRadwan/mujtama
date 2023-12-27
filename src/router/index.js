@@ -202,6 +202,11 @@ const routes = [
         component: AddResultsAndReports
       },
       {
+        path: "/admin/results-and-reports/add-results-and-reports/:id",
+        name: "AddResultsAndReports",
+        component: AddResultsAndReports
+      },
+      {
         path: "/admin/employment-applications",
         name: "EmploymentApplications",
         component: EmploymentApplications

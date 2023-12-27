@@ -2,6 +2,11 @@
     <!-- Branches.vue -->
     <div>
         <HeaderBg title="النتائج و التقارير" />
+        <Alert 
+            v-if="alertToggle == true"
+            :acceptedDelete="acceptedDeleteReportsResult" 
+            messege="هل أنت متأكد من مسح النتائج و التقارير ؟"
+        />
         <header class="admin_content_header">
             <h2></h2>
             <div class="search">
@@ -26,8 +31,8 @@
                             <div class="options_container">
                                 <img src="../../../assets/images/selectIcon.png" alt="">
                                 <div class="hidden_options">
-                                    <button> <img src="../../../assets/images/edit-text.png" alt=""> تعديل  </button>
-                                    <button> <img src="../../../assets/images/delete-text.png" alt=""> حذف </button>
+                                    <button @click="() => editReportsResults(reportsResult.id)"> <img src="../../../assets/images/edit-text.png" alt=""> تعديل  </button>
+                                    <button @click="() => deleteData(reportsResult.id)"> <img src="../../../assets/images/delete-text.png" alt=""> حذف </button>
                                 </div>
                             </div>
                         </td>
@@ -39,13 +44,17 @@
 </template>
 <script>
 import HeaderBg from '../../global/HeaderBg/HeaderBg';
+import Alert from '../../global/Alert/Alert';
+import Request from '../../../services/Request';
 import axios from 'axios';
 export default {
     name:'ResultsAndReports',
-    components: {HeaderBg},
+    components: {HeaderBg, Alert},
     data(){
         return{
-            reportsResults: []
+            reportsResults: [],
+            deleteID: '',
+            alertToggle: false,
         }
     },
     mounted(){
@@ -72,6 +81,20 @@ export default {
                     localStorage.removeItem('token')
                 }
             });
+        },
+        editReportsResults(id){
+            this.$router.push(`/admin/results-and-reports/add-results-and-reports/${id}`)
+        },
+         // delete data
+        deleteData(id){
+            this.deleteID = id;
+            this.alertToggle = true;
+        },
+        acceptedDeleteReportsResult(){
+            Request.delete('admin/reportsResults',this.deleteID)
+            .then( () => {
+                this.getResultsAndReports();
+            })
         },
     }
 }

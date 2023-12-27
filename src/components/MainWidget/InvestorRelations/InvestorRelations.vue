@@ -477,10 +477,8 @@ export default {
           img: require("../../../assets/images/new7.jpg"),
         },
         {
-          description:
-            "يسرنا أن نعلن أنه تم -بحمد الله- افتتاح فرع جديد لصيدلية المجتمع في حي الصفا- طريق الأمير متعب بن عبد العزيز- جدة",
-          seconde_description:
-            "انضموا إلينا في الفرع الجديد واستفيدوا من خدماتنا المتميزة صيدليات_المجتمع #الريادة_في_خدمة_المجتمع",
+          description:this.$t('slider.newOpening'),
+          seconde_description:this.$t('slider.newOpeningDescription'),
           img: require("../../../assets/images/opening.png"),
         },
         {
@@ -1336,12 +1334,10 @@ export default {
     text-align: center;
     font-size: 20px;
     color: #78A28F;
-    border-bottom: 1px solid #707070;
+    border-bottom: 1px solid #70707054;
     font-weight: 600;
   }
-  td:last-child{
-    border-bottom: 0;
-  }
+
 }
 .new_pharmacy {
   display: flex;
@@ -1533,5 +1529,27 @@ export default {
   }
 .active_p{
   display: block !important;
+}
+
+.en{
+  .investor_elations_header .title a{
+    width: 190px;
+  }
+  .breadCrobs{
+    a,
+    span{
+      margin: 0 10px 0 0;
+    }
+  }
+
+  .new_pharmacy .description .arrows .arrow:last-child{
+    order: 1;
+  }
+  .new_pharmacy .description .arrows .arrow:first-child{
+    order: 2;
+  }
+  .yearly_reort a{
+    width: 175px;
+  }
 }
 </style>

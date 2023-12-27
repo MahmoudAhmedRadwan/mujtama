@@ -354,4 +354,23 @@ export default {
     }
   }
 }
+.en{
+  .breadCrobs{
+    a,
+    span{
+      margin: 0 10px 0 0;
+    }
+  }
+  form{
+    .saveBtn{
+      margin-left: 10px;
+    }
+  }
+  .branches_information .branches_container .branch h3 .true{
+    margin: 0 10px 0 0;
+  }
+  .branches_information .branches_container .branch a img{
+    margin: 0 0 0 10px;
+  }
+}
 </style>

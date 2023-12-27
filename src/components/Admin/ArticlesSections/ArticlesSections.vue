@@ -25,7 +25,7 @@
                     </thead>
                     <tbody>
                     <tr v-for="articlesSection in articlesSections" :key="articlesSection.id">
-                        <td> {{articlesSection.translation[0].name}} </td>
+                        <td> {{articlesSection.name}} </td>
                         <td>
                             <div class="actionsContainer">
                                 <button @click="() => subSections(articlesSection.id)">أقسام فرعية</button>
@@ -78,6 +78,7 @@ export default {
                 },
             })
             .then((response) => {
+                console.log(response, 'article')
                 this.articlesSections = response.data.data
                 this.loadingRequest = false;
             })

@@ -38,11 +38,11 @@ export default {
                 translation : [
                     {
                         name : "",
-                        local : "ar"
+                        locale : "ar"
                     },
                     {
                         name : "",
-                        local : "en"
+                        locale : "en"
                     },
                 ]
             },

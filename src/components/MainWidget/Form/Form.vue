@@ -692,4 +692,13 @@ export default {
     }
   }
 }
+
+.en{
+  .breadCrobs{
+    a,
+    span{
+      margin: 0 10px 0 0;
+    }
+  }
+}
 </style>

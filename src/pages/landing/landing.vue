@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class='$i18n.locale'>
     <header class="landing_header">
       <div class="menu_toggle" @click="menuToggleClick">
         <b-icon icon="justify" font-scale="5" class="icon"></b-icon>
@@ -111,7 +111,7 @@
       </div>
       <div class="lang">
         <h3>عربي</h3>
-        <select v-model="localelang" @change="changeUrl">
+        <select v-model="localelang" @change="(e) => changeUrl(e)">
           <option v-for="(lang, i) in $i18n.availableLocales" :key="`Lang${i}`" :value="lang">
               {{ lang }}
           </option>
@@ -244,14 +244,23 @@ export default {
   },
   mounted() {
     this.linkUrlCheck();
+    this.checkTheLang();
   },
   methods: {
-    changeUrl(){
-      this.$i18n.locale = this.localelang
-      localStorage.setItem('lang', this.localelang)
+    changeUrl(e){
+      console.log(e.target.value)
+      localStorage.setItem('lang', e.target.value)
+      window.location.reload();
+      
+      
       // this.$router.push({
       //     params: {lang: this.localelang}
       // })
+      
+    },
+    checkTheLang(){
+      this.localelang = localStorage.getItem('lang')
+      this.$i18n.locale = localStorage.getItem('lang')
       if (this.$i18n.locale === "ar") {
           document.querySelector("html").style.direction = "rtl";
           document.querySelector("body").style.direction = "rtl";
@@ -584,6 +593,8 @@ export default {
       a {
         color: #fff;
         font-size: 16px;
+        padding: 50px 10px;
+        white-space: nowrap;
       }
     }
   }
@@ -600,6 +611,38 @@ export default {
   }
 }
 
-@media (max-width: 1450px) {
+.en{
+  .lang{
+    select{
+      margin: 0 0 0 10px;
+    }
+  }
+  .social {
+    img{
+      margin: 0 0 6px 10px;
+    }
+  }
+
+  .landing_footer{
+    .logo,
+    .contacts{
+      margin: 0 100px 0 0;
+    }
+    .shortCuts{
+      margin: 0 100px 0 0;
+    }
+    .contacts{
+      ul{
+        li{
+          .icon_container{
+            margin: 0 10px 0 0;
+          }
+        }
+      }
+    }
+    .call_us{
+      margin: 73px 0 0 30px;
+    }
+  }
 }
 </style>
