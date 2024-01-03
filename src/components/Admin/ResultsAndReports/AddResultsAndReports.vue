@@ -1,6 +1,11 @@
 <template>
     <div>
         <HeaderBg title="النتائج و التقارير" />
+        <Alert 
+            v-if="alertToggle == true"
+            :acceptedDelete="acceptedDeleteFile" 
+            messege="هل أنت متأكد من مسح هذا الملف ؟"
+        />
         <div class="largForm">
             <div class="form_container">
                 <div class="input_container">
@@ -30,6 +35,9 @@
                     </div>
 
                 <div class="multi_inputs" v-for="(result, index) in results.files" :key="index">
+                    <div class="delete_file">
+                        <button @click="() => deleteData(result.id)">مسح الملف</button>
+                    </div>
                     <div class="input_container">
                         <label>عنوان الملف عربي</label>
                         <input type="text" placeholder="Full Name" v-model="result.translation[0].title">
@@ -66,9 +74,11 @@
 <script>
 import HeaderBg from '../../global/HeaderBg/HeaderBg';
 import axios from 'axios';
+import Alert from '../../global/Alert/Alert';
+import Request from '../../../services/Request';
 export default {
     name: 'AddResultsAndReports',
-    components: {HeaderBg},
+    components: {HeaderBg, Alert},
     data(){
         return{
             postLoaded: false,
@@ -104,6 +114,8 @@ export default {
             },
             errors: [],
             ErrorCheck: false,
+            deleteID: '',
+            alertToggle: false,
         }
     },
     mounted(){
@@ -156,7 +168,7 @@ export default {
             }
         },
         addReportsResults(){
-            // this.postLoaded = true
+            this.postLoaded = true
             const formData = new FormData();
             if(this.$route.params.id !== undefined){
                 formData.append('_method', 'PUT');
@@ -264,14 +276,70 @@ export default {
         })
         
         },
+         // delete data
+        deleteData(id){
+            this.deleteID = id;
+            this.alertToggle = true;
+        },
+        acceptedDeleteFile(){
+            Request.delete('admin/reportsResults/file',this.deleteID)
+            .then( () => {
+                this.results = {
+                image: '',
+                translation: [
+                    {
+                        title: '',
+                        local: 'ar',
+                    },
+                    {
+                        title: '',
+                        local: 'en'
+                    }
+                ],
+                files: [
+                    {
+                        file: '',
+                        id: '',
+                        translation: [
+                            {
+                                title: '',
+                                local: 'ar',
+                            },
+                            {
+                                title: '',
+                                local: 'en'
+                            }
+                        ],
+                    }
+                ]
+            },
+                this.getReportsResults();
+            })
+        },
+        
     }
 }
 </script>
 <style lang="scss" scoped>
 .multi_inputs{
-    border-bottom: 1px solid #DDD;
+    border: 1px solid #DDD;
+    padding: 20px;
+    border-radius: 20px;
     margin-bottom: 40px;
     width: 90%;
+    .delete_file{
+        button{
+            background-color: red;
+            border: 0;
+            color: #FFF;
+            font-size: 16px;
+            width: 150px;
+            display: block;
+            padding: 10px;
+            text-align: center;
+            border-radius: 10px;
+        }
+    }
 }
 .addNew button{
     background-color: #78A28F;

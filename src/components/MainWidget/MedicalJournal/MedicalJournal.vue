@@ -51,7 +51,7 @@
               <!-- <span>10</span> -->
             </div>
 
-            <div class="hash_tag">
+            <div class="hash_tag mt-5">
               <h3> {{$t('medicalJournal.Tags')}}</h3>
               <div class="single_hash" v-for="article in articles" :key="article.id">#{{article.translation[0].tags}}</div>
             </div>
@@ -133,41 +133,44 @@ export default {
               'Access-Control-Allow-Origin': '*',
               'Access-Control-Allow-Headers': '*',
               'Authorization': 'Bearer '+ localStorage.getItem('token'),
+              'locale' : localStorage.getItem('lang')
           },
       })
-          .then((response) => {
-          console.log(response)
-          this.articles = response.data.data
-          })
-          .catch((error) => {
-          console.error('Error fetching data from API:', error);
-          });
+      .then((response) => {
+      console.log(response)
+      this.articles = response.data.data
+      })
+      .catch((error) => {
+      console.error('Error fetching data from API:', error);
+      });
     },
     getArticlesSections(){
-        axios.get(`https://app.almujtama.com.sa/admin/magazineCategory`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': '*',
-                'Authorization': 'Bearer '+ localStorage.getItem('token'),
-            },
-        })
-        .then((response) => {
-            console.log(response, 'mmmmmm')
-            this.articlesSections = response.data.data
-        
-        })
-        .catch((error) => {
-        console.error('Error fetching data from API:', error);
-        });
+      axios.get(`https://app.almujtama.com.sa/api/magazineCategory`, {
+          headers: {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Headers': '*',
+              'Authorization': 'Bearer '+ localStorage.getItem('token'),
+              'locale' : localStorage.getItem('lang')
+          },
+      })
+      .then((response) => {
+          console.log(response, 'mmmmmm')
+          this.articlesSections = response.data.data
+      
+      })
+      .catch((error) => {
+      console.error('Error fetching data from API:', error);
+      });
     },
     getArticlesSubSections(){
-        axios.get(`https://app.almujtama.com.sa/admin/magazineSubcategory`, {
+        axios.get(`https://app.almujtama.com.sa/api/magazineSubcategory`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Headers': '*',
                 'Authorization': 'Bearer '+ localStorage.getItem('token'),
+                'locale' : localStorage.getItem('lang')
             },
             params:{
                 magazine_category_id : this.$route.params.id

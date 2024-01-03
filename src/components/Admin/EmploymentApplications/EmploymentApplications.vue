@@ -16,6 +16,9 @@
                 <option value="" selected disabled>المدينة</option>
             </select>
         </div>
+        <div>
+            <button class="saveBtn" @click="downloadExcel"> تصدير </button>
+        </div>
 
         <RequestSpinner v-if="loadingRequest == true" />
         <div class="main_table" v-if="loadingRequest == false">
@@ -62,6 +65,9 @@ export default {
         this.getApplications();
     },
     methods:{
+        downloadExcel(){
+            window.open(`https://app.almujtama.com.sa/admin/employmentRequest/export?token=${localStorage.getItem('token')}`, '_blank');
+        },
         getApplications() {
             axios.get('https://app.almujtama.com.sa/admin/employmentRequests', {
                 headers: {

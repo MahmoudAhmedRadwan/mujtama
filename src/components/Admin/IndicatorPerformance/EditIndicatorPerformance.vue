@@ -4,16 +4,24 @@
         <div class="form_container">
             <form @submit.prevent="editIndicatorPerformance">
                 <div class="input_container">
-                    <label>الاسم</label>
+                    <label> الاسم باللغة العربية</label>
                     <input type="text" v-model="indicatorPerformance.translation[0].title">
+                </div>
+                <div class="input_container">
+                    <label> الاسم باللغة الإنجليزية</label>
+                    <input type="text" v-model="indicatorPerformance.translation[1].title">
                 </div>
                 <div class="input_container">
                     <label>الرقم</label>
                     <input type="text" v-model="indicatorPerformance.value">
                 </div>
                 <div class="input_container">
-                    <label>الوصف</label>
+                    <label>الوصف باللغة العربية</label>
                     <input type="text" v-model="indicatorPerformance.translation[0].description">
+                </div>
+                <div class="input_container">
+                    <label>الوصف باللغة الإنجليزية</label>
+                    <input type="text" v-model="indicatorPerformance.translation[1].description">
                 </div>
                 <div class="alert alert-danger" role="alert" v-if="ErrorCheck == true">
                     <p v-for="(error, index) in errors" :key="index"> {{error}} </p>
@@ -41,6 +49,11 @@ export default {
                         title: '',
                         description: '',
                         locale: 'ar'
+                    },
+                    {
+                        title: '',
+                        description: '',
+                        locale: 'en'
                     }
                 ],
                 value: ''
@@ -66,8 +79,10 @@ export default {
                 .then((response) => {
                 console.log(response, 'mmmmmm')
                 this.indicatorPerformance.translation[0].title = response.data.data.translations[0].title
+                this.indicatorPerformance.translation[1].title = response.data.data.translations[1].title
                 this.indicatorPerformance.value = response.data.data.value
                 this.indicatorPerformance.translation[0].description = response.data.data.translations[0].description
+                this.indicatorPerformance.translation[1].description = response.data.data.translations[1].description
                 this.category = response.data.data.category
                 })
                 .catch((error) => {

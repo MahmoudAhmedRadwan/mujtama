@@ -29,7 +29,7 @@
             <ul>
             <li>
               <router-link to="/" :class="hoverType == 'main' ? 'activeLink' : ''">
-                الرئيسية
+                {{$t('landing.Home')}}
               </router-link>
             </li>
 
@@ -38,31 +38,31 @@
                 to="/about-us"
                 :class="hoverType == 'about-us' ? 'activeLink' : ''"
               >
-                <span>+</span>تعرف علينا
+                <span>+</span>{{$t('landing.AboutUs')}}
               </router-link>
             </li>
             <li>
-              <router-link to="Error"><span>+</span>المتجر </router-link>
+              <router-link to="Error"><span>+</span>{{$t('landing.Store')}} </router-link>
             </li>
             <li>
               <router-link
                 to="/medical-journal"
                 :class="hoverType == 'medical-journal' ? 'activeLink' : ''"
-                ><span>+</span>المجلة الإلكترونية
+                ><span>+</span>{{$t('landing.EMagazine')}}
               </router-link>
             </li>
             <li>
               <router-link
                 to="/form"
                 :class="hoverType == 'form' ? 'activeLink' : ''"
-                ><span>+</span>الوظائف
+                ><span>+</span>{{$t('landing.Jobs')}}
               </router-link>
             </li>
             <li>
               <router-link
                 to="/branches"
                 :class="hoverType == 'branches' ? 'activeLink' : ''"
-                ><span>+</span>الفروع
+                ><span>+</span>{{$t('landing.OurBranches')}}
               </router-link>
             </li>
             <li>
@@ -70,16 +70,17 @@
                 to="/investor-relations"
                 :class="hoverType == 'investor-relations' ? 'activeLink' : ''"
               >
-                <span>+</span>علاقات المستثمرين
+                <span>+</span>{{$t('landing.InvestorRelations')}}
               </router-link>
             </li>
           </ul>
           </div>
           <div class="lang">
-            <h3>عربي</h3>
-            <select>
-              <option value="">Ar</option>
-              <option value="">En</option>
+            <h3>{{$t('language')}}</h3>
+            <select v-model="localelang" @change="(e) => changeUrl(e)">
+              <option v-for="(lang, i) in $i18n.availableLocales" :key="`Lang${i}`" :value="lang">
+                  {{ lang }}
+              </option>
             </select>
           </div>
         </div>
@@ -110,7 +111,7 @@
         </div>
       </div>
       <div class="lang">
-        <h3>عربي</h3>
+        <h3> {{$t('language')}}</h3>
         <select v-model="localelang" @change="(e) => changeUrl(e)">
           <option v-for="(lang, i) in $i18n.availableLocales" :key="`Lang${i}`" :value="lang">
               {{ lang }}
@@ -627,22 +628,42 @@ export default {
     .logo,
     .contacts{
       margin: 0 100px 0 0;
+      @media (max-width: 1399px) {
+        margin: 0 10px 0 00;
+      }
     }
     .shortCuts{
       margin: 0 100px 0 0;
+      @media (max-width: 1399px) {
+        margin: 0 10px 0 0;
+      }
     }
     .contacts{
       ul{
         li{
           .icon_container{
             margin: 0 10px 0 0;
+            @media (max-width: 1399px) {
+              margin: 0 5px 0 0;
+            }
           }
         }
       }
     }
     .call_us{
       margin: 73px 0 0 30px;
+      @media (max-width: 1399px) {
+        margin: 73px 0 0 0;
+      }
     }
+  }
+
+  .landing_header .mobile_menu .social_mobile .icon{ 
+    margin: 0 20px 0 0;
+  }
+  .landing_header .mobile_menu .email .icon, 
+  .landing_header .mobile_menu .phone .icon{
+    margin: 0 10px 0 0;
   }
 }
 </style>

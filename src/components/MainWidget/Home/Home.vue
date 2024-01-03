@@ -34,8 +34,11 @@
         src="../../../assets/images/aboutCompanyBg.svg"
         alt=""
       />
+      
       <div class="img_container">
-        <img src="../../../assets/images/group.png" alt="" />
+        <img src="../../../assets/images/group.png" alt=""  v-if="language == 'ar'"/>
+        <img src="../../../assets/images/aboutCompanyEn.png" alt="" v-if="language == 'en'"
+      />
       </div>
       <div class="description">
         <router-link to="/about-us">
@@ -206,22 +209,19 @@ export default {
   name: "Home",
   data() {
     return {
+      language: 'ar',
       pageNumber: 0,
       indicatorPerformance: {},
       key_metrics: [],
       pages: [
         {
-          description:
-            "تعلن شركة المجتمع الرائدة الطبية عن موافقة مجلس الإدارة في اجتماعه المنعقد بتاريخ 04/12/2023م على قبول استقالة عضو مجلس الإدارة الأستاذ/ هشام عمر باروم ( غير تنفيذي ) من منصبه وذلك بتاريخ 04/12/2023م على أن تسري الاستقالة من تاريخ تقديم الاستقالة في 04/12/2023م ويعود سبب الاستقالة إلى انتهاء ترخيص الجمعية العامة المنعقدة بتاريخ 06/10/2022م بشأن السماح له بالاشتراك في عضوية مجلس إدارة شركة انوفا السعودية للرعاية الصحية.",
-          seconde_description:
-            "وقد عبر العضو عن شكره وامتنانه لمساهمي الشركة وأعضاء المجلس على الفترة التي قضاها كعضو في مجلس الإدارة، ويتوجه مجلس إدارة الشركة بجزيل الشكر والتقدير للأستاذ/ هشام عمر باروم متمنيين له دوام التوفيق والنجاح.",
+          description:this.$t('slider.TheLeadingCommunityMedical'),
+          seconde_description: this.$t('slider.TheLeadingCommunityMedicalDescription'),
           img: require("../../../assets/images/newsTrueSign.jpg"),
         },
         {
-          description:
-            "تعلن شركة المجتمع الرائدة الطبية (“الشركة”) عن عزم الشركة تسجيل وإدراج أسهم الشركة البالغة (9,500,000) سهم عادي ادراجاً مباشراً في السوق الموازية “نمو” ، و سيتم الإعلان عن تاريخ الإدراج قريباً",
-          seconde_description:
-            "انضموا إلينا في الفرع الجديد واستفيدوا من خدماتنا المتميزة صيدليات_المجتمع #الريادة_في_خدمة_المجتمع",
+          description: this.$t('slider.CommunityLeadingMedical'),
+          seconde_description: this.$t('slider.CommunityLeadingMedicalDescription'),
           img: require("../../../assets/images/new7.jpg"),
         },
         {
@@ -230,21 +230,24 @@ export default {
           img: require("../../../assets/images/opening.png"),
         },
         {
-          description:
-            "كلية الصيدلية بجامعة الملك عبد العزيز بمدينة جدة كل الشكر للراعي الذهبي صيدلية المجتمع لمساهمتهم في نجاح فاعليتنا",
-          seconde_description: "#صيدلية_المجتمع",
+          description: this.$t('slider.CollegeOfPharmacy'),
+          seconde_description:this.$t('slider.Community_Pharmacy'),
           img: require("../../../assets/images/openening2023.png"),
         },
         {
-          description:
-            "قامت إدارة شركة المجتمع الرائدة الطبية بتكريم الصيدلي محمد أحمد محمد علي لحصوله على المركز الرابع حسب تقييم الأداء في شهر سبتمبر.",
-            descriptionTwo: 'صيدليات المجتمع تتمنى له ولجميع شركاء النجاح المزيد من التوفيق والسداد',
+          description:this.$t('slider.TheManagementOfTheLeading'),
+            descriptionTwo:this.$t('slider.TheManagementOfTheLeadingDescription') ,
           img: require("../../../assets/images/gift.png"),
         },
       ],
     };
   },
   mounted() {
+    if(localStorage.getItem('lang')){
+      this.language = localStorage.getItem('lang')
+    } else {
+      this.language = 'ar'
+    }
     this.getIndicatorPerformancekey_metrics();
   },
   methods: {
@@ -270,6 +273,7 @@ export default {
               'Content-Type': 'application/json',
               'Authorization': 'Bearer '+ localStorage.getItem('token'),
               // localization: store.state.localization
+              'locale': localStorage.getItem('lang')
           },
           params:{
             category: 'key_metrics'

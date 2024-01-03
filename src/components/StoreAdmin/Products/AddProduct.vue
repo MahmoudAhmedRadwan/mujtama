@@ -205,7 +205,7 @@ export default {
                 },
             })
             .then((response) => {
-                console.log(response, 'mmmmmm')
+                console.log(response.data.data, 'getCategories')
                 this.categories = response.data.data
             
             })

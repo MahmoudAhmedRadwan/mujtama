@@ -132,6 +132,7 @@ export default {
                 })
                     .then((response) => {
                     console.log(response, 'mmmmmm')
+                    this.imgUrl = response.data.data.image
                     this.article.translation[0].name = response.data.data.translation[0].name          
                     this.article.translation[1].name = response.data.data.translation[1].name          
                     this.article.translation[0].description = response.data.data.translation[0].description          
@@ -139,7 +140,10 @@ export default {
                     this.article.translation[0].tags = response.data.data.translation[0].tags          
                     this.article.translation[1].tags = response.data.data.translation[1].tags          
                     this.article.active = response.data.data.active
-                    this.article.category_id = response.data.data.category_id
+                    
+                    this.category_id = response.data.data.category.id
+                    this.getArticlesSubSections();
+                    this.article.subcategory_id = response.data.data.subcategory.id
                     })
                     .catch((error) => {
                     console.error('Error fetching data from API:', error);

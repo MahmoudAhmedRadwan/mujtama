@@ -9,7 +9,7 @@
                     <thead>
                     <tr>
                         <th> الوظيفة المطلوبة</th>
-                        <th>كباتن توصيل الطلبات</th>
+                        <th>{{application.job}}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -129,6 +129,46 @@
                             {{application.english_fluency_degree == 'weak' ? 'ضعيف' : ''}}
                         </td>
                     </tr>
+                    <tr>
+                        <td>صورة الهوية او جواز السفر</td>
+                        <td> <a target="_blank" :href="application.attachments[0].download_url"> <img src="../../../assets/images/downloadSvg.svg" alt=""> </a> </td>
+                    </tr>
+                    <tr>
+                        <td>السيرة الذاتية شهادة البكالوريوس</td>
+                        <td> <a target="_blank" :href="application.attachments[1].download_url"> <img src="../../../assets/images/downloadSvg.svg" alt=""> </a> </td>
+                    </tr>
+                    <tr>
+                        <td>شهادة البكالوريوس</td>
+                        <td> <a target="_blank" :href="application.attachments[2].download_url"> <img src="../../../assets/images/downloadSvg.svg" alt=""> </a> </td>
+                    </tr>
+                    <tr>
+                        <td> كارنية نقابة الصيادلة</td>
+                        <td> <a target="_blank" :href="application.attachments[3].download_url"> <img src="../../../assets/images/downloadSvg.svg" alt=""> </a> </td>
+                    </tr>
+                    <tr>
+                        <td>ترخيص مزاولة المهنة بوزارة الصحة بدولتك</td>
+                        <td> <a target="_blank" :href="application.attachments[4].download_url"> <img src="../../../assets/images/downloadSvg.svg" alt=""> </a> </td>
+                    </tr>
+                    <tr>
+                        <td>شهادات الخبرة 1</td>
+                        <td> <a target="_blank" :href="application.attachments[5].download_url"> <img src="../../../assets/images/downloadSvg.svg" alt=""> </a> </td>
+                    </tr>
+                    <tr>
+                        <td>شهادات خبرة 2</td>
+                        <td> <a target="_blank" :href="application.attachments[6].download_url"> <img src="../../../assets/images/downloadSvg.svg" alt=""> </a> </td>
+                    </tr>
+                    <tr>
+                        <td>شهادات خبرة 3</td>
+                        <td> <a target="_blank" :href="application.attachments[7].download_url"> <img src="../../../assets/images/downloadSvg.svg" alt=""> </a> </td>
+                    </tr>
+                    <tr>
+                        <td>صورة بيان الدرجات</td>
+                        <td> <a target="_blank" :href="application.attachments[8].download_url"> <img src="../../../assets/images/downloadSvg.svg" alt=""> </a> </td>
+                    </tr>
+                    <tr>
+                        <td>ارفق صورة من ترخيص مزاولة المهنة فى المملكة العربية السعدوية</td>
+                        <td> <a target="_blank" :href="application.attachments[0].download_url"> <img src="../../../assets/images/downloadSvg.svg" alt=""> </a> </td>
+                    </tr>
                     
                     </tbody>
                 </table>
@@ -161,6 +201,7 @@ export default {
                     'Access-Control-Allow-Origin': '*',
                     'Access-Control-Allow-Headers': '*',
                     'Authorization': 'Bearer '+ localStorage.getItem('token'),
+                    locale: 'ar'
                 },
             })
             .then((response) => {

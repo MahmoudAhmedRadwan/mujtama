@@ -4,6 +4,7 @@ export default {
   storeStatus: 'The store is temporarily under maintenance',
   weareSorry: 'Dear customers, we regret that the service is not available at the present time',
 
+  language: 'English',
   writeHere : 'write Here',
   Muslim : 'Muslim',
   NonMuslim : 'Non – Muslim',
@@ -25,7 +26,19 @@ export default {
 
   slider:{
     newOpening: 'We happily announce that we have opened our new branch for AL MUJTAMA pharmacies in AL SAFA district- PRINCE MUTAIB BIN ABDUL AZIZ – JEDDAH',
-    newOpeningDescription: 'Join us in the new branch and benefit from our distinguished services. Community_pharmacies #Leadership_in_Community_Service'
+    newOpeningDescription: 'Join us in the new branch and benefit from our distinguished services. Community_pharmacies #Leadership_in_Community_Service',
+ 
+    TheLeadingCommunityMedical:'The Leading Community Medical Company announces the approval of the Board of Directors at its meeting held on 12/04/2023 AD to accept the resignation of Board Member Mr. Hisham Omar Baroum (non-executive) from his position on 12/04/2023 AD, provided that the resignation takes effect from the date of submitting the resignation. On 04/12/2023 AD, the reason for his resignation was due to the expiration of the license of the General Assembly held on 06/10/2022 AD regarding allowing him to participate in the membership of the Board of Directors of the Saudi Anova Healthcare Company.',
+    TheLeadingCommunityMedicalDescription:'The member expressed his thanks and gratitude to the company’s shareholders and members of the Board for the period he spent as a member of the Board of Directors. The Company’s Board of Directors extends its sincere thanks and appreciation to Mr. Hisham Omar Baroum, wishing him continued success.',
+
+    CommunityLeadingMedical:'Community Leading Medical Company (“the Company”) announces the company’s intention to register and list the company’s shares amounting to (9,500,000) ordinary shares directly in the parallel market “Nomu”, and the listing date will be announced soon.',
+    CommunityLeadingMedicalDescription : 'Join us in the new branch and benefit from our distinguished services. Community_pharmacies #Leadership_in_Community_Service ',
+
+    CollegeOfPharmacy: 'College of Pharmacy at King Abdulaziz University in Jeddah. All thanks to the golden sponsor, Community Pharmacy, for their contribution to the success of our event.',
+    Community_Pharmacy :'#Community_Pharmacy',
+    TheManagementOfTheLeading: 'The management of the leading community medical company honored pharmacist Mohamed Ahmed Mohamed Ali for achieving fourth place according to the performance evaluation in the month of September.',
+
+    TheManagementOfTheLeadingDescription: 'Community Pharmacies wishes him and all partners more success and prosperity    '
   },
 
   landing: {
@@ -88,7 +101,7 @@ export default {
     AbouttheGroupDescriptionpoint6: '• Partners with Ministry of health in providing Seasonal Vaccination and detecting vital signs within campaigns #Know your number# In preparation for implementing the unified file system for all citizens, in coordination with the relevant government agencies. ',
     AbouttheGroupDescriptionpoint7: '• AL MUJTAMA pharmacies under supervision of Ministry of health provides medical care with fully equipped pharmacy that provides service and assistance through telemedicine that provides best health service.',
 
-    OurVision:'Our Visio',
+    OurVision:'Our Vision',
     OurVisionDescription:'leadership in serving the community, for a healthy, conscious society',
     OurMessage:'Our Message',
     OurMessageDescription:'Provide integrated pharmaceutical services to all segments of society.',
@@ -144,10 +157,11 @@ export default {
     ReportsAndResults :'Reports and Results',
     downloadTheFile :'download the file',
     MoneyMarketDisclosure :'Money Market disclosure',
-    MoneyMarketDisclosureDescription :'The Leading Community Medical Company announces the approval of the Board of Directors, in its meeting held on 12/04/2023 AD, to accept the resignation of Board Member Mr. Hisham Omar Baroum (non-executive) from his position on 12/04/2023 AD, provided that the resignation takes effect from the date of submitting the resignation. On 04/12/2023 AD, the reason for the resignation was due to the expiration of the license of the General Assembly held on 06/10/2022 AD regarding allowing him to participate in the membership of the Board of Directors of the Saudi Anova Healthcare Company. The member expressed his thanks and gratitude to the company’s shareholders and members The Board of Directors for the period he spent as a member of the Board of Directors, and the Company’s Board of Directors extends its sincere thanks and appreciation to Mr. Hisham Omar Baroum, wishing him continued success.',
-    AdvertisementDetails: 'Advertisement details',
+    MoneyMarketDisclosureDescription :'Al Mujtama Leading Medical Company announces the approval of the board of directors at its meeting held on 04/12/2023 to accept the resignation of board member Mr. Hisham Omar Baroum (non-executive member) from his position on 04/12/2023, provided that the resignation is effective from the date of submission of the resignation on 04/12/2023.the reason behind the resignation is due to the expiration of the license of the General Assembly held on 06/10/2022 to allow him to participate in the membership of the board of Directors of Inova Saudi healthcare company.',
+    AdvertisementDetails :'Advertisement details',
     KeyIndex :'Key Index',
     KeyPerformanceIndex :'Key performance index',
+    
     FirstQuarter :'(First Quarter of 2023)',
 
     // questions

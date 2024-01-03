@@ -28,7 +28,7 @@
         <div class="inputs">
           <div class="input_container">
             <form @submit.prevent="NameFilter">
-              <input type="text" placeholder=" $t('medicalJournal.search')" v-model="branchName"/>
+              <input type="text" :placeholder="$t('medicalJournal.search')" v-model="branchName"/>
               <button class="saveBtn">{{$t('medicalJournal.search')}}</button>
             </form>
           </div>
@@ -109,9 +109,10 @@ export default {
       axios.create({
           baseURL: 'https://app.almujtama.com.sa/api',
           headers: {
-              'Content-Type': 'application/json',
-              'Authorization': 'Bearer '+ localStorage.getItem('token'),
-              // localization: store.state.localization
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+ localStorage.getItem('token'),
+            // localization: store.state.localization
+            'locale' : localStorage.getItem('lang')
           }
       })
       .get('/branches')

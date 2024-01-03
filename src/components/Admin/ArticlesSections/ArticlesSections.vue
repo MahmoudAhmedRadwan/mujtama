@@ -25,7 +25,7 @@
                     </thead>
                     <tbody>
                     <tr v-for="articlesSection in articlesSections" :key="articlesSection.id">
-                        <td> {{articlesSection.name}} </td>
+                        <td> {{articlesSection.translation[0].name}} </td>
                         <td>
                             <div class="actionsContainer">
                                 <button @click="() => subSections(articlesSection.id)">أقسام فرعية</button>

@@ -69,7 +69,7 @@
             </div>
             <div class="des">
               <h4> {{$t('aboutUs.OurVision')}}</h4>
-              <p> {{$t('aboutUs.OurVision')}}</p>
+              <p> {{$t('aboutUs.OurVisionDescription')}}</p>
             </div>
           </div>
           <div class="description">
@@ -77,7 +77,7 @@
               <img src="../../../assets/images/rocket.png" alt="" />
             </div>
             <div class="des">
-              <h4> {{$t('aboutUs.OurVision')}}</h4>
+              <h4> {{$t('aboutUs.OurMessage')}}</h4>
               <ul>
                 <li><p>{{$t('aboutUs.OurMessageDescription')}}</p></li>
                 <li><p>{{$t('aboutUs.OurMessageDescription2')}}</p></li>

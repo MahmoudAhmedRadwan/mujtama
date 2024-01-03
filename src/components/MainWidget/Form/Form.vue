@@ -19,6 +19,19 @@
       </div>
     </header>
 
+    <!-- <div class="ifram_container p-4">
+      <iframe
+        width="100%"
+        height="600"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+        :src="googleFormUrl"
+      >
+      Loading...
+      </iframe>
+    </div> -->
+
     <div class="form_container">
       <div class="container">
         <div class="form">
@@ -103,7 +116,13 @@
               <label>{{$t('jobForm.MobileNo')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
-              <input type="text" :placeholder="$t('writeHere')" v-model="form.phone_number" />
+              <div class="phone_input_container">
+                <select v-model="form.country_phone_code">
+                  <option value="966"> <img src="../../../assets/images/saudi.jpeg" alt=""> +966</option>
+                  <option value="202"> <img src="../../../assets/images/egypt.png" alt=""> +202</option>
+                </select>
+                <input type="tel" :placeholder="$t('writeHere')" v-model="form.phone_number" />
+              </div>
             </div>
             <div class="input_container">
               <label>{{$t('jobForm.Profession')}}
@@ -350,6 +369,7 @@ export default {
   name: "Form",
   data(){
     return{
+      googleFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSexuMdLrRWTv2f_FUnXtwwHp_a1xdiL6TfveHfwHok2aZZ2YA/viewform?embedded=true',
       postLoaded: false,
       form: {
         job: '',
@@ -364,6 +384,7 @@ export default {
         number_of_children: '',
         home_address: '',
         phone_number: '',
+        country_phone_code: '966',
         specialization: '',
         email: '',
         scientific_qualifications: '',
@@ -419,6 +440,7 @@ export default {
       formData.append('number_of_children', this.form.number_of_children);
       formData.append('home_address', this.form.home_address);
       formData.append('phone_number', this.form.phone_number);
+      formData.append('country_phone_code', this.form.country_phone_code);
       formData.append('specialization', this.form.specialization);
       formData.append('email', this.form.email);
       formData.append('scientific_qualifications', this.form.scientific_qualifications);
@@ -442,6 +464,7 @@ export default {
       formData.append('have_driving_license', this.form.have_driving_license);
       formData.append('good_at_driving_cars', this.form.good_at_driving_cars);
       formData.append('english_fluency_degree', this.form.english_fluency_degree);
+      
       formData.append('attachments[id_number]', this.form.file_id_number);
       formData.append('attachments[cv]', this.form.file_cv);
       formData.append('attachments[bachelor_degree_certificate]', this.form.file_bachelor_degree_certificate);
@@ -693,6 +716,26 @@ export default {
   }
 }
 
+.phone_input_container{
+  display: flex;
+  align-items: center;
+  select{
+    padding: 8px;
+    order: 2;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #6f7775;
+    img{
+      width: 30px;
+    }
+  }
+  input{
+    order: 1;
+    direction: ltr;
+  }
+}
+
 .en{
   .breadCrobs{
     a,
@@ -700,5 +743,15 @@ export default {
       margin: 0 10px 0 0;
     }
   }
+  .phone_input_container{
+    select{
+      order: 1;
+    }
+    input{
+      order: 2;
+    }
+  }
 }
+
+
 </style>
