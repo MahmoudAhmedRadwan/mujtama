@@ -166,8 +166,16 @@
                         <td> <a target="_blank" :href="application.attachments[8].download_url"> <img src="../../../assets/images/downloadSvg.svg" alt=""> </a> </td>
                     </tr>
                     <tr>
-                        <td>ارفق صورة من ترخيص مزاولة المهنة فى المملكة العربية السعدوية</td>
+                        <td> صورة من ترخيص مزاولة المهنة فى المملكة العربية السعدوية</td>
                         <td> <a target="_blank" :href="application.attachments[0].download_url"> <img src="../../../assets/images/downloadSvg.svg" alt=""> </a> </td>
+                    </tr>
+                    <tr>
+                        <td> الموقف من التجنيد</td>
+                        <td> 
+                            {{application.military_status == 'final_exemption' ? 'اعفاء نهائي' : ''}}
+                            {{application.military_status == 'temp_exemption' ? 'اعفاء مؤقت' : ''}}
+                            {{application.military_status == 'performed_military_service' ? 'أدى الخدمة' : ''}}    
+                        </td>
                     </tr>
                     
                     </tbody>

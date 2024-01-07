@@ -113,6 +113,17 @@ export default class Request
             
         })
     }
+    static deleteAll(url, ID){
+
+        return axios.delete( store.state.domain + '/' + url, { 
+            headers: { 
+                Authorization: `Bearer ${localStorage.getItem('token')}` 
+            },
+            data:{
+                id: ID
+            }
+        })
+    }
 
     // status success
     static statusIsSuccess(response) {

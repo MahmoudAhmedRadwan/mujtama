@@ -19,6 +19,14 @@
       </div>
     </header>
 
+    <!-- <div class="replace">
+      <p>
+        {{$t('jobForm.replace1')}} <br>
+        {{$t('jobForm.replace2')}}
+        (<a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSexuMdLrRWTv2f_FUnXtwwHp_a1xdiL6TfveHfwHok2aZZ2YA/viewform?embedded=true">{{$t('jobForm.replaceLink')}}</a>)</p>
+      <div class="line"></div>
+    </div> -->
+
     <!-- <div class="ifram_container p-4">
       <iframe
         width="100%"
@@ -32,16 +40,37 @@
       </iframe>
     </div> -->
 
-    <div class="form_container">
+    <div v-if="settings == false" class="noForm">
+      <p> {{$t('jobForm.noForm')}}</p>
+    </div>
+
+    <div class="form_container" v-if="settings == true">
       <div class="container">
         <div class="form">
           <h3> {{$t('jobForm.EMPLOYMENTAPPLICATIONFORM')}}</h3>
           <div class="line"></div>
 
           <form @submit.prevent="send">
+            <!-- <div class="input_container">
+              <label>
+                {{$t('jobForm.RequiredJOB')}}
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
+              <input type="text" :placeholder="$t('writeHere')" v-model="form.job" />
+            </div> -->
             <div class="input_container">
               <label>
                 {{$t('jobForm.RequiredJOB')}}
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
+              <select @change="(e) => chooseJob(e)">
+                <option value="" selected disabled> إختار الوظيفة </option>
+                <option value="صيدلي">صيدلي</option>
+                <option value="غير صيدلي">غير صيدلي</option>
+              </select>
+            </div>
+            <div class="input_container" v-if="writeJob == true">
+              <label>{{$t('jobForm.WriteTheJob')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
               <input type="text" :placeholder="$t('writeHere')" v-model="form.job" />
@@ -68,7 +97,7 @@
               <label>{{$t('jobForm.IDno')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
-              <input type="text" :placeholder="$t('writeHere')" v-model="form.id_number" />
+              <input type="number" :placeholder="$t('writeHere')" v-model="form.id_number" />
             </div>
             <div class="input_container">
               <label>{{$t('jobForm.Nationality')}}
@@ -92,6 +121,16 @@
               </b-form-group>
             </div>
             <div class="input_container">
+              <label>{{$t('jobForm.AttitudeTowardsRecruitment')}}
+                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+              </label>
+              <b-form-group class="radiroFlex" v-slot="{ ariaDescribedby }">
+                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.military_status" value="final_exemption">{{$t('jobForm.finalExemtion')}}</b-form-radio>
+                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.military_status" value="temp_exemption"> {{$t('jobForm.temparayExemtion')}}</b-form-radio>
+                <b-form-radio :aria-describedby="ariaDescribedby" v-model="form.military_status" value="performed_military_service"> {{$t('jobForm.CompletedService')}}</b-form-radio>
+              </b-form-group>
+            </div>
+            <div class="input_container">
               <label>{{$t('jobForm.Maritalstatus')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
@@ -102,7 +141,7 @@
             </div>
             <div class="input_container">
               <label>{{$t('jobForm.NoOfChildren')}}
-                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+                <!-- <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon> -->
               </label>
               <input type="number" :placeholder="$t('writeHere')" v-model="form.number_of_children"/>
             </div>
@@ -117,10 +156,23 @@
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
               <div class="phone_input_container">
-                <select v-model="form.country_phone_code">
+                <!-- <select v-model="form.country_phone_code">
                   <option value="966"> <img src="../../../assets/images/saudi.jpeg" alt=""> +966</option>
-                  <option value="202"> <img src="../../../assets/images/egypt.png" alt=""> +202</option>
-                </select>
+                  <option value="202"> <img src="../../../assets/images/egypt.png" alt=""> +201</option>
+                </select> -->
+                <div class="tel_select" @click="openSelect">
+                  {{form.country_phone_code}} <img :src="country_img" alt="">
+                   <b-icon icon="chevron-down" aria-hidden="true"></b-icon>
+                   <!-- <b-icon icon="chevron-up" aria-hidden="true"></b-icon> -->
+                    <div class="select_body" v-if="select_body_active == true">
+                      <div class="select_row" @click="() => modelingNumber(966, require('../../../assets/images/saudi.jpeg'))">
+                        966 <img src="../../../assets/images/saudi.jpeg" alt="">
+                      </div>
+                      <div class="select_row" @click="() => modelingNumber(202, require('../../../assets/images/egypt.png'))">
+                        202 <img src="../../../assets/images/egypt.png" alt="">
+                      </div>
+                    </div>
+                </div>
                 <input type="tel" :placeholder="$t('writeHere')" v-model="form.phone_number" />
               </div>
             </div>
@@ -134,7 +186,7 @@
               <label>{{$t('jobForm.EmailID')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
-              <input type="text" :placeholder="$t('writeHere')" v-model="form.email"/>
+              <input type="email" :placeholder="$t('writeHere')" v-model="form.email"/>
             </div>
             <div class="input_container">
               <label>{{$t('jobForm.Qualification')}}
@@ -158,7 +210,7 @@
               <label>{{$t('jobForm.YearOfGraduation')}}
                 <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
               </label>
-              <input type="text" :placeholder="$t('writeHere')" v-model="form.graduation_year" />
+              <input type="number" :placeholder="$t('writeHere')" v-model="form.graduation_year" />
             </div>
             <div class="input_container">
               <label>{{$t('jobForm.Percentage')}}
@@ -189,7 +241,7 @@
               <input type="text" :placeholder=" $t('jobForm.JobTitle')" v-model="form.job_title" />
             </div>
             <div class="input_container">
-              <input type="text" :placeholder="$t('jobForm.NumberOfYearsOfWork')" v-model="form.years_of_work" />
+              <input type="number" :placeholder="$t('jobForm.NumberOfYearsOfWork')" v-model="form.years_of_work" />
             </div>
             <div class="input_container">
               <input type="text" :placeholder=" $t('jobForm.ReasonsForLeavingWork')" v-model="form.leaving_work_reason" />
@@ -197,6 +249,7 @@
             <div class="input_container">
               <input type="text" :placeholder="$t('jobForm.JobRequirements')" v-model="form.main_tasks" />
             </div>
+            <div class="blackBorder"></div>
             <div class="right_title">
               <h4>  {{$t('jobForm.TrainingCourses')}}</h4>
             </div>
@@ -295,54 +348,54 @@
             <div class="input_container">
               <label>
                 {{$t('jobForm.KindlyattachedBachelorsdegree')}}
-                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+                <!-- <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon> -->
               </label>
               <input type="file" ref="files" @change="handleFileUpload_bachelor_degree_certificate($event)" />
             </div>
             <div class="input_container">
               <label>
                 {{$t('jobForm.KindlyAttachedSyndicateOfPharmacy')}}
-                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+                <!-- <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon> -->
               </label>
               <input type="file" ref="files" @change="handleFileUpload_pharmacists_union_membership_card($event)" />
             </div>
             <div class="input_container">
               <label>
                 {{$t('jobForm.KindlyAttachedLicenseForPractisingProfession')}}
-                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+                <!-- <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon> -->
               </label>
               <input type="file" ref="files" @change="handleFileUpload_license_to_practice_profession_in_your_country($event)" />
             </div>
             <div class="input_container">
               <label>
                 {{$t('jobForm.ExperienceCertificate1')}}
-                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+                <!-- <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon> -->
               </label>
               <input type="file" ref="files" @change="handleFileUpload_experience_certificate_1($event)" />
             </div>
             <div class="input_container">
               <label>{{$t('jobForm.ExperienceCertificate2')}}
-                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+                <!-- <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon> -->
               </label>
               <input type="file" ref="files" @change="handleFileUpload_experience_certificate_2($event)" />
             </div>
             <div class="input_container">
               <label>{{$t('jobForm.ExperienceCertificate3')}}
-                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+                <!-- <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon> -->
               </label>
               <input type="file" ref="files" @change="handleFileUpload_experience_certificate_3($event)" />
             </div>
             <div class="input_container">
               <label>
                 {{$t('jobForm.AttachACopyOfYourTranscript')}}
-                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+                <!-- <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon> -->
               </label>
               <input type="file" ref="files" @change="handleFileUpload_transcript($event)" />
             </div>
             <div class="input_container">
               <label>
                 {{$t('jobForm.professionInKSA')}}
-                <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon>
+                <!-- <b-icon class="requiredIcon" icon="star-fill" aria-hidden="true"></b-icon> -->
               </label>
               <input type="file" ref="files" @change="handleFileUpload_license_to_practice_profession_in_ksa($event)" />
             </div>
@@ -371,6 +424,9 @@ export default {
     return{
       googleFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSexuMdLrRWTv2f_FUnXtwwHp_a1xdiL6TfveHfwHok2aZZ2YA/viewform?embedded=true',
       postLoaded: false,
+      writeJob: false,
+      select_body_active: false,
+      country_img : require('../../../assets/images/saudi.jpeg') ,
       form: {
         job: '',
         name: '',
@@ -380,6 +436,7 @@ export default {
         nationality: '',
         expiry_date: '',
         religion: '',
+        military_status: '',
         marital_status: '',
         number_of_children: '',
         home_address: '',
@@ -402,11 +459,11 @@ export default {
         course_name_1_party_of_charge: '',
         course_name_2: '',
         course_name_2_party_of_charge: '',
-        dataflow_verification_documents_uploaded: 0,
-        admit_to_prometric_pearson_vue_exam: 0,
-        have_scfhs_accreditation_certificate: 0,
-        have_driving_license: 0,
-        good_at_driving_cars: 0,
+        dataflow_verification_documents_uploaded: null,
+        admit_to_prometric_pearson_vue_exam: null,
+        have_scfhs_accreditation_certificate: null,
+        have_driving_license: null,
+        good_at_driving_cars: null,
         english_fluency_degree: '',
         file_cv: '',
         file_id_number: '',
@@ -421,9 +478,20 @@ export default {
       },
       errors: [],
       ErrorCheck: false,
+      settings: null
     }
   },
+  mounted(){
+    this.getSettings();
+  },
   methods:{
+    openSelect(){
+      this.select_body_active = !this.select_body_active
+    },
+    modelingNumber(number, img){
+      this.form.country_phone_code = number
+      this.country_img = img
+    },
     send(){
       this.postLoaded = true
       // this.error = {}
@@ -436,6 +504,7 @@ export default {
       formData.append('nationality', this.form.nationality);
       formData.append('expiry_date', this.form.expiry_date);
       formData.append('religion', this.form.religion);
+      formData.append('military_status', this.form.military_status);
       formData.append('marital_status', this.form.marital_status);
       formData.append('number_of_children', this.form.number_of_children);
       formData.append('home_address', this.form.home_address);
@@ -526,11 +595,66 @@ export default {
     },
     personData(){
       console.log('test')
+    },
+
+    getSettings(){
+      axios.create({
+          baseURL: 'https://app.almujtama.com.sa/api',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+ localStorage.getItem('token'),
+            // localization: store.state.localization
+            'locale': localStorage.getItem('lang')
+          }
+      })
+      .get('/settings')
+      .then(res => {
+        console.log(res.data.data.receive_employment_request, 'settings')
+        this.settings = res.data.data.receive_employment_request
+      });
+    },
+
+    chooseJob(e){
+      if(e.target.value == 'صيدلي'){
+        this.form.job = e.target.value
+        this.writeJob = false
+      } else if(e.target.value == 'غير صيدلي'){
+        this.writeJob = true
+      }
     }
   }
 };
 </script>
 <style lang="scss" scoped>
+
+.replace{
+  padding: 100px;
+  p{
+    text-align: center;
+    font-size: 27px;
+    color: #78A28F;
+    font-weight: 800;
+    a{
+      color: #78A28F;
+      transition: .3s ease-in-out;
+      &:hover{
+        color: #D8D100;
+      }
+    }
+  }
+  .line{
+    margin: 20px auto;
+  }
+}
+.noForm{
+  p{
+    font-size: 35px;
+    font-weight: 700;
+    text-align: center;
+    color: #78a28f;
+    margin-top: 40px;
+  }
+}
 .requiredIcon{
   color: #c03e3e;
   font-size: 9px;
@@ -660,7 +784,8 @@ export default {
           margin-right: 5px;
         }
       }
-      input {
+      input,
+      select {
         width: 100%;
         display: block;
         padding: 10px;
@@ -690,12 +815,19 @@ export default {
     .w100 {
       width: 100%;
     }
+    .blackBorder{
+      height: 2px;
+      width: 100%;
+      background-color: #6f777557;
+      margin: 70px 0 40px 0;
+    }
     .right_title {
       width: 100%;
       h4 {
         font-size: 16px;
         font-weight: 600;
         color: #78a28f;
+        margin: 0 0 30px 0;
       }
     }
     .action {
@@ -734,6 +866,49 @@ export default {
     order: 1;
     direction: ltr;
   }
+
+  .tel_select{
+  width: 140px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #6f7775;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  order: 2;
+  cursor: pointer;
+  > img{
+    width: 30px;
+    margin: 0 7px;
+  }
+
+  .select_body{
+    position: absolute;
+    top: 44px;
+    left: 0;
+    right: 0;
+    background-color: #FFF;
+    border: 1px solid #dddddd;
+    z-index: 3;
+    
+    .select_row{
+      font-size: 16px;
+      color: #6f7775;
+      display: flex;
+      align-items: center;
+      padding: 5px;
+      img{
+        width: 30px;
+        margin-right: 5px;
+      }
+    } 
+    .select_row:first-child{
+      border-bottom: 1px solid #dddddd;
+    }
+  }
+}
 }
 
 .en{
